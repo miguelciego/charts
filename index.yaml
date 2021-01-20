@@ -3,22 +3,22 @@ entries:
   helm-chart-test:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-01-20T18:03:45.125546345Z"
+    created: "2021-01-20T18:21:30.402969454Z"
     description: A Helm chart for Kubernetes
     digest: 53969070d6c3ac707fb4dd5ce97e20053eca7540962e2643848a9bd7bf5da2b9
     name: helm-chart-test
     urls:
-    - https://miguelciego.github.io/helm-chart/helm-chart-test-0.1.0.tgz
+    - https://miguelciego.github.io/charts/helm-chart-test-0.1.0.tgz
     version: 0.1.0
   helm-chart-test-mig:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-01-20T18:03:45.127456645Z"
+    created: "2021-01-20T18:21:30.40485046Z"
     description: A Helm chart for Kubernetes
     digest: 7be21cf4dbfc8ad232de800c0f7e9ebba987e270f73eb4560492289f49367051
     name: helm-chart-test-mig
     type: application
     urls:
-    - https://miguelciego.github.io/helm-chart/helm-chart-test-mig-0.1.0.tgz
+    - https://miguelciego.github.io/charts/helm-chart-test-mig-0.1.0.tgz
     version: 0.1.0
-generated: "2021-01-20T18:03:45.122214065Z"
+generated: "2021-01-20T18:21:30.40056744Z"
