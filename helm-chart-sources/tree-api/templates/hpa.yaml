@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "helm-chart-test-mig.fullname" . }}
+  name: {{ include "tree-api.fullname" . }}
   labels:
-    {{- include "helm-chart-test-mig.labels" . | nindent 4 }}
+    {{- include "tree-api.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "helm-chart-test-mig.fullname" . }}
+    name: {{ include "tree-api.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
