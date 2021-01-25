@@ -3,12 +3,12 @@ entries:
   tree-api:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-01-25T19:34:19.4835144-04:00"
+    created: "2021-01-25T19:52:34.4675975-04:00"
     description: A Helm chart for Kubernetes
     digest: 771fd83bd0d74abd2e007ac650366be5c95e41fef1938778c706a7027ec55f4f
     name: tree-api
     type: application
     urls:
-    - http://test.data.io/repo/tree-api-0.1.0.tgz
+    - https://miguelciego.github.io/charts/tree-api-0.1.0.tgz
     version: 0.1.0
-generated: "2021-01-25T19:34:19.4827714-04:00"
+generated: "2021-01-25T19:52:34.4665837-04:00"

@@ -20,5 +20,5 @@ helm package helm-chart-sources/*
 Comando para actualizar el archivo index.yaml
 
 ```bash
-helm repo index . --url http://test.data.io/repo/
+helm repo index . --url https://miguelciego.github.io/charts/
 ```
