@@ -1,13 +1,21 @@
 # helm-chart for Sorbotics aplications
 
-## Create new chart
+## For use
+
+```bash
+helm add repo https://miguelciego.github.io/charts/
+helm install tree-api
+```
+
+## For Build and upgrade
+### Create new chart
 
 Para crear un nuevo chart en el directorio helm-chart-sources/
 
 ```bash
 helm create helm-chart-sources/nombre_repo
 ```
-## Package all chart 
+### Package all chart 
 
 Comando para empaquetar todos los chart en el directorio helm-chart-sources
 
@@ -15,7 +23,7 @@ Comando para empaquetar todos los chart en el directorio helm-chart-sources
 helm package helm-chart-sources/*
 ```
 
-## Update index.yaml file
+### Update index.yaml file
 
 Comando para actualizar el archivo index.yaml
 
