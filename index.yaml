@@ -1,14 +1,24 @@
 apiVersion: v1
 entries:
+  auto-deploy-app:
+  - apiVersion: v1
+    created: "2021-01-26T00:34:14.9374312-04:00"
+    description: GitLab's Auto-deploy Helm Chart
+    digest: 06a4d39a308f260d656504641d5f56877c4001b0d64d8426a3b8db46f26363ff
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: auto-deploy-app
+    urls:
+    - https://miguelciego.github.io/charts/auto-deploy-app-2.4.0.tgz
+    version: 2.4.0
   tree-api:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-01-25T19:52:34.4675975-04:00"
+    created: "2021-01-26T00:34:14.9379233-04:00"
     description: A Helm chart for Kubernetes
-    digest: 771fd83bd0d74abd2e007ac650366be5c95e41fef1938778c706a7027ec55f4f
+    digest: fc63f585543c52fc2701bef128736710714f8666c75cbd6ec40e52a9cad2f7d5
     name: tree-api
     type: application
     urls:
     - https://miguelciego.github.io/charts/tree-api-0.1.0.tgz
     version: 0.1.0
-generated: "2021-01-25T19:52:34.4665837-04:00"
+generated: "2021-01-26T00:34:14.933707-04:00"
