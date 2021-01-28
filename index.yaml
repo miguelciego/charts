@@ -2,9 +2,9 @@ apiVersion: v1
 entries:
   auto-deploy-app:
   - apiVersion: v1
-    created: "2021-01-28T14:06:14.837137-04:00"
+    created: "2021-01-28T14:27:36.2102839-04:00"
     description: GitLab's Auto-deploy Helm Chart
-    digest: 526809842540ec9193bfe3798efe0e16437c0f9386a0146eb8ea65daeec563c0
+    digest: 9c6a17d29bff7ba8a6809d18c62ef8b6f9bd21ca7d1bb05b2c349e30c465255b
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
     name: auto-deploy-app
     urls:
@@ -12,9 +12,9 @@ entries:
     version: 2.4.0
   auto-deploy-app-cps:
   - apiVersion: v1
-    created: "2021-01-28T14:06:14.8387825-04:00"
+    created: "2021-01-28T14:27:36.2117638-04:00"
     description: GitLab's Auto-deploy Helm Chart for CPS-SCZ
-    digest: 0e8b068b70cc0e1992a5accfcbdc0352a0c5cecd0b58af60f63c344efe9debdc
+    digest: 1656bba06d6226994d7183338bd84035ff7567ca54e0d094e846f4822372425e
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
     name: auto-deploy-app-cps
     urls:
@@ -23,12 +23,12 @@ entries:
   tree-api:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-01-28T14:06:14.8391984-04:00"
+    created: "2021-01-28T14:27:36.212177-04:00"
     description: A Helm chart for Kubernetes
-    digest: e9fddb36e9983ccdb727b0a5b42e13e26047f1591a6066f683d9394660f9374f
+    digest: 78c2936a68f15fa7b2e8dd7a4e75965e5e5203041781a58d4dc727b3d27d5fb1
     name: tree-api
     type: application
     urls:
     - https://miguelciego.github.io/charts/tree-api-0.1.0.tgz
     version: 0.1.0
-generated: "2021-01-28T14:06:14.8354457-04:00"
+generated: "2021-01-28T14:27:36.2083798-04:00"

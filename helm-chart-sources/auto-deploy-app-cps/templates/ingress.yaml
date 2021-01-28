@@ -52,7 +52,7 @@ spec:
 {{- if not .Values.ingress.tls.useDefaultSecret }}
     secretName: {{ .Values.ingress.tls.secretName | default (printf "%s-tls" (include "fullname" .)) }}
   - hosts:
-    - {{ template "hostname" .Values.service.url }}
+    - ide-{{ template "hostname1" .Values.service.url }}
     secretName: {{ .Values.ingress.tls.secretName | default (printf "%s-tls" (include "fullname" .)) }}-ide
 {{- end }}
 {{- end }}
