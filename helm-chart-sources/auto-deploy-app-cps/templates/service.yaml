@@ -25,4 +25,32 @@ spec:
     app: {{ template "appname" . }}
     tier: "{{ .Values.application.tier }}"
     track: "{{ .Values.application.track }}"
-{{- end -}}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "fullname" . }}-ide
+  annotations:
+{{- if .Values.service.annotations }}
+{{ toYaml .Values.service.annotations | indent 4 }}
+{{- end }}
+{{- if .Values.prometheus.metrics }}
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "{{ .Values.service.internalPort1 }}"
+{{- end }}
+  labels:
+    track: "{{ .Values.application.track }}"
+{{ include "sharedlabels" . | indent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+  - port: {{ .Values.service.externalPort1 }}
+    targetPort: {{ .Values.service.internalPort1 }}
+    protocol: TCP
+    name: {{ .Values.service.name1 }}
+  selector:
+    app: {{ template "appname" . }}
+    tier: "{{ .Values.application.tier }}"
+    track: "{{ .Values.application.track }}"    
+{{- end -}} 
