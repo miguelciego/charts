@@ -51,14 +51,25 @@ spec:
 {{- end }}
 {{- if not .Values.ingress.tls.useDefaultSecret }}
     secretName: {{ .Values.ingress.tls.secretName | default (printf "%s-tls" (include "fullname" .)) }}
+  - hosts:
+    - {{ template "hostname" .Values.service.url }}
+    secretName: {{ .Values.ingress.tls.secretName | default (printf "%s-tls" (include "fullname" .)) }}-ide
 {{- end }}
 {{- end }}
   rules:
+  - host: ide-{{ template "hostname1" .Values.service.url }}
+    http:
+      paths:
+      - path: {{ .Values.ingress.path | default "/" | quote }} 
+        backend:
+          serviceName: {{ template "fullname" . }}-ide
+          servicePort: {{ .Values.service.externalPort1 }}
+
   - host: {{ template "hostname" .Values.service.url }}
     http:
       &httpRule
       paths:
-      - path: {{ .Values.ingress.path | default "/" | quote }}
+      - path: {{ .Values.ingress.path | default "/" | quote }} 
         backend:
           serviceName: {{ template "fullname" . }}
           servicePort: {{ .Values.service.externalPort }}
