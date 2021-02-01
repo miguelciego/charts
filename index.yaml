@@ -2,9 +2,9 @@ apiVersion: v1
 entries:
   auto-deploy-app:
   - apiVersion: v1
-    created: "2021-02-01T14:54:28.8894584-04:00"
+    created: "2021-02-01T17:15:16.3511632-04:00"
     description: GitLab's Auto-deploy Helm Chart
-    digest: 694a10f10d98e4eb2754e5bbdfea6029b21133e567344708674041de962f265d
+    digest: 9c279c2c2f8312f29016f4b1aebbf33b9e5187250d9704f6cb744fbc2c8dcc63
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
     name: auto-deploy-app
     urls:
@@ -12,16 +12,16 @@ entries:
     version: 2.4.0
   auto-deploy-app-cps:
   - apiVersion: v1
-    created: "2021-02-01T14:54:28.8911991-04:00"
+    created: "2021-02-01T17:15:16.3530878-04:00"
     description: GitLab's Auto-deploy Helm Chart for CPS-SCZ
-    digest: 166e37186b6ad9fd87613133950e754e25a3f43f9f2d9de232e580b7b6e82fad
+    digest: b3ef29225c6e78f607f4d3913affdb4ff7d28b7012de2e9b4599e7b19392b3fa
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
     name: auto-deploy-app-cps
     urls:
     - https://miguelciego.github.io/charts/auto-deploy-app-cps-2.4.0.tgz
     version: 2.4.0
   - apiVersion: v1
-    created: "2021-02-01T14:54:28.8928661-04:00"
+    created: "2021-02-01T17:15:16.3571079-04:00"
     description: GitLab's Auto-deploy Helm Chart for CPS-SCZ
     digest: 1656bba06d6226994d7183338bd84035ff7567ca54e0d094e846f4822372425e
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -31,17 +31,37 @@ entries:
     version: 2.4.0
   hdfs-api:
   - apiVersion: v1
-    created: "2021-02-01T14:54:28.8954223-04:00"
+    created: "2021-02-01T17:15:16.3591569-04:00"
     description: GitLab's Auto-deploy Helm Chart
-    digest: 3f2f1243475084ddc53ca899f22d07b1fd9d313a7e2efc25ee3b19c72caf0870
+    digest: f7150f75893350e367946ab00930c877b049db13924df0427fe0001af77a0e63
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
     name: hdfs-api
     urls:
     - https://miguelciego.github.io/charts/hdfs-api-2.4.0.tgz
     version: 2.4.0
+  ml-trainer-api:
+  - apiVersion: v1
+    created: "2021-02-01T17:15:16.3630131-04:00"
+    description: GitLab's Auto-deploy Helm Chart
+    digest: 04f931e5596a9d57e33ca12992f5a8ef2ae60a872e2fb9829eabbb1d695f3e4c
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: ml-trainer-api
+    urls:
+    - https://miguelciego.github.io/charts/ml-trainer-api-2.4.0.tgz
+    version: 2.4.0
+  ml-trainer-ui:
+  - apiVersion: v1
+    created: "2021-02-01T17:15:16.3648378-04:00"
+    description: GitLab's Auto-deploy Helm Chart
+    digest: 77973189181fefff95f1a1b50f69960983853f6c9d2ad37560c793d22d9ce622
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: ml-trainer-ui
+    urls:
+    - https://miguelciego.github.io/charts/ml-trainer-ui-2.4.0.tgz
+    version: 2.4.0
   rtdb-sync-pub:
   - apiVersion: v1
-    created: "2021-02-01T14:54:28.8969293-04:00"
+    created: "2021-02-01T17:15:16.3667435-04:00"
     description: GitLab's Auto-deploy Helm Chart
     digest: cea75270d2f44835ce8971e387ce364ff8b114d608ca4453565d9168b5aa24f4
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -51,7 +71,7 @@ entries:
     version: 2.4.0
   rtdb-sync-sub:
   - apiVersion: v1
-    created: "2021-02-01T14:54:28.8982938-04:00"
+    created: "2021-02-01T17:15:16.3685576-04:00"
     description: GitLab's Auto-deploy Helm Chart
     digest: 21e8c786f8221a4db6514bd4b5697ec99aab76e7dbfe49cde3ccf8d221ea7199
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -61,7 +81,7 @@ entries:
     version: 2.4.0
   tree-api:
   - apiVersion: v1
-    created: "2021-02-01T14:54:28.9002272-04:00"
+    created: "2021-02-01T17:15:16.3710237-04:00"
     description: GitLab's Auto-deploy Helm Chart
     digest: d4c5c462a0069a33dc2ff19276cf1d9b7575c811afb2217c76649a76c82671a3
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -71,7 +91,7 @@ entries:
     version: 2.4.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-02-01T14:54:28.8987015-04:00"
+    created: "2021-02-01T17:15:16.3690725-04:00"
     description: A Helm chart for Kubernetes
     digest: 8bc936e08156fc3a91b52dc29dd9dab64780df16bc4573a6ae64175db35ba096
     name: tree-api
@@ -82,7 +102,7 @@ entries:
   tree-api-no-usar:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-02-01T14:54:28.900586-04:00"
+    created: "2021-02-01T17:15:16.3721045-04:00"
     description: A Helm chart for Kubernetes
     digest: 1e7c5f089787e4a21daf8ccf644a1a3655363a65581c9ca9200811413cabf4ab
     name: tree-api-no-usar
@@ -92,7 +112,7 @@ entries:
     version: 0.1.0
   uuid-gen-api:
   - apiVersion: v1
-    created: "2021-02-01T14:54:28.9020778-04:00"
+    created: "2021-02-01T17:15:16.3761335-04:00"
     description: GitLab's Auto-deploy Helm Chart
     digest: 44f4f69810b265fd2e91405013d03fdc1eb51dbfb8ec2ccc7fa5f6dafe706f29
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -100,4 +120,4 @@ entries:
     urls:
     - https://miguelciego.github.io/charts/uuid-gen-api-2.4.0.tgz
     version: 2.4.0
-generated: "2021-02-01T14:54:28.8875995-04:00"
+generated: "2021-02-01T17:15:16.3469148-04:00"

@@ -3,8 +3,8 @@
 ## For use
 
 ```bash
-helm add repo https://miguelciego.github.io/charts/
-helm install tree-api
+helm repo add sorbapp https://miguelciego.github.io/charts/
+helm upgrade my-tree-api sorbapp/tree-api --install
 ```
 
 ## For Build and upgrade
