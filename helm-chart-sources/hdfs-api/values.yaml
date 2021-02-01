@@ -5,8 +5,8 @@ replicaCount: 1
 strategyType:
 serviceAccountName:
 image:
-  repository: registry.desa.sorbapp.com/sorbotics/platform/tree-api/master
-  tag: 308e009dbe4c9ff2a86ff55a0ea929bd8442807f 
+  repository: registry.desa.sorbapp.com/sorbotics/ml-trainer/hdfs-api/master
+  tag: 5b6b782e8fff84b794026d3ab162b4d07e7e2cb5 
   pullPolicy: IfNotPresent
   secrets:
     - name: gitlab-registry
