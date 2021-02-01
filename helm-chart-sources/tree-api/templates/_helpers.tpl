@@ -1,62 +1,64 @@
+{{/* vim: set filetype=mustache: */}}
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "tree-api.name" -}}
-{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
-{{- end }}
+{{- define "name" -}}
+{{- default .Chart.Name .Values.nameOverride | trunc 24 | trimSuffix "-" -}}
+{{- end -}}
 
 {{/*
 Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
-If release name contains chart name it will be used as a full name.
 */}}
-{{- define "tree-api.fullname" -}}
-{{- if .Values.fullnameOverride }}
-{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
-{{- else }}
-{{- $name := default .Chart.Name .Values.nameOverride }}
-{{- if contains $name .Release.Name }}
-{{- .Release.Name | trunc 63 | trimSuffix "-" }}
-{{- else }}
-{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" }}
-{{- end }}
-{{- end }}
-{{- end }}
+{{- define "fullname" -}}
+{{- $name := default .Chart.Name .Values.nameOverride -}}
+{{- printf "%s-%s" .Release.Name $name | trimSuffix "-app" | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+
+{{- define "appname" -}}
+{{- $releaseName := default .Release.Name .Values.releaseOverride -}}
+{{- printf "%s" $releaseName | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+
+{{- define "imagename" -}}
+{{- if eq .Values.image.tag "" -}}
+{{- .Values.image.repository -}}
+{{- else -}}
+{{- printf "%s:%s" .Values.image.repository .Values.image.tag -}}
+{{- end -}}
+{{- end -}}
+
+{{- define "trackableappname" -}}
+{{- $trackableName := printf "%s-%s" (include "appname" .) .Values.application.track -}}
+{{- $trackableName | trimSuffix "-stable" | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
 
 {{/*
-Create chart name and version as used by the chart label.
+Get a hostname from URL
 */}}
-{{- define "tree-api.chart" -}}
-{{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
-{{- end }}
+{{- define "hostname" -}}
+{{- . | trimPrefix "http://" |  trimPrefix "https://" | trimSuffix "/" | trim | quote -}}
+{{- end -}}
 
 {{/*
-Common labels
+Get SecRule's arguments with unescaped single&double quotes
 */}}
-{{- define "tree-api.labels" -}}
-helm.sh/chart: {{ include "tree-api.chart" . }}
-{{ include "tree-api.selectorLabels" . }}
-{{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
-{{- end }}
+{{- define "secrule" -}}
+{{- $operator := .operator | quote | replace "\"" "\\\"" | replace "'" "\\'" -}}
+{{- $action := .action | quote | replace "\"" "\\\"" | replace "'" "\\'" -}}
+{{- printf "SecRule %s %s %s" .variable $operator $action -}}
+{{- end -}}
+
+{{- define "sharedlabels" -}}
+app: {{ template "appname" . }}
+chart: "{{ .Chart.Name }}-{{ .Chart.Version| replace "+" "_" }}"
+release: {{ .Release.Name }}
+heritage: {{ .Release.Service }}
+app.kubernetes.io/name: {{ template "appname" . }}
+helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version| replace "+" "_" }}"
 app.kubernetes.io/managed-by: {{ .Release.Service }}
-{{- end }}
-
-{{/*
-Selector labels
-*/}}
-{{- define "tree-api.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "tree-api.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+{{- if .Values.extraLabels }}
+{{ toYaml $.Values.extraLabels }}
 {{- end }}
-
-{{/*
-Create the name of the service account to use
-*/}}
-{{- define "tree-api.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create }}
-{{- default (include "tree-api.fullname" .) .Values.serviceAccount.name }}
-{{- else }}
-{{- default "default" .Values.serviceAccount.name }}
-{{- end }}
-{{- end }}
+{{- end -}}
