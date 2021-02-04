@@ -32,6 +32,7 @@ gitlab:
   envName:
   envURL:
 service:
+  enableIde: false
   enabled: true
   annotations: {}
   name: web

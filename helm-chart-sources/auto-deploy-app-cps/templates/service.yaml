@@ -25,7 +25,7 @@ spec:
     app: {{ template "appname" . }}
     tier: "{{ .Values.application.tier }}"
     track: "{{ .Values.application.track }}"
-
+{{- if .Values.service.enableIde }}
 ---
 apiVersion: v1
 kind: Service
@@ -53,4 +53,6 @@ spec:
     app: {{ template "appname" . }}
     tier: "{{ .Values.application.tier }}"
     track: "{{ .Values.application.track }}"    
+{{- end }}
+
 {{- end -}} 
