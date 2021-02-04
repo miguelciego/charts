@@ -121,16 +121,24 @@ spec:
           timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
         resources:
 {{ toYaml .Values.resources | indent 12 }}
+
+        {{- if .Values.volumenMounts.enabled }}
         volumeMounts:
-          - mountPath: /var/www/html
-            name: c9-data
+        - name : {{ .Values.volumenMounts.name }}
+          mountPath: {{ .Values.volumenMounts.mountPath }}
       volumes:
-        - name: c9-data
-{{- if .Values.persistence.enabled }}
+        - name: {{ .Values.volumenMounts.name }}
+          {{- if .Values.volumenMounts.server }}
+          nfs:
+            server:  {{ .Values.volumenMounts.server }}
+            path:  {{ .Values.volumenMounts.path }}
+          {{- end }} 
+          {{- if .Values.persistence.enabled }}
           persistentVolumeClaim:
             claimName: {{ .Values.persistence.existingClaim | default (include "appname" .) }}
-{{- else }}
+          {{- else }}
           emptyDir: {}
-{{ end }}
+          {{ end }}            
+      {{- end }} 
 
 {{- end -}}

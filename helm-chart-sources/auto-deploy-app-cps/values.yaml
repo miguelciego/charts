@@ -44,6 +44,34 @@ service:
   internalPort: 5000
   externalPort1: 8080
   internalPort1: 8080
+volumenMounts:
+  enabled: false
+  mountPath:
+  #mountPath: "app/public/uploads"
+  #mountPath: /var/www/html
+  name: 
+  #name: "pv-cps-uploads"
+  #name: c9-data
+  server: 
+  #server: "k8s-nfs1n"
+  path:
+  #path: "/home/cps-hd/upload1"
+persistence:
+  enabled: false
+  ## c9 data Persistent Volume Storage Class
+  ## If defined, storageClassName: <storageClass>
+  ## If set to "-", storageClassName: "", which disables dynamic provisioning
+  ## If undefined (the default) or set to null, no storageClassName spec is
+  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+  ##   GKE, AWS & OpenStack)
+  ##
+  # storageClass: "-"
+  ##
+  ## If you want to reuse an existing claim, you can pass the name of the PVC using
+  ## the existingClaim variable
+  # existingClaim: your-claim
+  accessMode: ReadWriteOnce
+  size: 10Gi
 ingress:
   enabled: true
   path: "/"
@@ -63,22 +91,6 @@ ingress:
     #     action: ""
   canary:
     weight:
-persistence:
-  enabled: true
-  ## c9 data Persistent Volume Storage Class
-  ## If defined, storageClassName: <storageClass>
-  ## If set to "-", storageClassName: "", which disables dynamic provisioning
-  ## If undefined (the default) or set to null, no storageClassName spec is
-  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-  ##   GKE, AWS & OpenStack)
-  ##
-  # storageClass: "-"
-  ##
-  ## If you want to reuse an existing claim, you can pass the name of the PVC using
-  ## the existingClaim variable
-  # existingClaim: your-claim
-  accessMode: ReadWriteOnce
-  size: 10Gi
 prometheus:
   metrics: false
 livenessProbe:
