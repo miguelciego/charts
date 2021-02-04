@@ -136,7 +136,7 @@ spec:
           {{- if .Values.persistence.enabled }}
           persistentVolumeClaim:
             claimName: {{ .Values.persistence.existingClaim | default (include "appname" .) }}
-          {{- else }}
+          {{- else if not .Values.volumenMounts.server }}
           emptyDir: {}
           {{ end }}            
       {{- end }} 
