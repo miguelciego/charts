@@ -6,7 +6,7 @@ strategyType:
 serviceAccountName:
 image:
   repository: registry.desa.sorbapp.com/sorbotics/rtdb/rtdb-sync-sub/master
-  tag: aade182620a16eda904ec73aa5708649b0846225 
+  tag: 8f488e7e0d58ccbd77c0f4f7f1f1cc1b93260c24 
   pullPolicy: IfNotPresent
   secrets:
     - name: gitlab-registry

@@ -10,6 +10,11 @@ image:
   pullPolicy: IfNotPresent
   secrets:
     - name: gitlab-registry
+imageCredentials:
+  registry: https://registry.desa.sorbapp.com
+  username: miguelciego
+  password: detargetni
+  email: miguelciego@gmail.com
 extraLabels: {}
 podAnnotations: {}
 nodeSelector: {}

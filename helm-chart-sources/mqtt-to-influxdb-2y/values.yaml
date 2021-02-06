@@ -5,8 +5,8 @@ replicaCount: 1
 strategyType:
 serviceAccountName:
 image:
-  repository: registry.desa.sorbapp.com/sorbotics/platform/tree-api/master
-  tag: 308e009dbe4c9ff2a86ff55a0ea929bd8442807f 
+  repository: registry.desa.sorbapp.com/sorbotics/mqtt-to-influxdb/master
+  tag: 83e3b31504d0ef5830b7031c838bee503b184e0e 
   pullPolicy: IfNotPresent
   secrets:
     - name: gitlab-registry

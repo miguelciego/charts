@@ -5,8 +5,8 @@ replicaCount: 1
 strategyType:
 serviceAccountName:
 image:
-  repository: registry.desa.sorbapp.com/sorbotics/platform/tree-api/master
-  tag: 308e009dbe4c9ff2a86ff55a0ea929bd8442807f 
+  repository: registry.desa.sorbapp.com/sorbotics/preferences-api/master
+  tag: e224a0b4002b8bb1597c76487180139144d36f63
   pullPolicy: IfNotPresent
   secrets:
     - name: gitlab-registry

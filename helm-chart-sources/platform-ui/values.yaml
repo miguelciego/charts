@@ -5,8 +5,8 @@ replicaCount: 1
 strategyType:
 serviceAccountName:
 image:
-  repository: gitlab.example.com/group/project
-  tag: stable
+  repository: registry.desa.sorbapp.com/sorbotics/platform-ui-test-20-08/master
+  tag: 08a13d7a7a9d05387cfc8b3501b35a8cdafcc967
   pullPolicy: IfNotPresent
   secrets:
     - name: gitlab-registry

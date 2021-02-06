@@ -6,7 +6,7 @@ strategyType:
 serviceAccountName:
 image:
   repository: registry.desa.sorbapp.com/sorbotics/platform/tree-api/master
-  tag: 308e009dbe4c9ff2a86ff55a0ea929bd8442807f 
+  tag: 308e009dbe4c9ff2a86ff55a0ea929bd8442807f
   pullPolicy: IfNotPresent
   secrets:
     - name: gitlab-registry

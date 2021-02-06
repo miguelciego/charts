@@ -5,8 +5,8 @@ replicaCount: 1
 strategyType:
 serviceAccountName:
 image:
-  repository: gitlab.example.com/group/project
-  tag: stable
+  repository: registry.desa.sorbapp.com/sorbotics/platform/ng-api-gateway/master
+  tag: e913d749357d51c5075acc0be18649b007f197f2
   pullPolicy: IfNotPresent
   secrets:
     - name: gitlab-registry
