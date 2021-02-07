@@ -1,10 +1,21 @@
 apiVersion: v1
 entries:
+  app-sorba1:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-02-07T01:40:09.4936802-04:00"
+    description: A Helm chart for Kubernetes
+    digest: cb2ca81e615692adff2af1551f4c4938d3517b941b792b6ef1e581ec3fef0ebf
+    name: app-sorba1
+    type: application
+    urls:
+    - https://miguelciego.github.io/charts/app-sorba1-0.1.0.tgz
+    version: 0.1.0
   auto-deploy-app:
   - apiVersion: v1
-    created: "2021-02-06T11:34:53.2023176-04:00"
+    created: "2021-02-07T01:40:09.4959864-04:00"
     description: GitLab's Auto-deploy Helm Chart
-    digest: b3c671619608bcbd69238857cd94c69e1e3d4f0444b5912234a2b538709dc89a
+    digest: 7366de8e409d6276875ef8a6741d547ea91b2e6d56712b37bec022f63a6948d3
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
     name: auto-deploy-app
     urls:
@@ -12,7 +23,16 @@ entries:
     version: 2.4.0
   auto-deploy-app-cps:
   - apiVersion: v1
-    created: "2021-02-06T11:34:53.2043049-04:00"
+    created: "2021-02-07T01:40:09.4980149-04:00"
+    description: GitLab's Auto-deploy Helm Chart for CPS-SCZ
+    digest: eab600a9457b40ab67997c6a341e40dcaec873d2d30e68fd73c03687661207de
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: auto-deploy-app-cps
+    urls:
+    - https://miguelciego.github.io/charts/auto-deploy-app-cps-2.4.0.tgz
+    version: 2.4.0
+  - apiVersion: v1
+    created: "2021-02-07T01:40:09.5002877-04:00"
     description: GitLab's Auto-deploy Helm Chart for CPS-SCZ
     digest: 86d9b082baf52d483f01f98b9176b64f7ea56bb731e385f1881f4cd460639152
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -22,19 +42,31 @@ entries:
     version: 2.4.0
   hdfs-api:
   - apiVersion: v1
-    created: "2021-02-06T11:34:53.2064676-04:00"
+    created: "2021-02-07T01:40:09.5035966-04:00"
     description: GitLab's Auto-deploy Helm Chart
-    digest: d498e70525cbeed4494fcbd11fe75284f19b37d96db1ca52495893fa24fb8afe
+    digest: c1a44204ebd1249062fdecd202414be06e87b1bafa32729944f0ef8cb464d8f9
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
     name: hdfs-api
     urls:
     - https://miguelciego.github.io/charts/hdfs-api-2.4.0.tgz
     version: 2.4.0
+  is-pattern-1:
+  - apiVersion: v1
+    appVersion: 5.11.0
+    created: "2021-02-07T01:40:09.5051568-04:00"
+    description: A Helm chart for the deployment of WSO2 Identity And Access Management
+      pattern 1
+    digest: 446ea44bf9a0da888f363b7ab9d9a1a8791ece52982917f4088ae6d79adbe89e
+    icon: https://wso2.cachefly.net/wso2/sites/all/images/wso2logo.svg
+    name: is-pattern-1
+    urls:
+    - https://miguelciego.github.io/charts/is-pattern-1-5.11.0-2.tgz
+    version: 5.11.0-2
   ml-trainer-api:
   - apiVersion: v1
-    created: "2021-02-06T11:34:53.2082298-04:00"
+    created: "2021-02-07T01:40:09.5070991-04:00"
     description: GitLab's Auto-deploy Helm Chart
-    digest: 6e84150d56db67e80718db9413921e7b6e161a06299dd3218285310b118b9648
+    digest: 435f0263c91897bb0b3968bab6b1410c498e47f94dee5c64d960e24b921a860c
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
     name: ml-trainer-api
     urls:
@@ -42,9 +74,9 @@ entries:
     version: 2.4.0
   ml-trainer-ui:
   - apiVersion: v1
-    created: "2021-02-06T11:34:53.214093-04:00"
+    created: "2021-02-07T01:40:09.5088596-04:00"
     description: GitLab's Auto-deploy Helm Chart
-    digest: 46c9be47fa8e52db76cfe31bd9ba6c39820ab2c44358aa8727fd28cf002b5c3b
+    digest: 6f9691fe58119d4644da176a2379a0549fc982b01265d3b6fa6aa412fa4f705f
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
     name: ml-trainer-ui
     urls:
@@ -52,19 +84,35 @@ entries:
     version: 2.4.0
   mqtt-to-influxdb-2y:
   - apiVersion: v1
-    created: "2021-02-06T11:34:53.2162578-04:00"
+    created: "2021-02-07T01:40:09.5110107-04:00"
     description: GitLab's Auto-deploy Helm Chart
-    digest: 4b34d5e724f4dd5ca747ad7f3c0382c878a63d403da498742fa738c7c8e64661
+    digest: acba7560c875656e064237b5f19b89d47b4044d23f657739865608acc030b238
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
     name: mqtt-to-influxdb-2y
     urls:
     - https://miguelciego.github.io/charts/mqtt-to-influxdb-2y-2.4.0.tgz
     version: 2.4.0
+  mysql-is:
+  - apiVersion: v1
+    appVersion: "5.7"
+    created: "2021-02-07T01:40:09.5203237-04:00"
+    dependencies:
+    - name: mysql
+      repository: https://charts.bitnami.com/bitnami
+      version: 8.2.3
+    description: A Helm chart for MySQL based deployment of WSO2 Identity And Access
+      Management Datasources
+    digest: 4a0bb28398431ecd076910a6ab8783a236b0348a14973c543527e87216a54c81
+    icon: https://wso2.cachefly.net/wso2/sites/all/images/wso2logo.svg
+    name: mysql-is
+    urls:
+    - https://miguelciego.github.io/charts/mysql-is-5.11.0-2.tgz
+    version: 5.11.0-2
   ng-api-gateway:
   - apiVersion: v1
-    created: "2021-02-06T11:34:53.2181072-04:00"
+    created: "2021-02-07T01:40:09.522216-04:00"
     description: GitLab's Auto-deploy Helm Chart
-    digest: 81f3a4e583dbf906da39a6a6e338050ea88e200ca3f39dad3ae8a0223b14b19f
+    digest: 094781458e5ae1ab0ddecd07290a68230871c1a96fd7f1a93a7eef438496e51b
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
     name: ng-api-gateway
     urls:
@@ -72,9 +120,9 @@ entries:
     version: 2.4.0
   platform-ui:
   - apiVersion: v1
-    created: "2021-02-06T11:34:53.2200052-04:00"
+    created: "2021-02-07T01:40:09.5241041-04:00"
     description: GitLab's Auto-deploy Helm Chart
-    digest: 0fe1c5b17cd0c51764a77b3e8ec073d68c30f0439f273f0ba2ed83c82a995205
+    digest: 0d806632cd8adb9f8dfa0c9f67ae6c5de315ff5c66b57dac450da642687f3389
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
     name: platform-ui
     urls:
@@ -82,9 +130,9 @@ entries:
     version: 2.4.0
   preferences-api:
   - apiVersion: v1
-    created: "2021-02-06T11:34:53.2217957-04:00"
+    created: "2021-02-07T01:40:09.5259656-04:00"
     description: GitLab's Auto-deploy Helm Chart
-    digest: e87c9057769691d1f6d19a67e68f7771d50969ac4da5c5f17db558a0cfa2bcfa
+    digest: 689b3bebce3c8aa3c5a4a414d99f4475da2a556f130600dc32a11d18234138f2
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
     name: preferences-api
     urls:
@@ -92,9 +140,9 @@ entries:
     version: 2.4.0
   rtdb-sync-pub:
   - apiVersion: v1
-    created: "2021-02-06T11:34:53.2236702-04:00"
+    created: "2021-02-07T01:40:09.5278121-04:00"
     description: GitLab's Auto-deploy Helm Chart
-    digest: 3115e2071b547a95449a35b3d47d59b3fac846bbc62bddb0082fd79f496d07ea
+    digest: f54218ede3689a573bc24d879df40df902f8f61cd072345ca27c720159adccc6
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
     name: rtdb-sync-pub
     urls:
@@ -102,9 +150,9 @@ entries:
     version: 2.4.0
   rtdb-sync-sub:
   - apiVersion: v1
-    created: "2021-02-06T11:34:53.2380266-04:00"
+    created: "2021-02-07T01:40:09.5304495-04:00"
     description: GitLab's Auto-deploy Helm Chart
-    digest: 53159fba249734cd7ec1c0406f0f84bcebd57d2ea43ec05a919ec498608e3914
+    digest: b5906314261c34928552558a40abf5a5381ecd173e170315f47abfd3aca2b73e
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
     name: rtdb-sync-sub
     urls:
@@ -112,9 +160,9 @@ entries:
     version: 2.4.0
   tree-api:
   - apiVersion: v1
-    created: "2021-02-06T11:34:53.2409885-04:00"
+    created: "2021-02-07T01:40:09.5347571-04:00"
     description: GitLab's Auto-deploy Helm Chart
-    digest: a167a3eec22eaf817563963d02a304e9e20dec2c19b2a195844603b359387f33
+    digest: 57e7e7da7dd0d0261b1ee4af25c62bc8540941fabb3988bf16d0d7b54d06735b
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
     name: tree-api
     urls:
@@ -122,7 +170,7 @@ entries:
     version: 2.4.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-02-06T11:34:53.2390333-04:00"
+    created: "2021-02-07T01:40:09.5309689-04:00"
     description: A Helm chart for Kubernetes
     digest: 8bc936e08156fc3a91b52dc29dd9dab64780df16bc4573a6ae64175db35ba096
     name: tree-api
@@ -133,7 +181,7 @@ entries:
   tree-api-no-usar:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-02-06T11:34:53.2414459-04:00"
+    created: "2021-02-07T01:40:09.5352829-04:00"
     description: A Helm chart for Kubernetes
     digest: 17ef76e5a754602d7937a92c69728a08ecc4feb702401b7372650c920383294c
     name: tree-api-no-usar
@@ -143,12 +191,12 @@ entries:
     version: 0.1.0
   uuid-gen-api:
   - apiVersion: v1
-    created: "2021-02-06T11:34:53.2432245-04:00"
+    created: "2021-02-07T01:40:09.5371479-04:00"
     description: GitLab's Auto-deploy Helm Chart
-    digest: 6c39fb6ba45ec7aeb4e2dc4f955afb37e3d267f8e01af2898bd8385956a4b0ea
+    digest: 6a565a5610520eb971f3a88e1d32634dd9a0db18549f1d87d35cde383c3ac751
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
     name: uuid-gen-api
     urls:
     - https://miguelciego.github.io/charts/uuid-gen-api-2.4.0.tgz
     version: 2.4.0
-generated: "2021-02-06T11:34:53.2001064-04:00"
+generated: "2021-02-07T01:40:09.4930056-04:00"
