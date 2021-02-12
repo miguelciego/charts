@@ -13,20 +13,22 @@
 # limitations under the License.
 
 mysql:
-  imageTag: "5.7.31"
-  mysqlRootPassword: root
-  mysqlUser: wso2carbon
-  mysqlPassword: wso2carbon
+  image:
+    tag: "5.7.31"
+  auth:
+    rootPassword: "root"
+    username: "wso2carbon"
+    password: "wso2carbon"
   fullnameOverride: "wso2is-mysql-db-service"
-  livenessProbe:
-    initialDelaySeconds: 120
-  readinessProbe:
-    initialDelaySeconds: 120
-  configurationFiles:
-    mysql.cnf: |-
+  primary:
+    configuration: |-
       [mysqld]
       max_connections = 10000
-  initializationFiles:
+    livenessProbe:
+      initialDelaySeconds: 120
+    readinessProbe:
+      initialDelaySeconds: 120
+  initdbScripts:
     init.sql: |-
       DROP DATABASE IF EXISTS WSO2IS_SHARED_DB;
       DROP DATABASE IF EXISTS WSO2IS_IDENTITY_DB;
