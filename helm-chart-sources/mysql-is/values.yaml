@@ -53,6 +53,11 @@ mysql:
       initialDelaySeconds: 120
     readinessProbe:
       initialDelaySeconds: 120
+  fullnameOverride: "wso2is-mysql-db-service"
+  configurationFiles:
+    mysql.cnf: |-
+      [mysqld]
+      max_connections = 10000
   initdbScripts:
     init.sql: |-
       DROP DATABASE IF EXISTS WSO2IS_SHARED_DB;
