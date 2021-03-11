@@ -1,0 +1,55 @@
+dependencies:
+  - name: is-pattern-1
+    version: "5.11.02"
+    repository: "https://miguelciego.github.io/charts"
+    condition: is-pattern-1.enabled
+  - name: redis
+    version: "12.8.3"
+    repository: "https://charts.bitnami.com/bitnami"
+    condition: redis.enabled
+  - name: mariadb
+    version: "9.3.5"
+    repository: "https://charts.bitnami.com/bitnami"
+    condition: mariadb.enabled
+  - name: uuid-gen-api
+    version: "2.4.0"
+    repository: "https://miguelciego.github.io/charts"
+    condition: uuid-gen-api.enabled
+  - name: rtdb-sync-pub
+    version: "2.4.0"
+    repository: "https://miguelciego.github.io/charts"
+    condition: rtdb-sync-pub.enabled
+  - name: rtdb-sync-sub
+    version: "2.4.0"
+    repository: "https://miguelciego.github.io/charts"
+    condition: rtdb-sync-sub.enabled    
+  - name: influxdb
+    version: "2.0.5"
+    repository: "https://charts.bitnami.com/bitnami"
+    condition: influxdb.enabled
+  - name: hdfs-api
+    version: "2.4.0"
+    repository: "https://miguelciego.github.io/charts"
+    condition: hdfs-api.enabled   
+  - name: ml-trainer-api
+    version: "2.4.0"
+    repository: "https://miguelciego.github.io/charts"
+    condition: ml-trainer-api.enabled   
+  - name: ml-trainer-ui
+    version: "2.4.0"
+    repository: "https://miguelciego.github.io/charts"
+    condition: ml-trainer-ui.enabled   
+  - name: preferences-api
+    version: "2.4.0"
+    repository: "https://miguelciego.github.io/charts"
+    condition: preferences-api.enabled   
+  - name: tree-api
+    version: "2.4.0"
+    repository: "https://miguelciego.github.io/charts"
+    condition: tree-api.enabled   
+  - name: ng-api-gateway
+    version: "2.4.0"
+    repository: "https://miguelciego.github.io/charts"
+    condition: ng-api-gateway.enabled   
+
+

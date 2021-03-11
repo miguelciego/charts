@@ -1,6 +1,134 @@
 # Default values for chart.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
+MQTT_HOST: "sorba-vernemq "
+MQTT_TOPIC: "rtdb/ "
+REDIS_HOST: "sorba-redis-master"
+####
+hdfs: '{ "user": "raj_ops", "host": "webhdfs", "port": 50070, "path": "/webhdfs/v1" }'
+####
+livy:  'http://livy:8998' 
+webhdfs: '{ "host": "webhdfs", "port": 50070, "user": "raj_ops"  }' 
+HOSTALIASES_SANDBOX_IP: '20.190.247.128'
+####
+OPENID_CONNECT: '{ "clientID": "rcL7a74UO6k2utUofBrwsXwHGsUa",   "clientSecret": "qffXfN6NsPVTeTsMtRhtJ4oFCHka",  "issuer": "https://sorba-is.abi.sorbapp.com/oauth2/token", "authorizationURL": "https://sorba-is.abi.sorbapp.com/oauth2/authorize",   "tokenURL": "https://sorba-is.abi.sorbapp.com/oauth2/token", "callbackURL": "https://ml-trainer.abi.sorbapp.com/callback", "skipUserProfile": true }'  
+proxies: '{ "/api/ml-trainer": { "target": "http://ml-tainer-api-auto-deploy:5000", "pathRewrite": { "^/api/ml-trainer": "" }, "secure": false, "changeOrigin": true, "logLevel": "debug" }, "/api/preferences": { "target": "http://preferences-api-auto-deploy:5000", "pathRewrite": { "^/api/preferences": "" }, "secure": false, "changeOrigin": true, "logLevel": "debug" }, "/api/hot-data": { "target": "http://sorba-influxdb:8086", "pathRewrite": { "^/api/hot-data": "" }, "secure": false, "changeOrigin": true, "logLevel": "debug" } }' 
+SESSION_SETTINGS: '{ "name": "ml-trainer-website", "secret": "XVxU40NEhvguJtLeax2L" }'
+####
+sequelizep: 'mysql://preferences:preferences@sorba-mariadb/preferences'
+####
+proxy: '{ "tree": { "path": "/tree", "remote": "http://tree-api-auto-deploy:5000" }, "ml-tariner-api": { "path": "/ml", "remote": "http://ml-tainer-api-auto-deploy:5000" }, "hdfs-api": { "path": "/hdfs", "remote": "http://hdfs-api-auto-deploy:5000" }  }'  
+sequelizen: 'mysql://registry_api:registry_api@sorba-mariadb/registry_api'
+####
+
+is-pattern-1:
+  enabled: false
+  wso2:
+    deployment:
+      wso2is:
+        dockerRegistry: registry.desa.sorbapp.com/sorbotics/devops/wso2-alpine-is
+        imageName: master
+        imageTag: 623082f3d73e041f4b91c4545164f52a1176c482
+        replicas: 1
+        ingress:
+          identity:
+            hostname: "sorba-is.prod.sczcps.site"
+            annotations:
+              kubernetes.io/ingress.class: "nginx"
+              kubernetes.io/tls-acme: "true"
+              nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+              nginx.ingress.kubernetes.io/affinity: "cookie"
+              nginx.ingress.kubernetes.io/session-cookie-name: "route"
+              nginx.ingress.kubernetes.io/session-cookie-hash: "sha1"
+    dockerRegistry: registry.desa.sorbapp.com
+    subscription:
+      password: detargetni
+      username: miguelciego
+redis:
+  enabled: false
+  cluster:
+    enabled: true
+    slaveCount: 0
+  usePassword: false
+  master:
+    persistence:
+      enabled: false
+mariadb:
+  enabled: false
+  image:
+    tag: 10.4.15-debian-10-r0
+  auth:
+    rootPassword: "sbrQp10"
+uuid-gen-api:
+  enabled: true
+  releaseOverride: "uuid-gen-api"
+rtdb-sync-pub:
+  enabled: false
+  releaseOverride: "rtdb-sync-pub"
+  application:
+    database_url: ""
+    secretName: rtdb-sync-pub-secret
+rtdb-sync-sub:
+  enabled: false
+  releaseOverride: "rtdb-sync-sub"
+  application:
+    database_url: ""
+    secretName: rtdb-sync-sub-secret
+influxdb:
+  enabled: false
+  auth:
+    enabled: false
+    admin:
+      username: admin
+      password: sbrQp1012345
+hdfs-api:
+  enabled: true
+  releaseOverride: "hdfs-api"
+  application:
+    database_url: ""
+    secretName: hdfs-api-secret
+ml-trainer-api:
+  enabled: true
+  releaseOverride: "ml-trainer-api"
+  application:
+    database_url: "mariadb://ml_trainer:ml_trainer@sorba-mariadb/ml_trainer"
+    secretName: ml-trainer-api-secret
+ml-trainer-ui:
+  enabled: true
+  releaseOverride: "ml-trainer-ui"
+  application:
+    database_url: ""
+    secretName: ml-trainer-ui-secret
+  service:
+    url: ml-trainer.prod.sczcps.site 
+  ingress:
+    enabled: true  
+preferences-api:
+  enabled: true
+  releaseOverride: "preferences-api"
+  application:
+    database_url: ""
+    secretName: preferences-api-secret
+
+
+tree-api:
+  enabled: true
+  releaseOverride: "tree-api"
+  application:
+    database_url: "mysql://registry_api:registry_api@sorba-mariadb/registry_api"
+    secretName: 
+ng-api-gateway:
+  enabled: true
+  releaseOverride: "ng-api-gateway"
+  application:
+    database_url: "mysql://registry_api:registry_api@sorba-mariadb/registry_api"
+    secretName: ng-api-gateway-secret
+  service:
+    url: ng-api-gateway.prod.sczcps.site
+
+
+################---------------------###########################
+
 replicaCount: 1
 strategyType:
 serviceAccountName:

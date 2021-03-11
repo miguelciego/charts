@@ -1,4 +1,4 @@
-# GitLab's Auto-deploy Helm Chart
+# Sorbapp's Helm Chart
 
 ## Requirements
 
