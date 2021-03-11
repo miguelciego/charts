@@ -107,7 +107,7 @@ wso2:
           # Hostname for Identity Server
           hostname: "identity.wso2.com"
           # for difine secretName 
-          # tls-secretName: ""
+          # secretName: ""
           # Annotations for the Identity service Ingress
           annotations:
             kubernetes.io/ingress.class: "nginx"
