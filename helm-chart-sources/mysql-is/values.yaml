@@ -14,12 +14,11 @@
 
 mysql:
   image:
-    tag: "5.7.31"
+     tag: "5.7.31"
   auth:
     rootPassword: "root"
     username: "wso2carbon"
     password: "wso2carbon"
-  fullnameOverride: "wso2is-mysql-db-service"
   primary:
     configuration: |-
       [mysqladmin]
@@ -40,24 +39,27 @@ mysql:
       #collation_server=utf8_general_ci
       plugin_dir=/opt/bitnami/mysql/plugin
       max_connections = 10000
-      
+      default_authentication_plugin=mysql_native_password
+
       [client]
       port=3306
       socket=/opt/bitnami/mysql/tmp/mysql.sock
-      #default_character_set=UTF8
+      #default-character-set=UTF8
       plugin_dir=/opt/bitnami/mysql/plugin
 
       [manager]
       port=3306
       socket=/opt/bitnami/mysql/tmp/mysql.sock
-      pid_file=/opt/bitnami/mysql/tmp/mysqld.pid
-
-      !include /opt/bitnami/mysql/conf/bitnami/my_custom.cnf
-
+      pid-file=/opt/bitnami/mysql/tmp/mysqld.pid
     livenessProbe:
       initialDelaySeconds: 120
     readinessProbe:
       initialDelaySeconds: 120
+  fullnameOverride: "wso2is-mysql-db-service"
+  configurationFiles:
+    mysql.cnf: |-
+      [mysqld]
+      max_connections = 10000
   initdbScripts:
     init.sql: |-
       DROP DATABASE IF EXISTS WSO2IS_SHARED_DB;
