@@ -19,6 +19,7 @@ wso2:
   subscription:
     username: ""
     password: ""
+    email: ""
 
   deployment:
     dependencies:

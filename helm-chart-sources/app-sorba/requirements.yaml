@@ -51,5 +51,23 @@ dependencies:
     version: "2.4.0"
     repository: "https://miguelciego.github.io/charts"
     condition: ng-api-gateway.enabled   
+  - name: platform-ui
+    version: "2.4.0"
+    repository: "https://miguelciego.github.io/charts"
+    condition: platform-ui.enabled  
+  - name: mqtt-to-influxdb-2y
+    version: "2.4.0"
+    repository: "https://miguelciego.github.io/charts"
+    condition: mqtt-to-influxdb-2y.enabled 
+  - name: grafana
+    version: "5.2.4"
+    repository: "https://charts.bitnami.com/bitnami"
+    condition: grafana.enabled
+  - name: vernemq
+    version: "1.6.7"
+    repository: "https://vernemq.github.io/docker-vernemq"
+    condition: vernemq.enabled
+
+
 
 

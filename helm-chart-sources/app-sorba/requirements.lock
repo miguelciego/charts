@@ -38,5 +38,17 @@ dependencies:
 - name: ng-api-gateway
   repository: https://miguelciego.github.io/charts
   version: 2.4.0
-digest: sha256:ae0879dfe1f1a7173ea65fa37f5b60d3adc315003c7d16427141a162101ec26b
-generated: "2021-03-11T02:23:46.849219297Z"
+- name: platform-ui
+  repository: https://miguelciego.github.io/charts
+  version: 2.4.0
+- name: mqtt-to-influxdb-2y
+  repository: https://miguelciego.github.io/charts
+  version: 2.4.0
+- name: grafana
+  repository: https://charts.bitnami.com/bitnami
+  version: 5.2.4
+- name: vernemq
+  repository: https://vernemq.github.io/docker-vernemq
+  version: 1.6.7
+digest: sha256:c113cf750ca6f22d0b7d711667948ca1a184843a4f3f21ed98958b04349f4d99
+generated: "2021-03-11T19:52:33.251871672Z"
