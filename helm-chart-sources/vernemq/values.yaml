@@ -35,6 +35,7 @@ service:
   mqtts:
     enabled: false
     port: 8883
+    PortLB: 443
     # This is the port used by nodes to expose the service
     nodePort: 8883
   ws:

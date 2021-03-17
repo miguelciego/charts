@@ -16,6 +16,11 @@ proxies: '{ "/api/ml-trainer": { "target": "http://sor4n-ml-trainer-api:5000", "
 SESSION_SETTINGS: '{ "name": "ml-trainer-website", "secret": "XVxU40NEhvguJtLeax2L" }'
 ####
 sequelizep: 'mysql://preferences:preferences@sor4n-mariadb/preferences'
+username: "preferences"
+password: "preferences"
+database: "preferences"
+host: "sor4n-mariadb"
+dialect: "mysql"
 ####
 proxy: '{ "tree": { "path": "/tree", "remote": "http://sor4n-tree-api:5000" }, "ml-tariner-api": { "path": "/ml", "remote": "http://sor4n-ml-trainer-api:5000" }, "hdfs-api": { "path": "/hdfs", "remote": "http://sor4n-hdfs-api:5000" }  }'  
 sequelizen: 'mysql://registry_api:registry_api@sor4n-mariadb/registry_api'
@@ -66,7 +71,8 @@ redis:
   master:
     persistence:
       enabled: false
-
+nginx-ingress-controller:
+  enabled: false
 uuid-gen-api:
   enabled: true
   releaseOverride: "uuid-gen-api"
@@ -157,17 +163,17 @@ grafana:
     tls: true
 vernemq:
   enabled: true
-  replicaCount: 2
+  replicaCount: 1
   service:
     type: LoadBalancer
-    loadBalancerIP: 192.168.160.251
+    loadBalancerIP: ""
     mqtt:
       enabled: true
     mqtts:
       enabled: true
-      port: 443
+      portLB: 443
     annotations:
-      service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+      #service.beta.kubernetes.io/azure-load-balancer-internal: "true"
   secretMounts:
     - name: vernemq-certificates
       secretName: mosquitto-vernemq-local-tls
