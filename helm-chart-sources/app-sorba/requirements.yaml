@@ -65,7 +65,7 @@ dependencies:
     condition: grafana.enabled
   - name: vernemq
     version: "1.6.7"
-    repository: "https://vernemq.github.io/docker-vernemq"
+    repository: "https://miguelciego.github.io/charts"
     condition: vernemq.enabled
   - name: nginx-ingress-controller
     version: "7.4.9"

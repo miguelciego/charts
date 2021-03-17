@@ -48,10 +48,10 @@ dependencies:
   repository: https://charts.bitnami.com/bitnami
   version: 5.2.4
 - name: vernemq
-  repository: https://vernemq.github.io/docker-vernemq
+  repository: https://miguelciego.github.io/charts
   version: 1.6.7
 - name: nginx-ingress-controller
   repository: https://charts.bitnami.com/bitnami
   version: 7.4.9
-digest: sha256:d827fe71df7861e848accb7b7eead1886998895873c518424d86b6d6b3b4f121
-generated: "2021-03-17T02:19:14.488242159Z"
+digest: sha256:8e370c7d50436071cc26c23bafd96160bdf9c831049008321e3b538cbe31d3c5
+generated: "2021-03-17T13:31:15.496317181Z"
