@@ -269,7 +269,8 @@ tlskey: -----BEGIN RSA PRIVATE KEY-----
   -----END RSA PRIVATE KEY-----
 
 
-
+nginx-ingress-controller:
+  enabled: false
 
 
 

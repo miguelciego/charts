@@ -68,9 +68,10 @@ dependencies:
     repository: "https://miguelciego.github.io/charts"
     condition: vernemq.enabled
   - name: nginx-ingress-controller
-    version: "7.4.9"
-    repository: "https://charts.bitnami.com/bitnami"
-    condition: nginx-ingress-controller.enabled  
+    version: "4.0.16"
+    repository: "https://kubernetes.github.io/ingress-nginx"
+    condition: nginx-ingress-controller.enabled    
+    
 
 
 

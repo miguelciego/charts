@@ -198,6 +198,21 @@ vernemq:
     - name: DOCKER_VERNEMQ_LISTENER__SSL__KEYFILE
       value: "/etc/ssl/vernemq/tls.key"
 
+nginx-ingress-controller:
+  enabled: true
+  controller:
+    config:
+      brotli-level: "6"
+      brotli-types: text/xml image/svg+xml application/x-font-ttf image/vnd.microsoft.icon
+        application/x-font-opentype application/json font/eot application/vnd.ms-fontobject
+        application/javascript font/otf application/xml application/xhtml+xml text/javascript
+        application/x-javascript text/plain application/x-font-truetype application/xml+rss
+        image/x-icon font/opentype text/css image/x-win-bitmap
+      enable-brotli: "true"
+    ingressClassResource:
+      name: ng-nginx
+
+
 mariadb:
   enabled: true
   image:
