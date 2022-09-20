@@ -19,12 +19,12 @@ wso2:
   subscription:
     username: ""
     password: ""
-    email: ""
 
   deployment:
     dependencies:
-      # The configuration should be set to be 'true' if a MySQL database should be spawned as a pod within the cluster
-      mysql: true
+      mysql:
+        # The configuration should be set to be 'true' if a MySQL database should be spawned as a pod within the cluster
+        enabled: true
 
     # Persisted and shared runtime artifacts for Identity Server
     # See official documentation (from https://is.docs.wso2.com/en/latest/setup/deployment-guide/#enabling-artifact-synchronization)
@@ -57,16 +57,23 @@ wso2:
       # Number of deployment replicas
       replicas: 2
 
+      # Kubernetes Probes
+      # Startup probe executed prior to Liveness Probe taking over
+      startupProbe:
+        # Number of seconds after the container has started before startup probes are initiated
+        initialDelaySeconds: 60
+        # How often (in seconds) to perform the probe
+        periodSeconds: 5
+        # Number of attempts
+        failureThreshold: 30
       # Indicates whether the container is running
       livenessProbe:
-        # Number of seconds after the container has started before liveness probes are initiated
-        initialDelaySeconds: 120
         # How often (in seconds) to perform the probe
         periodSeconds: 10
       # Indicates whether the container is ready to service requests
       readinessProbe:
         # Number of seconds after the container has started before readiness probes are initiated
-        initialDelaySeconds: 120
+        initialDelaySeconds: 60
         # How often (in seconds) to perform the probe
         periodSeconds: 10
 
@@ -75,14 +82,14 @@ wso2:
         # as per official documentation (https://is.docs.wso2.com/en/latest/setup/installation-prerequisites/)
         requests:
           # The minimum amount of memory that should be allocated for a Pod
-          memory: "3Gi"
+          memory: "2Gi"
           # The minimum amount of CPU that should be allocated for a Pod
-          cpu: "3000m"
+          cpu: "1000m"
         limits:
           # The maximum amount of memory that should be allocated for a Pod
           memory: "4Gi"
           # The maximum amount of CPU that should be allocated for a Pod
-          cpu: "4000m"
+          cpu: "2000m"
         # JVM settings
         # These are the resource allocation configurations associated with the JVM
         # Refer to the official documentation for advanced details (https://is.docs.wso2.com/en/latest/setup/performance-tuning-recommendations/#jvm-settings)
@@ -91,7 +98,7 @@ wso2:
           heap:
             memory:
               # Initial and minimum Heap size
-              xms: "2048m"
+              xms: "1024m"
               # Maximum Heap size
               xmx: "2048m"
 
@@ -104,11 +111,14 @@ wso2:
 
       # Configure Ingresses
       ingress:
+        className: ""
         identity:
           # Hostname for Identity Server
           hostname: "identity.wso2.com"
-          # for difine secretName 
+
+          # Secret Name for ingress
           # secretName: ""
+
           # Annotations for the Identity service Ingress
           annotations:
             kubernetes.io/ingress.class: "nginx"
