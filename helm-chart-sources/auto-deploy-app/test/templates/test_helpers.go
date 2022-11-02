@@ -1,11 +1,15 @@
 package main
 
 import (
+	"io"
+	"log"
+	"os"
 	"regexp"
 	"testing"
 
 	"github.com/gruntwork-io/terratest/modules/helm"
 	"github.com/stretchr/testify/require"
+	"gopkg.in/yaml.v3"
 	appsV1 "k8s.io/api/apps/v1"
 	coreV1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -13,9 +17,28 @@ import (
 )
 
 const (
-	chartName     = "auto-deploy-app-2.3.0"
-	helmChartPath = ".."
+	helmChartPath = "../.."
 )
+
+var chartName string // dynamically initialized
+
+func init() {
+	// init chartName dynamically because it is annoying to update this value, but it is needed for some expected labels
+	f, err := os.Open(helmChartPath + "/Chart.yaml")
+	if err != nil {
+		log.Fatalf("Failed to open Chart.yaml: %v", err)
+	}
+	b, err := io.ReadAll(f)
+	if err != nil {
+		log.Fatalf("Failed to read Chart.yaml: %v", err)
+	}
+	m := make(map[interface{}]interface{})
+	err = yaml.Unmarshal(b, m)
+	if err != nil {
+		log.Fatalf("Failed to unmarshal Chart.yaml: %v", err)
+	}
+	chartName = "auto-deploy-app-" + m["version"].(string)
+}
 
 func renderTemplate(t *testing.T, values map[string]string, releaseName string, templates []string, expectedErrorRegexp *regexp.Regexp) (string, bool) {
 	opts := &helm.Options{
@@ -44,15 +67,29 @@ type workerDeploymentTestCase struct {
 	ExpectedCmd            []string
 	ExpectedStrategyType   appsV1.DeploymentStrategyType
 	ExpectedSelector       *metav1.LabelSelector
+	ExpectedLifecycle      *coreV1.Lifecycle
 	ExpectedLivenessProbe  *coreV1.Probe
 	ExpectedReadinessProbe *coreV1.Probe
 	ExpectedNodeSelector   map[string]string
 	ExpectedTolerations    []coreV1.Toleration
+	ExpectedInitContainers []coreV1.Container
+	ExpectedAffinity       *coreV1.Affinity
+	ExpectedResources      coreV1.ResourceRequirements
+}
+
+type cronjobTestCase struct {
+	ExpectedName     string
+	ExpectedCmd      []string
+	ExpectedSchedule string
 }
 
 type workerDeploymentSelectorTestCase struct {
 	ExpectedName     string
 	ExpectedSelector *metav1.LabelSelector
+}
+
+type workerDeploymentServiceAccountTestCase struct {
+	ExpectedServiceAccountName string
 }
 
 type deploymentList struct {
@@ -75,7 +112,7 @@ func mergeStringMap(dst, src map[string]string) {
 
 func defaultLivenessProbe() *coreV1.Probe {
 	return &coreV1.Probe{
-		Handler: coreV1.Handler{
+		ProbeHandler: coreV1.ProbeHandler{
 			HTTPGet: &coreV1.HTTPGetAction{
 				Path:   "/",
 				Port:   intstr.FromInt(5000),
@@ -89,7 +126,7 @@ func defaultLivenessProbe() *coreV1.Probe {
 
 func defaultReadinessProbe() *coreV1.Probe {
 	return &coreV1.Probe{
-		Handler: coreV1.Handler{
+		ProbeHandler: coreV1.ProbeHandler{
 			HTTPGet: &coreV1.HTTPGetAction{
 				Path:   "/",
 				Port:   intstr.FromInt(5000),
@@ -103,7 +140,7 @@ func defaultReadinessProbe() *coreV1.Probe {
 
 func workerLivenessProbe() *coreV1.Probe {
 	return &coreV1.Probe{
-		Handler: coreV1.Handler{
+		ProbeHandler: coreV1.ProbeHandler{
 			HTTPGet: &coreV1.HTTPGetAction{
 				Path:   "/worker",
 				Port:   intstr.FromInt(5000),
@@ -117,11 +154,59 @@ func workerLivenessProbe() *coreV1.Probe {
 
 func workerReadinessProbe() *coreV1.Probe {
 	return &coreV1.Probe{
-		Handler: coreV1.Handler{
+		ProbeHandler: coreV1.ProbeHandler{
 			HTTPGet: &coreV1.HTTPGetAction{
 				Path:   "/worker",
 				Port:   intstr.FromInt(5000),
 				Scheme: coreV1.URISchemeHTTP,
+			},
+		},
+		InitialDelaySeconds: 0,
+		TimeoutSeconds:      0,
+	}
+}
+
+func execReadinessProbe() *coreV1.Probe {
+	return &coreV1.Probe{
+		ProbeHandler: coreV1.ProbeHandler{
+			Exec: &coreV1.ExecAction{
+				Command: []string{"echo", "hello"},
+			},
+		},
+		InitialDelaySeconds: 0,
+		TimeoutSeconds:      0,
+	}
+}
+
+func execLivenessProbe() *coreV1.Probe {
+	return &coreV1.Probe{
+		ProbeHandler: coreV1.ProbeHandler{
+			Exec: &coreV1.ExecAction{
+				Command: []string{"echo", "hello"},
+			},
+		},
+		InitialDelaySeconds: 0,
+		TimeoutSeconds:      0,
+	}
+}
+
+func tcpLivenessProbe() *coreV1.Probe {
+	return &coreV1.Probe{
+		ProbeHandler: coreV1.ProbeHandler{
+			TCPSocket: &coreV1.TCPSocketAction{
+				Port: intstr.IntOrString{IntVal: 5000},
+			},
+		},
+		InitialDelaySeconds: 0,
+		TimeoutSeconds:      0,
+	}
+}
+
+func tcpReadinessProbe() *coreV1.Probe {
+	return &coreV1.Probe{
+		ProbeHandler: coreV1.ProbeHandler{
+			TCPSocket: &coreV1.TCPSocketAction{
+				Port: intstr.IntOrString{IntVal: 5000},
 			},
 		},
 		InitialDelaySeconds: 0,
