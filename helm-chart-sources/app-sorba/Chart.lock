@@ -1,0 +1,42 @@
+dependencies:
+- name: vernemq
+  repository: https://vernemq.github.io/docker-vernemq
+  version: 1.6.12
+- name: cert-manager
+  repository: https://charts.jetstack.io
+  version: v1.10.0
+- name: ingress-nginx
+  repository: https://kubernetes.github.io/ingress-nginx
+  version: 4.3.0
+- name: kubernetes-dashboard
+  repository: https://kubernetes.github.io/dashboard/
+  version: 5.11.0
+- name: is-pattern-1
+  repository: https://helm.wso2.com
+  version: 5.11.0-5
+- name: am-pattern-1
+  repository: https://helm.wso2.com
+  version: 4.1.0-1
+- name: grafana
+  repository: https://charts.bitnami.com/bitnami
+  version: 8.2.14
+- name: mysql
+  repository: https://charts.bitnami.com/bitnami
+  version: 9.4.1
+- name: phpmyadmin
+  repository: https://charts.bitnami.com/bitnami
+  version: 10.3.5
+- name: redis
+  repository: https://charts.bitnami.com/bitnami
+  version: 17.3.7
+- name: influxdb
+  repository: https://helm.influxdata.com/
+  version: 4.12.0
+- name: auto-deploy-app
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.0
+- name: auto-deploy-app
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.0
+digest: sha256:5a142162c22fc4a22f2e7366c8ef0d30873850e02889ba510fcc933f964d5663
+generated: "2022-11-02T13:46:38.1837881-04:00"
