@@ -7,6 +7,8 @@ import (
 	"github.com/gruntwork-io/terratest/modules/helm"
 	"github.com/stretchr/testify/require"
 	extensions "k8s.io/api/extensions/v1beta1"
+	networkingv1 "k8s.io/api/networking/v1"
+	networkingv1beta "k8s.io/api/networking/v1beta1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -49,7 +51,7 @@ SecRule REQUEST_HEADERS:Content-Type \"text/plain\" \"log,deny,id:\'20010\',stat
 		},
 		{
 			name:       "with custom secRules",
-			valueFiles: []string{"./testdata/modsecurity-ingress.yaml"},
+			valueFiles: []string{"../testdata/modsecurity-ingress.yaml"},
 			meta:       metav1.ObjectMeta{Annotations: secRulesAnnotations},
 		},
 	}
@@ -60,7 +62,7 @@ SecRule REQUEST_HEADERS:Content-Type \"text/plain\" \"log,deny,id:\'20010\',stat
 				ValuesFiles: tc.valueFiles,
 				SetValues:   tc.values,
 			}
-			output := helm.RenderTemplate(t, opts, helmChartPath, "ModSecurity-test-release", templates)
+			output := helm.RenderTemplate(t, opts, helmChartPath, "modsecurity-test-release", templates)
 
 			ingress := new(extensions.Ingress)
 			helm.UnmarshalK8SYaml(t, output, ingress)
@@ -321,4 +323,92 @@ func TestIngressTemplate_TLSSecret(t *testing.T) {
 			require.Equal(t, tc.expectedsecretname, ingress.Spec.TLS[0].SecretName)
 		})
 	}
+}
+
+func TestIngressTemplate_NetworkingV1Beta1(t *testing.T) {
+	templates := []string{"templates/ingress.yaml"}
+	releaseName := "ingress-networking-v1beta1"
+	tcs := []struct {
+		name                           string
+		values                         map[string]string
+		expectedIngressClassAnnotation string
+	}{
+		{
+			name:                           "defaults",
+			expectedIngressClassAnnotation: "nginx",
+		},
+		{
+			name: "custom ingress.className",
+			values: map[string]string{
+				"ingress.className": "custom",
+			},
+			expectedIngressClassAnnotation: "custom",
+		},
+	}
+	for _, tc := range tcs {
+		t.Run(tc.name, func(t *testing.T) {
+			opts := &helm.Options{
+				SetValues: tc.values,
+			}
+			output := helm.RenderTemplate(t, opts, helmChartPath, releaseName, templates, "--api-versions", "networking.k8s.io/v1beta1/Ingress")
+			ingress := new(networkingv1beta.Ingress)
+			helm.UnmarshalK8SYaml(t, output, ingress)
+			require.Equal(t, "networking.k8s.io/v1beta1", ingress.APIVersion)
+			require.Equal(t, tc.expectedIngressClassAnnotation, ingress.Annotations["kubernetes.io/ingress.class"])
+		})
+	}
+}
+
+func TestIngressTemplate_NetworkingV1(t *testing.T) {
+	templates := []string{"templates/ingress.yaml"}
+	releaseName := "ingress-networking-v1"
+	tcs := []struct {
+		name                           string
+		values                         map[string]string
+		expectedIngressClassName       string
+		expectedIngressClassAnnotation string
+	}{
+		{
+			name:                           "defaults",
+			expectedIngressClassAnnotation: "nginx",
+		},
+		{
+			name: "custom ingress.className",
+			values: map[string]string{
+				"ingress.className": "custom",
+			},
+			expectedIngressClassName:       "custom",
+			expectedIngressClassAnnotation: "custom",
+		},
+	}
+	for _, tc := range tcs {
+		t.Run(tc.name, func(t *testing.T) {
+			opts := &helm.Options{
+				SetValues: tc.values,
+			}
+			output := helm.RenderTemplate(t, opts, helmChartPath, releaseName, templates, "--api-versions", "networking.k8s.io/v1/Ingress")
+			ingress := new(networkingv1.Ingress)
+			helm.UnmarshalK8SYaml(t, output, ingress)
+			require.Equal(t, "networking.k8s.io/v1", ingress.APIVersion)
+			if tc.expectedIngressClassName == "" {
+				require.Nil(t, ingress.Spec.IngressClassName)
+			} else {
+				require.Equal(t, tc.expectedIngressClassName, *ingress.Spec.IngressClassName)
+			}
+			require.Equal(t, tc.expectedIngressClassAnnotation, ingress.Annotations["kubernetes.io/ingress.class"])
+		})
+	}
+}
+
+func TestIngressTemplate_Extensions(t *testing.T) {
+	templates := []string{"templates/ingress.yaml"}
+	releaseName := "ingress-extensions-v1beta1"
+	opts := &helm.Options{
+		SetValues: map[string]string{"ingress.enabled": "true"},
+	}
+	output := helm.RenderTemplate(t, opts, helmChartPath, releaseName, templates, "--api-versions", "extensions/v1beta1/Ingress")
+	ingress := new(extensions.Ingress)
+	helm.UnmarshalK8SYaml(t, output, ingress)
+	require.Equal(t, "extensions/v1beta1", ingress.APIVersion)
+	require.Equal(t, "nginx", ingress.Annotations["kubernetes.io/ingress.class"])
 }

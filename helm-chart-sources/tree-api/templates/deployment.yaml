@@ -36,23 +36,73 @@ spec:
         tier: "{{ .Values.application.tier }}"
 {{ include "sharedlabels" . | indent 8 }}
     spec:
-{{- if .Values.serviceAccountName }}
-      serviceAccountName: {{ .Values.serviceAccountName | quote }}
-{{- end }}        
+{{- if or (.Values.serviceAccount.name) (.Values.serviceAccountName) }}
+      serviceAccountName: {{ .Values.serviceAccount.name | default .Values.serviceAccountName | quote }}
+{{- end }}
       imagePullSecrets:
 {{ toYaml .Values.image.secrets | indent 10 }}
 {{- if .Values.nodeSelector }}
       nodeSelector:
 {{ toYaml .Values.nodeSelector | indent 8 }}
 {{- end }}
+{{- if .Values.dnsPolicy }}
+      dnsPolicy: {{ .Values.dnsPolicy }}
+{{- end }}
+{{- if .Values.dnsConfig }}
+      dnsConfig:
+{{ toYaml .Values.dnsConfig | indent 8 }}
+{{- end }}
 {{- if .Values.tolerations }}
       tolerations:
 {{ toYaml .Values.tolerations | indent 8 }}
+{{- end }}
+{{- if .Values.affinity }}
+      affinity:
+{{ toYaml .Values.affinity | indent 8 }}
+{{- end }}
+{{- if .Values.initContainers }}
+      initContainers:
+{{ toYaml .Values.initContainers | indent 8 }}
+{{- end }}
+{{- if .Values.topologySpreadConstraints }}
+      topologySpreadConstraints:
+{{ toYaml .Values.topologySpreadConstraints | indent 8 }}
+{{- end }}
+{{- if or (.Values.persistence.enabled) (.Values.extraVolumes) }}
+      volumes:
+{{- if .Values.persistence.enabled }}
+{{- $context := . }}
+{{- range $volume := .Values.persistence.volumes }}
+        - name: {{ $volume.name | quote }}
+          persistentVolumeClaim:
+            {{ $args := dict "context" $context "name" $volume.name }}
+            claimName: {{ template "pvcName" $args }}
+{{- end }}
+{{- end }}
+{{- if .Values.extraVolumes }}
+{{ toYaml .Values.extraVolumes | indent 8 }}
+{{- end }}
+{{- end }}
+      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
+{{- if .Values.hostAliases }}
+      hostAliases:
+{{ toYaml .Values.hostAliases | indent 8 }}
+{{- end }}
+{{- if .Values.priorityClassName }}
+      priorityClassName: {{ .Values.priorityClassName }}
 {{- end }}
       containers:
       - name: {{ .Chart.Name }}
         image: {{ template "imagename" . }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
+{{- if .Values.application.command }}
+        command:
+{{ toYaml .Values.application.command | indent 8 }}
+{{- end }}
+{{- if .Values.application.args }}
+        args:
+{{ toYaml .Values.application.args | indent 8 }}
+{{- end }}
         {{- if .Values.application.secretName }}
         envFrom:
         - secretRef:
@@ -76,24 +126,163 @@ spec:
               name: app-postgres
               key: privateIP
 {{- end }}
+{{- if .Values.application.database_url }}
         - name: DATABASE_URL
           value: {{ .Values.application.database_url | quote }}
+{{- end }}
+
+{{- if .Values.application.db_uri }}
+        - name: DB_URI
+          value: {{ .Values.application.db_uri | quote }}
+{{- end }}
+{{- if .Values.application.deploy_type }}
+        - name: DEPLOY_TYPE
+          value: {{ .Values.application.deploy_type | quote }}
+{{- end }}
+{{- if .Values.application.port }}
+        - name: PORT
+          value: {{ .Values.application.port | quote }}
+{{- end }}
+{{- if .Values.application.redis }}
+        - name: REDIS
+          value: {{ .Values.application.redis | quote }}
+{{- end }}
+{{- if .Values.application.tree_url }}
+        - name: TREE_URL
+          value: {{ .Values.application.tree_url | quote }}
+{{- end }}
+{{- if .Values.application.proxy }}
+        - name: proxy
+          value: {{ .Values.application.proxy | quote }}
+{{- end }}
+{{- if .Values.application.sequelize }}
+        - name: sequelize
+          value: {{ .Values.application.sequelize | quote }}
+{{- end }}
+{{- if .Values.application.influxdb }}
+        - name: INFLUXDB
+          value: {{ .Values.application.influxdb | quote }}
+{{- end }}
+{{- if .Values.application.influx_host }}
+        - name: INFLUX_HOST
+          value: {{ .Values.application.influx_host | quote }}
+{{- end }}
+{{- if .Values.application.influx_port }}
+        - name: INFLUX_PORT
+          value: {{ .Values.application.influx_port | quote }}
+{{- end }}
+{{- if .Values.application.openid_connect }}
+        - name: OPENID_CONNECT
+          value: {{ .Values.application.openid_connect | quote }}
+{{- end }}
+{{- if .Values.application.redis_host }}
+        - name: REDIS_HOST
+          value: {{ .Values.application.redis_host | quote }}
+{{- end }}
+{{- if .Values.application.proxies }}
+        - name: proxies
+          value: {{ .Values.application.proxies | quote }}
+{{- end }}
+{{- if .Values.application.redis1 }}
+        - name: redis
+          value: {{ .Values.application.redis1 | quote }}
+{{- end }}
+{{- if .Values.application.identityserviceapi }}
+        - name: identityServiceAPI
+          value: {{ .Values.application.identityserviceapi | quote }}
+{{- end }}
+{{- if .Values.application.apim_url }}
+        - name: APIM_URL
+          value: {{ .Values.application.apim_url | quote }}
+{{- end }}
+{{- if .Values.application.api_gateway }}
+        - name: API_GATEWAY
+          value: {{ .Values.application.api_gateway | quote }}
+{{- end }}
+{{- if .Values.application.api_manager_password }}
+        - name: API_MANAGER_PASSWORD
+          value: {{ .Values.application.api_manager_password | quote }}
+{{- end }}
+{{- if .Values.application.api_manager_user }}
+        - name: API_MANAGER_USER
+          value: {{ .Values.application.api_manager_user | quote }}
+{{- end }}
+{{- if .Values.application.mysql_host }}
+        - name: MYSQL_HOST
+          value: {{ .Values.application.mysql_host | quote }}
+{{- end }}
+{{- if .Values.application.mysql_password }}
+        - name: MYSQL_PASSWORD
+          value: {{ .Values.application.mysql_password | quote }}
+{{- end }}
+{{- if .Values.application.jwt_secret }}
+        - name: JWT_SECRET
+          value: {{ .Values.application.jwt_secret | quote }}
+{{- end }}
+{{- if .Values.application.npm_package_name }}
+        - name: npm_package_name
+          value: {{ .Values.application.npm_package_name | quote }}
+{{- end }}
+{{- if .Values.application.deployType }}
+        - name: deployType
+          value: {{ .Values.application.deployType | quote }}
+{{- end }}
+{{- if .Values.application.session_settings }}
+        - name: SESSION_SETTINGS
+          value: {{ .Values.application.session_settings | quote }}
+{{- end }}
+{{- if .Values.application.googlemapskey }}
+        - name: googleMapsKey
+          value: {{ .Values.application.googlemapskey | quote }}
+{{- end }}
+{{- if .Values.application.googlemapsurl }}
+        - name: googleMapsURL
+          value: {{ .Values.application.googlemapsurl | quote }}
+{{- end }}
+{{- if .Values.application.sidemenu }}
+        - name: sideMenu
+          value: {{ .Values.application.sidemenu | quote }}
+{{- end }}
+{{- if .Values.application.survey }}
+        - name: survey
+          value: {{ .Values.application.survey | quote }}
+{{- end }}
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}
         - name: GITLAB_ENVIRONMENT_URL
           value: {{ .Values.gitlab.envURL | quote }}
+{{- if .Values.lifecycle }}
+        lifecycle:
+{{ toYaml .Values.lifecycle | indent 10 }}
+{{- end }}
         ports:
         - name: "{{ .Values.service.name }}"
           containerPort: {{ .Values.service.internalPort }}
+{{- if .Values.service.extraPorts }}
+{{- range $servicePort := .Values.service.extraPorts }}
+        - name: {{ $servicePort.name }}
+          containerPort: {{ $servicePort.targetPort }}
+          {{- if $servicePort.protocol }}
+          protocol: {{ $servicePort.protocol }}
+          {{- end }}
+{{- end }}
+{{- end }}
         livenessProbe:
 {{- if eq .Values.livenessProbe.probeType "httpGet" }}
           httpGet:
             path: {{ .Values.livenessProbe.path }}
             scheme: {{ .Values.livenessProbe.scheme }}
-            port: {{ .Values.service.internalPort }}
+            port: {{ .Values.livenessProbe.port | default .Values.service.internalPort }}
+{{- if .Values.livenessProbe.httpHeaders }}
+            httpHeaders:
+{{- range $httpHeader := .Values.livenessProbe.httpHeaders }}
+            - name: {{ $httpHeader.name }}
+              value: {{ $httpHeader.value }}
+{{- end }}
+{{- end }}
 {{- else if eq .Values.livenessProbe.probeType "tcpSocket" }}
           tcpSocket:
-            port: {{ .Values.service.internalPort }}
+            port: {{ .Values.livenessProbe.port | default .Values.service.internalPort }}
 {{- else if eq .Values.livenessProbe.probeType "exec" }}
           exec:
             command:
@@ -106,10 +295,17 @@ spec:
           httpGet:
             path: {{ .Values.readinessProbe.path }}
             scheme: {{ .Values.readinessProbe.scheme }}
-            port: {{ .Values.service.internalPort }}
+            port: {{ .Values.readinessProbe.port | default .Values.service.internalPort }}
+{{- if .Values.readinessProbe.httpHeaders }}
+            httpHeaders:
+{{- range $httpHeader := .Values.readinessProbe.httpHeaders }}            
+            - name: {{ $httpHeader.name }}
+              value: {{ $httpHeader.value }}
+{{- end }}
+{{- end }}
 {{- else if eq .Values.readinessProbe.probeType "tcpSocket" }}
           tcpSocket:
-            port: {{ .Values.service.internalPort }}
+            port: {{ .Values.readinessProbe.port | default .Values.service.internalPort }}
 {{- else if eq .Values.readinessProbe.probeType "exec" }}
           exec:
             command:
@@ -117,6 +313,48 @@ spec:
 {{- end }}
           initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
           timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
+{{- if .Values.startupProbe.enabled }}
+        startupProbe:
+{{- if eq .Values.startupProbe.probeType "httpGet" }}
+          httpGet:
+            path: {{ .Values.startupProbe.path }}
+            scheme: {{ .Values.startupProbe.scheme }}
+            port: {{ .Values.startupProbe.port | default .Values.service.internalPort }}
+{{- if .Values.startupProbe.httpHeaders }}
+            httpHeaders:
+{{- range $httpHeader := .Values.startupProbe.httpHeaders }}
+            - name: {{ $httpHeader.name }}
+              value: {{ $httpHeader.value }}
+{{- end }}
+{{- end }}
+{{- else if eq .Values.readinessProbe.probeType "tcpSocket" }}
+          tcpSocket:
+            port: {{ .Values.startupProbe.port | default .Values.service.internalPort }}
+{{- else if eq .Values.startupProbe.probeType "exec" }}
+          exec:
+            command:
+{{ toYaml .Values.startupProbe.command | indent 14 }}
+{{- end }}
+          initialDelaySeconds: {{ .Values.startupProbe.initialDelaySeconds }}
+          timeoutSeconds: {{ .Values.startupProbe.timeoutSeconds }}
+          failureThreshold: {{ .Values.startupProbe.failureThreshold }}
+          periodSeconds: {{ .Values.startupProbe.periodSeconds }}
+{{- end }}
         resources:
 {{ toYaml .Values.resources | indent 12 }}
+{{- if or (.Values.persistence.enabled) (.Values.extraVolumeMounts) }}
+        volumeMounts:
+{{- if .Values.persistence.enabled }}        
+{{- range $volume := .Values.persistence.volumes }}
+          - name: {{ $volume.name | quote }}
+            mountPath: {{ $volume.mount.path | quote }}
+            {{- if $volume.mount.subPath }}
+            subPath: {{ $volume.mount.subPath | quote }}
+            {{- end }}
+{{- end }}
+{{- end }}
+{{- if .Values.extraVolumeMounts }}
+{{ toYaml .Values.extraVolumeMounts | indent 10 }}           
+{{- end }}
+{{- end }}
 {{- end -}}

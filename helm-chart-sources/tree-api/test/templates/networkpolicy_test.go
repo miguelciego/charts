@@ -59,7 +59,7 @@ func TestNetworkPolicy(t *testing.T) {
 		},
 		{
 			name:        "with custom policy",
-			valueFiles:  []string{"./testdata/custom-policy.yaml"},
+			valueFiles:  []string{"../testdata/custom-policy.yaml"},
 			meta:        metav1.ObjectMeta{Name: releaseName + "-auto-deploy", Labels: expectedLabels},
 			podSelector: metav1.LabelSelector{MatchLabels: map[string]string{"foo": "bar"}},
 			ingress: []netV1.NetworkPolicyIngressRule{
@@ -75,7 +75,7 @@ func TestNetworkPolicy(t *testing.T) {
 		},
 		{
 			name:        "with full spec policy",
-			valueFiles:  []string{"./testdata/full-spec-policy.yaml"},
+			valueFiles:  []string{"../testdata/full-spec-policy.yaml"},
 			meta:        metav1.ObjectMeta{Name: releaseName + "-auto-deploy", Labels: expectedLabels},
 			podSelector: metav1.LabelSelector{MatchLabels: map[string]string{}},
 			policyTypes: []netV1.PolicyType{"Ingress", "Egress"},

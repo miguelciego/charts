@@ -33,14 +33,20 @@ items:
           checksum/application-secrets: "{{ $.Values.application.secretChecksum }}"
           {{ if $.Values.gitlab.app }}app.gitlab.com/app: {{ $.Values.gitlab.app | quote }}{{ end }}
           {{ if $.Values.gitlab.env }}app.gitlab.com/env: {{ $.Values.gitlab.env | quote }}{{ end }}
-  {{- if $.Values.podAnnotations }}
-  {{ toYaml $.Values.podAnnotations | indent 10 }}
-  {{- end }}
+{{- if $.Values.podAnnotations }}
+{{ toYaml $.Values.podAnnotations | indent 10 }}
+{{- end }}
         labels:
           track: "{{ $.Values.application.track }}"
           tier: worker
           release: {{ $.Release.Name }}
+{{- with $workerConfig.labels  }}
+{{ toYaml . | indent 10 }}
+{{- end }}
       spec:
+{{- if or ($.Values.serviceAccount.name) ($.Values.serviceAccountName) }}
+        serviceAccountName: {{ $.Values.serviceAccount.name | default $.Values.serviceAccountName | quote }}
+{{- end }}
         imagePullSecrets:
   {{ toYaml $.Values.image.secrets | indent 12 }}
 {{- with $nodeSelectorConfig := default $.Values.nodeSelector $workerConfig.nodeSelector -}}
@@ -49,20 +55,49 @@ items:
 {{ toYaml $nodeSelectorConfig | indent 10 }}
 {{- end }}
 {{- end }}
+{{- with $dnsPolicyConfig := default $.Values.dnsPolicy $workerConfig.dnsPolicy -}}
+{{- if $dnsPolicyConfig  }}
+        dnsPolicy: {{ $dnsPolicyConfig }}
+{{- end }}
+{{- end }}
+{{- with $dnsConfigConfig := default $.Values.dnsConfig $workerConfig.dnsConfig -}}
+{{- if $dnsConfigConfig  }}
+        dnsConfig:
+{{ toYaml $dnsConfigConfig | indent 10 }}
+{{- end }}
+{{- end }}
 {{- with $tolerationsConfig := default $.Values.tolerations $workerConfig.tolerations -}}
 {{- if $tolerationsConfig  }}
         tolerations:
 {{ toYaml $tolerationsConfig | indent 10 }}
 {{- end }}
 {{- end }}
+{{- with $affinityConfig := default $.Values.affinity $workerConfig.affinity -}}
+{{- if $affinityConfig  }}
+        affinity:
+{{ toYaml $affinityConfig | indent 10 }}
+{{- end }}
+{{- end }}
+{{- with $initContainersConfig := default $.Values.initContainers $workerConfig.initContainers -}}
+{{- if $initContainersConfig  }}
+        initContainers:
+{{ toYaml $initContainersConfig | indent 10 }}
+{{- end }}
+{{- end }}
         terminationGracePeriodSeconds: {{ $workerConfig.terminationGracePeriodSeconds }}
+{{- if $workerConfig.hostAliases }}
+        hostAliases:
+{{ $workerConfig.hostAliases | indent 10 }}
+{{- end }}
+{{- if $workerConfig.extraVolumes }}
+        volumes:
+{{ toYaml $workerConfig.extraVolumes | indent 10 }}
+{{- end }}
         containers:
         - name: {{ $.Chart.Name }}-{{ $workerName }}
           image: {{ template "imagename" $ }}
           command:
-          {{- range $workerConfig.command }}
-          - {{ . }}
-          {{- end }}
+{{ toYaml $workerConfig.command | indent 10 }}
           imagePullPolicy: {{ $.Values.image.pullPolicy }}
           {{- if $.Values.application.secretName }}
           envFrom:
@@ -70,10 +105,14 @@ items:
               name: {{ $.Values.application.secretName }}
           {{- end }}
           env:
+{{- if $.Values.application.database_url }}
           - name: DATABASE_URL
             value: {{ $.Values.application.database_url | quote }}
+{{- end }}
           - name: GITLAB_ENVIRONMENT_NAME
             value: {{ $.Values.gitlab.envName | quote }}
+          - name: GITLAB_ENVIRONMENT_URL
+            value: {{ $.Values.gitlab.envURL | quote }}
 {{- with $livenessProbeConfig := default $.Values.livenessProbe $workerConfig.livenessProbe -}}
 {{- if $livenessProbeConfig }}
           livenessProbe:
@@ -81,10 +120,17 @@ items:
             httpGet:
               path: {{ $livenessProbeConfig.path }}
               scheme: {{ $livenessProbeConfig.scheme }}
-              port: {{ $.Values.service.internalPort }}
+              port: {{ $livenessProbeConfig.port | default $.Values.service.internalPort }}
+{{- if $livenessProbeConfig.httpHeaders }}
+              httpHeaders:
+{{- range $httpHeader := $livenessProbeConfig.httpHeaders }}
+              - name: {{ $httpHeader.name }}
+                value: {{ $httpHeader.value }}
+{{- end }}
+{{- end }}
 {{- else if eq $livenessProbeConfig.probeType "tcpSocket" }}
             tcpSocket:
-              port: {{ $.Values.service.internalPort }}
+              port: {{ $livenessProbeConfig.port | default $.Values.service.internalPort }}
 {{- else if eq $livenessProbeConfig.probeType "exec" }}
             exec:
               command:
@@ -101,10 +147,17 @@ items:
             httpGet:
               path: {{ $readinessProbeConfig.path }}
               scheme: {{ $readinessProbeConfig.scheme }}
-              port: {{ $.Values.service.internalPort }}
+              port: {{ $readinessProbeConfig.port | default $.Values.service.internalPort }}
+{{- if $readinessProbeConfig.httpHeaders }}
+              httpHeaders:
+{{- range $httpHeader := $readinessProbeConfig.httpHeaders }}
+              - name: {{ $httpHeader.name }}
+                value: {{ $httpHeader.value }}
+{{- end }}
+{{- end }}
 {{- else if eq $readinessProbeConfig.probeType "tcpSocket" }}
             tcpSocket:
-              port: {{ $.Values.service.internalPort }}
+              port: {{ $readinessProbeConfig.port | default $.Values.service.internalPort }}
 {{- else if eq $readinessProbeConfig.probeType "exec" }}
             exec:
               command:
@@ -114,16 +167,23 @@ items:
             timeoutSeconds: {{ $readinessProbeConfig.timeoutSeconds }}
 {{- end }}
 {{- end }}
-          {{- if $workerConfig.preStopCommand }}
+          {{- if or $workerConfig.lifecycle $workerConfig.preStopCommand }}
           lifecycle:
+          {{- if $workerConfig.lifecycle }}
+{{ toYaml $workerConfig.lifecycle | indent 12 }}
+          {{- end }}
+            {{- if $workerConfig.preStopCommand }}
             preStop:
               exec:
                 command:
-                {{- range $workerConfig.preStopCommand }}
-                - {{ . }}
-                {{- end }}
+{{ toYaml $workerConfig.preStopCommand | indent 16 }}
+            {{- end}}
           {{- end }}
           resources:
-{{ toYaml $.Values.resources | indent 12 }}
+{{ $workerConfig.resources | default $.Values.resources | toYaml | indent 12 }}
+{{- if $workerConfig.extraVolumeMounts }}
+          volumeMounts:
+{{ toYaml $workerConfig.extraVolumeMounts | indent 12 }}         
+{{- end }}
 {{- end -}}
 {{- end -}}
