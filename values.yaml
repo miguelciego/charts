@@ -49,8 +49,6 @@ redis:
 influxdb:
   enabled: false
 
-auto-deploy-app:
-  enabled: false
 tree-api:
   enabled: true
   image:

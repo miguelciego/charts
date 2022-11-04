@@ -108,6 +108,26 @@ influxdb:
     enabled: true
     user:
       username: admin
+tree-api:
+  enabled: false
+uuid-gen-api:
+  enabled: false
+ml-trainer-api:
+  enabled: false
+ml-ui: 
+  enabled: false 
+mqtt-to-influxdb-2y:
+  enabled: false 
+ng-api-gateway:
+  enabled: false
+platform-ui:
+  enabled: false
+preferences-api:
+  enabled: false
+rtdb-sync-pub:
+  enabled: false
+rtdb-sync-sub:
+  enabled: false
 
 #### Solo es para el archivo NOTES.txt
 ingress:
