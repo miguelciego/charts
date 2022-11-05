@@ -109,6 +109,14 @@ influxdb:
     user:
       username: admin
 
+auto-deploy-app:
+  enabled: false
+uuid-gen-api:
+  enabled: false
+tree-api:
+  enabled: false
+
+
 #### Solo es para el archivo NOTES.txt
 ingress:
   enabled: false
