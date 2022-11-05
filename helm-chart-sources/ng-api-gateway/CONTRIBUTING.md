@@ -49,5 +49,9 @@ To run the tests, run the following commands from the root of your copy of `auto
 helm repo add stable https://charts.helm.sh/stable # required only once
 helm dependency build .               # required any time the dependencies change
 cd test
-GO111MODULE=auto go test .            # required for every change to the tests or the template
+GO111MODULE=auto go test ./...        # required for every change to the tests or the template
 ```
+
+### Windows users
+
+Some of the dependencies might not be available on Windows (e.g., `github.com/sirupsen/logrus/hooks/syslog`). Therefore we recommend running tests on docker, vagrant boxes or similar virtualization tools.

@@ -32,11 +32,35 @@ dependencies:
 - name: influxdb
   repository: https://helm.influxdata.com/
   version: 4.12.0
-- name: auto-deploy-app
+- name: uuid-gen-api
   repository: https://miguelciego.github.io/charts/
   version: 2.39.0
-- name: auto-deploy-app
+- name: tree-api
   repository: https://miguelciego.github.io/charts/
   version: 2.39.0
-digest: sha256:5a142162c22fc4a22f2e7366c8ef0d30873850e02889ba510fcc933f964d5663
-generated: "2022-11-02T13:46:38.1837881-04:00"
+- name: ml-trainer-api
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.0
+- name: ml-ui
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.0
+- name: mqtt-to-influxdb-2y
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.0
+- name: ng-api-gateway
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.0
+- name: platform-ui
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.0
+- name: preferences-api
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.0
+- name: rtdb-sync-pub
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.0
+- name: rtdb-sync-sub
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.0
+digest: sha256:4362bfad3827ab85803627b1bf37c3a4a230d71f7de556de04c9ad71e598256b
+generated: "2022-11-04T15:01:02.8397648-04:00"

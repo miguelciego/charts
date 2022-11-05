@@ -2,7 +2,7 @@ apiVersion: v2
 name: app-sorba
 description: Sorba Helm Chart
 type: application
-version: 0.2.0
+version: 0.2.1
 appVersion: "0.2.0"
 icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
 
@@ -52,13 +52,43 @@ dependencies:
     version: 4.12.0
     repository: https://helm.influxdata.com/
     condition: influxdb.enabled
-  - name: auto-deploy-app
+  - name: uuid-gen-api
     version: 2.39.0
     repository: https://miguelciego.github.io/charts/
-    condition: auto-deploy-app.enabled
-    alias: uuid-gen-api
-  - name: auto-deploy-app
+    condition: uuid-gen-api.enabled
+  - name: tree-api
     version: 2.39.0
     repository: https://miguelciego.github.io/charts/
-    condition: auto-deploy-app.enabled
-    alias: tree-api 
+    condition: tree-api.enabled
+  - name: ml-trainer-api
+    version: 2.39.0
+    repository: https://miguelciego.github.io/charts/
+    condition: ml-trainer-api.enabled
+  - name: ml-ui
+    version: 2.39.0
+    repository: https://miguelciego.github.io/charts/
+    condition: ml-ui.enabled
+  - name: mqtt-to-influxdb-2y 
+    version: 2.39.0
+    repository: https://miguelciego.github.io/charts/
+    condition:  mqtt-to-influxdb-2y.enabled
+  - name: ng-api-gateway
+    version: 2.39.0
+    repository: https://miguelciego.github.io/charts/
+    condition: ng-api-gateway.enabled
+  - name: platform-ui
+    version: 2.39.0
+    repository: https://miguelciego.github.io/charts/
+    condition: platform-ui.enabled
+  - name: preferences-api
+    version: 2.39.0
+    repository: https://miguelciego.github.io/charts/
+    condition: preferences-api.enabled
+  - name: rtdb-sync-pub
+    version: 2.39.0
+    repository: https://miguelciego.github.io/charts/
+    condition: rtdb-sync-pub.enabled
+  - name: rtdb-sync-sub
+    version: 2.39.0
+    repository: https://miguelciego.github.io/charts/
+    condition: rtdb-sync-sub.enabled

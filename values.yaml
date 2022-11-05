@@ -1,0 +1,69 @@
+vernemq:
+  enabled: false
+cert-manager:
+  enabled: false
+  installCRDs: true
+ingress-nginx:
+  enabled: true
+  controller:
+    ingressClass: espn1-com-nginx
+    ingressClassResource:
+      name: espn1-com-nginx
+kubernetes-dashboard:
+  enabled: true
+  ingress:
+    enabled: true
+    className: "espn1-com-nginx"
+    annotations:
+      kubernetes.io/tls-acme: 'true'
+      cert-manager.io/issuer: espn1-com-issuer
+      nginx.ingress.kubernetes.io/secure-backends: "true"
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    hosts:
+      - kubernetes-dashboard.espn1-com.sorbapp.com
+    tls:
+      - secretName: kubernetes-dashboard-tls
+        hosts:
+          - kubernetes-dashboard.espn1-com.sorbapp.com
+is-pattern-1:
+  enabled: false
+am-pattern-1:
+  enabled: false
+grafana:
+  enabled: false
+mysql:
+  enabled: false
+#  auth:
+#    rootPassword: "sbrQp10"
+#    password: "sbrQp10"
+phpmyadmin:
+  enabled: false
+  ingress:
+    enabled: true
+    hostname: phpmyadmin.espn1-com.sorbapp.com
+    ingressClassName: "espn1-com-nginx"
+    annotations:
+      cert-manager.io/issuer: espn1-com-issuer
+redis:
+  enabled: false
+influxdb:
+  enabled: false
+
+tree-api:
+  enabled: true
+  image:
+    repository: gitlab.desa.com/group/project
+    tag: stable
+    pullPolicy: IfNotPresent
+    secrets:
+      - name: gitlab-registry 
+  resources:
+  #  limits:
+  #    cpu: 100m
+  #    memory: 128Mi
+    requests: {}
+  #    cpu: 100m
+  #    memory: 128Mi
+uuid-gen-api:
+  enabled: false
+
