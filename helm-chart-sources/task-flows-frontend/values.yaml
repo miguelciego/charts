@@ -84,7 +84,7 @@ service:
   # nodePort: 30001
   extraPorts: []
 ingress:
-  enabled: false
+  enabled: flase
   path: "/"
   tls:
     enabled: true
