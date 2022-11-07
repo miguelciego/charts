@@ -4,25 +4,25 @@ cert-manager:
   enabled: false
   installCRDs: true
 ingress-nginx:
-  enabled: true
+  enabled: false
   controller:
-    ingressClass: espn1-com-nginx
+    ingressClass: nuevo1-nginx
     ingressClassResource:
-      name: espn1-com-nginx
+      name: nuevo1-nginx
 kubernetes-dashboard:
-  enabled: true
+  enabled: false
   ingress:
     enabled: true
-    className: "espn1-com-nginx"
+    className: "nuevo1-nginx"
     annotations:
       kubernetes.io/tls-acme: 'true'
-      cert-manager.io/issuer: espn1-com-issuer
+      cert-manager.io/issuer: nuevo1-issuer
       nginx.ingress.kubernetes.io/secure-backends: "true"
       nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     hosts:
       - kubernetes-dashboard.espn1-com.sorbapp.com
     tls:
-      - secretName: kubernetes-dashboard-tls
+      - secretName: kubernetes-dashboard-nuevo1-tls
         hosts:
           - kubernetes-dashboard.espn1-com.sorbapp.com
 is-pattern-1:
@@ -41,9 +41,9 @@ phpmyadmin:
   ingress:
     enabled: true
     hostname: phpmyadmin.espn1-com.sorbapp.com
-    ingressClassName: "espn1-com-nginx"
+    ingressClassName: "nuevo1-nginx"
     annotations:
-      cert-manager.io/issuer: espn1-com-issuer
+      cert-manager.io/issuer: nuevo1-issuer
 redis:
   enabled: false
 influxdb:
@@ -51,9 +51,17 @@ influxdb:
 
 tree-api:
   enabled: true
+  application:
+    database_url: mysql://root:4mz5IrvhZb@bitnami-mysql.for-test/tree
+    redis: '{"port": 6379, "host": "bitnami-redis-master.for-test","db": 0,"reconnectTime": 5000}'
+    CLOUD_GRAFANA_API: '{"URL":"http://bitnami-grafana:3000/api","USER":"admin","PASS":"sbrQp10"}'
+    HDFS_URL: http://192.168.1.94:3003
+    LICENSE_DECODER: '{"port": 8074,"host": "sorbapp-license-decoder-auto-deploy-app-gitlab","endpoint": "/api/decode"}'
+    SORBA_INTEGRATION_AUTHORIZATION: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlNvcmJhIEludGVncmF0aW9uIiwiaWF0IjozNzM5NTcyMDAwMDB9.4A1X7l84wCJq7asgkGKaoYizlNBHnwGBm9Ex-YZRRzg'
+    SORBA_INTEGRATION_URL: http://sorbapp-sorba-dashboard-comm-auto-deploy-app-gitlab:5000
   image:
-    repository: gitlab.desa.com/group/project
-    tag: stable
+    repository: registry.desa.sorbapp.com/sorbotics/platform/tree-api/new-generation
+    tag: latest
     pullPolicy: IfNotPresent
     secrets:
       - name: gitlab-registry 
@@ -65,5 +73,5 @@ tree-api:
   #    cpu: 100m
   #    memory: 128Mi
 uuid-gen-api:
-  enabled: false
+  enabled: true
 
