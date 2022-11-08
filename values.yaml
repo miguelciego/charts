@@ -73,5 +73,32 @@ tree-api:
   #    cpu: 100m
   #    memory: 128Mi
 uuid-gen-api:
-  enabled: true
+  enabled: false
+events-middleware:
+  enabled: false
+identity-api:
+  enabled: false
+identity-ui:
+  enabled: false
+messages-mediator:
+  enabled: false
+ml-trainer-api:
+  enabled: false
+ml-ui:
+  enabled: false
+oee-engine:
+  enabled: false
+oee-ui:
+  enabled: false
+rtdb-sync-pub:
+  enabled: false
+rtdb-sync-sub:
+  enabled: false
+sde-socket:
+  enabled: false
+task-flows-backend:
+  enabled: false
+task-flows-frontend:
+  enabled: false
+
 

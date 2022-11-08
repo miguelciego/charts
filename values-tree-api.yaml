@@ -1,0 +1,21 @@
+application:
+  database_url: mysql://root:4mz5IrvhZb@bitnami-mysql.for-test/tree
+  redis: '{"port": 6379, "host": "bitnami-redis-master.for-test","db": 0,"reconnectTime": 5000}'
+  CLOUD_GRAFANA_API: '{"URL":"http://bitnami-grafana:3000/api","USER":"admin","PASS":"sbrQp10"}'
+  HDFS_URL: http://192.168.1.94:3003
+  LICENSE_DECODER: '{"port": 8074,"host": "sorbapp-license-decoder-auto-deploy-app-gitlab","endpoint": "/api/decode"}'
+  SORBA_INTEGRATION_AUTHORIZATION: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlNvcmJhIEludGVncmF0aW9uIiwiaWF0IjozNzM5NTcyMDAwMDB9.4A1X7l84wCJq7asgkGKaoYizlNBHnwGBm9Ex-YZRRzg'
+  SORBA_INTEGRATION_URL: http://sorbapp-sorba-dashboard-comm-auto-deploy-app-gitlab:5000
+image:
+  repository: registry.desa.sorbapp.com/sorbotics/platform/tree-api/new-generation
+  tag: latest
+  pullPolicy: IfNotPresent
+  secrets:
+    - name: gitlab-registry 
+resources:
+#  limits:
+#    cpu: 100m
+#    memory: 128Mi
+  requests: {}
+#    cpu: 100m
+#    memory: 128Mi

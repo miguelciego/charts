@@ -4,7 +4,7 @@ application:
     5000}'
 image:
   pullPolicy: IfNotPresent
-  repository: registry.desa.sorbapp.com/sorbotics/platform/tree-api/new-generation
+  repository: registry.desa.sorbapp.com/sorbotics/platform-ui-test-20-08/pre-release
   secrets:
   - name: gitlab-registry
   tag: latest

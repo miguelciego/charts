@@ -1,0 +1,14 @@
+application:
+  database_url: mysql://root:4mz5IrvhZb@bitnami-mysql.for-test/tree
+  redis: '{"port": 6379, "host": "bitnami-redis-master.for-test","db": 0,"reconnectTime":
+    5000}'
+image:
+  pullPolicy: IfNotPresent
+  repository: registry.desa.sorbapp.com/sorbotics/sorba-identity/sorba-identity-api-ng/main
+  secrets:
+  - name: gitlab-registry
+  tag: ce2c473e2680a0da32d003bacc92f8d7e867c0ae
+resources:
+  requests: {}
+ingress:
+  enabled: false
