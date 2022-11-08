@@ -46,6 +46,13 @@ application:
   # You can omit `DATABASE_URL` variable injection into your deployment containers,
   # if you explicitly set `database_url` to `null`.
   # database_url: null
+  DB_URI: mysql://root:JgHO98XqnV@bitnami-mysql/task_flow
+  DEPLOY_TYPE: cloud
+  PORT: 5000
+  REDIS: '{"host":"bitnami-redis-master", "port": 6379}'
+  TREE_URL: http://sorbapp-tree-api-auto-deploy-app-gitlab:5000
+  proxy: '{ "tree": { "path": "/tree", "remote": "http://sorbapp-tree-api-auto-deploy-app-gitlab:5000/" }, "hdfs": { "path": "/", "remote": "http://192.168.1.94:3003/" } }'
+
 hpa:
   enabled: false
   minReplicas: 1

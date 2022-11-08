@@ -46,6 +46,20 @@ application:
   # You can omit `DATABASE_URL` variable injection into your deployment containers,
   # if you explicitly set `database_url` to `null`.
   # database_url: null
+  identityServiceAPI: 'https://wso2am-pattern-1-am-service:8243/identity/v1'
+  proxies: '{
+	"/identity": {
+		"target": "https://wso2am-pattern-1-am-service:8243/identity/v1",
+		"pathRewrite": {
+			"^/identity": ""
+		},
+		"secure": false,
+		"changeOrigin": true,
+		"logLevel": "debug"
+	}
+}'
+  redis: '{"host": "bitnami-redis-master", "port": 6379}'
+ 
 hpa:
   enabled: false
   minReplicas: 1

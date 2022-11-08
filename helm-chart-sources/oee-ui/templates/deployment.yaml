@@ -131,121 +131,17 @@ spec:
           value: {{ .Values.application.database_url | quote }}
 {{- end }}
 
-{{- if .Values.application.db_uri }}
-        - name: DB_URI
-          value: {{ .Values.application.db_uri | quote }}
-{{- end }}
-{{- if .Values.application.deploy_type }}
-        - name: DEPLOY_TYPE
-          value: {{ .Values.application.deploy_type | quote }}
-{{- end }}
-{{- if .Values.application.port }}
-        - name: PORT
-          value: {{ .Values.application.port | quote }}
-{{- end }}
-{{- if .Values.application.redis }}
-        - name: REDIS
-          value: {{ .Values.application.redis | quote }}
-{{- end }}
-{{- if .Values.application.tree_url }}
-        - name: TREE_URL
-          value: {{ .Values.application.tree_url | quote }}
-{{- end }}
-{{- if .Values.application.proxy }}
-        - name: proxy
-          value: {{ .Values.application.proxy | quote }}
-{{- end }}
-{{- if .Values.application.sequelize }}
-        - name: sequelize
-          value: {{ .Values.application.sequelize | quote }}
-{{- end }}
-{{- if .Values.application.influxdb }}
-        - name: INFLUXDB
-          value: {{ .Values.application.influxdb | quote }}
-{{- end }}
-{{- if .Values.application.influx_host }}
-        - name: INFLUX_HOST
-          value: {{ .Values.application.influx_host | quote }}
-{{- end }}
-{{- if .Values.application.influx_port }}
-        - name: INFLUX_PORT
-          value: {{ .Values.application.influx_port | quote }}
-{{- end }}
-{{- if .Values.application.openid_connect }}
+{{- if .Values.application.OPENID_CONNECT }}
         - name: OPENID_CONNECT
-          value: {{ .Values.application.openid_connect | quote }}
-{{- end }}
-{{- if .Values.application.redis_host }}
-        - name: REDIS_HOST
-          value: {{ .Values.application.redis_host | quote }}
+          value: {{ .Values.application.OPENID_CONNECT | quote }}
 {{- end }}
 {{- if .Values.application.proxies }}
         - name: proxies
           value: {{ .Values.application.proxies | quote }}
 {{- end }}
-{{- if .Values.application.redis1 }}
+{{- if .Values.application.redis }}
         - name: redis
-          value: {{ .Values.application.redis1 | quote }}
-{{- end }}
-{{- if .Values.application.identityserviceapi }}
-        - name: identityServiceAPI
-          value: {{ .Values.application.identityserviceapi | quote }}
-{{- end }}
-{{- if .Values.application.apim_url }}
-        - name: APIM_URL
-          value: {{ .Values.application.apim_url | quote }}
-{{- end }}
-{{- if .Values.application.api_gateway }}
-        - name: API_GATEWAY
-          value: {{ .Values.application.api_gateway | quote }}
-{{- end }}
-{{- if .Values.application.api_manager_password }}
-        - name: API_MANAGER_PASSWORD
-          value: {{ .Values.application.api_manager_password | quote }}
-{{- end }}
-{{- if .Values.application.api_manager_user }}
-        - name: API_MANAGER_USER
-          value: {{ .Values.application.api_manager_user | quote }}
-{{- end }}
-{{- if .Values.application.mysql_host }}
-        - name: MYSQL_HOST
-          value: {{ .Values.application.mysql_host | quote }}
-{{- end }}
-{{- if .Values.application.mysql_password }}
-        - name: MYSQL_PASSWORD
-          value: {{ .Values.application.mysql_password | quote }}
-{{- end }}
-{{- if .Values.application.jwt_secret }}
-        - name: JWT_SECRET
-          value: {{ .Values.application.jwt_secret | quote }}
-{{- end }}
-{{- if .Values.application.npm_package_name }}
-        - name: npm_package_name
-          value: {{ .Values.application.npm_package_name | quote }}
-{{- end }}
-{{- if .Values.application.deployType }}
-        - name: deployType
-          value: {{ .Values.application.deployType | quote }}
-{{- end }}
-{{- if .Values.application.session_settings }}
-        - name: SESSION_SETTINGS
-          value: {{ .Values.application.session_settings | quote }}
-{{- end }}
-{{- if .Values.application.googlemapskey }}
-        - name: googleMapsKey
-          value: {{ .Values.application.googlemapskey | quote }}
-{{- end }}
-{{- if .Values.application.googlemapsurl }}
-        - name: googleMapsURL
-          value: {{ .Values.application.googlemapsurl | quote }}
-{{- end }}
-{{- if .Values.application.sidemenu }}
-        - name: sideMenu
-          value: {{ .Values.application.sidemenu | quote }}
-{{- end }}
-{{- if .Values.application.survey }}
-        - name: survey
-          value: {{ .Values.application.survey | quote }}
+          value: {{ .Values.application.redis | quote }}
 {{- end }}
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}

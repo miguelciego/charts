@@ -46,6 +46,14 @@ application:
   # You can omit `DATABASE_URL` variable injection into your deployment containers,
   # if you explicitly set `database_url` to `null`.
   # database_url: null
+  APIM_URL: https://wso2am-pattern-1-am-service:9443
+  API_GATEWAY: http://sorba-identity-api-ng-manuel-auto-deploy-app-gitlab:5000/api
+  API_MANAGER_PASSWORD: admin
+  API_MANAGER_USER: admin
+  DEPLOY_TYPE: cloud
+  MYSQL_HOST: bitnami-mysql
+  MYSQL_PASSWORD: JgHO98XqnV
+   
 hpa:
   enabled: false
   minReplicas: 1
