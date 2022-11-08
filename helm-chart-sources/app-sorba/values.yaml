@@ -128,12 +128,27 @@ rtdb-sync-pub:
   enabled: false
 rtdb-sync-sub:
   enabled: false
-
-auto-deploy-app:
+events-middleware:
   enabled: false
-uuid-gen-api:
+identity-api:
   enabled: false
-tree-api:
+identity-ui:
+  enabled: false
+messages-mediator:
+  enabled: false
+oee-engine:
+  enabled: false
+oee-ui:
+  enabled: false
+rtdb-sync-pub:
+  enabled: false
+rtdb-sync-sub:
+  enabled: false
+sde-socket:
+  enabled: false
+task-flows-backend:
+  enabled: false
+task-flows-frontend:
   enabled: false
 
 

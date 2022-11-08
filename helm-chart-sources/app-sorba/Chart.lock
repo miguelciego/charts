@@ -62,5 +62,32 @@ dependencies:
 - name: rtdb-sync-sub
   repository: https://miguelciego.github.io/charts/
   version: 2.39.0
-digest: sha256:4362bfad3827ab85803627b1bf37c3a4a230d71f7de556de04c9ad71e598256b
-generated: "2022-11-04T15:01:02.8397648-04:00"
+- name: events-middleware
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.0
+- name: identity-ui
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.0
+- name: identity-api
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.0
+- name: messages-mediator
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.0
+- name: oee-engine
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.0
+- name: oee-ui
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.0
+- name: sde-socket
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.0
+- name: task-flows-backend
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.0
+- name: task-flows-frontend
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.0
+digest: sha256:f51e5c8989d07e3867b7032e1445b9b2044c6288b069b7f8177069ab36f9a699
+generated: "2022-11-08T00:46:03.1331472-04:00"
