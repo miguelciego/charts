@@ -11,5 +11,15 @@ image:
 resources:
   requests: {}
 ingress:
-  enabled: false
+  enabled: true
+#  className: "demo-com-nginx"
+service:
+  url: ml-ui.demo-com.sorba.ai
+  annotations:
+    cert-manager.io/issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: demo-com-nginx
+#    kubernetes.io/ingress.class: nginx
+#    kubernetes.io/tls-acme: 'true'
+#    meta.helm.sh/release-name: ng-api-gateway
+#    meta.helm.sh/release-namespace: nuevo1
   
