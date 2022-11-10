@@ -1,0 +1,4 @@
+auth:
+  createDatabase: false
+  rootPassword: "sbrQp10"
+  password: "sbrQp10"

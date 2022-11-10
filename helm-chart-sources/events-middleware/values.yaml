@@ -6,11 +6,11 @@ strategyType:
 # `serviceAccountName` is deprecated in favor of `serviceAccount.name`
 serviceAccountName:
 image:
-  repository: gitlab.example.com/group/project
-  tag: stable
+  repository: sorbaregistry.azurecr.io/sorbotics/middleware/events_middleware/master
+  tag: latest
   pullPolicy: IfNotPresent
   secrets:
-    - name: gitlab-registry
+    - name: azure-registry
 extraLabels: {}
 lifecycle: {}
 # preStop:

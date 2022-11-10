@@ -6,11 +6,11 @@ strategyType:
 # `serviceAccountName` is deprecated in favor of `serviceAccount.name`
 serviceAccountName:
 image:
-  repository: registry.desa.sorbapp.com/sorbotics/uuid-gen-api/master
-  tag: 11f3a2bbc5c48cfb770c834a7052e939c91a6834
+  repository: sorbaregistry.azurecr.io/sorbotics/uuid-gen-api/master
+  tag: latest
   pullPolicy: IfNotPresent
   secrets:
-    - name: gitlab-registry
+    - name: azure-registry
 extraLabels: {}
 lifecycle: {}
 # preStop:

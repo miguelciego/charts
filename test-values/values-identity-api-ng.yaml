@@ -4,10 +4,10 @@ application:
     5000}'
 image:
   pullPolicy: IfNotPresent
-  repository: registry.desa.sorbapp.com/sorbotics/sorba-identity/sorba-identity-api-ng/main
+  repository: sorbaregistry.azurecr.io/sorbotics/sorba-identity/sorba-identity-api-ng/main
   secrets:
-  - name: gitlab-registry
-  tag: ce2c473e2680a0da32d003bacc92f8d7e867c0ae
+  - name: azure-registry
+  tag: latest
 resources:
   requests: {}
 ingress:

@@ -56,9 +56,10 @@ grafana:
     ingressClassName: "for-test-nginx"
 mysql:
   enabled: false
-#  auth:
-#    rootPassword: "sbrQp10"
-#    password: "sbrQp10"
+  auth:
+    createDatabase: false
+    rootPassword: "sbrQp10"
+    password: "sbrQp10"
   primary:
     configuration: |-
       [mysqld]
