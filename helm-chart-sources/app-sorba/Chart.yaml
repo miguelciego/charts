@@ -2,7 +2,7 @@ apiVersion: v2
 name: app-sorba
 description: Sorba Helm Chart
 type: application
-version: 0.2.1
+version: 0.2.2
 appVersion: "0.2.0"
 icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
 
@@ -53,7 +53,7 @@ dependencies:
     repository: https://helm.influxdata.com/
     condition: influxdb.enabled
   - name: uuid-gen-api
-    version: 2.39.0
+    version: 2.39.3
     repository: https://miguelciego.github.io/charts/
     condition: uuid-gen-api.enabled
   - name: tree-api

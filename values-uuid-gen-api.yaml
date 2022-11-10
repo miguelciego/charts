@@ -1,9 +1,9 @@
 image:
-  repository: registry.desa.sorbapp.com/sorbotics/uuid-gen-api/master
-  tag: 11f3a2bbc5c48cfb770c834a7052e939c91a6834
+  repository: sorbaregistry.azurecr.io/sorbotics/uuid-gen-api
+  tag: latest
   pullPolicy: IfNotPresent
   secrets:
-    - name: gitlab-registry 
+    - name: azure-registry 
 resources:
 #  limits:
 #    cpu: 100m
