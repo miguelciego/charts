@@ -85,6 +85,9 @@ service:
   extraPorts: []
 ingress:
   enabled: false
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: '0'
+    nginx.ingress.kubernetes.io/proxy-buffering: 'off'    
   path: "/"
   tls:
     enabled: true

@@ -1,0 +1,5 @@
+USER-SUPPLIED VALUES:
+setDefaultUser:
+  enabled: true
+  user:
+    username: admin

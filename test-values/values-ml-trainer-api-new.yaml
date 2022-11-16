@@ -1,9 +1,9 @@
 application:
   DEPLOY_TYPE: "CLOUD"
   tenant: "demo.com"
-  DATABASE_URL: '{ "database": "ml_trainer", "username": "root", "password": "JgHO98XqnV", "host": "bitnami-mysql", "dialect": "mysql", "logging": false }'
+  DATABASE_URL: '{ "database": "ml_trainer", "username": "root", "password": "sbrQp10", "host": "bit-mysql", "dialect": "mysql", "logging": false }'
   fsEntryPoint: "/srv/sorba/ml-trainer"
-  REDIS: '{"port": 6379, "host": "bitnami-redis-master","db":0,"reconnectTime": 5000}'
+  REDIS: '{"port": 6379, "host": "bit-redis-master","db":0,"reconnectTime": 5000}'
   STORAGE: '{"useDefaults": false, "url": "http://influxdb-1-8:8086", "db": "sorba_ml", "batch_size": 1000, "user": "", "password": "", "version": "1.x", "bucket": "", "token": "", "org": ""}'
   DATASOURCE: '{"useDefaults": false, "url": "http://influxdb-1-8:8086", "db": "sorba_ml", "batch_size": 1000, "user": "", "password": "", "version": "1.x", "bucket": "", "token": "", "org": ""}'
   TREE: '{"useDefaults": false, "url":"http://sorbapp-tree-api-auto-deploy-app-gitlab.demo-com:5000"}'

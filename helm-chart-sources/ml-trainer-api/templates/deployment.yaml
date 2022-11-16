@@ -171,6 +171,10 @@ spec:
         - name: RAY
           value: {{ .Values.application.RAY | quote }}
 {{- end }}
+{{- if .Values.application.MLAPI }}
+        - name: MLAPI
+          value: {{ .Values.application.MLAPI | quote }}
+{{- end }}
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}
         - name: GITLAB_ENVIRONMENT_URL
