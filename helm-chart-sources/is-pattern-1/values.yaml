@@ -16,6 +16,7 @@ wso2:
   # WSO2 Subscription parameters (https://wso2.com/subscription/)
   # If provided, these parameters will be used to obtain official WSO2 product Docker images available at WSO2 Private Docker Registry (https://docker.wso2.com/)
   # for this deployment
+  dockerRegistry: sorbaregistry.azurecr.io
   subscription:
     username: ""
     password: ""
@@ -48,9 +49,9 @@ wso2:
     wso2is:
       # Container image configurations
       # If a custom image must be used, uncomment 'dockerRegistry' and provide its value
-      # dockerRegistry: ""
-      imageName: "wso2is"
-      imageTag: "5.11.0"
+      dockerRegistry: "sorbaregistry.azurecr.io/sorbotics/devops/wso2-alpine-is"
+      imageName: "master"
+      imageTag: "latest"
       # Refer to the Kubernetes documentation on updating images (https://kubernetes.io/docs/concepts/containers/images/#updating-images)
       imagePullPolicy: Always
 

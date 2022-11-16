@@ -6,11 +6,11 @@ strategyType:
 # `serviceAccountName` is deprecated in favor of `serviceAccount.name`
 serviceAccountName:
 image:
-  repository: gitlab.example.com/group/project
-  tag: stable
+  repository: sorbaregistry.azurecr.io/sorbotics/sorba-task-flows/task-flows-frontend/main
+  tag: :latest
   pullPolicy: IfNotPresent
   secrets:
-    - name: gitlab-registry
+    - name: azure-registry
 extraLabels: {}
 lifecycle: {}
 # preStop:
@@ -151,14 +151,14 @@ ingress:
 prometheus:
   metrics: false
 livenessProbe:
-  path: "/"
+  path: "/ping"
   initialDelaySeconds: 15
   timeoutSeconds: 15
   scheme: "HTTP"
   probeType: "httpGet"
   httpHeaders: []
 readinessProbe:
-  path: "/"
+  path: "/ping"
   initialDelaySeconds: 5
   timeoutSeconds: 3
   scheme: "HTTP"
@@ -166,7 +166,7 @@ readinessProbe:
   httpHeaders: []
 startupProbe:
   enabled: false
-  path: "/"
+  path: "/ping"
   initialDelaySeconds: 5
   timeoutSeconds: 3
   failureThreshold: 30

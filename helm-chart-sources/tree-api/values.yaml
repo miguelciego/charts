@@ -6,11 +6,11 @@ strategyType:
 # `serviceAccountName` is deprecated in favor of `serviceAccount.name`
 serviceAccountName:
 image:
-  repository: registry.desa.sorbapp.com/sorbotics/platform/tree-api/master
-  tag: 308e009dbe4c9ff2a86ff55a0ea929bd8442807f
+  repository: sorbaregistry.azurecr.io/sorbotics/platform/tree-api/new-generation
+  tag: latest
   pullPolicy: IfNotPresent
   secrets:
-    - name: gitlab-registry
+    - name: azure-registry
 extraLabels: {}
 lifecycle: {}
 # preStop:

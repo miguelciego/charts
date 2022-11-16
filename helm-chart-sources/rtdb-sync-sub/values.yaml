@@ -6,11 +6,11 @@ strategyType:
 # `serviceAccountName` is deprecated in favor of `serviceAccount.name`
 serviceAccountName:
 image:
-  repository: registry.desa.sorbapp.com/sorbotics/rtdb-sync-sub/development
+  repository: sorbaregistry.azurecr.io/sorbotics/rtdb/rtdb-sync-sub/development
   tag: latest
   pullPolicy: IfNotPresent
   secrets:
-    - name: gitlab-registry
+    - name: azure-registry
 extraLabels: {}
 lifecycle: {}
 # preStop:
