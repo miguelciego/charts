@@ -7,7 +7,7 @@ strategyType:
 serviceAccountName:
 image:
   repository: sorbaregistry.azurecr.io/sorbotics/sorba-task-flows/task-flows-frontend/main
-  tag: :latest
+  tag: latest
   pullPolicy: IfNotPresent
   secrets:
     - name: azure-registry

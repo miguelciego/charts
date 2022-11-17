@@ -92,7 +92,7 @@ dependencies:
     repository: https://miguelciego.github.io/charts/
     condition: identity-ui.enabled
   - name: identity-api
-    version: 2.39.1
+    version: 2.39.2
     repository: https://miguelciego.github.io/charts/
     condition: identity-api.enabled
   - name: messages-mediator

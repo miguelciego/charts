@@ -6,8 +6,8 @@ strategyType:
 # `serviceAccountName` is deprecated in favor of `serviceAccount.name`
 serviceAccountName:
 image:
-  repository: gitlab.example.com/group/project
-  tag: stable
+  repository: sorbotics/sorba-task-flows/task-flows-backend/62-test-cloud-task-flow-deployment
+  tag: latest
   pullPolicy: IfNotPresent
   secrets:
     - name: gitlab-registry
