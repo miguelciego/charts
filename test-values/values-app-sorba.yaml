@@ -74,12 +74,12 @@ tree-api:
   #    memory: 128Mi
 uuid-gen-api:
   enabled: true
-  image:
-    repository: sorbaregistry.azurecr.io/sorbotics/uuid-gen-api
-    tag: latest
-    pullPolicy: IfNotPresent
-    secrets:
-      - name: azure-registry 
+#  image:
+#    repository: sorbaregistry.azurecr.io/sorbotics/uuid-gen-api
+#    tag: latest
+#    pullPolicy: IfNotPresent
+#    secrets:
+#      - name: azure-registry 
 events-middleware:
   enabled: false
 identity-api:
