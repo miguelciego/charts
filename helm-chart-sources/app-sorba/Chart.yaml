@@ -10,7 +10,6 @@ dependencies:
   - name: vernemq
     version: 1.6.12
     repository: https://vernemq.github.io/docker-vernemq 
-    alias: apache1
     condition: vernemq.enabled
   - name: cert-manager
     version: 1.10.0
@@ -25,12 +24,12 @@ dependencies:
     repository: https://kubernetes.github.io/dashboard/ 
     condition: kubernetes-dashboard.enabled
   - name: is-pattern-1
-    version: 5.11.0-5
-    repository: https://helm.wso2.com 
+    version: 5.11.05
+    repository: https://miguelciego.github.io/charts/
     condition: is-pattern-1.enabled
   - name: am-pattern-1
-    version: 4.1.0-1
-    repository: https://helm.wso2.com
+    version: 4.1.01
+    repository: https://miguelciego.github.io/charts/
     condition: am-pattern-1.enabled
   - name: grafana
     version: 8.2.14
@@ -52,14 +51,6 @@ dependencies:
     version: 4.12.0
     repository: https://helm.influxdata.com/
     condition: influxdb.enabled
-  - name: uuid-gen-api
-    version: 2.39.4
-    repository: https://miguelciego.github.io/charts/
-    condition: uuid-gen-api.enabled
-  - name: tree-api
-    version: 2.39.0
-    repository: https://miguelciego.github.io/charts/
-    condition: tree-api.enabled
   - name: ml-trainer-api
     version: 2.39.0
     repository: https://miguelciego.github.io/charts/
@@ -73,11 +64,11 @@ dependencies:
     repository: https://miguelciego.github.io/charts/
     condition:  mqtt-to-influxdb-2y.enabled
   - name: ng-api-gateway
-    version: 2.39.0
+    version: 2.39.1
     repository: https://miguelciego.github.io/charts/
     condition: ng-api-gateway.enabled
   - name: platform-ui
-    version: 2.39.0
+    version: 2.39.1
     repository: https://miguelciego.github.io/charts/
     condition: platform-ui.enabled
   - name: preferences-api
@@ -85,48 +76,55 @@ dependencies:
     repository: https://miguelciego.github.io/charts/
     condition: preferences-api.enabled
   - name: rtdb-sync-pub
-    version: 2.39.0
+    version: 2.39.1
     repository: https://miguelciego.github.io/charts/
     condition: rtdb-sync-pub.enabled
   - name: rtdb-sync-sub
-    version: 2.39.0
+    version: 2.39.1
     repository: https://miguelciego.github.io/charts/
     condition: rtdb-sync-sub.enabled
   - name: events-middleware
-    version: 2.39.0
+    version: 2.39.2
     repository: https://miguelciego.github.io/charts/
     condition: events-middleware.enabled
   - name: identity-ui
-    version: 2.39.0
+    version: 2.39.1
     repository: https://miguelciego.github.io/charts/
     condition: identity-ui.enabled
   - name: identity-api
-    version: 2.39.0
+    version: 2.39.1
     repository: https://miguelciego.github.io/charts/
     condition: identity-api.enabled
   - name: messages-mediator
-    version: 2.39.0
+    version: 2.39.2
     repository: https://miguelciego.github.io/charts/
     condition: messages-mediator.enabled
   - name: oee-engine
-    version: 2.39.0
+    version: 2.39.1
     repository: https://miguelciego.github.io/charts/
     condition: oee-engine.enabled
   - name: oee-ui
-    version: 2.39.0
+    version: 2.39.1
     repository: https://miguelciego.github.io/charts/
     condition: oee-ui.enabled
   - name: sde-socket
-    version: 2.39.0
+    version: 2.39.1
     repository: https://miguelciego.github.io/charts/
     condition: sde-socket.enabled
   - name: task-flows-backend
-    version: 2.39.0
+    version: 2.39.1
     repository: https://miguelciego.github.io/charts/
     condition: task-flows-backend.enabled
   - name: task-flows-frontend
-    version: 2.39.0
+    version: 2.39.1
     repository: https://miguelciego.github.io/charts/
     condition: task-flows-frontend.enabled
-
+  - name: uuid-gen-api
+    version: 2.39.5
+    repository: https://miguelciego.github.io/charts/
+    condition: uuid-gen-api.enabled
+  - name: tree-api
+    version: 2.39.2
+    repository: https://miguelciego.github.io/charts/
+    condition: tree-api.enabled
 

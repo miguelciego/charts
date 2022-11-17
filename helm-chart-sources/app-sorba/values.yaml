@@ -43,6 +43,29 @@ kubernetes-dashboard:
     enabled: false
 is-pattern-1:
   enabled: false
+  wso2:
+    deployment:
+      wso2is:
+        dockerRegistry: sorbaregistry.azurecr.io/sorbotics/devops/wso2-alpine-is
+        imageName: master
+        imageTag: latest
+        imagePullSecrets: azure-registry
+        replicas: 1
+        ingress:
+          identity:
+            hostname: "sorbais.prod.sczcps.site"
+            annotations:
+              kubernetes.io/ingress.class: "nginx"
+              kubernetes.io/tls-acme: "true"
+              nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+              nginx.ingress.kubernetes.io/affinity: "cookie"
+              nginx.ingress.kubernetes.io/session-cookie-name: "route"
+              nginx.ingress.kubernetes.io/session-cookie-hash: "sha1"
+    dockerRegistry: sorbaregistry.azurecr.io
+    subscription:
+      password: detargetni
+      username: miguelciego
+      email: miguelciego@gmail.com
 am-pattern-1:
   enabled: false
 grafana:

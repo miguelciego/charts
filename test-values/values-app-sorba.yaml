@@ -26,7 +26,7 @@ kubernetes-dashboard:
         hosts:
           - kubernetes-dashboard.espn1-com.sorbapp.com
 is-pattern-1:
-  enabled: false
+  enabled: true
 am-pattern-1:
   enabled: false
 grafana:
@@ -50,7 +50,7 @@ influxdb:
   enabled: false
 
 tree-api:
-  enabled: false
+  enabled: true
   application:
     database_url: mysql://root:4mz5IrvhZb@bitnami-mysql.for-test/tree
     redis: '{"port": 6379, "host": "bitnami-redis-master.for-test","db": 0,"reconnectTime": 5000}'
@@ -60,11 +60,11 @@ tree-api:
     SORBA_INTEGRATION_AUTHORIZATION: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlNvcmJhIEludGVncmF0aW9uIiwiaWF0IjozNzM5NTcyMDAwMDB9.4A1X7l84wCJq7asgkGKaoYizlNBHnwGBm9Ex-YZRRzg'
     SORBA_INTEGRATION_URL: http://sorbapp-sorba-dashboard-comm-auto-deploy-app-gitlab:5000
   image:
-    repository: registry.desa.sorbapp.com/sorbotics/platform/tree-api/new-generation
+    repository: sorbaregistry.azurecr.io/sorbotics/platform/tree-api/new-generation
     tag: latest
     pullPolicy: IfNotPresent
     secrets:
-      - name: gitlab-registry 
+      - name: azure-registry 
   resources:
   #  limits:
   #    cpu: 100m
