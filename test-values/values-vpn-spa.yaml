@@ -1,0 +1,14 @@
+application:
+  database_url: mysql://root:4mz5IrvhZb@bitnami-mysql.for-test/tree
+  redis: '{"port": 6379, "host": "bitnami-redis-master.for-test","db": 0,"reconnectTime":
+    5000}'
+image:
+  pullPolicy: IfNotPresent
+  repository: registry.desa.sorbapp.com/sorbotics/vpn/vpn-spa/development
+  secrets:
+  - name: gitlab-registry
+  tag: latest
+resources:
+  requests: {}
+ingress:
+  enabled: false

@@ -18,25 +18,25 @@ ingress-nginx:
         application/x-javascript text/plain application/x-font-truetype application/xml+rss
         image/x-icon font/opentype text/css image/x-win-bitmap
       enable-brotli: "true"
-    ingressClass: for-test-nginx
+    ingressClass: nginx
     ingressClassResource:
-      name: for-test-nginx
+      name: nginx
 kubernetes-dashboard:
   enabled: true
   ingress:
     enabled: true
-    className: "for-test-nginx"
+    className: "nginx"
     annotations:
       kubernetes.io/tls-acme: 'true'
-      cert-manager.io/issuer: for-test-issuer
+      cert-manager.io/issuer: example-issuer
       nginx.ingress.kubernetes.io/secure-backends: "true"
       nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     hosts:
-      - kubernetes-dashboard.fortest.sorbapp.com
+      - kubernetes-dashboard.example.com
     tls:
       - secretName: kubernetes-dashboard-tls
         hosts:
-          - kubernetes-dashboard.fortest.sorbapp.com
+          - kubernetes-dashboard.example.com
   metricsScraper:
     enabled: true
   metrics-server:
@@ -46,14 +46,14 @@ is-pattern-1:
   wso2:
     deployment:
       wso2is:
-        dockerRegistry: sorbaregistry.azurecr.io/sorbotics/devops/wso2-alpine-is
-        imageName: master
+        dockerRegistry: sorbaregistry.azurecr.io
+        imageName: sorbotics/devops/wso2-alpine-is/master
         imageTag: latest
-        imagePullSecrets: azure-registry
+        #imagePullSecrets: azure-registry
         replicas: 1
         ingress:
           identity:
-            hostname: "sorbais.prod.sczcps.site"
+            hostname: "sorbais.example.com"
             annotations:
               kubernetes.io/ingress.class: "nginx"
               kubernetes.io/tls-acme: "true"
@@ -61,28 +61,27 @@ is-pattern-1:
               nginx.ingress.kubernetes.io/affinity: "cookie"
               nginx.ingress.kubernetes.io/session-cookie-name: "route"
               nginx.ingress.kubernetes.io/session-cookie-hash: "sha1"
-    dockerRegistry: sorbaregistry.azurecr.io
-    subscription:
-      password: detargetni
-      username: miguelciego
-      email: miguelciego@gmail.com
+    #subscription:
+    #  password: password
+    #  username: user
+    #  email: admin@example.com
 am-pattern-1:
   enabled: false
 grafana:
   enabled: false
   ingress:
     enabled: true
-    hostname: grafana.fortest.sorbapp.com
+    hostname: grafana.fexample.com
     annotations:
-      cert-manager.io/issuer: for-test-issuer
+      cert-manager.io/issuer: example-issuer
     tls: true  
-    ingressClassName: "for-test-nginx"
+    ingressClassName: "nginx"
 mysql:
   enabled: false
   auth:
     createDatabase: false
-    rootPassword: "sbrQp10"
-    password: "sbrQp10"
+    rootPassword: "rootPassword"
+    password: "Password"
   primary:
     configuration: |-
       [mysqld]
@@ -118,11 +117,11 @@ phpmyadmin:
   enabled: false
   ingress:
     enabled: true
-    hostname: phpmyadmin.fortest.sorbapp.com
+    hostname: phpmyadmin.example.com
     tls: true
-    ingressClassName: "for-test-nginx"
+    ingressClassName: "nginx"
     annotations:
-      cert-manager.io/issuer: for-test-issuer
+      cert-manager.io/issuer: issuer
 redis:
   enabled: false
   architecture: standalone

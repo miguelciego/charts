@@ -1,0 +1,22 @@
+wso2:
+  deployment:
+    wso2is:
+      dockerRegistry: sorbaregistry.azurecr.io
+      imageName: sorbotics/devops/wso2-alpine-is/master
+      imageTag: latest
+      #imagePullSecrets: azure-registry
+      replicas: 1
+      ingress:
+        identity:
+          hostname: "sorbais.example.com"
+          annotations:
+            kubernetes.io/ingress.class: "nginx"
+            kubernetes.io/tls-acme: "true"
+            nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+            nginx.ingress.kubernetes.io/affinity: "cookie"
+            nginx.ingress.kubernetes.io/session-cookie-name: "route"
+            nginx.ingress.kubernetes.io/session-cookie-hash: "sha1"
+  #subscription:
+  #  password: password
+  #  username: user
+  #  email: admin@example.com
