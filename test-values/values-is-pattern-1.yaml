@@ -4,7 +4,7 @@ wso2:
       dockerRegistry: sorbaregistry.azurecr.io
       imageName: sorbotics/devops/wso2-alpine-is/master
       imageTag: latest
-      #imagePullSecrets: azure-registry
+      imagePullSecrets: azure-registry
       replicas: 1
       ingress:
         identity:

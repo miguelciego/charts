@@ -1,6 +1,6 @@
 dependencies:
 - name: mysql-is
-  repository: https://helm.wso2.com
-  version: 5.11.0-5
-digest: sha256:932b7b06b1e1e2d3a01c7aa6c7d174ee5f34d590c354fb2904e41344e0c2e320
-generated: "2022-04-11T14:05:15.225914763+05:30"
+  repository: https://miguelciego.github.io/charts
+  version: 5.11.05
+digest: sha256:1748fc9138376d4c324eb5cfca4aee1a0c1909641f1b7b885711669f92a894f9
+generated: "2022-11-20T10:21:05.1391957-04:00"
