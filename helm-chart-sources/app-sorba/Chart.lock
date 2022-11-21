@@ -64,7 +64,7 @@ dependencies:
   version: 2.39.1
 - name: identity-api
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.1
+  version: 2.39.2
 - name: messages-mediator
   repository: https://miguelciego.github.io/charts/
   version: 2.39.2
@@ -89,5 +89,5 @@ dependencies:
 - name: tree-api
   repository: https://miguelciego.github.io/charts/
   version: 2.39.2
-digest: sha256:4c6ffa9a5784baa8b102eb338d691899755e9a7fac4b0a664915f28e9669717d
-generated: "2022-11-17T00:15:57.1851403-04:00"
+digest: sha256:a9cbb2359ae1b8debfe5780fc00aadf7b65659efe93d5136488b35cd028f648e
+generated: "2022-11-20T23:38:40.468444-04:00"
