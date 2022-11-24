@@ -46,52 +46,52 @@ application:
   # You can omit `DATABASE_URL` variable injection into your deployment containers,
   # if you explicitly set `database_url` to `null`.
   # database_url: null
-
-  PORT: 5000
-  deployType: cloud
-  identityServiceAPI: https://wso2am-pattern-1-am-service:8243/identity/v1
-  influxdb: '{"host":"influxdb-1-8","db":"sorba_sde","measurement":"__SYSTEM_EVENTS","port": 8086}'
-  page: '{"title":"Sorba Task Flow","location":"","message":"Task Flow"}'
-  proxies: '{
-	"/tree": {
-		"target": "http://sorbapp-tree-api-auto-deploy-app-gitlab:5000",
-		"pathRewrite": {
-			"^/tree": ""
-		},
-		"secure": false,
-		"changeOrigin": true,
-		"logLevel": "debug"
-	},
-	"/taskflows": {
-		"target": "http://sorbapp-task-flows-backend-auto-deploy-app-gitlab:5000",
-		"pathRewrite": {
-			"^/taskflows": ""
-		},
-		"secure": false,
-		"changeOrigin": true,
-		"logLevel": "debug"
-	},
-	"/influx": {
-		"target": "http://influxdb-1-8:8086",
-		"pathRewrite": {
-			"^/influx": ""
-		},
-		"secure": false,
-		"logLevel": "debug",
-		"changeOrigin": true
-	},
-	"/identity": {
-		"target": "https://wso2am-pattern-1-am-service:8243/identity/v1",
-		"pathRewrite": {
-			"^/identity": ""
-		},
-		"secure": false,
-		"changeOrigin": true,
-		"logLevel": "debug"
-	}
-}'
-  redis: '{"host":"bitnami-redis-master","port": 6379}'
-  socketUrl: wss://websoc.demo-com.sorba.ai/websocket
+  env:
+    PORT: 5000
+    deployType: cloud
+    identityServiceAPI: https://wso2am-pattern-1-am-service:8243/identity/v1
+    influxdb: '{"host":"influxdb-1-8","db":"sorba_sde","measurement":"__SYSTEM_EVENTS","port": 8086}'
+    page: '{"title":"Sorba Task Flow","location":"","message":"Task Flow"}'
+    proxies: '{
+    "/tree": {
+      "target": "http://sorbapp-tree-api-auto-deploy-app-gitlab:5000",
+      "pathRewrite": {
+        "^/tree": ""
+      },
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/taskflows": {
+      "target": "http://sorbapp-task-flows-backend-auto-deploy-app-gitlab:5000",
+      "pathRewrite": {
+        "^/taskflows": ""
+      },
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/influx": {
+      "target": "http://influxdb-1-8:8086",
+      "pathRewrite": {
+        "^/influx": ""
+      },
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true
+    },
+    "/identity": {
+      "target": "https://wso2am-pattern-1-am-service:8243/identity/v1",
+      "pathRewrite": {
+        "^/identity": ""
+      },
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    }
+  }'
+    redis: '{"host":"bitnami-redis-master","port": 6379}'
+    socketUrl: wss://websoc.demo-com.sorba.ai/websocket
 
 hpa:
   enabled: false

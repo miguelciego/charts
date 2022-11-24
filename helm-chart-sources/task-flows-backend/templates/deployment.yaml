@@ -131,30 +131,11 @@ spec:
           value: {{ .Values.application.database_url | quote }}
 {{- end }}
 
-{{- if .Values.application.DB_URI }}
-        - name: DB_URI
-          value: {{ .Values.application.DB_URI | quote }}
+{{- range $k, $v := .Values.application.env }}
+        - name: {{$k }}
+          value: {{$v | quote}}
 {{- end }}
-{{- if .Values.application.DEPLOY_TYPE }}
-        - name: DEPLOY_TYPE
-          value: {{ .Values.application.DEPLOY_TYPE | quote }}
-{{- end }}
-{{- if .Values.application.PORT }}
-        - name: PORT
-          value: {{ .Values.application.PORT | quote }}
-{{- end }}
-{{- if .Values.application.REDIS }}
-        - name: REDIS
-          value: {{ .Values.application.REDIS | quote }}
-{{- end }}
-{{- if .Values.application.TREE_URL }}
-        - name: TREE_URL
-          value: {{ .Values.application.TREE_URL | quote }}
-{{- end }}
-{{- if .Values.application.proxy }}
-        - name: proxy
-          value: {{ .Values.application.proxy | quote }}
-{{- end }}
+
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}
         - name: GITLAB_ENVIRONMENT_URL

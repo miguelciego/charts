@@ -46,13 +46,14 @@ application:
   # You can omit `DATABASE_URL` variable injection into your deployment containers,
   # if you explicitly set `database_url` to `null`.
   # database_url: null
-  JWT_SECRET: eShVmYq3t6w9z$C&F)J@McQfTjWnZr4u7x!A%D*G-KaPdRgUkXp2s5v8y/B?E(H+MbQeThVmYq3t6w9z$C&F)J@NcRfUjXnZr4u7x!A%D*G-KaPdSgVkYp3s5v8y/B?E
-  REDIS_HOST: bitnami-redis-master
-  REDIS_PORT: 6379
-  deployType: cloud
-  identityServiceAPI: https://wso2am-pattern-1-am-service:8243
-  npm_package_name: event-middleware
-   
+  env:
+    JWT_SECRET: eShVmYq3t6w9z$C&F)J@McQfTjWnZr4u7x!A%D*G-KaPdRgUkXp2s5v8y/B?E(H+MbQeThVmYq3t6w9z$C&F)J@NcRfUjXnZr4u7x!A%D*G-KaPdSgVkYp3s5v8y/B?E
+    REDIS_HOST: bitnami-redis-master
+    REDIS_PORT: 6379
+    deployType: cloud
+    identityServiceAPI: https://wso2am-pattern-1-am-service:8243
+    npm_package_name: event-middleware
+    
 hpa:
   enabled: false
   minReplicas: 1

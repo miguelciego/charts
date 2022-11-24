@@ -126,7 +126,10 @@ spec:
               name: app-postgres
               key: privateIP
 {{- end }}
-
+{{- range $k, $v := .Values.application.env }}
+        - name: {{$k }}
+          value: {{$v | quote}}
+{{- end }}
 {{- if .Values.application.database_url }}
         - name: DATABASE_URL
           value: {{ .Values.application.database_url | quote }}

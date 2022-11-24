@@ -46,108 +46,109 @@ application:
   # You can omit `DATABASE_URL` variable injection into your deployment containers,
   # if you explicitly set `database_url` to `null`.
   # database_url: null
-  OPENID_CONNECT: '{ "clientID": "gq0aTATyGOf4sRXggyQjwJ1V6hka", "clientSecret": "UtQmCLX5Y_cTsfqwW2wgVTw8oOEa", "issuer": "https://sorbais.demo-com.sorba.ai:443/oauth2/token", "authorizationURL": "https://sorbais.demo-com.sorba.ai/oauth2/authorize", "tokenURL": "https://sorbais.demo-com.sorba.ai/oauth2/token", "callbackURL": "https://platform.demo-com.sorba.ai/callback", "skipUserProfile": true }'
-  SESSION_SETTINGS: '{ "name": "platform-website", "secret": "jqHmJcoXvhn0kQVumnvQ" }'
-  deployType: cloud
-  googleMapsKey: IzaSyBNj7leq6sjqp-cjKZscq6AjlHCT4vS_YM
-  googleMapsURL: https://maps.googleapis.com/maps/api/js
-  identityServiceAPI: https://wso2am-pattern-1-am-service:8243/identity/v1
-  proxies: '{
-	"/identity-server": {
-		"target": "https://wso2am-pattern-1-am-service:8243/identity/v1/",
-		"pathRewrite": {
-			"^/identity-server": ""
-		},
-		"secure": false,
-		"changeOrigin": true,
-		"logLevel": "debug"
-	},
-	"/tree": {
-		"target": "https://wso2am-pattern-1-am-service:8243/tree/v1/",
-		"pathRewrite": {
-			"^/tree": ""
-		},
-		"secure": false,
-		"changeOrigin": true,
-		"logLevel": "debug"
-	},
-	"/devices": {
-		"target": "http://sorbotics-sorba-collector-api.prod.sorbapp.com",
-		"pathRewrite": {
-			"^/devices": ""
-		},
-		"secure": false,
-		"changeOrigin": true,
-		"logLevel": "debug"
-	},
-	"/uuid-gen": {
-		"target": "http://sorbapp-uuid-gen-api-auto-deploy-app-gitlab:5000",
-		"pathRewrite": {
-			"^/uuid-gen": ""
-		},
-		"secure": false,
-		"changeOrigin": true,
-		"logLevel": "debug"
-	},
-	"/asset": {
-		"target": "http://sorbotics-sorba-asset-api.prod.sorbapp.com",
-		"pathRewrite": {
-			"^/asset": ""
-		},
-		"secure": false,
-		"changeOrigin": true,
-		"logLevel": "debug"
-	},
-	"/ml-trainer": {
-		"target": "http://sorbapp-ml-trainer-api-auto-deploy-app-gitlab:5000",
-		"pathRewrite": {
-			"^/ml-trainer": ""
-		},
-		"secure": false,
-		"changeOrigin": true,
-		"logLevel": "debug"
-	},
-	"/rtdb": {
-		"target": "http://webdis:7379",
-		"pathRewrite": {
-			"^/rtdb": ""
-		},
-		"secure": false,
-		"changeOrigin": true,
-		"logLevel": "debug"
-	},
-	"/hdfs-api": {
-		"target": "http://sorbotics-ml-trainer-hdfs-api.prod.sorbapp.com",
-		"pathRewrite": {
-			"^/hdfs-api": ""
-		},
-		"secure": false,
-		"changeOrigin": true,
-		"logLevel": "debug"
-	},
-	"/api/commands/*": {
-		"target": "https://websoc.demo-com.sorba.ai/api/commands",
-		"pathRewrite": {
-			"^/api/commands": ""
-		},
-		"secure": false,
-		"logLevel": "debug",
-		"changeOrigin": true
-	},
-	"/api/influx/*": {
-		"target": "http://influxdb-1-8:8086",
-		"pathRewrite": {
-			"^/api/influx": ""
-		},
-		"secure": false,
-		"logLevel": "debug",
-		"changeOrigin": true
-	}
-}'
-  redis: '{"host": "bitnami-redis-master", "port": 6379}'
-  sideMenu: '[{"group":"","items":[{"label":"Overview","link":"/overview","icon":"ionicons:home-outline","alias":"Overview"},{"label":"Workspace","link":"/workspace","icon":"ionicons:grid-outline","alias":"Workspace"},{"label":"Dashboard","link":"/dashboard","icon":"ionicons:speedometer-outline","alias":"Dashboard","external":true,"disabled":false,"package":"grafana"},{"label":"Workflow","link":"/workflow","icon":"ionicons:shuffle-outline","alias":"Workflow","external":true,"disabled":true,"package":"sdc-workflow"}]},{"group":"Packages","items":[{"label":"ML Trainer","link":"/mlui","icon":"ionicons:hardware-chip-outline","alias":"MLTrainer","external":true,"disabled":true,"package":"ml-standalone-all"}]},{"group":"Settings","items":[{"label":"Identity Server","link":"/identity","icon":"ionicons:finger-print-outline","alias":"IdentityServer","external":true,"disabled":false,"package":"identity-service"},{"label":"Remote Access","link":"https://vpn.demo-com.sorba.ai","alias":"RemoteAccess","icon":"ionicons:key-outline"},{"label":"System Events","link":"/events","alias":"SystemEvents","icon":"ionicons:pulse-outline"}]}]'
-  survey: '{"mainQuestion":"Do you like our new user interface?","secondaryQuestion": "How can we improve it?"}'
- 
+  env:
+    OPENID_CONNECT: '{ "clientID": "gq0aTATyGOf4sRXggyQjwJ1V6hka", "clientSecret": "UtQmCLX5Y_cTsfqwW2wgVTw8oOEa", "issuer": "https://sorbais.demo-com.sorba.ai:443/oauth2/token", "authorizationURL": "https://sorbais.demo-com.sorba.ai/oauth2/authorize", "tokenURL": "https://sorbais.demo-com.sorba.ai/oauth2/token", "callbackURL": "https://platform.demo-com.sorba.ai/callback", "skipUserProfile": true }'
+    SESSION_SETTINGS: '{ "name": "platform-website", "secret": "jqHmJcoXvhn0kQVumnvQ" }'
+    deployType: cloud
+    googleMapsKey: IzaSyBNj7leq6sjqp-cjKZscq6AjlHCT4vS_YM
+    googleMapsURL: https://maps.googleapis.com/maps/api/js
+    identityServiceAPI: https://wso2am-pattern-1-am-service:8243/identity/v1
+    proxies: '{
+    "/identity-server": {
+      "target": "https://wso2am-pattern-1-am-service:8243/identity/v1/",
+      "pathRewrite": {
+        "^/identity-server": ""
+      },
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/tree": {
+      "target": "https://wso2am-pattern-1-am-service:8243/tree/v1/",
+      "pathRewrite": {
+        "^/tree": ""
+      },
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/devices": {
+      "target": "http://sorbotics-sorba-collector-api.prod.sorbapp.com",
+      "pathRewrite": {
+        "^/devices": ""
+      },
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/uuid-gen": {
+      "target": "http://sorbapp-uuid-gen-api-auto-deploy-app-gitlab:5000",
+      "pathRewrite": {
+        "^/uuid-gen": ""
+      },
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/asset": {
+      "target": "http://sorbotics-sorba-asset-api.prod.sorbapp.com",
+      "pathRewrite": {
+        "^/asset": ""
+      },
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/ml-trainer": {
+      "target": "http://sorbapp-ml-trainer-api-auto-deploy-app-gitlab:5000",
+      "pathRewrite": {
+        "^/ml-trainer": ""
+      },
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/rtdb": {
+      "target": "http://webdis:7379",
+      "pathRewrite": {
+        "^/rtdb": ""
+      },
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/hdfs-api": {
+      "target": "http://sorbotics-ml-trainer-hdfs-api.prod.sorbapp.com",
+      "pathRewrite": {
+        "^/hdfs-api": ""
+      },
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/api/commands/*": {
+      "target": "https://websoc.demo-com.sorba.ai/api/commands",
+      "pathRewrite": {
+        "^/api/commands": ""
+      },
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true
+    },
+    "/api/influx/*": {
+      "target": "http://influxdb-1-8:8086",
+      "pathRewrite": {
+        "^/api/influx": ""
+      },
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true
+    }
+  }'
+    redis: '{"host": "bitnami-redis-master", "port": 6379}'
+    sideMenu: '[{"group":"","items":[{"label":"Overview","link":"/overview","icon":"ionicons:home-outline","alias":"Overview"},{"label":"Workspace","link":"/workspace","icon":"ionicons:grid-outline","alias":"Workspace"},{"label":"Dashboard","link":"/dashboard","icon":"ionicons:speedometer-outline","alias":"Dashboard","external":true,"disabled":false,"package":"grafana"},{"label":"Workflow","link":"/workflow","icon":"ionicons:shuffle-outline","alias":"Workflow","external":true,"disabled":true,"package":"sdc-workflow"}]},{"group":"Packages","items":[{"label":"ML Trainer","link":"/mlui","icon":"ionicons:hardware-chip-outline","alias":"MLTrainer","external":true,"disabled":true,"package":"ml-standalone-all"}]},{"group":"Settings","items":[{"label":"Identity Server","link":"/identity","icon":"ionicons:finger-print-outline","alias":"IdentityServer","external":true,"disabled":false,"package":"identity-service"},{"label":"Remote Access","link":"https://vpn.demo-com.sorba.ai","alias":"RemoteAccess","icon":"ionicons:key-outline"},{"label":"System Events","link":"/events","alias":"SystemEvents","icon":"ionicons:pulse-outline"}]}]'
+    survey: '{"mainQuestion":"Do you like our new user interface?","secondaryQuestion": "How can we improve it?"}'
+  
 hpa:
   enabled: false
   minReplicas: 1

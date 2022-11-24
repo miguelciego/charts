@@ -131,50 +131,12 @@ spec:
           value: {{ .Values.application.DATABASE_URL | quote }}
 {{- end }}
 
-{{- if .Values.application.DEPLOY_TYPE }}
-        - name: DEPLOY_TYPE
-          value: {{ .Values.application.DEPLOY_TYPE | quote }}
+{{- range $k, $v := .Values.application.env }}
+        - name: {{$k }}
+          value: {{$v | quote}}
 {{- end }}
-{{- if .Values.application.tenant }}
-        - name: tenant
-          value: {{ .Values.application.tenant | quote }}
-{{- end }}
-{{- if .Values.application.fsEntryPoint }}
-        - name: fsEntryPoint
-          value: {{ .Values.application.fsEntryPoint | quote }}
-{{- end }}
-{{- if .Values.application.REDIS }}
-        - name: REDIS
-          value: {{ .Values.application.REDIS | quote }}
-{{- end }}
-{{- if .Values.application.STORAGE }}
-        - name: STORAGE
-          value: {{ .Values.application.STORAGE | quote }}
-{{- end }}
-{{- if .Values.application.bucket }}
-        - name: bucket
-          value: {{ .Values.application.bucket | quote }}
-{{- end }}
-{{- if .Values.application.DATASOURCE }}
-        - name: DATASOURCE
-          value: {{ .Values.application.DATASOURCE | quote }}
-{{- end }}
-{{- if .Values.application.TREE }}
-        - name: TREE
-          value: {{ .Values.application.TREE | quote }}
-{{- end }}
-{{- if .Values.application.DASHBOARD }}
-        - name: DASHBOARD
-          value: {{ .Values.application.DASHBOARD | quote }}
-{{- end }}
-{{- if .Values.application.RAY }}
-        - name: RAY
-          value: {{ .Values.application.RAY | quote }}
-{{- end }}
-{{- if .Values.application.MLAPI }}
-        - name: MLAPI
-          value: {{ .Values.application.MLAPI | quote }}
-{{- end }}
+
+
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}
         - name: GITLAB_ENVIRONMENT_URL

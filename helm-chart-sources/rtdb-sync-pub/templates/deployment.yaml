@@ -131,34 +131,11 @@ spec:
           value: {{ .Values.application.database_url | quote }}
 {{- end }}
 
-{{- if .Values.application.SCOPE }}
-        - name: SCOPE
-          value: {{ .Values.application.SCOPE | quote }}
+{{- range $k, $v := .Values.application.env }}
+        - name: {{$k }}
+          value: {{$v | quote}}
 {{- end }}
-{{- if .Values.application.MQTT_HOST }}
-        - name: MQTT_HOST
-          value: {{ .Values.application.MQTT_HOST | quote }}
-{{- end }}
-{{- if .Values.application.MQTT_TOPIC }}
-        - name: MQTT_TOPIC
-          value: {{ .Values.application.MQTT_TOPIC | quote }}
-{{- end }}
-{{- if .Values.application.REDIS_HOST }}
-        - name: REDIS_HOST
-          value: {{ .Values.application.REDIS_HOST | quote }}
-{{- end }}
-{{- if .Values.application.SE_REDIS_DB }}
-        - name: SE_REDIS_DB
-          value: {{ .Values.application.SE_REDIS_DB | quote }}
-{{- end }}
-{{- if .Values.application.REDIS_DB }}
-        - name: REDIS_DB
-          value: {{ .Values.application.REDIS_DB | quote }}
-{{- end }}
-{{- if .Values.application.DEBUG }}
-        - name: DEBUG
-          value: {{ .Values.application.DEBUG | quote }}
-{{- end }}
+
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}
         - name: GITLAB_ENVIRONMENT_URL

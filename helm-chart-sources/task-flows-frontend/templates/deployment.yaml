@@ -131,38 +131,11 @@ spec:
           value: {{ .Values.application.database_url | quote }}
 {{- end }}
 
-{{- if .Values.application.PORT }}
-        - name: PORT
-          value: {{ .Values.application.PORT | quote }}
+{{- range $k, $v := .Values.application.env }}
+        - name: {{$k }}
+          value: {{$v | quote}}
 {{- end }}
-{{- if .Values.application.deployType }}
-        - name: deployType
-          value: {{ .Values.application.deployType | quote }}
-{{- end }}
-{{- if .Values.application.identityServiceAPI }}
-        - name: identityServiceAPI
-          value: {{ .Values.application.identityServiceAPI | quote }}
-{{- end }}
-{{- if .Values.application.influxdb }}
-        - name: influxdb
-          value: {{ .Values.application.influxdb | quote }}
-{{- end }}
-{{- if .Values.application.page }}
-        - name: page
-          value: {{ .Values.application.page | quote }}
-{{- end }}
-{{- if .Values.application.proxies }}
-        - name: proxies
-          value: {{ .Values.application.proxies | quote }}
-{{- end }}
-{{- if .Values.application.redis }}
-        - name: redis
-          value: {{ .Values.application.redis | quote }}
-{{- end }}
-{{- if .Values.application.socketUrl }}
-        - name: socketUrl
-          value: {{ .Values.application.socketUrl | quote }}
-{{- end }}
+
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}
         - name: GITLAB_ENVIRONMENT_URL

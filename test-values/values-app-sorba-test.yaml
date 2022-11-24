@@ -69,7 +69,7 @@ redis:
 influxdb:
   enabled: false
 tree-api:
-  enabled: false
+  enabled: true
 #  application:
 #    database_url: mysql://root:4mz5IrvhZb@bitnami-mysql.for-test/tree
 #    redis: '{"port": 6379, "host": "bitnami-redis-master.for-test","db": 0,"reconnectTime": 5000}'

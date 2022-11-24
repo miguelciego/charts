@@ -131,14 +131,11 @@ spec:
           value: {{ .Values.application.database_url | quote }}
 {{- end }}
 
-{{- if .Values.application.proxy }}
-        - name: proxy
-          value: {{ .Values.application.proxy | quote }}
+{{- range $k, $v := .Values.application.env }}
+        - name: {{$k }}
+          value: {{$v | quote}}
 {{- end }}
-{{- if .Values.application.sequelize }}
-        - name: sequelize
-          value: {{ .Values.application.sequelize | quote }}
-{{- end }}
+
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}
         - name: GITLAB_ENVIRONMENT_URL

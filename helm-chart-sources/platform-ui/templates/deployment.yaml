@@ -131,46 +131,11 @@ spec:
           value: {{ .Values.application.database_url | quote }}
 {{- end }}
 
-{{- if .Values.application.OPENID_CONNECT }}
-        - name: OPENID_CONNECT
-          value: {{ .Values.application.OPENID_CONNECT | quote }}
+{{- range $k, $v := .Values.application.env }}
+        - name: {{$k }}
+          value: {{$v | quote}}
 {{- end }}
-{{- if .Values.application.SESSION_SETTINGS }}
-        - name: SESSION_SETTINGS
-          value: {{ .Values.application.SESSION_SETTINGS | quote }}
-{{- end }}
-{{- if .Values.application.deployType }}
-        - name: deployType
-          value: {{ .Values.application.deployType | quote }}
-{{- end }}
-{{- if .Values.application.googleMapsKey }}
-        - name: googleMapsKey
-          value: {{ .Values.application.googleMapsKey | quote }}
-{{- end }}
-{{- if .Values.application.googleMapsURL }}
-        - name: googleMapsURL
-          value: {{ .Values.application.googleMapsURL | quote }}
-{{- end }}
-{{- if .Values.application.identityServiceAPI }}
-        - name: identityServiceAPI
-          value: {{ .Values.application.identityServiceAPI | quote }}
-{{- end }}
-{{- if .Values.application.proxies }}
-        - name: proxies
-          value: {{ .Values.application.proxies | quote }}
-{{- end }}
-{{- if .Values.application.redis }}
-        - name: redis
-          value: {{ .Values.application.redis | quote }}
-{{- end }}
-{{- if .Values.application.sideMenu }}
-        - name: sideMenu
-          value: {{ .Values.application.sideMenu | quote }}
-{{- end }}
-{{- if .Values.application.survey }}
-        - name: survey
-          value: {{ .Values.application.survey | quote }}
-{{- end }}
+
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}
         - name: GITLAB_ENVIRONMENT_URL

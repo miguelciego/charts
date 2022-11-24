@@ -131,46 +131,11 @@ spec:
           value: {{ .Values.application.database_url | quote }}
 {{- end }}
 
-{{- if .Values.application.GRAFANA_HOST }}
-        - name: GRAFANA_HOST
-          value: {{ .Values.application.GRAFANA_HOST | quote }}
+{{- range $k, $v := .Values.application.env }}
+        - name: {{$k }}
+          value: {{$v | quote}}
 {{- end }}
-{{- if .Values.application.GRAFANA_PASSWORD }}
-        - name: GRAFANA_PASSWORD
-          value: {{ .Values.application.GRAFANA_PASSWORD | quote }}
-{{- end }}
-{{- if .Values.application.GRAFANA_URL }}
-        - name: GRAFANA_URL
-          value: {{ .Values.application.GRAFANA_URL | quote }}
-{{- end }}
-{{- if .Values.application.GRAFANA_USER }}
-        - name: GRAFANA_USER
-          value: {{ .Values.application.GRAFANA_USER | quote }}
-{{- end }}
-{{- if .Values.application.INFLUX_HOST }}
-        - name: INFLUX_HOST
-          value: {{ .Values.application.INFLUX_HOST | quote }}
-{{- end }}
-{{- if .Values.application.INFLUX_PORT }}
-        - name: INFLUX_PORT
-          value: {{ .Values.application.INFLUX_PORT | quote }}
-{{- end }}
-{{- if .Values.application.REDIS_HOST }}
-        - name: REDIS_HOST
-          value: {{ .Values.application.REDIS_HOST | quote }}
-{{- end }}
-{{- if .Values.application.REDIS_PORT }}
-        - name: REDIS_PORT
-          value: {{ .Values.application.REDIS_PORT | quote }}
-{{- end }}
-{{- if .Values.application.TREE_API_HOST }}
-        - name: TREE_API_HOST
-          value: {{ .Values.application.TREE_API_HOST | quote }}
-{{- end }}
-{{- if .Values.application.TREE_API_PORT }}
-        - name: TREE_API_PORT
-          value: {{ .Values.application.TREE_API_PORT | quote }}
-{{- end }}
+
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}
         - name: GITLAB_ENVIRONMENT_URL

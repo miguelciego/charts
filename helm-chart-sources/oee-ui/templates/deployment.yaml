@@ -131,18 +131,11 @@ spec:
           value: {{ .Values.application.database_url | quote }}
 {{- end }}
 
-{{- if .Values.application.OPENID_CONNECT }}
-        - name: OPENID_CONNECT
-          value: {{ .Values.application.OPENID_CONNECT | quote }}
+{{- range $k, $v := .Values.application.env }}
+        - name: {{$k }}
+          value: {{$v | quote}}
 {{- end }}
-{{- if .Values.application.proxies }}
-        - name: proxies
-          value: {{ .Values.application.proxies | quote }}
-{{- end }}
-{{- if .Values.application.redis }}
-        - name: redis
-          value: {{ .Values.application.redis | quote }}
-{{- end }}
+
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}
         - name: GITLAB_ENVIRONMENT_URL

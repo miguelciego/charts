@@ -131,30 +131,11 @@ spec:
           value: {{ .Values.application.database_url | quote }}
 {{- end }}
 
-{{- if .Values.application.CLOUD_GRAFANA_API }}
-        - name: CLOUD_GRAFANA_API
-          value: {{ .Values.CLOUD_GRAFANA_API | quote }}
+{{- range $k, $v := .Values.application.env }}
+        - name: {{$k }}
+          value: {{$v | quote}}
 {{- end }}
-{{- if .Values.application.HDFS_URL }}
-        - name: HDFS_URL
-          value: {{ .Values.application.HDFS_URL | quote }}
-{{- end }}
-{{- if .Values.application.LICENSE_DECODER }}
-        - name: LICENSE_DECODER
-          value: {{ .Values.application.LICENSE_DECODER | quote }}
-{{- end }}
-{{- if .Values.application.redis }}
-        - name: REDIS
-          value: {{ .Values.application.redis | quote }}
-{{- end }}
-{{- if .Values.application.SORBA_INTEGRATION_AUTHORIZATION }}
-        - name: SORBA_INTEGRATION_AUTHORIZATION
-          value: {{ .Values.application.SORBA_INTEGRATION_AUTHORIZATION | quote }}
-{{- end }}
-{{- if .Values.application.SORBA_INTEGRATION_URL }}
-        - name: SORBA_INTEGRATION_URL
-          value: {{ .Values.application.SORBA_INTEGRATION_URL | quote }}
-{{- end }}
+
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}
         - name: GITLAB_ENVIRONMENT_URL

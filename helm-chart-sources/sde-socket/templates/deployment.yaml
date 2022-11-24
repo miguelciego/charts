@@ -131,30 +131,11 @@ spec:
           value: {{ .Values.application.database_url | quote }}
 {{- end }}
 
-{{- if .Values.application.JWT_SECRET }}
-        - name: JWT_SECRET
-          value: {{ .Values.application.JWT_SECRET | quote }}
+{{- range $k, $v := .Values.application.env }}
+        - name: {{$k }}
+          value: {{$v | quote}}
 {{- end }}
-{{- if .Values.application.REDIS_HOST }}
-        - name: REDIS_HOST
-          value: {{ .Values.application.REDIS_HOST | quote }}
-{{- end }}
-{{- if .Values.application.REDIS_PORT }}
-        - name: REDIS_PORT
-          value: {{ .Values.application.REDIS_PORT | quote }}
-{{- end }}
-{{- if .Values.application.deployType }}
-        - name: deployType
-          value: {{ .Values.application.deployType | quote }}
-{{- end }}
-{{- if .Values.application.identityServiceAPI }}
-        - name: identityServiceAPI
-          value: {{ .Values.application.identityServiceAPI | quote }}
-{{- end }}
-{{- if .Values.application.npm_package_name }}
-        - name: npm_package_name
-          value: {{ .Values.application.npm_package_name| quote }}
-{{- end }}
+
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}
         - name: GITLAB_ENVIRONMENT_URL

@@ -131,34 +131,11 @@ spec:
           value: {{ .Values.application.database_url | quote }}
 {{- end }}
 
-{{- if .Values.application.APIM_URL }}
-        - name: APIM_URL
-          value: {{ .Values.application.APIM_URL | quote }}
+{{- range $k, $v := .Values.application.env }}
+        - name: {{$k }}
+          value: {{$v | quote}}
 {{- end }}
-{{- if .Values.application.API_GATEWAY }}
-        - name: API_GATEWAY
-          value: {{ .Values.application.API_GATEWAY | quote }}
-{{- end }}
-{{- if .Values.application.API_MANAGER_PASSWORD }}
-        - name: API_MANAGER_PASSWORD
-          value: {{ .Values.application.API_MANAGER_PASSWORD | quote }}
-{{- end }}
-{{- if .Values.application.API_MANAGER_USER }}
-        - name: API_MANAGER_USER
-          value: {{ .Values.application.API_MANAGER_USER | quote }}
-{{- end }}
-{{- if .Values.application.DEPLOY_TYPE }}
-        - name: DEPLOY_TYPE
-          value: {{ .Values.application.DEPLOY_TYPE | quote }}
-{{- end }}
-{{- if .Values.application.MYSQL_HOST }}
-        - name: MYSQL_HOST
-          value: {{ .Values.application.MYSQL_HOST | quote }}
-{{- end }}
-{{- if .Values.application.MYSQL_PASSWORD }}
-        - name: MYSQL_PASSWORD
-          value: {{ .Values.application.MYSQL_PASSWORD | quote }}
-{{- end }}
+
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}
         - name: GITLAB_ENVIRONMENT_URL

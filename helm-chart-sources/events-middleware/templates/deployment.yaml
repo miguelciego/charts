@@ -131,38 +131,11 @@ spec:
           value: {{ .Values.application.database_url | quote }}
 {{- end }}
 
-{{- if .Values.application.INFLUXDB }}
-        - name: INFLUXDB
-          value: {{ .Values.application.INFLUXDB | quote }}
+{{- range $k, $v := .Values.application.env }}
+        - name: {{$k }}
+          value: {{$v | quote}}
 {{- end }}
-{{- if .Values.application.INFLUX_HOST }}
-        - name: INFLUX_HOST
-          value: {{ .Values.application.INFLUX_HOST | quote }}
-{{- end }}
-{{- if .Values.application.INFLUX_PORT }}
-        - name: INFLUX_PORT
-          value: {{ .Values.application.INFLUX_PORT | quote }}
-{{- end }}
-{{- if .Values.application.OPENID_CONNECT }}
-        - name: OPENID_CONNECT
-          value: {{ .Values.application.OPENID_CONNECT | quote }}
-{{- end }}
-{{- if .Values.application.REDIS_HOST }}
-        - name: REDIS_HOST
-          value: {{ .Values.application.REDIS_HOST | quote }}
-{{- end }}
-{{- if .Values.application.REDIS_PORT }}
-        - name: REDIS_PORT
-          value: {{ .Values.application.REDIS_PORT | quote }}
-{{- end }}
-{{- if .Values.application.proxies }}
-        - name: proxies
-          value: {{ .Values.application.proxies | quote }}
-{{- end }}
-{{- if .Values.application.redis }}
-        - name: redis
-          value: {{ .Values.application.redis | quote }}
-{{- end }}
+
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}
         - name: GITLAB_ENVIRONMENT_URL
