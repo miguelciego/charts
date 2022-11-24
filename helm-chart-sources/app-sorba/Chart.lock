@@ -34,60 +34,60 @@ dependencies:
   version: 4.12.0
 - name: ml-trainer-api
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.0
+  version: 2.39.1
 - name: ml-ui
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.0
+  version: 2.39.1
 - name: mqtt-to-influxdb-2y
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.0
+  version: 2.39.1
 - name: ng-api-gateway
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.1
+  version: 2.39.2
 - name: platform-ui
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.1
+  version: 2.39.2
 - name: preferences-api
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.0
+  version: 2.39.1
 - name: rtdb-sync-pub
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.1
+  version: 2.39.2
 - name: rtdb-sync-sub
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.1
+  version: 2.39.2
 - name: events-middleware
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.2
+  version: 2.39.3
 - name: identity-ui
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.1
+  version: 2.39.2
 - name: identity-api
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.2
+  version: 2.39.3
 - name: messages-mediator
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.2
+  version: 2.39.3
 - name: oee-engine
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.1
+  version: 2.39.2
 - name: oee-ui
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.1
+  version: 2.39.2
 - name: sde-socket
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.1
+  version: 2.39.2
 - name: task-flows-backend
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.1
+  version: 2.39.2
 - name: task-flows-frontend
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.1
+  version: 2.39.2
 - name: uuid-gen-api
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.5
+  version: 2.39.6
 - name: tree-api
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.2
-digest: sha256:a9cbb2359ae1b8debfe5780fc00aadf7b65659efe93d5136488b35cd028f648e
-generated: "2022-11-20T23:38:40.468444-04:00"
+  version: 2.39.3
+digest: sha256:abcf1252db1a64fe2d5700e5cf427734e98df60366dc940f2a7bf9af898bcc52
+generated: "2022-11-24T12:23:29.362798302-04:00"

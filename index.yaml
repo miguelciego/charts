@@ -3,7 +3,7 @@ entries:
   am-pattern-1:
   - apiVersion: v1
     appVersion: 4.1.0
-    created: "2022-11-24T11:58:23.801644976-04:00"
+    created: "2022-11-24T12:54:53.175607442-04:00"
     dependencies:
     - condition: wso2.deployment.dependencies.mysql
       name: mysql-am
@@ -24,7 +24,7 @@ entries:
   app-sorba:
   - apiVersion: v2
     appVersion: 0.2.0
-    created: "2022-11-24T11:58:24.037460073-04:00"
+    created: "2022-11-24T12:54:53.471210461-04:00"
     dependencies:
     - condition: vernemq.enabled
       name: vernemq
@@ -73,81 +73,213 @@ entries:
     - condition: ml-trainer-api.enabled
       name: ml-trainer-api
       repository: https://miguelciego.github.io/charts/
-      version: 2.39.0
+      version: 2.39.1
     - condition: ml-ui.enabled
       name: ml-ui
       repository: https://miguelciego.github.io/charts/
-      version: 2.39.0
+      version: 2.39.1
     - condition: mqtt-to-influxdb-2y.enabled
       name: mqtt-to-influxdb-2y
       repository: https://miguelciego.github.io/charts/
-      version: 2.39.0
+      version: 2.39.1
     - condition: ng-api-gateway.enabled
       name: ng-api-gateway
       repository: https://miguelciego.github.io/charts/
-      version: 2.39.1
+      version: 2.39.2
     - condition: platform-ui.enabled
       name: platform-ui
       repository: https://miguelciego.github.io/charts/
-      version: 2.39.1
+      version: 2.39.2
     - condition: preferences-api.enabled
       name: preferences-api
       repository: https://miguelciego.github.io/charts/
-      version: 2.39.0
+      version: 2.39.1
     - condition: rtdb-sync-pub.enabled
       name: rtdb-sync-pub
       repository: https://miguelciego.github.io/charts/
-      version: 2.39.1
+      version: 2.39.2
     - condition: rtdb-sync-sub.enabled
       name: rtdb-sync-sub
       repository: https://miguelciego.github.io/charts/
-      version: 2.39.1
+      version: 2.39.2
     - condition: events-middleware.enabled
       name: events-middleware
       repository: https://miguelciego.github.io/charts/
-      version: 2.39.2
+      version: 2.39.3
     - condition: identity-ui.enabled
       name: identity-ui
       repository: https://miguelciego.github.io/charts/
-      version: 2.39.1
+      version: 2.39.2
     - condition: identity-api.enabled
       name: identity-api
       repository: https://miguelciego.github.io/charts/
-      version: 2.39.1
+      version: 2.39.3
     - condition: messages-mediator.enabled
       name: messages-mediator
       repository: https://miguelciego.github.io/charts/
-      version: 2.39.2
+      version: 2.39.3
     - condition: oee-engine.enabled
       name: oee-engine
       repository: https://miguelciego.github.io/charts/
-      version: 2.39.1
+      version: 2.39.2
     - condition: oee-ui.enabled
       name: oee-ui
       repository: https://miguelciego.github.io/charts/
-      version: 2.39.1
+      version: 2.39.2
     - condition: sde-socket.enabled
       name: sde-socket
       repository: https://miguelciego.github.io/charts/
-      version: 2.39.1
+      version: 2.39.2
     - condition: task-flows-backend.enabled
       name: task-flows-backend
       repository: https://miguelciego.github.io/charts/
-      version: 2.39.1
+      version: 2.39.2
     - condition: task-flows-frontend.enabled
       name: task-flows-frontend
       repository: https://miguelciego.github.io/charts/
-      version: 2.39.1
+      version: 2.39.2
     - condition: uuid-gen-api.enabled
       name: uuid-gen-api
       repository: https://miguelciego.github.io/charts/
-      version: 2.39.5
+      version: 2.39.6
     - condition: tree-api.enabled
       name: tree-api
       repository: https://miguelciego.github.io/charts/
-      version: 2.39.2
+      version: 2.39.3
     description: Sorba Helm Chart
-    digest: f897bdb4155a41a06e20b59a5c63e4790495e08eabd2a5eb33c93629f906c046
+    digest: 1928913d2df5d9de51c177cf4fca49f1fa4819c538ad5e827f8dfaf3a0d4451c
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: app-sorba
+    type: application
+    urls:
+    - https://miguelciego.github.io/charts/app-sorba-0.2.4.tgz
+    version: 0.2.4
+  - apiVersion: v2
+    appVersion: 0.2.0
+    created: "2022-11-24T12:54:53.408521355-04:00"
+    dependencies:
+    - condition: vernemq.enabled
+      name: vernemq
+      repository: https://vernemq.github.io/docker-vernemq
+      version: 1.6.12
+    - condition: cert-manager.enabled
+      name: cert-manager
+      repository: https://charts.jetstack.io
+      version: 1.10.0
+    - condition: ingress-nginx.enabled
+      name: ingress-nginx
+      repository: https://kubernetes.github.io/ingress-nginx
+      version: 4.3.0
+    - condition: kubernetes-dashboard.enabled
+      name: kubernetes-dashboard
+      repository: https://kubernetes.github.io/dashboard/
+      version: 5.11.0
+    - condition: is-pattern-1.enabled
+      name: is-pattern-1
+      repository: https://miguelciego.github.io/charts/
+      version: 5.11.05
+    - condition: am-pattern-1.enabled
+      name: am-pattern-1
+      repository: https://miguelciego.github.io/charts/
+      version: 4.1.01
+    - condition: grafana.enabled
+      name: grafana
+      repository: https://charts.bitnami.com/bitnami
+      version: 8.2.14
+    - condition: mysql.enabled
+      name: mysql
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.4.1
+    - condition: phpmyadmin.enabled
+      name: phpmyadmin
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.5
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 17.3.7
+    - condition: influxdb.enabled
+      name: influxdb
+      repository: https://helm.influxdata.com/
+      version: 4.12.0
+    - condition: ml-trainer-api.enabled
+      name: ml-trainer-api
+      repository: https://miguelciego.github.io/charts/
+      version: 2.39.1
+    - condition: ml-ui.enabled
+      name: ml-ui
+      repository: https://miguelciego.github.io/charts/
+      version: 2.39.1
+    - condition: mqtt-to-influxdb-2y.enabled
+      name: mqtt-to-influxdb-2y
+      repository: https://miguelciego.github.io/charts/
+      version: 2.39.1
+    - condition: ng-api-gateway.enabled
+      name: ng-api-gateway
+      repository: https://miguelciego.github.io/charts/
+      version: 2.39.2
+    - condition: platform-ui.enabled
+      name: platform-ui
+      repository: https://miguelciego.github.io/charts/
+      version: 2.39.2
+    - condition: preferences-api.enabled
+      name: preferences-api
+      repository: https://miguelciego.github.io/charts/
+      version: 2.39.1
+    - condition: rtdb-sync-pub.enabled
+      name: rtdb-sync-pub
+      repository: https://miguelciego.github.io/charts/
+      version: 2.39.2
+    - condition: rtdb-sync-sub.enabled
+      name: rtdb-sync-sub
+      repository: https://miguelciego.github.io/charts/
+      version: 2.39.2
+    - condition: events-middleware.enabled
+      name: events-middleware
+      repository: https://miguelciego.github.io/charts/
+      version: 2.39.3
+    - condition: identity-ui.enabled
+      name: identity-ui
+      repository: https://miguelciego.github.io/charts/
+      version: 2.39.2
+    - condition: identity-api.enabled
+      name: identity-api
+      repository: https://miguelciego.github.io/charts/
+      version: 2.39.3
+    - condition: messages-mediator.enabled
+      name: messages-mediator
+      repository: https://miguelciego.github.io/charts/
+      version: 2.39.3
+    - condition: oee-engine.enabled
+      name: oee-engine
+      repository: https://miguelciego.github.io/charts/
+      version: 2.39.2
+    - condition: oee-ui.enabled
+      name: oee-ui
+      repository: https://miguelciego.github.io/charts/
+      version: 2.39.2
+    - condition: sde-socket.enabled
+      name: sde-socket
+      repository: https://miguelciego.github.io/charts/
+      version: 2.39.2
+    - condition: task-flows-backend.enabled
+      name: task-flows-backend
+      repository: https://miguelciego.github.io/charts/
+      version: 2.39.2
+    - condition: task-flows-frontend.enabled
+      name: task-flows-frontend
+      repository: https://miguelciego.github.io/charts/
+      version: 2.39.2
+    - condition: uuid-gen-api.enabled
+      name: uuid-gen-api
+      repository: https://miguelciego.github.io/charts/
+      version: 2.39.6
+    - condition: tree-api.enabled
+      name: tree-api
+      repository: https://miguelciego.github.io/charts/
+      version: 2.39.3
+    description: Sorba Helm Chart
+    digest: 041706d22f29af5ff23ab75827b216282c8517fa0ef128573fb6336723629a9f
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
     name: app-sorba
     type: application
@@ -156,7 +288,7 @@ entries:
     version: 0.2.3
   - apiVersion: v2
     appVersion: 0.2.0
-    created: "2022-11-24T11:58:23.972697674-04:00"
+    created: "2022-11-24T12:54:53.345322249-04:00"
     dependencies:
     - alias: apache1
       condition: vernemq.enabled
@@ -289,7 +421,7 @@ entries:
     version: 0.2.2
   - apiVersion: v2
     appVersion: 0.2.0
-    created: "2022-11-24T11:58:23.907781475-04:00"
+    created: "2022-11-24T12:54:53.281524746-04:00"
     dependencies:
     - alias: apache1
       condition: vernemq.enabled
@@ -386,7 +518,7 @@ entries:
     version: 0.2.1
   - apiVersion: v2
     appVersion: 0.2.0
-    created: "2022-11-24T11:58:23.859644375-04:00"
+    created: "2022-11-24T12:54:53.234301144-04:00"
     dependencies:
     - alias: apache1
       condition: vernemq.enabled
@@ -452,7 +584,7 @@ entries:
     - https://miguelciego.github.io/charts/app-sorba-0.2.0.tgz
     version: 0.2.0
   - apiVersion: v1
-    created: "2022-11-24T11:58:23.829733575-04:00"
+    created: "2022-11-24T12:54:53.204687643-04:00"
     dependencies:
     - condition: is-pattern-1.enabled
       name: is-pattern-1
@@ -536,7 +668,7 @@ entries:
   app-sorba1:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-11-24T11:58:24.037907373-04:00"
+    created: "2022-11-24T12:54:53.471507161-04:00"
     description: A Helm chart for Kubernetes
     digest: ae7b084f11e187ef3361a4a57ce846fad937d3944d99e5b0a1ea8178446d6db6
     name: app-sorba1
@@ -546,7 +678,7 @@ entries:
     version: 0.1.0
   auto-deploy-app:
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.041567673-04:00"
+    created: "2022-11-24T12:54:53.475713261-04:00"
     description: GitLab's Auto-deploy Helm Chart
     digest: 3bf4da64a43c8b29217f289e68c8643d42a7d29a554abce46905327f306647cb
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -555,7 +687,7 @@ entries:
     - https://miguelciego.github.io/charts/auto-deploy-app-2.39.1.tgz
     version: 2.39.1
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.039742973-04:00"
+    created: "2022-11-24T12:54:53.473385161-04:00"
     description: GitLab's Auto-deploy Helm Chart
     digest: 8e920055dc7b488b0615e4392a6929f848dd7198a0f122cf626652685e8a79f0
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -564,7 +696,7 @@ entries:
     - https://miguelciego.github.io/charts/auto-deploy-app-2.39.0.tgz
     version: 2.39.0
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.042799373-04:00"
+    created: "2022-11-24T12:54:53.476727761-04:00"
     description: GitLab's Auto-deploy Helm Chart
     digest: 0c676bba242c57fc14a850dfa3069c2ebae909cd921d8ef1301971421923debe
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -574,7 +706,7 @@ entries:
     version: 2.4.0
   auto-deploy-app-cps:
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.043836073-04:00"
+    created: "2022-11-24T12:54:53.477978361-04:00"
     description: GitLab's Auto-deploy Helm Chart for CPS-SCZ
     digest: 801a03d7741a9444c469107b7f5063c1e37cf41d2ac8453e16ba0bc16fc212ac
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -583,7 +715,7 @@ entries:
     - https://miguelciego.github.io/charts/auto-deploy-app-cps-2.4.0.tgz
     version: 2.4.0
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.044834773-04:00"
+    created: "2022-11-24T12:54:53.479142561-04:00"
     description: GitLab's Auto-deploy Helm Chart for CPS-SCZ
     digest: af8a0bff8a46c164ebb3f71f2c67622672a3d68c2e37cef9d41baaae7edd0c8e
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -593,7 +725,7 @@ entries:
     version: 2.4.0
   auto-deploy-app-gitlab:
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.045389873-04:00"
+    created: "2022-11-24T12:54:53.479678361-04:00"
     description: GitLab's Auto-deploy Helm Chart
     digest: 384e9a7998339aa2ea5c0a85846566bc28d7ada18b0632e9bf50b2562ae56a04
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -603,7 +735,7 @@ entries:
     version: 2.16.0
   events-middleware:
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.054171373-04:00"
+    created: "2022-11-24T12:54:53.487539862-04:00"
     description: events middleware deploy Helm Chart
     digest: 8b70f8c6217f6b49c9b5120f2343048429aeaf16e8b694657f21a7e96351c72a
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -612,7 +744,7 @@ entries:
     - https://miguelciego.github.io/charts/events-middleware-2.39.3.tgz
     version: 2.39.3
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.051955873-04:00"
+    created: "2022-11-24T12:54:53.485721362-04:00"
     description: events middleware deploy Helm Chart
     digest: c9f8ad48fd738921d7cd45fe5ada2acfa0ba4a82c1b2f1189834d727e0cffcb1
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -621,7 +753,7 @@ entries:
     - https://miguelciego.github.io/charts/events-middleware-2.39.2.tgz
     version: 2.39.2
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.050098873-04:00"
+    created: "2022-11-24T12:54:53.483991062-04:00"
     description: events middleware deploy Helm Chart
     digest: 2f5f1740f745c4bf4b1a275a1b7a0931b19d858f08ddbbf58dd8452cfa9a8235
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -630,7 +762,7 @@ entries:
     - https://miguelciego.github.io/charts/events-middleware-2.39.1.tgz
     version: 2.39.1
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.047284673-04:00"
+    created: "2022-11-24T12:54:53.481402062-04:00"
     description: events middleware deploy Helm Chart
     digest: 86c558aecc00b32125e83facc90d43957f93b68ea64bf282597c14843737b960
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -640,7 +772,7 @@ entries:
     version: 2.39.0
   hdfs-api:
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.055159673-04:00"
+    created: "2022-11-24T12:54:53.488801962-04:00"
     description: GitLab's Auto-deploy Helm Chart
     digest: 567d06557fd8e17e446042d5771604cf1722e99014cb33f3e6e39f9026eddc4b
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -650,7 +782,7 @@ entries:
     version: 2.4.0
   identity-api:
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.063140873-04:00"
+    created: "2022-11-24T12:54:53.496332263-04:00"
     description: identity api deploy Helm Chart
     digest: 65d7a844a41f22ad0ddd7f53fe34ea382beec545556990445b1315686f35b8f7
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -659,7 +791,7 @@ entries:
     - https://miguelciego.github.io/charts/identity-api-2.39.3.tgz
     version: 2.39.3
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.061344673-04:00"
+    created: "2022-11-24T12:54:53.494653763-04:00"
     description: identity api deploy Helm Chart
     digest: 097b874c3af56ef28d9ee692481c7d7b40621b70208ed9b6a13d6e1212b4d07b
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -668,7 +800,7 @@ entries:
     - https://miguelciego.github.io/charts/identity-api-2.39.2.tgz
     version: 2.39.2
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.059540473-04:00"
+    created: "2022-11-24T12:54:53.492919463-04:00"
     description: identity api deploy Helm Chart
     digest: 8eac1d80e6deef523cb78b13215cd676ad251ea5b75bddaee0475b89dfe94679
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -677,7 +809,7 @@ entries:
     - https://miguelciego.github.io/charts/identity-api-2.39.1.tgz
     version: 2.39.1
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.057791973-04:00"
+    created: "2022-11-24T12:54:53.491000862-04:00"
     description: identity api deploy Helm Chart
     digest: 8e40e761b3459dc319036f862e160b0e29596a2f30c24b5029727bd3e770dc64
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -687,7 +819,7 @@ entries:
     version: 2.39.0
   identity-ui:
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.069355473-04:00"
+    created: "2022-11-24T12:54:53.501997763-04:00"
     description: identity ui deploy Helm Chart
     digest: 19ccda8d1b250e55a4f232e5b8cae25c0e78d0c131e674a32e4679ecdf93e7d5
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -696,7 +828,7 @@ entries:
     - https://miguelciego.github.io/charts/identity-ui-2.39.2.tgz
     version: 2.39.2
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.067600673-04:00"
+    created: "2022-11-24T12:54:53.500312463-04:00"
     description: identity ui deploy Helm Chart
     digest: 1dc5aa4f7bf8cc0612a2ac3bc08ce3b6be5265964949d3d17e24286848968ac5
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -705,7 +837,7 @@ entries:
     - https://miguelciego.github.io/charts/identity-ui-2.39.1.tgz
     version: 2.39.1
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.065871273-04:00"
+    created: "2022-11-24T12:54:53.498566463-04:00"
     description: identity ui deploy Helm Chart
     digest: 7c4524701a765433d876ce9584ee67f6800bec1f95a8147a75779921dafb8382
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -716,7 +848,7 @@ entries:
   is-pattern-1:
   - apiVersion: v1
     appVersion: 5.11.0
-    created: "2022-11-24T11:58:24.077317373-04:00"
+    created: "2022-11-24T12:54:53.510115564-04:00"
     dependencies:
     - condition: wso2.deployment.dependencies.mysql.enabled
       name: mysql-is
@@ -732,7 +864,7 @@ entries:
     version: 5.11.05
   - apiVersion: v1
     appVersion: 5.11.0
-    created: "2022-11-24T11:58:24.074211073-04:00"
+    created: "2022-11-24T12:54:53.506997564-04:00"
     dependencies:
     - condition: wso2.mysql.enabled
       name: mysql-is
@@ -748,7 +880,7 @@ entries:
     version: 5.11.02
   messages-mediator:
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.085643073-04:00"
+    created: "2022-11-24T12:54:53.518150365-04:00"
     description: messages mediator deploy Helm Chart
     digest: 06d8b4849fb206aee1d1c16ba8ac81a7fe372a1fde3ec953a53cbd8940b0d937
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -757,7 +889,7 @@ entries:
     - https://miguelciego.github.io/charts/messages-mediator-2.39.3.tgz
     version: 2.39.3
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.083241373-04:00"
+    created: "2022-11-24T12:54:53.515718665-04:00"
     description: messages mediator deploy Helm Chart
     digest: 248358fbc9e92d00d4e2dbe67109987ce2e3693afd88c4dcdf3c44093bb828c9
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -766,7 +898,7 @@ entries:
     - https://miguelciego.github.io/charts/messages-mediator-2.39.2.tgz
     version: 2.39.2
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.081493373-04:00"
+    created: "2022-11-24T12:54:53.514047964-04:00"
     description: messages mediator deploy Helm Chart
     digest: eea7e57ff0dc2c591b80b4af95ec30b6f3b05645efc7ba8e693495d67def1f2c
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -775,7 +907,7 @@ entries:
     - https://miguelciego.github.io/charts/messages-mediator-2.39.1.tgz
     version: 2.39.1
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.079679073-04:00"
+    created: "2022-11-24T12:54:53.512355564-04:00"
     description: messages mediator deploy Helm Chart
     digest: 4f21e691d58014d620d8598066138759956fca4a1ac4f59ed185e6dccc33e13e
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -785,7 +917,7 @@ entries:
     version: 2.39.0
   ml-trainer-api:
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.089251473-04:00"
+    created: "2022-11-24T12:54:53.521633965-04:00"
     description: ml-trainer-api deploy Helm Chart
     digest: edd6978ed290359d7f122be9c222f4f9709ef9951723e60f8fedc4f0016bd5ad
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -794,7 +926,7 @@ entries:
     - https://miguelciego.github.io/charts/ml-trainer-api-2.39.1.tgz
     version: 2.39.1
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.087482373-04:00"
+    created: "2022-11-24T12:54:53.519906065-04:00"
     description: ml-trainer-api deploy Helm Chart
     digest: e80b0f6a26e826b541a9371ecb49dabfa0fb1885c60f5f85bd8b8a05a2d077ec
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -803,7 +935,7 @@ entries:
     - https://miguelciego.github.io/charts/ml-trainer-api-2.39.0.tgz
     version: 2.39.0
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.090224973-04:00"
+    created: "2022-11-24T12:54:53.522569465-04:00"
     description: GitLab's Auto-deploy Helm Chart
     digest: 99c4f416adc7dd971517e4c0d008d8adc973a44ad1d202ce3b2f5c8ba1f48f01
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -813,7 +945,7 @@ entries:
     version: 2.4.0
   ml-trainer-ui:
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.091173073-04:00"
+    created: "2022-11-24T12:54:53.523508865-04:00"
     description: GitLab's Auto-deploy Helm Chart
     digest: 6c466d1e3500b1599550c02954f029d642ffb680202945437ce982489ee60feb
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -823,7 +955,7 @@ entries:
     version: 2.4.0
   ml-ui:
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.095419073-04:00"
+    created: "2022-11-24T12:54:53.527488966-04:00"
     description: ml-ui deploy Helm Chart
     digest: b3149385fe651d44ceb72b5db67a28d787cbdb2b49064418dd5b6a656d133b2e
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -832,7 +964,7 @@ entries:
     - https://miguelciego.github.io/charts/ml-ui-2.39.1.tgz
     version: 2.39.1
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.093653573-04:00"
+    created: "2022-11-24T12:54:53.525831166-04:00"
     description: ml-ui deploy Helm Chart
     digest: fe0a8aafc35261c93494e8b3aef1eedc6f8f4f560505159aefb389d3321ed966
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -842,7 +974,7 @@ entries:
     version: 2.39.0
   mqtt-to-influxdb-2y:
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.098816073-04:00"
+    created: "2022-11-24T12:54:53.531681366-04:00"
     description: mqtt-to-influxdb-2y deploy Helm Chart
     digest: 668a2e420a1ae6dfe7869f0f9245d32d5680aa8cd4df7f3dd2132e29c201d7cc
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -851,7 +983,7 @@ entries:
     - https://miguelciego.github.io/charts/mqtt-to-influxdb-2y-2.39.1.tgz
     version: 2.39.1
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.097117873-04:00"
+    created: "2022-11-24T12:54:53.529234766-04:00"
     description: mqtt-to-influxdb-2y deploy Helm Chart
     digest: ddf9e1b428dbb1066c0d46b5ef43bebb9ee04d3c6ee38cc8fd6fec3c09bb4f94
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -860,7 +992,7 @@ entries:
     - https://miguelciego.github.io/charts/mqtt-to-influxdb-2y-2.39.0.tgz
     version: 2.39.0
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.099851173-04:00"
+    created: "2022-11-24T12:54:53.532644266-04:00"
     description: GitLab's Auto-deploy Helm Chart
     digest: b834d45be57a628dc2d657b9e4978ea0a251e74560e0474b63ef8cd1fb4044d8
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -871,7 +1003,7 @@ entries:
   mysql:
   - apiVersion: v1
     appVersion: 5.7.30
-    created: "2022-11-24T11:58:24.100845573-04:00"
+    created: "2022-11-24T12:54:53.533218566-04:00"
     description: Fast, reliable, scalable, and easy to use open-source relational
       database system.
     digest: 5572c16dadbe1d9e3357a103e4db3318f3e07975da3b2fc4c05fabd30db5ccfe
@@ -891,7 +1023,7 @@ entries:
   mysql-am:
   - apiVersion: v1
     appVersion: "5.7"
-    created: "2022-11-24T11:58:24.103862673-04:00"
+    created: "2022-11-24T12:54:53.536062666-04:00"
     dependencies:
     - name: mysql
       repository: https://miguelciego.github.io/charts
@@ -906,7 +1038,7 @@ entries:
   mysql-is:
   - apiVersion: v1
     appVersion: "5.7"
-    created: "2022-11-24T11:58:24.110503573-04:00"
+    created: "2022-11-24T12:54:53.542524767-04:00"
     dependencies:
     - name: mysql
       repository: https://miguelciego.github.io/charts
@@ -921,7 +1053,7 @@ entries:
     version: 5.11.05
   - apiVersion: v1
     appVersion: "5.7"
-    created: "2022-11-24T11:58:24.107925873-04:00"
+    created: "2022-11-24T12:54:53.540088067-04:00"
     dependencies:
     - name: mysql
       repository: https://charts.bitnami.com/bitnami
@@ -936,7 +1068,7 @@ entries:
     version: 5.11.02
   ng-api-gateway:
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.116371973-04:00"
+    created: "2022-11-24T12:54:53.548180268-04:00"
     description: ng-api-gateway deploy Helm Chart
     digest: ff562bb008dd3589ab5d3fb32f0d8cc190ec094635b762c015478958ca29f7e1
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -945,7 +1077,7 @@ entries:
     - https://miguelciego.github.io/charts/ng-api-gateway-2.39.2.tgz
     version: 2.39.2
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.114631373-04:00"
+    created: "2022-11-24T12:54:53.546455167-04:00"
     description: ng-api-gateway deploy Helm Chart
     digest: 89f4ad532ce916aaf822589154a46853b242803bbe7d53ad9bde73db860dbb39
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -954,7 +1086,7 @@ entries:
     - https://miguelciego.github.io/charts/ng-api-gateway-2.39.1.tgz
     version: 2.39.1
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.112333773-04:00"
+    created: "2022-11-24T12:54:53.544745067-04:00"
     description: ng-api-gateway deploy Helm Chart
     digest: 03a7d91cc50b1345d0649836b79e49819b81748d79078e3172da5a0ae58b14e7
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -963,7 +1095,7 @@ entries:
     - https://miguelciego.github.io/charts/ng-api-gateway-2.39.0.tgz
     version: 2.39.0
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.117340873-04:00"
+    created: "2022-11-24T12:54:53.549147168-04:00"
     description: GitLab's Auto-deploy Helm Chart
     digest: bac9d1a69d966c915ba8c6f956c28e2af739497ab89d5b63a816285a9ff53746
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -973,7 +1105,7 @@ entries:
     version: 2.4.0
   oee-engine:
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.123321073-04:00"
+    created: "2022-11-24T12:54:53.554860268-04:00"
     description: oee engine deploy Helm Chart
     digest: eceae7f0a962fc32de14c7b15772b2b36a68aa3d5e3350b86c01fa555a0e8d92
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -982,7 +1114,7 @@ entries:
     - https://miguelciego.github.io/charts/oee-engine-2.39.2.tgz
     version: 2.39.2
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.121561473-04:00"
+    created: "2022-11-24T12:54:53.553124868-04:00"
     description: oee engine deploy Helm Chart
     digest: a41b65211d143ebe15ba794863a74b0ed5167b361d853fb8e31aa959213ce36b
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -991,7 +1123,7 @@ entries:
     - https://miguelciego.github.io/charts/oee-engine-2.39.1.tgz
     version: 2.39.1
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.119050073-04:00"
+    created: "2022-11-24T12:54:53.551209668-04:00"
     description: oee engine deploy Helm Chart
     digest: d386400a416cea5424cf27e410f9ad6a64e7be113c7734d0aba84118bb40230d
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1001,7 +1133,7 @@ entries:
     version: 2.39.0
   oee-ui:
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.129265872-04:00"
+    created: "2022-11-24T12:54:53.560634569-04:00"
     description: oee ui deploy Helm Chart
     digest: 2e40bb60710904bfc7e29e4b3e27dd40526b0fd6edfd9de43e94e6a9e142e8a7
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1010,7 +1142,7 @@ entries:
     - https://miguelciego.github.io/charts/oee-ui-2.39.2.tgz
     version: 2.39.2
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.127485673-04:00"
+    created: "2022-11-24T12:54:53.558862068-04:00"
     description: oee ui deploy Helm Chart
     digest: 3edd65dce6c212ca8eaf462264dca9127e85de4f5ca01b21b80dd75143865ad3
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1019,7 +1151,7 @@ entries:
     - https://miguelciego.github.io/charts/oee-ui-2.39.1.tgz
     version: 2.39.1
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.125024073-04:00"
+    created: "2022-11-24T12:54:53.556516068-04:00"
     description: oee ui deploy Helm Chart
     digest: 18b6ed84104ec15a27ba4140929ffb127719fb02d429aaab70f87d66179ca5f5
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1029,7 +1161,7 @@ entries:
     version: 2.39.0
   platform-ui:
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.135186072-04:00"
+    created: "2022-11-24T12:54:53.566332769-04:00"
     description: platform-ui deploy Helm Chart
     digest: 7e170988765ac39b4d3f230f895982d2b2d3c5efeae43b5ab765ba63b735ffa7
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1038,7 +1170,7 @@ entries:
     - https://miguelciego.github.io/charts/platform-ui-2.39.2.tgz
     version: 2.39.2
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.132782372-04:00"
+    created: "2022-11-24T12:54:53.564080269-04:00"
     description: platform-ui deploy Helm Chart
     digest: 737b21e440af3433ac4f09a2623011585d83583cef5c4ca038a82ddd5b997c90
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1047,7 +1179,7 @@ entries:
     - https://miguelciego.github.io/charts/platform-ui-2.39.1.tgz
     version: 2.39.1
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.130967272-04:00"
+    created: "2022-11-24T12:54:53.562304869-04:00"
     description: platform-ui deploy Helm Chart
     digest: fba04c87a6839ea7ac050eec8845293cffe97698880f1c208b7458f4e86e0208
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1056,7 +1188,7 @@ entries:
     - https://miguelciego.github.io/charts/platform-ui-2.39.0.tgz
     version: 2.39.0
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.136210172-04:00"
+    created: "2022-11-24T12:54:53.567286069-04:00"
     description: GitLab's Auto-deploy Helm Chart
     digest: 1cd8f719f59976891a3266f233191104ee0c2ab74161775d924fc14659743efd
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1066,7 +1198,7 @@ entries:
     version: 2.4.0
   preferences-api:
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.139593472-04:00"
+    created: "2022-11-24T12:54:53.57079627-04:00"
     description: preferences-api deploy Helm Chart
     digest: 175926664ea10da750bf4c6e5aa02f67fb125b3d58975e54f137040fa9658364
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1075,7 +1207,7 @@ entries:
     - https://miguelciego.github.io/charts/preferences-api-2.39.1.tgz
     version: 2.39.1
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.137919372-04:00"
+    created: "2022-11-24T12:54:53.569084069-04:00"
     description: preferences-api deploy Helm Chart
     digest: b1ab0fae1715e7002fb497edb83dc98bf5df80c4611211d578a36aaa6e3f197f
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1084,7 +1216,7 @@ entries:
     - https://miguelciego.github.io/charts/preferences-api-2.39.0.tgz
     version: 2.39.0
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.140571772-04:00"
+    created: "2022-11-24T12:54:53.57240587-04:00"
     description: GitLab's Auto-deploy Helm Chart
     digest: 18e4aa0e90f51c8cfcf609e7dd38458d257b76b20bb9434a5fb4af1d2c0fc686
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1094,7 +1226,7 @@ entries:
     version: 2.4.0
   rtdb-sync-pub:
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.146304772-04:00"
+    created: "2022-11-24T12:54:53.57815207-04:00"
     description: rtdb-sync-pub deploy Helm Chart
     digest: 8085a4b6bb1fbd21e6a8a9f2a176ffc1decf5d7be3a5a89eb4e01bbc126a40c9
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1103,7 +1235,7 @@ entries:
     - https://miguelciego.github.io/charts/rtdb-sync-pub-2.39.2.tgz
     version: 2.39.2
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.144600572-04:00"
+    created: "2022-11-24T12:54:53.57588107-04:00"
     description: rtdb-sync-pub deploy Helm Chart
     digest: d6c6938c814c1c974bc4b0e5a9b075782d53fbd852b4127443aafd6060bce2ea
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1112,7 +1244,7 @@ entries:
     - https://miguelciego.github.io/charts/rtdb-sync-pub-2.39.1.tgz
     version: 2.39.1
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.142754872-04:00"
+    created: "2022-11-24T12:54:53.57417087-04:00"
     description: rtdb-sync-pub deploy Helm Chart
     digest: e811c54a59854780ffa70cca008b8244e0da99ebe301da0122265abc3c757842
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1121,7 +1253,7 @@ entries:
     - https://miguelciego.github.io/charts/rtdb-sync-pub-2.39.0.tgz
     version: 2.39.0
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.147245872-04:00"
+    created: "2022-11-24T12:54:53.57909427-04:00"
     description: GitLab's Auto-deploy Helm Chart
     digest: 675d6da483b14d4a9131904d00234ee98bf65db8a7f686e9fe87fbc066ea936e
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1131,7 +1263,7 @@ entries:
     version: 2.4.0
   rtdb-sync-sub:
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.153049172-04:00"
+    created: "2022-11-24T12:54:53.584253371-04:00"
     description: rtdb-sync-sub deploy Helm Chart
     digest: fb87ef83b2baefe78bfe744d7f3a8353d982d423810460be605ea6f07cfcd5fd
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1140,7 +1272,7 @@ entries:
     - https://miguelciego.github.io/charts/rtdb-sync-sub-2.39.2.tgz
     version: 2.39.2
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.151333372-04:00"
+    created: "2022-11-24T12:54:53.582479971-04:00"
     description: rtdb-sync-sub deploy Helm Chart
     digest: 22660387d4e7616650e643991fc58be4f5ea5a514a288660bca5086624915c1f
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1149,7 +1281,7 @@ entries:
     - https://miguelciego.github.io/charts/rtdb-sync-sub-2.39.1.tgz
     version: 2.39.1
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.149603172-04:00"
+    created: "2022-11-24T12:54:53.58080927-04:00"
     description: rtdb-sync-sub deploy Helm Chart
     digest: 3fe052cdd1a2a458828004cb5566a2b01f018096f850f22e1cccde2aebafe03a
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1158,7 +1290,7 @@ entries:
     - https://miguelciego.github.io/charts/rtdb-sync-sub-2.39.0.tgz
     version: 2.39.0
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.153987072-04:00"
+    created: "2022-11-24T12:54:53.585795871-04:00"
     description: GitLab's Auto-deploy Helm Chart
     digest: 963bcabf315cd7a491180a8799a5054ead1f369630ba4b9fac01d0aab2c13e40
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1168,7 +1300,7 @@ entries:
     version: 2.4.0
   sde-socket:
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.159823172-04:00"
+    created: "2022-11-24T12:54:53.591523171-04:00"
     description: sde socket deploy Helm Chart
     digest: 9a9c90e2fd0a42a58a275e62322778bac73ece6c51739a4ac6b21d36994298eb
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1177,7 +1309,7 @@ entries:
     - https://miguelciego.github.io/charts/sde-socket-2.39.2.tgz
     version: 2.39.2
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.158066972-04:00"
+    created: "2022-11-24T12:54:53.589246471-04:00"
     description: sde socket deploy Helm Chart
     digest: f6eac2220d65f0a074fd100e07700c80cd3fbd7a309459b3e053d86092691c1d
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1186,7 +1318,7 @@ entries:
     - https://miguelciego.github.io/charts/sde-socket-2.39.1.tgz
     version: 2.39.1
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.156302672-04:00"
+    created: "2022-11-24T12:54:53.587515071-04:00"
     description: sde socket deploy Helm Chart
     digest: 565ca448553f869e0f7db04ab8d6b4b6539207da334dd22e9eecb02ba005b0d5
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1196,7 +1328,7 @@ entries:
     version: 2.39.0
   sorba-app:
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.188294272-04:00"
+    created: "2022-11-24T12:54:53.619023474-04:00"
     dependencies:
     - condition: is-pattern-1.enabled
       name: is-pattern-1
@@ -1279,7 +1411,7 @@ entries:
     version: 0.1.0
   task-flows-backend:
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.193731272-04:00"
+    created: "2022-11-24T12:54:53.624699374-04:00"
     description: task flows backend deploy Helm Chart
     digest: fb823e649a8d2a58d9017bf5b4c481b58afa162ed4bec9a985376783320fdf73
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1288,7 +1420,7 @@ entries:
     - https://miguelciego.github.io/charts/task-flows-backend-2.39.2.tgz
     version: 2.39.2
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.191914272-04:00"
+    created: "2022-11-24T12:54:53.622796074-04:00"
     description: task flows backend deploy Helm Chart
     digest: 3be2e7e1173e69fa96e990ec49425aa3b704e3e7fbfe230076bee58bfb825c44
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1297,7 +1429,7 @@ entries:
     - https://miguelciego.github.io/charts/task-flows-backend-2.39.1.tgz
     version: 2.39.1
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.190149872-04:00"
+    created: "2022-11-24T12:54:53.620905274-04:00"
     description: task flows backend deploy Helm Chart
     digest: c552b8360808266b3f833718f507a44e1969a8ef381bc224a231059d2c660ee0
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1307,7 +1439,7 @@ entries:
     version: 2.39.0
   task-flows-frontend:
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.200120172-04:00"
+    created: "2022-11-24T12:54:53.630975775-04:00"
     description: task flows frontend deploy Helm Chart
     digest: 1edd60e298d9715d10e820c0ba2879515b9a4d02bbef10434bfa0f4801767384
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1316,7 +1448,7 @@ entries:
     - https://miguelciego.github.io/charts/task-flows-frontend-2.39.2.tgz
     version: 2.39.2
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.198238372-04:00"
+    created: "2022-11-24T12:54:53.628867475-04:00"
     description: task flows frontend deploy Helm Chart
     digest: 377914aae8981ff6f249899fac76ed9a15356390f4a31dac602d713d04fee3e6
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1325,7 +1457,7 @@ entries:
     - https://miguelciego.github.io/charts/task-flows-frontend-2.39.1.tgz
     version: 2.39.1
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.195606372-04:00"
+    created: "2022-11-24T12:54:53.627062975-04:00"
     description: task flows frontend deploy Helm Chart
     digest: f04ba24dfc246f01c55f53dd9b2691b4c3b5b13a13d72114e14d1ab79e46c362
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1335,7 +1467,7 @@ entries:
     version: 2.39.0
   tree-api:
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.207989672-04:00"
+    created: "2022-11-24T12:54:53.638691076-04:00"
     description: tree-api deploy Helm Chart
     digest: e0c05161f28e19622611aca22ebd7dd5808a1e3655746ce47cfc82c325c906d7
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1344,7 +1476,7 @@ entries:
     - https://miguelciego.github.io/charts/tree-api-2.39.3.tgz
     version: 2.39.3
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.206255372-04:00"
+    created: "2022-11-24T12:54:53.636912775-04:00"
     description: tree-api deploy Helm Chart
     digest: 4961bf47c4972300e6c3ce9c32339635b1918f92d970e0278d563e87fa21f592
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1353,7 +1485,7 @@ entries:
     - https://miguelciego.github.io/charts/tree-api-2.39.2.tgz
     version: 2.39.2
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.203607572-04:00"
+    created: "2022-11-24T12:54:53.635210975-04:00"
     description: tree-api deploy Helm Chart
     digest: 81611e260529fc8df845d547498fca0c9c4d78e247469c3d6552b6f00806a12a
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1362,7 +1494,7 @@ entries:
     - https://miguelciego.github.io/charts/tree-api-2.39.1.tgz
     version: 2.39.1
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.201830672-04:00"
+    created: "2022-11-24T12:54:53.632968175-04:00"
     description: tree-api deploy Helm Chart
     digest: a65a40e5f4d5df4547df416eb7c0a2441e0ec9d460802f8a75013487aa68dd4e
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1371,7 +1503,7 @@ entries:
     - https://miguelciego.github.io/charts/tree-api-2.39.0.tgz
     version: 2.39.0
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.208991072-04:00"
+    created: "2022-11-24T12:54:53.639698176-04:00"
     description: GitLab's Auto-deploy Helm Chart
     digest: c2dde6edbfbe46cee0b5ac782c94d26ebd4486a6135cc433e86f1e216fc8e431
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1381,7 +1513,7 @@ entries:
     version: 2.4.0
   uuid-gen-api:
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.221231372-04:00"
+    created: "2022-11-24T12:54:53.651221277-04:00"
     description: uuid-gen-api deploy Helm Chart
     digest: d6faae7d7da476b05fb99be5c7b7600335920a2f1d26a5d8a0971b8d621f3928
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1390,7 +1522,7 @@ entries:
     - https://miguelciego.github.io/charts/uuid-gen-api-2.39.6.tgz
     version: 2.39.6
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.218701372-04:00"
+    created: "2022-11-24T12:54:53.649536577-04:00"
     description: uuid-gen-api deploy Helm Chart
     digest: a486725898cbafb3abbeb1fdf52a8919fff86ecd739d2b551185f3c2f7e2ef66
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1399,7 +1531,7 @@ entries:
     - https://miguelciego.github.io/charts/uuid-gen-api-2.39.5.tgz
     version: 2.39.5
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.216952872-04:00"
+    created: "2022-11-24T12:54:53.647817476-04:00"
     description: uuid-gen-api deploy Helm Chart
     digest: 37065f98d3c862113ff5b53ac30638269f0621628237f6fd035f492d8e284b2e
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1408,7 +1540,7 @@ entries:
     - https://miguelciego.github.io/charts/uuid-gen-api-2.39.3.tgz
     version: 2.39.3
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.215196672-04:00"
+    created: "2022-11-24T12:54:53.645359876-04:00"
     description: uuid-gen-api deploy Helm Chart
     digest: 25551676fa73655c5f1a3a884a6adf226d1d65c81c6f5a70eb31859f688b43f9
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1417,7 +1549,7 @@ entries:
     - https://miguelciego.github.io/charts/uuid-gen-api-2.39.2.tgz
     version: 2.39.2
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.213403572-04:00"
+    created: "2022-11-24T12:54:53.643653376-04:00"
     description: uuid-gen-api deploy Helm Chart
     digest: fd63ebc5416faf278ad1baa8a1a95775d2b74fcb14ed44bddbdf8428763e1a04
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1426,7 +1558,7 @@ entries:
     - https://miguelciego.github.io/charts/uuid-gen-api-2.39.1.tgz
     version: 2.39.1
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.210694972-04:00"
+    created: "2022-11-24T12:54:53.641983976-04:00"
     description: uuid-gen-api deploy Helm Chart
     digest: b2282315cececbde7d47c22e6a72959e3ed018641d2f5ce711aa8198d2577def
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1435,7 +1567,7 @@ entries:
     - https://miguelciego.github.io/charts/uuid-gen-api-2.39.0.tgz
     version: 2.39.0
   - apiVersion: v1
-    created: "2022-11-24T11:58:24.222198272-04:00"
+    created: "2022-11-24T12:54:53.652152177-04:00"
     description: GitLab's Auto-deploy Helm Chart
     digest: b1c12ec49b7a78a5953239b3f599e9c065a2b25efb919261655b2c7f24ebfa7a
     icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
@@ -1446,7 +1578,7 @@ entries:
   vernemq:
   - apiVersion: v1
     appVersion: 1.11.0
-    created: "2022-11-24T11:58:24.222728072-04:00"
+    created: "2022-11-24T12:54:53.652672277-04:00"
     description: VerneMQ is a high-performance, distributed MQTT message broker
     digest: ab9560f510e9cb75d4076179589eed98d172879e0230d9e5b1b9ce8f6e858f90
     icon: http://www.stickpng.com/assets/thumbs/58482b21cef1014c0b5e4a24.png
@@ -1454,4 +1586,4 @@ entries:
     urls:
     - https://miguelciego.github.io/charts/vernemq-1.6.7.tgz
     version: 1.6.7
-generated: "2022-11-24T11:58:23.796614676-04:00"
+generated: "2022-11-24T12:54:53.170630842-04:00"
