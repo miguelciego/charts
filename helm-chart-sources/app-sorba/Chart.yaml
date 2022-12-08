@@ -35,10 +35,10 @@ dependencies:
     version: 8.2.14
     repository: https://charts.bitnami.com/bitnami 
     condition: grafana.enabled
-  - name: mysql
+  - name: mysql-sorba
     version: 9.4.1
-    repository: https://charts.bitnami.com/bitnami 
-    condition: mysql.enabled
+    repository: https://miguelciego.github.io/charts/
+    condition: mysql-sorba.enabled
   - name: phpmyadmin
     version: 10.3.5
     repository: https://charts.bitnami.com/bitnami 
