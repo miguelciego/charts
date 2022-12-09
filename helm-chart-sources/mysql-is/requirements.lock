@@ -1,6 +1,6 @@
 dependencies:
-- name: mysql
+- name: mysql-wso2
   repository: https://miguelciego.github.io/charts
   version: 1.6.9
-digest: sha256:658780966d5d194373895d05008c9209690df88191a8dd45d2ec8b56a7ae88b9
-generated: "2022-11-20T10:18:10.2938562-04:00"
+digest: sha256:b2902abeb462106db64b051c454650e1b2adbe75fd392efc5f672bbf2328d861
+generated: "2022-12-09T14:50:30.231213948-04:00"

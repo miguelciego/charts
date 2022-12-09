@@ -1,6 +1,6 @@
 dependencies:
-- name: mysql
-  repository: https://helm.wso2.com
+- name: mysql-wso2
+  repository: https://miguelciego.github.io/charts
   version: 1.6.9
-digest: sha256:f5313d398ce2797adad715cecad54e6ef07b4277e7a65ffcda68d4eee2f36ea6
-generated: "2022-04-11T20:15:56.906445281+05:30"
+digest: sha256:b2902abeb462106db64b051c454650e1b2adbe75fd392efc5f672bbf2328d861
+generated: "2022-12-09T14:51:41.92586583-04:00"
