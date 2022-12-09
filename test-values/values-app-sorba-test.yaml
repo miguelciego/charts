@@ -4,29 +4,29 @@ cert-manager:
   enabled: false
   installCRDs: true
 ingress-nginx:
-  enabled: false
+  enabled: true
   controller:
-    ingressClass: nuevo1-nginx
+    ingressClass: jkl-com-nginx
     ingressClassResource:
-      name: nuevo1-nginx
+      name: jkl-com-nginx
 kubernetes-dashboard:
-  enabled: false
+  enabled: true
   ingress:
     enabled: true
     className: "nuevo1-nginx"
     annotations:
       kubernetes.io/tls-acme: 'true'
-      cert-manager.io/issuer: nuevo1-issuer
+      cert-manager.io/issuer: jkl-com-issuer
       nginx.ingress.kubernetes.io/secure-backends: "true"
       nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     hosts:
-      - kubernetes-dashboard.espn1-com.sorbapp.com
+      - kubernetes-dashboard.jkl-com.sorbapp.com
     tls:
-      - secretName: kubernetes-dashboard-nuevo1-tls
+      - secretName: kubernetes-dashboard-jkl-com-tls
         hosts:
-          - kubernetes-dashboard.espn1-com.sorbapp.com
+          - kubernetes-dashboard.jkl-com.sorbapp.com
 is-pattern-1:
-  enabled: true
+  enabled: false
   wso2:
     deployment:
       wso2is:
@@ -37,9 +37,9 @@ is-pattern-1:
         replicas: 1
         ingress:
           identity:
-            hostname: "sorbais.example.com"
+            hostname: "sorbais.jkl-com.sorbapp.com"
             annotations:
-              cert-manager.io/issuer: nuevo1-issuer
+              cert-manager.io/issuer: jkl-com-issuer
               kubernetes.io/ingress.class: "nginx"
               kubernetes.io/tls-acme: "true"
               nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
@@ -55,7 +55,7 @@ am-pattern-1:
 grafana:
   enabled: false
 mysql:
-  enabled: false
+  enabled: true
 phpmyadmin:
   enabled: false
   ingress:
@@ -69,7 +69,7 @@ redis:
 influxdb:
   enabled: false
 tree-api:
-  enabled: true
+  enabled: false
 #  application:
 #    database_url: mysql://root:4mz5IrvhZb@bitnami-mysql.for-test/tree
 #    redis: '{"port": 6379, "host": "bitnami-redis-master.for-test","db": 0,"reconnectTime": 5000}'

@@ -12,6 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 dependencies:
-  - name: mysql
+  - name: mysql-wso2
     version: "1.6.9"
     repository: "https://miguelciego.github.io/charts"

@@ -8,7 +8,7 @@ keywords:
 - mysql
 - database
 - sql
-name: mysql
+name: mysql-wso2
 sources:
 - https://github.com/kubernetes/charts
 - https://github.com/docker-library/mysql
