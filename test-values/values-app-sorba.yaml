@@ -46,6 +46,7 @@ phpmyadmin:
       cert-manager.io/issuer: nuevo1-issuer
 redis:
   enabled: true
+  architecture: standalone
 influxdb:
   enabled: true
 tree-api:

@@ -1,7 +1,7 @@
 vernemq:
   enabled: false
 cert-manager:
-  enabled: false
+  enabled: true
   installCRDs: true
 ingress-nginx:
   enabled: true
@@ -13,7 +13,7 @@ kubernetes-dashboard:
   enabled: true
   ingress:
     enabled: true
-    className: "nuevo1-nginx"
+    className: "jkl-com-nginx"
     annotations:
       kubernetes.io/tls-acme: 'true'
       cert-manager.io/issuer: jkl-com-issuer
@@ -53,9 +53,19 @@ is-pattern-1:
 am-pattern-1:
   enabled: false
 grafana:
-  enabled: false
-mysql:
   enabled: true
+  admin:
+    password: admin
+    user: admin
+  ingress:
+    annotations:
+      cert-manager.io/issuer: jkl-com-issuer
+      kubernetes.io/ingress.class: jkl-com-nginx
+    enabled: true
+    hostname: dashboard.jkl-com.sorbapp.com
+    tls: true
+mysql:
+  enabled: false
 phpmyadmin:
   enabled: false
   ingress:
@@ -65,9 +75,10 @@ phpmyadmin:
     annotations:
       cert-manager.io/issuer: nuevo1-issuer
 redis:
-  enabled: false
+  enabled: true
+  architecture: replication
 influxdb:
-  enabled: false
+  enabled: true
 tree-api:
   enabled: false
 #  application:
@@ -92,7 +103,7 @@ tree-api:
   #    cpu: 100m
   #    memory: 128Mi
 uuid-gen-api:
-  enabled: false
+  enabled: true
 #  image:
 #    repository: sorbaregistry.azurecr.io/sorbotics/uuid-gen-api
 #    tag: latest
@@ -108,9 +119,13 @@ identity-ui:
 messages-mediator:
   enabled: false
 ml-trainer-api:
-  enabled: false
+  enabled: true
 ml-ui:
-  enabled: false
+  enabled: true
+  ingress:
+    enabled: true
+  service:
+    url: http://ml.jkl-com.sorbapp.com
 oee-engine:
   enabled: false
 oee-ui:
