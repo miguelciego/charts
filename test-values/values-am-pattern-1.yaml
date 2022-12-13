@@ -10,6 +10,13 @@ wso2:
       #imageTag: latest
       #imagePullSecrets: azure-registry
       replicas: 1
+      resources:
+        requests:
+          memory: "2Gi"
+          cpu: "200m"
+        limits:
+          memory: "3Gi"
+          cpu: "300m"
       ingress:
         management:
           hostname: "am.jkl-com.sorbapp.com"
@@ -35,6 +42,13 @@ wso2:
             nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     mi:
       replicas: 1
+      resources:
+        requests:
+          memory: "512Mi"
+          cpu: "500m"
+        limits:
+          memory: "1Gi"
+          cpu: "500m"
       ingress:
         management:
           hostname: "management.jkl-com.sorbapp.com"

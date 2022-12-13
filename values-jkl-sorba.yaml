@@ -1,0 +1,137 @@
+USER-SUPPLIED VALUES:
+am-pattern-1:
+  enabled: false
+cert-manager:
+  enabled: true
+  installCRDs: true
+events-middleware:
+  enabled: false
+grafana:
+  admin:
+    password: admin
+    user: admin
+  enabled: true
+  ingress:
+    annotations:
+      cert-manager.io/issuer: jkl-com-issuer
+      kubernetes.io/ingress.class: jkl-com-nginx
+    enabled: true
+    hostname: dashboard.jkl-com.sorbapp.com
+    ingressClassName: null
+    tls: true
+identity-api:
+  enabled: false
+identity-ui:
+  enabled: false
+influxdb:
+  enabled: true
+ingress-nginx:
+  controller:
+    ingressClass: jkl-com-nginx
+    ingressClassResource:
+      name: jkl-com-nginx
+  enabled: true
+is-pattern-1:
+  enabled: false
+  wso2:
+    deployment:
+      wso2is:
+        dockerRegistry: sorbaregistry.azurecr.io
+        imageName: sorbotics/devops/wso2-alpine-is/master
+        imagePullSecrets: azure-registry
+        imageTag: latest
+        ingress:
+          identity:
+            annotations:
+              cert-manager.io/issuer: jkl-com-issuer
+              kubernetes.io/ingress.class: nginx
+              kubernetes.io/tls-acme: "true"
+              nginx.ingress.kubernetes.io/affinity: cookie
+              nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+              nginx.ingress.kubernetes.io/session-cookie-hash: sha1
+              nginx.ingress.kubernetes.io/session-cookie-name: route
+            hostname: sorbais.jkl-com.sorbapp.com
+        replicas: 1
+kubernetes-dashboard:
+  enabled: true
+  ingress:
+    annotations:
+      cert-manager.io/issuer: jkl-com-issuer
+      kubernetes.io/tls-acme: "true"
+      nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+      nginx.ingress.kubernetes.io/secure-backends: "true"
+    className: jkl-com-nginx
+    enabled: true
+    hosts:
+    - kubernetes-dashboard.jkl-com.sorbapp.com
+    tls:
+    - hosts:
+      - kubernetes-dashboard.jkl-com.sorbapp.com
+      secretName: kubernetes-dashboard-jkl-com-tls
+messages-mediator:
+  enabled: false
+ml-trainer-api:
+  application:
+    env:
+      DASHBOARD: '{ useDefaults: false, URL: "http://localhost:3000/api", host: "",
+        port: 3000, user: "admin", password: "admin", org: "main" }'
+      DATABASE_URL: '{ "database": "ml_trainer", "username": "root", "password": "JgHO98XqnV",
+        "host": "bitnami-mysql", "dialect": "mysql", "logging": false }'
+      DATASOURCE: '{ useDefaults: true, url: "http://localhost:8086", db: "sorba_ml",
+        batch_size: 1000, user: "", password: "", version: "1.x", bucket: "", token:
+        "", org: "" }'
+      DEPLOY_TYPE: CLOUD
+      RAY: '{ useDefaults: false, master_address: "", cluster_http: "", masters: [],
+        workers: []}'
+      REDIS: '{ useDefaults: false, host: "jkl-sorba-redis-master", port: 6379, "db":
+        0, user: "", password: "","reconnectTime": 5000 }'
+      STORAGE: '{ useDefaults: false,url: "http://localhost:8086", db: "sorba_ml",
+        batch_size: 1000, user: "", password: "", version: "1.x", bucket: "", token:
+        "", org: "" }'
+      TREE: '{ useDefaults: false, url: "http://localhost:8089" }'
+      fsEntryPoint: /srv/
+      tenant: demo.com
+  enabled: true
+ml-ui:
+  enabled: true
+  ingress:
+    enabled: true
+  service:
+    url: http://ml.jkl-com.sorbapp.com
+mysql-sorba:
+  auth:
+    createDatabase: false
+    password: JgHO98XqnV
+    rootPassword: JgHO98XqnV
+  enabled: true
+oee-engine:
+  enabled: false
+oee-ui:
+  enabled: false
+phpmyadmin:
+  enabled: true
+  ingress:
+    annotations:
+      cert-manager.io/issuer: jkl-com-issuer
+    enabled: true
+    hostname: phpmyadmin.jkl-com.sorbapp.com
+    ingressClassName: jkl-com-nginx
+redis:
+  architecture: replication
+  enabled: true
+rtdb-sync-pub:
+  enabled: false
+rtdb-sync-sub:
+  enabled: false
+sde-socket:
+  enabled: false
+task-flows-backend:
+  enabled: false
+task-flows-frontend:
+  enabled: false
+tree-api:
+  enabled: false
+uuid-gen-api:
+  enabled: true
+vernemq:
+  enabled: false
