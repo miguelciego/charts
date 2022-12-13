@@ -64,8 +64,8 @@ grafana:
     enabled: true
     hostname: dashboard.jkl-com.sorbapp.com
     tls: true
-mysql:
-  enabled: false
+mysql-sorba:
+  enabled: true
 phpmyadmin:
   enabled: false
   ingress:

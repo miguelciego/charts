@@ -76,7 +76,7 @@ grafana:
       cert-manager.io/issuer: example-issuer
     tls: true  
     ingressClassName: "nginx"
-mysql:
+mysql-sorba:
   enabled: false
   auth:
     createDatabase: false

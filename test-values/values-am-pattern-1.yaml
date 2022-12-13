@@ -1,0 +1,49 @@
+wso2:
+  deployment:
+    dependencies:
+      nfsServerProvisioner: false
+    persistentRuntimeArtifacts:
+      storageClass: default
+    am:
+      #dockerRegistry: sorbaregistry.azurecr.io
+      #imageName: sorbotics/devops/wso2-alpine-am/master
+      #imageTag: latest
+      #imagePullSecrets: azure-registry
+      replicas: 1
+      ingress:
+        management:
+          hostname: "am.jkl-com.sorbapp.com"
+          annotations:
+            cert-manager.io/issuer: jkl-com-issuer
+            kubernetes.io/ingress.class: "jkl-com-nginx"
+            kubernetes.io/tls-acme: "true"
+            nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+            nginx.ingress.kubernetes.io/affinity: "cookie"
+            nginx.ingress.kubernetes.io/session-cookie-name: "route"
+            nginx.ingress.kubernetes.io/session-cookie-hash: "sha1"
+        gateway:
+          hostname: "gateway.jkl-com.sorbapp.com"
+          annotations:
+            cert-manager.io/issuer: jkl-com-issuer
+            kubernetes.io/ingress.class: "jkl-com-nginx"
+            nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+        websub:
+          hostname: "websub.jkl-com.sorbapp.com"
+          annotations:
+            cert-manager.io/issuer: jkl-com-issuer
+            kubernetes.io/ingress.class: "jkl-com-nginx"
+            nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    mi:
+      replicas: 1
+      ingress:
+        management:
+          hostname: "management.jkl-com.sorbapp.com"
+          annotations:
+            cert-manager.io/issuer: jkl-com-issuer
+            kubernetes.io/ingress.class: "jkl-com-nginx"
+            nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+mysql-am:
+  mysql:
+    persistence:
+      storageClass: default
+

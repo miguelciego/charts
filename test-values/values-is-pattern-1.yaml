@@ -8,9 +8,10 @@ wso2:
       replicas: 1
       ingress:
         identity:
-          hostname: "sorbais.example.com"
+          hostname: "sorbais.jkl-com.sorbapp.com"
           annotations:
-            kubernetes.io/ingress.class: "nginx"
+            cert-manager.io/issuer: jkl-com-issuer
+            kubernetes.io/ingress.class: "jkl-com-nginx"
             kubernetes.io/tls-acme: "true"
             nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
             nginx.ingress.kubernetes.io/affinity: "cookie"
