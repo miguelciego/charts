@@ -64,16 +64,21 @@ grafana:
     enabled: true
     hostname: dashboard.jkl-com.sorbapp.com
     tls: true
+    ingressClassName: null
 mysql-sorba:
   enabled: true
+  auth:
+    rootPassword: "JgHO98XqnV"
+    createDatabase: false
+    password: "JgHO98XqnV"
 phpmyadmin:
-  enabled: false
+  enabled: true
   ingress:
     enabled: true
-    hostname: phpmyadmin.espn1-com.sorbapp.com
-    ingressClassName: "nuevo1-nginx"
+    hostname: phpmyadmin.jkl-com.sorbapp.com
+    ingressClassName: "jkl-com-nginx"
     annotations:
-      cert-manager.io/issuer: nuevo1-issuer
+      cert-manager.io/issuer: jkl-com-issuer
 redis:
   enabled: true
   architecture: replication
@@ -120,6 +125,20 @@ messages-mediator:
   enabled: false
 ml-trainer-api:
   enabled: true
+  application:
+    env:
+      DEPLOY_TYPE: "CLOUD"
+      tenant: "demo.com"
+      DATABASE_URL: '{ "database": "ml_trainer", "username": "root", "password": "JgHO98XqnV", "host": "jkl-sorba-mysql-sorba", "dialect": "mysql", "logging": false }'
+      fsEntryPoint: "/srv/"
+      REDIS: '{ useDefaults: false, host: "jkl-sorba-redis-master", port: 6379, "db": 0, user: "", password: "","reconnectTime": 5000 }'
+      STORAGE: '{ useDefaults: false,url: "http://localhost:8086", db: "sorba_ml", batch_size: 1000, user: "", password: "", version: "1.x", bucket: "", token: "", org: "" }'
+      DATASOURCE: '{ useDefaults: true, url: "http://localhost:8086", db: "sorba_ml", batch_size: 1000, user: "",
+          password: "", version: "1.x", bucket: "", token: "", org: "" }'
+      TREE: '{ useDefaults: false, url: "http://localhost:8089" }'
+      DASHBOARD: '{ useDefaults: false, URL: "http://localhost:3000/api", host: "", port: 3000, user: "admin", password: "admin", org: "main" }'
+      RAY: '{ useDefaults: false, master_address: "", cluster_http: "", masters: [], workers: []}'
+
 ml-ui:
   enabled: true
   ingress:
