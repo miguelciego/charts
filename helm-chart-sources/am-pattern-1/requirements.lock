@@ -3,7 +3,7 @@ dependencies:
   repository: https://miguelciego.github.io/charts
   version: 4.1.01
 - name: nfs-server-provisioner
-  repository: https://helm.wso2.com
+  repository: https://miguelciego.github.io/charts
   version: 1.1.0
-digest: sha256:e5cb7b71d70b2a1fdaed29de6b942b71fcc6c3f783cebff4df7e51bd3a1240c2
-generated: "2022-12-14T11:34:12.549041088-04:00"
+digest: sha256:5a019d11af91f8e50936c751070db37cf44a399a18e52f5b2a1d7969b666e805
+generated: "2022-12-14T11:51:53.877609958-04:00"
