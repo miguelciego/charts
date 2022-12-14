@@ -26,7 +26,7 @@ kubernetes-dashboard:
         hosts:
           - kubernetes-dashboard.jkl-com.sorbapp.com
 is-pattern-1:
-  enabled: false
+  enabled: true
   wso2:
     deployment:
       wso2is:
@@ -58,7 +58,7 @@ is-pattern-1:
     #  username: user
     #  email: admin@example.com
 am-pattern-1:
-  enabled: false
+  enabled: true
 grafana:
   enabled: true
   admin:
