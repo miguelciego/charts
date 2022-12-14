@@ -137,12 +137,12 @@ spec:
             - name: MYSQL_MASTER_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ template "mysql.secretName" . }}
+                  name: {{ template "mysql.common.secretName" . }}
                   key: mysql-root-password
             - name: MYSQL_REPLICATION_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ template "mysql.secretName" . }}
+                  name: {{ template "mysql.common.secretName" . }}
                   key: mysql-replication-password
             {{- end }}
             {{- if .Values.secondary.extraFlags }}
@@ -245,7 +245,7 @@ spec:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ template "mysql.secretName" . }}
+                  name: {{ template "mysql.common.secretName" . }}
                   key: mysql-root-password
             {{- end }}
           {{- if .Values.diagnosticMode.enabled }}
@@ -305,7 +305,7 @@ spec:
         {{- if and .Values.auth.usePasswordFiles (not .Values.auth.customPasswordFiles) }}
         - name: mysql-credentials
           secret:
-            secretName: {{ template "mysql.secretName" . }}
+            secretName: {{ template "mysql.common.secretName" . }}
             items:
               - key: mysql-root-password
                 path: mysql-root-password

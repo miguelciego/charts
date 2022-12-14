@@ -109,7 +109,7 @@ Return true if a configmap object should be created for MySQL Secondary
 {{/*
 Return the secret with MySQL credentials
 */}}
-{{- define "mysql.secretName" -}}
+{{- define "mysql.common.secretName" -}}
     {{- if .Values.auth.existingSecret -}}
         {{- printf "%s" (tpl .Values.auth.existingSecret $) -}}
     {{- else -}}
