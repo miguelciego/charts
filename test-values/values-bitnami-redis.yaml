@@ -4,3 +4,5 @@ architecture: standalone
 master:
   service:
     type: LoadBalancer
+replica:
+  replicaCount: 2

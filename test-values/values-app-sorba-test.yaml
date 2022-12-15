@@ -26,7 +26,7 @@ kubernetes-dashboard:
         hosts:
           - kubernetes-dashboard.jkl-com.sorbapp.com
 is-pattern-1:
-  enabled: false
+  enabled: true
   wso2:
     deployment:
       wso2is:
@@ -38,10 +38,10 @@ is-pattern-1:
         resources:
           requests:
             memory: "2Gi"
-            cpu: "100m"
+            cpu: "500m"
           limits:
             memory: "4Gi"
-            cpu: "200m"
+            cpu: "800m"
         ingress:
           identity:
             hostname: "sorbais.jkl-com.sorbapp.com"
@@ -58,7 +58,69 @@ is-pattern-1:
     #  username: user
     #  email: admin@example.com
 am-pattern-1:
-  enabled: false
+  enabled: true
+  wso2:
+    deployment:
+      dependencies:
+        nfsServerProvisioner: false
+      persistentRuntimeArtifacts:
+        storageClass: default
+      am:
+        #dockerRegistry: sorbaregistry.azurecr.io
+        #imageName: sorbotics/devops/wso2-alpine-am/master
+        #imageTag: latest
+        #imagePullSecrets: azure-registry
+        replicas: 1
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "200m"
+          limits:
+            memory: "3Gi"
+            cpu: "300m"
+        ingress:
+          management:
+            hostname: "am.jkl-com.sorbapp.com"
+            annotations:
+              cert-manager.io/issuer: jkl-com-issuer
+              kubernetes.io/ingress.class: "jkl-com-nginx"
+              kubernetes.io/tls-acme: "true"
+              nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+              nginx.ingress.kubernetes.io/affinity: "cookie"
+              nginx.ingress.kubernetes.io/session-cookie-name: "route"
+              nginx.ingress.kubernetes.io/session-cookie-hash: "sha1"
+          gateway:
+            hostname: "gateway.jkl-com.sorbapp.com"
+            annotations:
+              cert-manager.io/issuer: jkl-com-issuer
+              kubernetes.io/ingress.class: "jkl-com-nginx"
+              nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+          websub:
+            hostname: "websub.jkl-com.sorbapp.com"
+            annotations:
+              cert-manager.io/issuer: jkl-com-issuer
+              kubernetes.io/ingress.class: "jkl-com-nginx"
+              nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+      mi:
+        replicas: 1
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        ingress:
+          management:
+            hostname: "management.jkl-com.sorbapp.com"
+            annotations:
+              cert-manager.io/issuer: jkl-com-issuer
+              kubernetes.io/ingress.class: "jkl-com-nginx"
+              nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+  mysql-am:
+    mysql:
+      persistence:
+        storageClass: default
 grafana:
   enabled: true
   admin:
@@ -92,6 +154,8 @@ redis:
   auth:
     enabled: false
   architecture: replication
+  replica:
+    replicaCount: 2
 influxdb:
   enabled: true
 tree-api:
