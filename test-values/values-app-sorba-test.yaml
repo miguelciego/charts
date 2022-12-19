@@ -38,10 +38,10 @@ is-pattern-1:
         resources:
           requests:
             memory: "2Gi"
-            cpu: "500m"
+            cpu: "1"
           limits:
             memory: "4Gi"
-            cpu: "800m"
+            cpu: "1"
         ingress:
           identity:
             hostname: "sorbais.jkl-com.sorbapp.com"
@@ -74,10 +74,10 @@ am-pattern-1:
         resources:
           requests:
             memory: "2Gi"
-            cpu: "200m"
+            cpu: "1"
           limits:
             memory: "3Gi"
-            cpu: "300m"
+            cpu: "1"
         ingress:
           management:
             hostname: "am.jkl-com.sorbapp.com"
@@ -122,7 +122,7 @@ am-pattern-1:
       persistence:
         storageClass: default
 grafana:
-  enabled: true
+  enabled: false
   admin:
     password: admin
     user: admin
@@ -157,9 +157,9 @@ redis:
   replica:
     replicaCount: 2
 influxdb:
-  enabled: true
-tree-api:
   enabled: false
+tree-api:
+  enabled: true
 #  application:
 #    database_url: mysql://root:4mz5IrvhZb@bitnami-mysql.for-test/tree
 #    redis: '{"port": 6379, "host": "bitnami-redis-master.for-test","db": 0,"reconnectTime": 5000}'
@@ -190,13 +190,13 @@ uuid-gen-api:
 #    secrets:
 #      - name: azure-registry 
 events-middleware:
-  enabled: false
+  enabled: true
 identity-api:
-  enabled: false
+  enabled: true
 identity-ui:
-  enabled: false
+  enabled: true
 messages-mediator:
-  enabled: false
+  enabled: true
 ml-trainer-api:
   enabled: true
   image:
@@ -227,24 +227,24 @@ ml-ui:
       - name: gitlab-registry
   application:
     env:
-      proxies: '{"/api/commands/*":{"target":"https://websoc.demo-com.sorba.ai/api/commands","pathRewrite":{"^/api/commands":""},"secure":false,"logLevel":"debug","changeOrigin":true},"/api/tree/*":{"target":"https://wso2am-pattern-1-am-service:8243/tree/v1/","pathRewrite":{"^/api/tree":""},"secure":false,"logLevel":"debug","changeOrigin":true},"/api/mlapi/*":{"target":"https://wso2am-pattern-1-am-service:8243/ml/v1","pathRewrite":{"^/api/mlapi":""},"secure":false,"logLevel":"debug","changeOrigin":true},"/api/influx/*":{"target":"http://influxdb-1-8:8086","pathRewrite":{"^/api/influx":""},"secure":false,"logLevel":"debug","changeOrigin":true},"/identity-server/*":
+      proxies: '{"/api/commands/*":{"target":"https://websoc.jkl-com.sorba.ai/api/commands","pathRewrite":{"^/api/commands":""},"secure":false,"logLevel":"debug","changeOrigin":true},"/api/tree/*":{"target":"https://wso2am-pattern-1-am-service:8243/tree/v1/","pathRewrite":{"^/api/tree":""},"secure":false,"logLevel":"debug","changeOrigin":true},"/api/mlapi/*":{"target":"https://wso2am-pattern-1-am-service:8243/ml/v1","pathRewrite":{"^/api/mlapi":""},"secure":false,"logLevel":"debug","changeOrigin":true},"/api/influx/*":{"target":"http://influxdb-1-8:8086","pathRewrite":{"^/api/influx":""},"secure":false,"logLevel":"debug","changeOrigin":true},"/identity-server/*":
           {"target":
           "https://wso2am-pattern-1-am-service:8243/identity/v1/","pathRewrite":
           {"^/identity-server": ""},"secure": false,"changeOrigin":
           true,"logLevel": "debug"}}'
       redis: '{"port": 6379, "host": "jkl-sorba-redis-master","db": 0,"reconnectTime": 5000}'
       identityServiceAPI: https://wso2am-pattern-1-am-service:8243/identity/v1
-      identityURL:  https://gateway-am.demo-com.sorba.ai/tree/v1/
+      identityURL:  https://gateway-am.jkl-com.sorba.ai/tree/v1/
       page: '{"title":"Sorba - Machine Learning","location":"","message":"Machine Learning Trainer"}'
       deployType: cloud
       PORT: '5000'
       apps: '[{"name":"IoT
-          Unified","link":"https://platform.demo-com.sorba.ai"},{"name":"Dashboard","link":"https://dashboard.demo-com.sorba.ai"},{"name":"Machine
+          Unified","link":"https://platform.jkl-com.sorba.ai"},{"name":"Dashboard","link":"https://dashboard.jkl-com.sorba.ai"},{"name":"Machine
           Learning
-          Trainer","link":"https://ml-ui.demo-com.sorba.ai"},{"name":"Production
+          Trainer","link":"https://ml-ui.jkl-com.sorba.ai"},{"name":"Production
           Performance
-          Analyzer","link":"https://oee.demo-com.sorba.ai"},{"name":"Task
-          Flow","link":"https://taskflows.demo-com.sorba.ai"}]'
+          Analyzer","link":"https://oee.jkl-com.sorba.ai"},{"name":"Task
+          Flow","link":"https://taskflows.jkl-com.sorba.ai"}]'
       venvLocalPath: ""
       influxdb: '{"host": "jkl-sorba-influxdb", "db": "sorba_sde", "measurement": "__SYSTEM_EVENTS", "port": 8086 }'
   ingress:
@@ -266,7 +266,7 @@ rtdb-sync-pub:
 rtdb-sync-sub:
   enabled: false
 sde-socket:
-  enabled: false
+  enabled: true
 task-flows-backend:
   enabled: false
 task-flows-frontend:
