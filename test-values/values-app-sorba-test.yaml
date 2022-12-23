@@ -58,7 +58,8 @@ is-pattern-1:
     #  username: user
     #  email: admin@example.com
 am-pattern-1:
-  enabled: true
+##########   true  ###########
+  enabled: true  
   wso2:
     deployment:
       dependencies:
@@ -74,10 +75,10 @@ am-pattern-1:
         resources:
           requests:
             memory: "2Gi"
-            cpu: "1"
+            cpu: "2000m"
           limits:
             memory: "3Gi"
-            cpu: "1"
+            cpu: "3000m"
         ingress:
           management:
             hostname: "am.jkl-com.sorbapp.com"
@@ -144,6 +145,8 @@ phpmyadmin:
   enabled: true
   ingress:
     enabled: true
+    tls: true
+    certManager: true
     hostname: phpmyadmin.jkl-com.sorbapp.com
     ingressClassName: null
     annotations:
@@ -193,6 +196,7 @@ uuid-gen-api:
 events-middleware:
   enabled: false
 identity-api:
+##########   true  ###########
   enabled: true
   image:
     repository: registry.desa.sorbapp.com/sorbotics/sorba-identity/sorba-identity-api-ng/main
@@ -218,6 +222,7 @@ identity-api:
 								  "vpn-api": "localhost",
 								  "task-flow": "jkl-sorba-task-flows-backend"}'
 identity-ui:
+##########   true  ###########
   enabled: true
   image:
     repository: registry.desa.sorbapp.com/sorbotics/sorba-identity/sorba-identity-ui-ng/main
@@ -231,7 +236,7 @@ identity-ui:
       deployType: cloud
       identityServiceAPI: null
       identityURL: http://jkl-sorba-identity-api:5000/api
-      influxdb: '{"host":"jkl-sorba-influxdb","db":"sorba_sde","measurement":"__SYSTEM_EVENTS","port": 8086}'
+      influxdb: '{"host":"jkl-sorba-influxdb","db":"sorba_carbon___super","measurement":"__SYSTEM_EVENTS","port": 8086}'
       page: '{ "title":"Sorba Identity UI","location":"","message":"Identity Server"}'
       redis: '{"host":"jkl-sorba-redis-master","port": 6379}'
       socketUrl: wss://websoc.jkl-com.sorbapp.com/websocket
@@ -249,7 +254,8 @@ identity-ui:
 messages-mediator:
   enabled: false
 ml-trainer-api:
-  enabled: true
+##########   true  ###########
+  enabled: false
   image:
     repository: registry.desa.sorbapp.com/sorbotics/ml-trainer/ml-trainer-api/development
     tag: latest
@@ -269,7 +275,8 @@ ml-trainer-api:
       DASHBOARD: '{ "useDefaults": "false", "URL": "http://jkl-sorba-grafana:3000/api", "host": "", "port": "3000", "user": "admin", "password": "admin", "org": "main" }'
       RAY: '{ "useDefaults": "false", "master_address": "", "cluster_http": "", "masters": "[]", "workers": "[]"}'
 ml-ui:
-  enabled: true
+##########   true  ###########
+  enabled: false
   image:
     repository: registry.desa.sorbapp.com/sorbotics/ml-trainer/ml-ui/master
     tag: latest
@@ -300,7 +307,7 @@ ml-ui:
               {"name":"Production Performance Analyzer","link":"https://oee.jkl-com.sorba.ai"},
               {"name":"Task Flow","link":"https://taskflows.jkl-com.sorba.ai"}]'
       venvLocalPath: ""
-      influxdb: '{"host": "jkl-sorba-influxdb", "db": "sorba_sde", "measurement": "__SYSTEM_EVENTS", "port": 8086 }'
+      influxdb: '{"host": "jkl-sorba-influxdb", "db": "sorba_carbon___super", "measurement": "__SYSTEM_EVENTS", "port": 8086 }'
   ingress:
     enabled: true
     annotations:
@@ -320,6 +327,7 @@ rtdb-sync-pub:
 rtdb-sync-sub:
   enabled: false
 sde-socket:
+##########   true  ###########
   enabled: true
   image:
     repository: sorbaregistry.azurecr.io/sorbotics/sde-socket/master
@@ -346,6 +354,7 @@ sde-socket:
   service:
     url: http://websoc.jkl-com.sorbapp.com
 task-flows-backend:
+##########   true  ###########
   enabled: true
   image:
     repository: registry.desa.sorbapp.com/sorbotics/sorba-task-flows/task-flows-backend/master
@@ -362,6 +371,7 @@ task-flows-backend:
       TREE_URL: http://jkl-sorba-tree-api:5000
       proxy: '{"tree":{"path":"/tree","remote":"http://jkl-sorba-tree-api:5000/"},"hdfs":{"path":"/","remote":"http://192.168.1.94:3003/"}}'
 task-flows-frontend:
+##########   true  ###########
   enabled: true
   image:
     repository: registry.desa.sorbapp.com/sorbotics/sorba-task-flows/task-flows-frontend/main
@@ -375,7 +385,7 @@ task-flows-frontend:
       deployType: cloud
       identityServiceAPI: null
       identityURL: http://jkl-sorba-identity-api:5000/api
-      influxdb: '{"host":"jkl-sorba-influxdb","db":"sorba_sde","measurement":"__SYSTEM_EVENTS","port": 8086}'
+      influxdb: '{"host":"jkl-sorba-influxdb","db":"sorba_carbon___super","measurement":"__SYSTEM_EVENTS","port": 8086}'
       page: '{ "title":"Sorba Task Flow","location":"","message":"Task Flow"}'
       proxies: '{"/tree":{"target":"http://jkl-sorba-tree-api:5000/","pathRewrite":{"^/tree":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/taskflow":{"target":"https://wso2am-pattern-1-am-service:8243/taskflow/v1","pathRewrite":{"^/taskflow":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/influx":{"target":"http://jkl-sorba-influxdb:8086","pathRewrite":{"^/influx":""},"secure":false,"logLevel":"debug","changeOrigin":true},"/identity":{"target":"https://wso2am-pattern-1-am-service:8243/identity/v1","pathRewrite":{"^/identity":""},"secure":false,"changeOrigin":true,"logLevel":"debug"}}'
       redis: '{"host":"jkl-sorba-redis-master","port": 6379}'
@@ -391,7 +401,8 @@ task-flows-frontend:
   service:
     url: http://taskflow.jkl-com.sorbapp.com
 platform-ui:
-  enabled: true
+##########   true  ###########
+  enabled: false
   image:
     repository: registry.desa.sorbapp.com/sorbotics/platform-ui-test-20-08/pre-release
     tag: latest
@@ -412,70 +423,7 @@ platform-ui:
       googleMapsURL: https://maps.googleapis.com/maps/api/js
       identityURL: https://wso2am-pattern-1-am-service:8243/identity/v1
       influxdb: '{"host":"jkl-sorba-inluxdb","db":"sorba_demo___com","measurement":"__SYSTEM_EVENTS","port": 8086}'
-      proxies: '{
-            "/identity-server": {"target": "https://wso2am-pattern-1-am-service:8243/identity/v1/",
-              "pathRewrite": {"^/identity-server": ""},"secure": false,"changeOrigin": true, "logLevel": "debug"},
-            "/tree": {"target": "https://wso2am-pattern-1-am-service:8243/tree/v1/",
-              "pathRewrite": {"^/tree": ""},"secure": false,"changeOrigin": true,"logLevel": "debug"},
-            "/devices": {"target": "http://sorbotics-sorba-collector-api.prod.sorbapp.com",
-            "pathRewrite": {"^/devices": ""},"secure": false,"changeOrigin": true,"logLevel": "debug"},
-            "/uuid-gen": {"target": "http://jkl-sorba-uuid-gen-api:5000",
-            "pathRewrite": {"^/uuid-gen": ""},"secure": false,"changeOrigin": true, "logLevel": "debug"},
-            "/asset": {
-              "target": "http://sorbotics-sorba-asset-api.prod.sorbapp.com",
-              "pathRewrite": {
-                "^/asset": ""
-              },
-              "secure": false,
-              "changeOrigin": true,
-              "logLevel": "debug"
-            },
-            "/ml-trainer": {
-              "target": "http://jkl-sorba-ml-trainer-api:5000",
-              "pathRewrite": {
-                "^/ml-trainer": ""
-              },
-              "secure": false,
-              "changeOrigin": true,
-              "logLevel": "debug"
-            },
-            "/rtdb": {
-              "target": "http://webdis:7379",
-              "pathRewrite": {
-                "^/rtdb": ""
-              },
-              "secure": false,
-              "changeOrigin": true,
-              "logLevel": "debug"
-            },
-            "/hdfs-api": {
-              "target": "http://sorbotics-ml-trainer-hdfs-api.prod.sorbapp.com",
-              "pathRewrite": {
-                "^/hdfs-api": ""
-              },
-              "secure": false,
-              "changeOrigin": true,
-              "logLevel": "debug"
-            },
-            "/api/commands/*": {
-              "target": "https://websoc.demo-com.sorba.ai/api/commands",
-              "pathRewrite": {
-                "^/api/commands": ""
-              },
-              "secure": false,
-              "logLevel": "debug",
-              "changeOrigin": true
-            },
-            "/api/influx/*": {
-              "target": "http://jkl-sorba.influxdb:8086",
-              "pathRewrite": {
-                "^/api/influx": ""
-              },
-              "secure": false,
-              "logLevel": "debug",
-              "changeOrigin": true
-            }
-          }'
+      proxies: '{"/identity-server":{"target":"https://wso2am-pattern-1-am-service:8243/identity/v1/","pathRewrite":{"^/identity-server":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/tree":{"target":"https://wso2am-pattern-1-am-service:8243/tree/v1/","pathRewrite":{"^/tree":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/devices":{"target":"http://sorbotics-sorba-collector-api.prod.sorbapp.com","pathRewrite":{"^/devices":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/uuid-gen":{"target":"http://jkl-sorba-uuid-gen-api:5000","pathRewrite":{"^/uuid-gen":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/asset":{"target":"http://sorbotics-sorba-asset-api.prod.sorbapp.com","pathRewrite":{"^/asset":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/ml-trainer":{"target":"http://jkl-sorba-ml-trainer-api:5000","pathRewrite":{"^/ml-trainer":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/rtdb":{"target":"http://webdis:7379","pathRewrite":{"^/rtdb":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/hdfs-api":{"target":"http://sorbotics-ml-trainer-hdfs-api.prod.sorbapp.com","pathRewrite":{"^/hdfs-api":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/api/commands/*":{"target":"https://websoc.demo-com.sorba.ai/api/commands","pathRewrite":{"^/api/commands":""},"secure":false,"logLevel":"debug","changeOrigin":true},"/api/influx/*":{"target":"http://jkl-sorba.influxdb:8086","pathRewrite":{"^/api/influx":""},"secure":false,"logLevel":"debug","changeOrigin":true}}'
       redis: '{"host": "jkl-sorba-redis-master", "port": 6379}'
       sideMenu: '[{"group":"","items":[{"label":"Overview","link":"/overview","icon":"ionicons:home-outline","alias":"Overview"},{"label":"Workspace","link":"/workspace","icon":"ionicons:grid-outline","alias":"Workspace"},{"label":"Dashboard","link":"/dashboard","icon":"ionicons:speedometer-outline","alias":"Dashboard","external":true,"disabled":false,"package":"grafana"},{"label":"Workflow","link":"/workflow","icon":"ionicons:shuffle-outline","alias":"Workflow","external":true,"disabled":true,"package":"sdc-workflow"}]},{"group":"Packages","items":[{"label":"ML Trainer","link":"/mlui","icon":"ionicons:hardware-chip-outline","alias":"MLTrainer","external":true,"disabled":true,"package":"ml-standalone-all"}]},{"group":"Settings","items":[{"label":"Identity Server","link":"/identity","icon":"ionicons:finger-print-outline","alias":"IdentityServer","external":true,"disabled":false,"package":"identity-service"},{"label":"Remote Access","link":"https://vpn.demo-com.sorba.ai","alias":"RemoteAccess","icon":"ionicons:key-outline"},{"label":"System Events","link":"/events","alias":"SystemEvents","icon":"ionicons:pulse-outline"}]}]'
       socketUrl: wss://websoc.jkl-com.sorbapp.com/websocket
