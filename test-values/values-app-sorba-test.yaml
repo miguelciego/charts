@@ -217,7 +217,7 @@ identity-api:
 								  "identity-api":"jkl-sorba-identity-api",
 								  "oee-api": "jkl-sorba-oee-engine",
 								  "sde-socket-api": "jkl-sorba-sde-socket",
-								  "ml-api": "ml-trainer-api-ml-trainer-api",
+								  "ml-api": "jkl-sorba-ml-trainer-api",
 								  "vib-visualizer-api": "localhost",
 								  "vpn-api": "localhost",
 								  "task-flow": "jkl-sorba-task-flows-backend"}'
@@ -255,7 +255,7 @@ messages-mediator:
   enabled: false
 ml-trainer-api:
 ##########   true  ###########
-  enabled: false
+  enabled: true
   image:
     repository: registry.desa.sorbapp.com/sorbotics/ml-trainer/ml-trainer-api/development
     tag: latest
@@ -276,7 +276,7 @@ ml-trainer-api:
       RAY: '{ "useDefaults": "false", "master_address": "", "cluster_http": "", "masters": "[]", "workers": "[]"}'
 ml-ui:
 ##########   true  ###########
-  enabled: false
+  enabled: true
   image:
     repository: registry.desa.sorbapp.com/sorbotics/ml-trainer/ml-ui/master
     tag: latest
@@ -297,7 +297,7 @@ ml-ui:
            "secure": false,"changeOrigin":true,"logLevel": "debug"}}'
       redis: '{"port": 6379, "host": "jkl-sorba-redis-master","db": 0,"reconnectTime": 5000}'
       identityServiceAPI: https://wso2am-pattern-1-am-service:8243/identity/v1
-      identityURL:  https://gateway-am.jkl-com.sorba.ai/tree/v1/
+      identityURL: http://jkl-sorba-identity-api:5000/api
       page: '{"title":"Sorba - Machine Learning","location":"","message":"Machine Learning Trainer"}'
       deployType: cloud
       PORT: '5000'
@@ -402,7 +402,7 @@ task-flows-frontend:
     url: http://taskflow.jkl-com.sorbapp.com
 platform-ui:
 ##########   true  ###########
-  enabled: false
+  enabled: true
   image:
     repository: registry.desa.sorbapp.com/sorbotics/platform-ui-test-20-08/pre-release
     tag: latest
