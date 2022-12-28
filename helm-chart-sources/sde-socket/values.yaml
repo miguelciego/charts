@@ -6,7 +6,7 @@ strategyType:
 # `serviceAccountName` is deprecated in favor of `serviceAccount.name`
 serviceAccountName:
 image:
-  repository: sorbaregistry.azurecr.io/sorbotics/sorba-task-flows/task-flows-backend/62-test-cloud-task-flow-deployment
+  repository: sorbaregistry.azurecr.io/sorbotics/sde-socket/master:latest
   tag: latest
   pullPolicy: IfNotPresent
   secrets:
@@ -49,7 +49,7 @@ application:
   env:
     JWT_SECRET: eShVmYq3t6w9z$C&F)J@McQfTjWnZr4u7x!A%D*G-KaPdRgUkXp2s5v8y/B?E(H+MbQeThVmYq3t6w9z$C&F)J@NcRfUjXnZr4u7x!A%D*G-KaPdSgVkYp3s5v8y/B?E
     REDIS_HOST: bitnami-redis-master
-    REDIS_PORT: 6379
+    REDIS_PORT: 6378
     deployType: cloud
     identityServiceAPI: https://wso2am-pattern-1-am-service:8243
     npm_package_name: event-middleware

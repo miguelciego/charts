@@ -1,0 +1,377 @@
+vernemq:
+  enabled: false
+cert-manager:
+  enabled: true
+  installCRDs: true
+ingress-nginx:
+  enabled: true
+  controller:
+    ingressClass: jkl-com-nginx
+    ingressClassResource:
+      name: jkl-com-nginx
+kubernetes-dashboard:
+  enabled: true
+  ingress:
+    enabled: true
+    className: "jkl-com-nginx"
+    annotations:
+      kubernetes.io/tls-acme: 'true'
+      cert-manager.io/issuer: jkl-com-issuer
+      nginx.ingress.kubernetes.io/secure-backends: "true"
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    hosts:
+      - kubernetes-dashboard.jkl-com.sorbapp.com
+    tls:
+      - secretName: kubernetes-dashboard-jkl-com-tls
+        hosts:
+          - kubernetes-dashboard.jkl-com.sorbapp.com
+is-pattern-1:
+  enabled: true
+  wso2:
+    deployment:
+      wso2is:
+        dockerRegistry: sorbaregistry.azurecr.io
+        imageName: sorbotics/devops/wso2-alpine-is/master
+        imageTag: latest
+        imagePullSecrets: azure-registry
+        replicas: 1
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "1"
+          limits:
+            memory: "4Gi"
+            cpu: "1"
+        ingress:
+          identity:
+            hostname: "sorbais.jkl-com.sorbapp.com"
+            annotations:
+              cert-manager.io/issuer: jkl-com-issuer
+              kubernetes.io/ingress.class: "jkl-com-nginx"
+              kubernetes.io/tls-acme: "true"
+              nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+              nginx.ingress.kubernetes.io/affinity: "cookie"
+              nginx.ingress.kubernetes.io/session-cookie-name: "route"
+              nginx.ingress.kubernetes.io/session-cookie-hash: "sha1"
+    #subscription:
+    #  password: password
+    #  username: user
+    #  email: admin@example.com
+am-pattern-1:
+  enabled: true
+  wso2:
+    deployment:
+      dependencies:
+        nfsServerProvisioner: false
+      persistentRuntimeArtifacts:
+        storageClass: default
+      am:
+        #dockerRegistry: sorbaregistry.azurecr.io
+        #imageName: sorbotics/devops/wso2-alpine-am/master
+        #imageTag: latest
+        #imagePullSecrets: azure-registry
+        replicas: 1
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "1"
+          limits:
+            memory: "3Gi"
+            cpu: "1"
+        ingress:
+          management:
+            hostname: "am.jkl-com.sorbapp.com"
+            annotations:
+              cert-manager.io/issuer: jkl-com-issuer
+              kubernetes.io/ingress.class: "jkl-com-nginx"
+              kubernetes.io/tls-acme: "true"
+              nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+              nginx.ingress.kubernetes.io/affinity: "cookie"
+              nginx.ingress.kubernetes.io/session-cookie-name: "route"
+              nginx.ingress.kubernetes.io/session-cookie-hash: "sha1"
+          gateway:
+            hostname: "gateway.jkl-com.sorbapp.com"
+            annotations:
+              cert-manager.io/issuer: jkl-com-issuer
+              kubernetes.io/ingress.class: "jkl-com-nginx"
+              nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+          websub:
+            hostname: "websub.jkl-com.sorbapp.com"
+            annotations:
+              cert-manager.io/issuer: jkl-com-issuer
+              kubernetes.io/ingress.class: "jkl-com-nginx"
+              nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+      mi:
+        replicas: 1
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        ingress:
+          management:
+            hostname: "management.jkl-com.sorbapp.com"
+            annotations:
+              cert-manager.io/issuer: jkl-com-issuer
+              kubernetes.io/ingress.class: "jkl-com-nginx"
+              nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+  mysql-am:
+    mysql:
+      persistence:
+        storageClass: default
+grafana:
+  enabled: true
+  admin:
+    password: admin
+    user: admin
+  ingress:
+    annotations:
+      cert-manager.io/issuer: jkl-com-issuer
+      kubernetes.io/ingress.class: jkl-com-nginx
+    enabled: true
+    hostname: dashboard.jkl-com.sorbapp.com
+    tls: true
+    ingressClassName: null
+mysql-sorba:
+  enabled: true
+  auth:
+    rootPassword: "JgHO98XqnV"
+    createDatabase: false
+    password: "JgHO98XqnV"
+phpmyadmin:
+  enabled: true
+  ingress:
+    enabled: true
+    hostname: phpmyadmin.jkl-com.sorbapp.com
+    ingressClassName: null
+    annotations:
+      cert-manager.io/issuer: jkl-com-issuer
+      kubernetes.io/ingress.class: jkl-com-nginx
+redis:
+  enabled: true
+  auth:
+    enabled: false
+  architecture: replication
+  replica:
+    replicaCount: 2
+influxdb:
+  enabled: true
+tree-api:
+  enabled: true
+  #application:
+  #  env:
+  #    database_url: mysql://root:4mz5IrvhZb@jkl-sorba-mysql-sorba.for-test/tree
+  #    redis: '{"port": 6379, "host": "jkl-sorba-redis-master","db": 0,"reconnectTime": 5000}'
+  #    CLOUD_GRAFANA_API: '{"URL":"http://jkl-sorba-grafana:3000/api","USER":"admin","PASS":"sbrQp10"}'
+  #    HDFS_URL: http://192.168.1.94:3003
+  #    LICENSE_DECODER: '{"port": 8074,"host": "sorbapp-license-decoder-auto-deploy-app-gitlab","endpoint": "/api/decode"}'
+  #    SORBA_INTEGRATION_AUTHORIZATION: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlNvcmJhIEludGVncmF0aW9uIiwiaWF0IjozNzM5NTcyMDAwMDB9.4A1X7l84wCJq7asgkGKaoYizlNBHnwGBm9Ex-YZRRzg'
+  #    SORBA_INTEGRATION_URL: http://sorbapp-sorba-dashboard-comm-auto-deploy-app-gitlab:5000
+  #image:
+  #  repository: sorbaregistry.azurecr.io/sorbotics/platform/tree-api/new-generation
+  #  tag: latest
+  #  pullPolicy: IfNotPresent
+  #  secrets:
+  #    - name: azure-registry 
+#  resources:
+  #  limits:
+  #    cpu: 100m
+  #    memory: 128Mi
+#    requests: {}
+  #    cpu: 100m
+  #    memory: 128Mi
+uuid-gen-api:
+  enabled: true
+#  image:
+#    repository: sorbaregistry.azurecr.io/sorbotics/uuid-gen-api
+#    tag: latest
+#    pullPolicy: IfNotPresent
+#    secrets:
+#      - name: azure-registry 
+events-middleware:
+  enabled: false
+identity-api:
+  enabled: true
+  image:
+    repository: registry.desa.sorbapp.com/sorbotics/sorba-identity/sorba-identity-api-ng/main
+    tag: 369bd0049d11919172917b5fbfba65c577de3feb
+    pullPolicy: IfNotPresent
+    secrets:
+      - name: gitlab-registry
+  application:
+    env:
+      APIM_URL: https://wso2am-pattern-1-am-service:9443
+      API_GATEWAY: http://jkl-sorba-identity-api:5000/api
+      API_MANAGER_PASSWORD: admin
+      API_MANAGER_USER: admin
+      DEPLOY_TYPE: cloud
+      MYSQL_HOST: jkl-sorba-mysql-sorba
+      MYSQL_PASSWORD: JgHO98XqnV
+identity-ui:
+  enabled: true
+  image:
+    repository: registry.desa.sorbapp.com/sorbotics/sorba-identity/sorba-identity-ui-ng/main
+    tag: latest
+    pullPolicy: IfNotPresent
+    secrets:
+      - name: gitlab-registry
+  application:
+    env:
+      identityServiceAPI: 'https://wso2am-pattern-1-am-service:8243/identity/v1'
+      proxies: '{
+      "/identity": { "target": "https://wso2am-pattern-1-am-service:8243/identity/v1",
+        "pathRewrite": {"^/identity": ""},"secure": false,"changeOrigin": true,"logLevel": "debug" } }'
+      redis: '{"host": "jkl-sorba-redis-master", "port": 6379}'
+      page: '{ "title": "Sorba Identity", "location": "", "message": "Identity Server"}'
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/issuer: jkl-com-issuer
+      kubernetes.io/ingress.class: "jkl-com-nginx"
+      kubernetes.io/tls-acme: "true"
+      nginx.ingress.kubernetes.io/proxy-body-size: '0'
+      nginx.ingress.kubernetes.io/proxy-buffering: 'off'   
+  service:
+    url: http://identity.jkl-com.sorbapp.com
+messages-mediator:
+  enabled: false
+ml-trainer-api:
+  enabled: true
+  image:
+    repository: registry.desa.sorbapp.com/sorbotics/ml-trainer/ml-trainer-api/development
+    tag: latest
+    pullPolicy: IfNotPresent
+    secrets:
+      - name: gitlab-registry
+  application:
+    env:
+      DEPLOY_TYPE: "CLOUD"
+      tenant: "demo.com"
+      DATABASE_URL: '{ "database": "ml_trainer", "username": "root", "password": "JgHO98XqnV", "host": "jkl-sorba-mysql-sorba", "dialect": "mysql", "logging": false }'
+      fsEntryPoint: "/srv/"
+      REDIS: '{ "useDefaults": "false", "host": "jkl-sorba-redis-master", "port": "6379", "db": "0", "user": "", "password": "","reconnectTime": "5000" }'
+      STORAGE: '{ "useDefaults": "false", "url": "http://jkl-sorba-influxdb:8086", "db": "sorba_ml", "batch_size": "1000", "user": "", "password": "", "version": "1.x", "bucket": "", "token": "", "org": "" }'
+      DATASOURCE: '{ "useDefaults": "true", "url": "http://jkl-sorba-influxdb:8086", "db": "sorba_ml", "batch_size": "1000", "user": "", "password": "", "version": "1.x", "bucket": "", "token": "", "org": "" }'
+      TREE: '{ "useDefaults": "false", "url": "http://jkl-sorba-tree-api:5000/" }'
+      DASHBOARD: '{ "useDefaults": "false", "URL": "http://jkl-sorba-grafana:3000/api", "host": "", "port": "3000", "user": "admin", "password": "admin", "org": "main" }'
+      RAY: '{ "useDefaults": "false", "master_address": "", "cluster_http": "", "masters": "[]", "workers": "[]"}'
+ml-ui:
+  enabled: true
+  image:
+    repository: registry.desa.sorbapp.com/sorbotics/ml-trainer/ml-ui/master
+    tag: latest
+    pullPolicy: IfNotPresent
+    secrets:
+      - name: gitlab-registry
+  application:
+    env:
+      proxies: '{"/api/commands/*":{"target":"https://websoc.jkl-com.sorba.ai/api/commands","pathRewrite":{"^/api/commands":""},
+          "secure":false,"logLevel":"debug","changeOrigin":true},
+          "/api/tree/*":{"target":"https://wso2am-pattern-1-am-service:8243/tree/v1/","pathRewrite":{"^/api/tree":""},
+           "secure":false,"logLevel":"debug","changeOrigin":true},
+           "/api/mlapi/*":{"target":"https://wso2am-pattern-1-am-service:8243/ml/v1","pathRewrite":{"^/api/mlapi":""},
+           "secure":false,"logLevel":"debug","changeOrigin":true},
+           "/api/influx/*":{"target":"http://influxdb-1-8:8086","pathRewrite":{"^/api/influx":""},
+           "secure":false,"logLevel":"debug","changeOrigin":true},
+           "/identity-server/*":{"target": "https://wso2am-pattern-1-am-service:8243/identity/v1/","pathRewrite": {"^/identity-server": ""},
+           "secure": false,"changeOrigin":true,"logLevel": "debug"}}'
+      redis: '{"port": 6379, "host": "jkl-sorba-redis-master","db": 0,"reconnectTime": 5000}'
+      identityServiceAPI: https://wso2am-pattern-1-am-service:8243/identity/v1
+      identityURL:  https://gateway-am.jkl-com.sorba.ai/tree/v1/
+      page: '{"title":"Sorba - Machine Learning","location":"","message":"Machine Learning Trainer"}'
+      deployType: cloud
+      PORT: '5000'
+      apps: '[{"name":"IoT Unified","link":"https://platform.jkl-com.sorba.ai"},
+              {"name":"Dashboard","link":"https://dashboard.jkl-com.sorba.ai"},
+              {"name":"Machine Learning Trainer","link":"https://ml-ui.jkl-com.sorba.ai"},
+              {"name":"Production Performance Analyzer","link":"https://oee.jkl-com.sorba.ai"},
+              {"name":"Task Flow","link":"https://taskflows.jkl-com.sorba.ai"}]'
+      venvLocalPath: ""
+      influxdb: '{"host": "jkl-sorba-influxdb", "db": "sorba_sde", "measurement": "__SYSTEM_EVENTS", "port": 8086 }'
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/issuer: jkl-com-issuer
+      kubernetes.io/ingress.class: "jkl-com-nginx"
+      kubernetes.io/tls-acme: "true"
+      nginx.ingress.kubernetes.io/proxy-body-size: '0'
+      nginx.ingress.kubernetes.io/proxy-buffering: 'off'   
+  service:
+    url: http://ml.jkl-com.sorbapp.com
+oee-engine:
+  enabled: false
+oee-ui:
+  enabled: false
+rtdb-sync-pub:
+  enabled: false
+rtdb-sync-sub:
+  enabled: false
+sde-socket:
+  enabled: true
+  image:
+    repository: sorbaregistry.azurecr.io/sorbotics/sde-socket/master
+    tag: latest
+    pullPolicy: IfNotPresent
+    secrets:
+      - name: gitlab-registry  
+  application:  
+    env:
+      JWT_SECRET: eShVmYq3t6w9z$C&F)J@McQfTjWnZr4u7x!A%D*G-KaPdRgUkXp2s5v8y/B?E(H+MbQeThVmYq3t6w9z$C&F)J@NcRfUjXnZr4u7x!A%D*G-KaPdSgVkYp3s5v8y/B?E
+      REDIS_HOST: jkl-sorba-redis-master
+      REDIS_PORT: 6379
+      deployType: cloud
+      identityServiceAPI: https://wso2am-pattern-1-am-service:8243
+      npm_package_name: event-middleware
+task-flows-backend:
+  enabled: true
+  image:
+    repository: registry.desa.sorbapp.com/sorbotics/sorba-task-flows/task-flows-backend/master
+    tag: latest
+    pullPolicy: IfNotPresent
+    secrets:
+      - name: gitlab-registry
+  application:
+    env:
+      DB_URI: mysql://root:JgHO98XqnV@jkl-sorba-mysql-sorba/task_flow
+      DEPLOY_TYPE: cloud
+      PORT: 5000
+      REDIS: '{"host":"jkl-sorba-redis-master", "port": 6379}'
+      TREE_URL: http://jkl-sorba-tree-api:5000
+      proxy: '{"tree":{"path":"/tree","remote":"http://jkl-sorba-tree-api:5000/"},"hdfs":{"path":"/","remote":"http://192.168.1.94:3003/"}}'
+task-flows-frontend:
+  enabled: true
+  image:
+    repository: registry.desa.sorbapp.com/sorbotics/sorba-task-flows/task-flows-frontend/main
+    tag: latest
+    pullPolicy: IfNotPresent
+    secrets:
+      - name: gitlab-registry
+  application:
+    env:
+      PORT: 5000
+      deployType: cloud
+      identityServiceAPI: https://wso2am-pattern-1-am-service:8243/identity/v1
+      influxdb: '{"host":"jkl-sorba-influxdb","db":"sorba_sde","measurement":"__SYSTEM_EVENTS","port": 8086}'
+      page: '{ "title":"Sorba Task Flow","location":"","message":"Task Flow"}'
+      proxies: '{ "/tree": { "target": "http://jkl-sorba-tree-api:5000", "pathRewrite": {"^/tree": "" }, 
+        "secure": false, "changeOrigin": true, "logLevel": "debug" },
+        "/taskflows": {"target": "http://jkl-sorba-flows-backend:5000", "pathRewrite": {"^/taskflows": "" },
+        "secure": false, "changeOrigin": true, "logLevel": "debug"},
+        "/influx": { "target": "http://jkl-sorba-influxdb:8086","pathRewrite": {"^/influx": ""},
+        "secure": false, "logLevel": "debug", "changeOrigin": true },
+        "/identity": {"target": "https://wso2am-pattern-1-am-service:8243/identity/v1", "pathRewrite": { "^/identity": "" },
+        "secure": false, "changeOrigin": true, "logLevel": "debug" } }'
+      redis: '{"host":"jkl-sorba-redis-master","port": 6379}'
+      socketUrl: wss://jkl-sorba-sde-socket:5000/websocket
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/issuer: jkl-com-issuer
+      kubernetes.io/ingress.class: "jkl-com-nginx"
+      kubernetes.io/tls-acme: "true"
+      nginx.ingress.kubernetes.io/proxy-body-size: '0'
+      nginx.ingress.kubernetes.io/proxy-buffering: 'off'   
+  service:
+    url: http://taskflow.jkl-com.sorbapp.com
