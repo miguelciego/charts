@@ -441,17 +441,25 @@ platform-ui:
     url: http://platform.jkl-com.sorbapp.com
 
 vpn-spa:
-  application:
-    env:
-      database_url: mysql://root:4mz5IrvhZb@bitnami-mysql.for-test/tree
-      redis: '{"port": 6379, "host": "bitnami-redis-master.for-test","db": 0,"reconnectTime":5000}'
+  enabled: true
   image:
     pullPolicy: IfNotPresent
     repository: registry.desa.sorbapp.com/sorbotics/vpn/vpn-spa/development
     secrets:
     - name: gitlab-registry
     tag: latest
-  resources:
-    requests: {}
+  application:
+    env:
+      database_url: mysql://root:4mz5IrvhZb@jkl-sorba-mysql-sorba/tree
+      redis: '{"port": 6379, "host": "jkl-sorba-redis-master","db": 0,"reconnectTime":5000}'
   ingress:
-    enabled: false
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/issuer: jkl-com-issuer
+      kubernetes.io/ingress.class: "jkl-com-nginx"
+      kubernetes.io/tls-acme: "true"
+      nginx.ingress.kubernetes.io/proxy-body-size: '0'
+      nginx.ingress.kubernetes.io/proxy-buffering: 'off'   
+  service:
+    url: http://vpn.jkl-com.sorbapp.com
