@@ -291,7 +291,7 @@ ml-ui:
            "secure":false,"logLevel":"debug","changeOrigin":true},
            "/api/mlapi/*":{"target":"https://wso2am-pattern-1-am-service:8243/ml/v1","pathRewrite":{"^/api/mlapi":""},
            "secure":false,"logLevel":"debug","changeOrigin":true},
-           "/api/influx/*":{"target":"http://influxdb-1-8:8086","pathRewrite":{"^/api/influx":""},
+           "/api/influx/*":{"target":"http://jkl-sorba-influxdb:8086","pathRewrite":{"^/api/influx":""},
            "secure":false,"logLevel":"debug","changeOrigin":true},
            "/identity-server/*":{"target": "https://wso2am-pattern-1-am-service:8243/identity/v1/","pathRewrite": {"^/identity-server": ""},
            "secure": false,"changeOrigin":true,"logLevel": "debug"}}'
@@ -440,3 +440,18 @@ platform-ui:
   service:
     url: http://platform.jkl-com.sorbapp.com
 
+vpn-spa:
+  application:
+    env:
+      database_url: mysql://root:4mz5IrvhZb@bitnami-mysql.for-test/tree
+      redis: '{"port": 6379, "host": "bitnami-redis-master.for-test","db": 0,"reconnectTime":5000}'
+  image:
+    pullPolicy: IfNotPresent
+    repository: registry.desa.sorbapp.com/sorbotics/vpn/vpn-spa/development
+    secrets:
+    - name: gitlab-registry
+    tag: latest
+  resources:
+    requests: {}
+  ingress:
+    enabled: false
