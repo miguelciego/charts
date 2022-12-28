@@ -18,7 +18,7 @@ dependencies:
   repository: https://miguelciego.github.io/charts/
   version: 4.1.01
 - name: grafana
-  repository: https://charts.bitnami.com/bitnami
+  repository: https://miguelciego.github.io/charts/
   version: 7.6.19
 - name: mysql-sorba
   repository: https://miguelciego.github.io/charts/
@@ -89,5 +89,8 @@ dependencies:
 - name: tree-api
   repository: https://miguelciego.github.io/charts/
   version: 2.39.3
-digest: sha256:cfc38231c947ddd70e6f855c59c6f7a744bda875975fcb62d13b07da19f6d7eb
-generated: "2022-12-13T02:43:48.7856486-04:00"
+- name: vpn-spa
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.1
+digest: sha256:49629da53d4e7ab9812fcbaeda08c004b6d5456fb62d68e1e4735fa79fd52b16
+generated: "2022-12-28T19:54:04.8398672-04:00"
