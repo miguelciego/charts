@@ -49,7 +49,8 @@ application:
   env:
     database_url: mysql://root:4mz5IrvhZb@bitnami-mysql.for-test/tree
     redis: '{"port": 6379, "host": "bitnami-redis-master.for-test","db": 0,"reconnectTime":5000}'
-    
+    identityURL: https://gateway-am.jkl-com.sorba.ai/tree/v1/
+    proxies: '{"/identity-server":{"target":"https://wso2am-pattern-1-am-service:8243/identity/v1/","pathRewrite":{"^/identity-server":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/api/tree":{"target":"https://wso2am-pattern-1-am-service:8243/tree/v1/","pathRewrite":{"^/api/tree":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/api/vpnservice":{"target":"http://52.191.30.247/","pathRewrite":{"^/api/vpnservice":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/api/commands":{"target":"https://websoc.demo-com.sorba.ai/api/commands","pathRewrite":{"^/api/commands":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/api/influx":{"target":"http://jkl-sorba-influxdb:8086","pathRewrite":{"^/api/influx":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/api/rtdb":{"target":"http://webdis:7379","pathRewrite":{"^/api/rtdb":""},"secure":false,"changeOrigin":true,"logLevel":"debug"}}'
 hpa:
   enabled: false
   minReplicas: 1
