@@ -1,0 +1,9 @@
+ingress:
+  enabled: true
+  hostname: testlink.jkl-com.sorbapp.com
+  annotations:
+    cert-manager.io/issuer: jkl-com-issuer
+    kubernetes.io/ingress.class: jkl-com-nginx
+  certManager: true
+  tls: true
+  ingressClassName: null
