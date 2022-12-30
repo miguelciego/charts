@@ -127,6 +127,30 @@ grafana:
   admin:
     password: admin
     user: admin
+  plugins: "isaozler-paretochart-panel, ae3e-plotly-panel"
+  datasources:
+    secretDefinition:
+      apiVersion: 1
+      datasources:
+        - name: sorba_ml
+          database: sorba_ml
+          type: influxdb
+          url: http://jkl-sorba-influxdb:8086
+          access: proxy
+          jsonData:
+            httpMode: GET
+          isDefault: true
+        - name: sorba_ml_mysql
+          type: mysql
+          url: jkl-sorba-mysql-sorba:3306
+          user: root
+          database: ml_trainer
+          jsonData:
+            maxOpenConns: 0
+            maxIdleConns: 2
+            connMaxLifetime: 14400
+          secureJsonData:
+            password: JgHO98XqnV
   ingress:
     annotations:
       cert-manager.io/issuer: jkl-com-issuer
@@ -194,7 +218,7 @@ uuid-gen-api:
 #    secrets:
 #      - name: azure-registry 
 events-middleware:
-  enabled: false
+  enabled: true
 identity-api:
 ##########   true  ###########
   enabled: true
@@ -241,6 +265,7 @@ identity-ui:
       redis: '{"host":"jkl-sorba-redis-master","port": 6379}'
       socketUrl: wss://websoc.jkl-com.sorbapp.com/websocket
       proxies: '{"/tree":{"target":"http://jkl-sorba-tree-api:5000/","pathRewrite":{"^/tree":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/influx":{"target":"http://jkl-sorba-influxdb:8086","pathRewrite":{"^/influx":""},"secure":false,"logLevel":"debug","changeOrigin":true},"/api/commands":{"target":"https://wso2am-pattern-1-am-service:8243/socket/v1/commands","pathRewrite":{"^/api/commands":""},"secure":false,"logLevel":"debug","changeOrigin":true},"/identity":{"target":"https://wso2am-pattern-1-am-service:8243/identity/v1","pathRewrite":{"^/identity":""},"secure":false,"changeOrigin":true,"logLevel":"debug"}}'
+      apps: '[{"name":"IoT Unified","link":"https://platform.jkl-com.sorbapp.com","disabled":false},{"name":"Dashboard","link":"https://dashboard.jkl-com.sorbapp.com","disabled":false},{"name":"Production Performance Analyzer","link":"https://oee.jkl-com.sorbapp.com","disabled":false},{"name":"Task Flow","link":"https://taskflow.jkl-com.sorbapp.com","disabled":false},{"name":"Machine Learning Trainer","link":"https://ml.jkl-com.sorbapp.com","disabled":false},{"name":"Virtual Private Network","link":"https://vpn.jkl-com.sorbapp.com","disabled":false}]'
   ingress:
     enabled: true
     annotations:
@@ -252,7 +277,7 @@ identity-ui:
   service:
     url: http://identity.jkl-com.sorbapp.com
 messages-mediator:
-  enabled: false
+  enabled: true
 ml-trainer-api:
 ##########   true  ###########
   enabled: true
@@ -264,16 +289,17 @@ ml-trainer-api:
       - name: gitlab-registry
   application:
     env:
+      MLAPI: http://jkl-sorba-ml-trainer-api.jkl-com:5000
       DEPLOY_TYPE: "CLOUD"
       tenant: "demo.com"
       DATABASE_URL: '{ "database": "ml_trainer", "username": "root", "password": "JgHO98XqnV", "host": "jkl-sorba-mysql-sorba", "dialect": "mysql", "logging": false }'
-      fsEntryPoint: "/srv/"
-      REDIS: '{ "useDefaults": "false", "host": "jkl-sorba-redis-master", "port": "6379", "db": "0", "user": "", "password": "","reconnectTime": "5000" }'
-      STORAGE: '{ "useDefaults": "false", "url": "http://jkl-sorba-influxdb:8086", "db": "sorba_ml", "batch_size": "1000", "user": "", "password": "", "version": "1.x", "bucket": "", "token": "", "org": "" }'
-      DATASOURCE: '{ "useDefaults": "true", "url": "http://jkl-sorba-influxdb:8086", "db": "sorba_ml", "batch_size": "1000", "user": "", "password": "", "version": "1.x", "bucket": "", "token": "", "org": "" }'
+      fsEntryPoint: "/srv"
+      REDIS: '{ "useDefaults": "false", "host": "jkl-sorba-redis-master.jkl-com", "port": "6379", "db": "0", "user": "", "password": "","reconnectTime": "5000" }'
+      STORAGE: '{ "useDefaults": "false", "url": "http://jkl-sorba-influxdb.jkl-com:8086", "db": "sorba_ml", "batch_size": "1000", "user": "", "password": "", "version": "1.x", "bucket": "", "token": "", "org": "" }'
+      DATASOURCE: '{ "useDefaults": "true", "url": "http://jkl-sorba-influxdb.jkl-com:8086", "db": "sorba_ml", "batch_size": "1000", "user": "", "password": "", "version": "1.x", "bucket": "", "token": "", "org": "" }'
       TREE: '{ "useDefaults": "false", "url": "http://jkl-sorba-tree-api:5000/" }'
-      DASHBOARD: '{ "useDefaults": "false", "URL": "http://jkl-sorba-grafana:3000/api", "host": "", "port": "3000", "user": "admin", "password": "admin", "org": "main" }'
-      RAY: '{ "useDefaults": "false", "master_address": "", "cluster_http": "", "masters": "[]", "workers": "[]"}'
+      DASHBOARD: '{ "useDefaults": "false", "URL": "https://dashboard.jkl-com.sorbapp.com/api", "host": "", "port": "3000", "user": "admin", "password": "admin", "org": "main" }'
+      RAY: '{"cluster_mode":true,"master_address":"ray://raycluster-autoscaler-head-svc.default","cluster_http":"http://raycluster-autoscaler-head-svc.default:8265","masters":["http://jkl-sorba-ml-trainer-api.jkl-com:5000"],"workers":[],"useDefaults":false}'
 ml-ui:
 ##########   true  ###########
   enabled: true
@@ -301,11 +327,7 @@ ml-ui:
       page: '{"title":"Sorba - Machine Learning","location":"","message":"Machine Learning Trainer"}'
       deployType: cloud
       PORT: '5000'
-      apps: '[{"name":"IoT Unified","link":"https://platform.jkl-com.sorba.ai"},
-              {"name":"Dashboard","link":"https://dashboard.jkl-com.sorba.ai"},
-              {"name":"Machine Learning Trainer","link":"https://ml-ui.jkl-com.sorba.ai"},
-              {"name":"Production Performance Analyzer","link":"https://oee.jkl-com.sorba.ai"},
-              {"name":"Task Flow","link":"https://taskflows.jkl-com.sorba.ai"}]'
+      apps: '[{"name":"IoT Unified","link":"https://platform.jkl-com.sorbapp.com","disabled":false},{"name":"Dashboard","link":"https://dashboard.jkl-com.sorbapp.com","disabled":false},{"name":"Production Performance Analyzer","link":"https://oee.jkl-com.sorbapp.com","disabled":false},{"name":"Task Flow","link":"https://taskflow.jkl-com.sorbapp.com","disabled":false},{"name":"Identity","link":"https://identity.jkl-com.sorbapp.com","disabled":false},{"name":"Virtual Private Network","link":"https://vpn.jkl-com.sorbapp.com","disabled":false}]'
       venvLocalPath: ""
       influxdb: '{"host": "jkl-sorba-influxdb", "db": "sorba_carbon___super", "measurement": "__SYSTEM_EVENTS", "port": 8086 }'
   ingress:
@@ -319,13 +341,23 @@ ml-ui:
   service:
     url: http://ml.jkl-com.sorbapp.com
 oee-engine:
-  enabled: false
+  enabled: true
 oee-ui:
-  enabled: false
+  enabled: true
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/issuer: jkl-com-issuer
+      kubernetes.io/ingress.class: "jkl-com-nginx"
+      kubernetes.io/tls-acme: "true"
+      nginx.ingress.kubernetes.io/proxy-body-size: '0'
+      nginx.ingress.kubernetes.io/proxy-buffering: 'off' 
+  service:
+    url: http://oee.jkl-com.sorbapp.com
 rtdb-sync-pub:
-  enabled: false
+  enabled: true
 rtdb-sync-sub:
-  enabled: false
+  enabled: true
 sde-socket:
 ##########   true  ###########
   enabled: true
@@ -390,6 +422,7 @@ task-flows-frontend:
       proxies: '{"/tree":{"target":"http://jkl-sorba-tree-api:5000/","pathRewrite":{"^/tree":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/taskflow":{"target":"https://wso2am-pattern-1-am-service:8243/taskflow/v1","pathRewrite":{"^/taskflow":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/influx":{"target":"http://jkl-sorba-influxdb:8086","pathRewrite":{"^/influx":""},"secure":false,"logLevel":"debug","changeOrigin":true},"/identity":{"target":"https://wso2am-pattern-1-am-service:8243/identity/v1","pathRewrite":{"^/identity":""},"secure":false,"changeOrigin":true,"logLevel":"debug"}}'
       redis: '{"host":"jkl-sorba-redis-master","port": 6379}'
       socketUrl: wss://websoc.jkl-com.sorbapp.com/websocket
+      apps: '[{"name":"IoT Unified","link":"https://platform.jkl-com.sorbapp.com","disabled":false},{"name":"Dashboard","link":"https://dashboard.jkl-com.sorbapp.com","disabled":false},{"name":"Machine Learning Trainer","link":"https://ml.jkl-com.sorbapp.com","disabled":false},{"name":"Production Performance Analyzer","link":"https://oee.jkl-com.sorbapp.com","disabled":false},{"name":"Identity","link":"https://identity.jkl-com.sorbapp.com","disabled":false},{"name":"Virtual Private Network","link":"https://vpn.jkl-com.sorbapp.com","disabled":false}]'
   ingress:
     enabled: true
     annotations:
@@ -417,7 +450,7 @@ platform-ui:
         "tokenURL": "https://sorbais.jkl-com.sorbapp.com/oauth2/token", 
         "callbackURL": "https://platform.jkl-com.sorbapp.com/callback", "skipUserProfile": true }'
       SESSION_SETTINGS: '{ "name": "platform-website", "secret": "jqHmJcoXvhn0kQVumnvQ" }'
-      apps: '[{"name":"IoT Unified","link":"https://platform.jkl-com.sorbapp.com","disabled":false},{"name":"Dashboard","link":"https://dashboard.jkl-com.sorbapp.com","disabled":false},{"name":"Machine Learning Trainer","link":"https://ml-ui.jkl-com.sorbapp.com","disabled":false},{"name":"Production Performance Analyzer","link":"https://oee.jkl-com.sorbapp.com","disabled":false},{"name":"Task Flow","link":"https://taskflows.jkl-com.sorbapp.com","disabled":false},{"name":"Identity","link":"https://identity.jkl-com.sorbapp.com","disabled":false}]'
+      apps: '[{"name":"Dashboard","link":"https://dashboard.jkl-com.sorbapp.com","disabled":false},{"name":"Machine Learning Trainer","link":"https://ml.jkl-com.sorbapp.com","disabled":false},{"name":"Production Performance Analyzer","link":"https://oee.jkl-com.sorbapp.com","disabled":false},{"name":"Task Flow","link":"https://taskflow.jkl-com.sorbapp.com","disabled":false},{"name":"Identity","link":"https://identity.jkl-com.sorbapp.com","disabled":false},{"name":"Virtual Private Network","link":"https://vpn.jkl-com.sorbapp.com","disabled":false}]'
       deployType: cloud
       googleMapsKey: AIzaSyBNj7leq6sjqp-cjKZscq6AjlHCT4vS_YM
       googleMapsURL: https://maps.googleapis.com/maps/api/js
@@ -439,7 +472,6 @@ platform-ui:
       nginx.ingress.kubernetes.io/proxy-buffering: 'off'   
   service:
     url: http://platform.jkl-com.sorbapp.com
-
 vpn-spa:
   enabled: true
   image:
@@ -452,10 +484,11 @@ vpn-spa:
     env:
       database_url: mysql://root:4mz5IrvhZb@jkl-sorba-mysql-sorba/tree
       redis: '{"port": 6379, "host": "jkl-sorba-redis-master","db": 0,"reconnectTime":5000}'
-      identityServiceAPI: https://wso2am-pattern-1-am-service:8243/identity/v1
-      identityURL: https://gateway-am.jkl-com.sorba.ai/tree/v1/
+      identityServiceAPI: null
+      identityURL: http://jkl-sorba-identity-api:5000/api
       proxies: '{"/identity-server":{"target":"https://wso2am-pattern-1-am-service:8243/identity/v1/","pathRewrite":{"^/identity-server":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/api/tree":{"target":"https://wso2am-pattern-1-am-service:8243/tree/v1/","pathRewrite":{"^/api/tree":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/api/vpnservice":{"target":"http://52.191.30.247/","pathRewrite":{"^/api/vpnservice":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/api/commands":{"target":"https://websoc.demo-com.sorba.ai/api/commands","pathRewrite":{"^/api/commands":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/api/influx":{"target":"http://jkl-sorba-influxdb:8086","pathRewrite":{"^/api/influx":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/api/rtdb":{"target":"http://webdis:7379","pathRewrite":{"^/api/rtdb":""},"secure":false,"changeOrigin":true,"logLevel":"debug"}}'
       socketUrl: wss://websoc.jkl-com.sorbapp.com/websocket
+      apps: '[{"name":"IoT Unified","link":"https://platform.jkl-com.sorbapp.com","disabled":false},{"name":"Dashboard","link":"https://dashboard.jkl-com.sorbapp.com","disabled":false},{"name":"Machine Learning Trainer","link":"https://ml.jkl-com.sorbapp.com","disabled":false},{"name":"Production Performance Analyzer","link":"https://oee.jkl-com.sorbapp.com","disabled":false},{"name":"Task Flow","link":"https://taskflow.jkl-com.sorbapp.com","disabled":false},{"name":"Identity","link":"https://identity.jkl-com.sorbapp.com","disabled":false}]'
   ingress:
   ingress:
     enabled: true
