@@ -129,28 +129,10 @@ grafana:
     user: admin
   plugins: "isaozler-paretochart-panel, ae3e-plotly-panel"
   datasources:
-    secretDefinition:
-      apiVersion: 1
-      datasources:
-        - name: sorba_ml
-          database: sorba_ml
-          type: influxdb
-          url: http://jkl-sorba-influxdb:8086
-          access: proxy
-          jsonData:
-            httpMode: GET
-          isDefault: true
-        - name: sorba_ml_mysql
-          type: mysql
-          url: jkl-sorba-mysql-sorba:3306
-          user: root
-          database: ml_trainer
-          jsonData:
-            maxOpenConns: 0
-            maxIdleConns: 2
-            connMaxLifetime: 14400
-          secureJsonData:
-            password: JgHO98XqnV
+    secretName: grafana-datasources
+  config:
+    useGrafanaIniFile: true
+    grafanaIniSecret: grafana-ini
   ingress:
     annotations:
       cert-manager.io/issuer: jkl-com-issuer
@@ -294,11 +276,11 @@ ml-trainer-api:
       tenant: "demo.com"
       DATABASE_URL: '{ "database": "ml_trainer", "username": "root", "password": "JgHO98XqnV", "host": "jkl-sorba-mysql-sorba", "dialect": "mysql", "logging": false }'
       fsEntryPoint: "/srv"
-      REDIS: '{ "useDefaults": "false", "host": "jkl-sorba-redis-master.jkl-com", "port": "6379", "db": "0", "user": "", "password": "","reconnectTime": "5000" }'
-      STORAGE: '{ "useDefaults": "false", "url": "http://jkl-sorba-influxdb.jkl-com:8086", "db": "sorba_ml", "batch_size": "1000", "user": "", "password": "", "version": "1.x", "bucket": "", "token": "", "org": "" }'
-      DATASOURCE: '{ "useDefaults": "true", "url": "http://jkl-sorba-influxdb.jkl-com:8086", "db": "sorba_ml", "batch_size": "1000", "user": "", "password": "", "version": "1.x", "bucket": "", "token": "", "org": "" }'
+      REDIS: '{ "useDefaults": "false", "host": "jkl-sorba-redis-master.jkl-com", "port": "6379", "db": "0", "user": "", "password": "","reconnectTime": 5000 }'
+      STORAGE: '{ "useDefaults": "false", "url": "http://jkl-sorba-influxdb.jkl-com:8086", "db": "sorba_ml", "batch_size": 1000, "user": "", "password": "", "version": "1.x", "bucket": "", "token": "", "org": "" }'
+      DATASOURCE: '{ "useDefaults": "true", "url": "http://jkl-sorba-influxdb.jkl-com:8086", "db": "sorba_ml", "batch_size": 1000, "user": "", "password": "", "version": "1.x", "bucket": "", "token": "", "org": "" }'
       TREE: '{ "useDefaults": "false", "url": "http://jkl-sorba-tree-api:5000/" }'
-      DASHBOARD: '{ "useDefaults": "false", "URL": "https://dashboard.jkl-com.sorbapp.com/api", "host": "", "port": "3000", "user": "admin", "password": "admin", "org": "main" }'
+      DASHBOARD: '{ "useDefaults": "false", "URL": "https://dashboard.jkl-com.sorbapp.com/api", "host": "", "port": 3000, "user": "admin", "password": "admin", "org": "main" }'
       RAY: '{"cluster_mode":true,"master_address":"ray://raycluster-autoscaler-head-svc.default","cluster_http":"http://raycluster-autoscaler-head-svc.default:8265","masters":["http://jkl-sorba-ml-trainer-api.jkl-com:5000"],"workers":[],"useDefaults":false}'
 ml-ui:
 ##########   true  ###########
