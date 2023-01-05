@@ -184,6 +184,18 @@ tree-api:
     pullPolicy: IfNotPresent
     secrets:
       - name: gitlab-registry 
+    persistence:
+    enabled: true
+    volumes:
+      - name: sorba-data
+        mount:
+          path: "/srv"
+          # subPath: "/pvc-mount/config.txt"
+        claimName: jkl-com-sorba-data 
+        claim:
+          accessMode: ReadWriteMany
+          size: 8Gi
+          storageClass: "azurefile"
 #  resources:
   #  limits:
   #    cpu: 100m
@@ -282,6 +294,18 @@ ml-trainer-api:
       TREE: '{ "useDefaults": "false", "url": "http://jkl-sorba-tree-api:5000/" }'
       DASHBOARD: '{ "useDefaults": "false", "URL": "https://dashboard.jkl-com.sorbapp.com/api", "host": "", "port": 3000, "user": "admin", "password": "admin", "org": "main" }'
       RAY: '{"cluster_mode":true,"master_address":"ray://raycluster-autoscaler-head-svc.default","cluster_http":"http://raycluster-autoscaler-head-svc.default:8265","masters":["http://jkl-sorba-ml-trainer-api.jkl-com:5000"],"workers":[],"useDefaults":false}'
+  persistence:
+    enabled: true
+    volumes:
+      - name: sorba-data
+        mount:
+          path: "/srv"
+          # subPath: "/pvc-mount/config.txt"
+        claimName: jkl-com-sorba-data 
+        claim:
+          accessMode: ReadWriteMany
+          size: 8Gi
+          storageClass: "azurefile"
 ml-ui:
 ##########   true  ###########
   enabled: true
@@ -384,6 +408,18 @@ task-flows-backend:
       REDIS: '{"host":"jkl-sorba-redis-master", "port": 6379}'
       TREE_URL: http://jkl-sorba-tree-api:5000
       proxy: '{"tree":{"path":"/tree","remote":"http://jkl-sorba-tree-api:5000/"},"hdfs":{"path":"/","remote":"http://192.168.1.94:3003/"}}'
+  persistence:
+    enabled: true
+    volumes:
+      - name: sorba-data
+        mount:
+          path: "/srv"
+          # subPath: "/pvc-mount/config.txt"
+        claimName: jkl-com-sorba-data 
+        claim:
+          accessMode: ReadWriteMany
+          size: 8Gi
+          storageClass: "azurefile"
 task-flows-frontend:
 ##########   true  ###########
   enabled: true
