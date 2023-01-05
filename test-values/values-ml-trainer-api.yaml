@@ -26,7 +26,7 @@ persistence:
       mount:
         path: "/srv"
         # subPath: "/pvc-mount/config.txt"
-      claimName: jkl-com-sorba-data 
+      claimName: "jkl-com-sorba-data" 
       claim:
         accessMode: ReadWriteMany
         size: 8Gi

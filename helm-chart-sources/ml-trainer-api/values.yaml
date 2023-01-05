@@ -209,7 +209,7 @@ persistence:
       mount:
         path: "/pvc-mount"
         # subPath: "/pvc-mount/config.txt"
-      claimName: 
+      # claimName: 
       claim:
         accessMode: ReadWriteOnce
         size: 8Gi
