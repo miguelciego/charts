@@ -1,22 +1,33 @@
-application:
-  DEPLOY_TYPE: "CLOUD"
-  tenant: "demo.com"
-  DATABASE_URL: '{ "database": "ml_trainer", "username": "root", "password": "JgHO98XqnV", "host": "bitnami-mysql", "dialect": "mysql", "logging": false }'
-  fsEntryPoint: "/srv/sorba/ml-trainer"
-  REDIS: '{"port": 6379, "host": "bitnami-redis-master","db":0,"reconnectTime": 5000}'
-  STORAGE: '{"useDefaults": false, "url": "http://influxdb-1-8:8086", "db": "sorba_ml", "batch_size": 1000, "user": "", "password": "", "version": "1.x", "bucket": "", "token": "", "org": ""}'
-  DATASOURCE: '{"useDefaults": false, "url": "http://influxdb-1-8:8086", "db": "sorba_ml", "batch_size": 1000, "user": "", "password": "", "version": "1.x", "bucket": "", "token": "", "org": ""}'
-  TREE: '{"useDefaults": false, "url":"http://sorbapp-tree-api-auto-deploy-app-gitlab.demo-com:5000"}'
-  DASHBOARD: '{"useDefaults":false,"URL":"https://dashboard.demo-com.sorba.ai/api","host":"","port":3000,"user":"admin","password":"admin","org":"main"}'
-  RAY: '{"cluster_mode":true,"master_address":"ray://ray.desa.sorbapp.com/","cluster_http":"https://ray.desa.sorbapp.com/","masters":[],"workers":[],"useDefaults":false}'
-  MLAPI: "http://ml-trainer-api-ml-trainer-api.demo-com:5000"
 image:
-  pullPolicy: Always
   repository: registry.desa.sorbapp.com/sorbotics/ml-trainer/ml-trainer-api/development
-  secrets:
-  - name: gitlab-registry
   tag: latest
-resources:
-  requests: {}
+  pullPolicy: IfNotPresent
+  secrets:
+    - name: gitlab-registry
+application:
+  env:
+    MLAPI: http://jkl-sorba-ml-trainer-api.jkl-com:5000
+    DEPLOY_TYPE: "CLOUD"
+    tenant: "demo.com"
+    DATABASE_URL: '{ "database": "ml_trainer", "username": "root", "password": "JgHO98XqnV", "host": "jkl-sorba-mysql-sorba", "dialect": "mysql", "logging": false }'
+    fsEntryPoint: "/srv"
+    REDIS: '{ "useDefaults": "false", "host": "jkl-sorba-redis-master.jkl-com", "port": "6379", "db": "0", "user": "", "password": "","reconnectTime": 5000 }'
+    STORAGE: '{ "useDefaults": "false", "url": "http://jkl-sorba-influxdb.jkl-com:8086", "db": "sorba_ml", "batch_size": 1000, "user": "", "password": "", "version": "1.x", "bucket": "", "token": "", "org": "" }'
+    DATASOURCE: '{ "useDefaults": "true", "url": "http://jkl-sorba-influxdb.jkl-com:8086", "db": "sorba_ml", "batch_size": 1000, "user": "", "password": "", "version": "1.x", "bucket": "", "token": "", "org": "" }'
+    TREE: '{ "useDefaults": "false", "url": "http://jkl-sorba-tree-api:5000/" }'
+    DASHBOARD: '{ "useDefaults": "false", "URL": "https://dashboard.jkl-com.sorbapp.com/api", "host": "", "port": 3000, "user": "admin", "password": "admin", "org": "main" }'
+    RAY: '{"cluster_mode":true,"master_address":"ray://raycluster-autoscaler-head-svc.default","cluster_http":"http://raycluster-autoscaler-head-svc.default:8265","masters":["http://jkl-sorba-ml-trainer-api.jkl-com:5000"],"workers":[],"useDefaults":false}'
 ingress:
   enabled: false
+persistence:
+  enabled: true
+  volumes:
+    - name: sorba-data
+      mount:
+        path: "/srv"
+        # subPath: "/pvc-mount/config.txt"
+      claimName: jkl-com-sorba-data 
+      claim:
+        accessMode: ReadWriteMany
+        size: 8Gi
+        storageClass: "azurefile"

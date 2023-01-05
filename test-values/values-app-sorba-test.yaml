@@ -124,6 +124,13 @@ am-pattern-1:
         storageClass: default
 grafana:
   enabled: true
+  image:
+    registry: registry.desa.sorbapp.com
+    repository: sorbotics/dashboard/dashboard-ui/master
+    tag: latest
+    pullPolicy: IfNotPresent
+    pullSecrets: 
+      - gitlab-registry
   admin:
     password: admin
     user: admin
