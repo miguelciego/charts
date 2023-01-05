@@ -79,7 +79,7 @@ spec:
 {{- if .Values.persistence.volumes.claimName }}
             claimName: {{ $volume.claimName }}
 {{- else }}
-            claimName: {{ default template "pvcName" $args }}
+            claimName: {{ template "pvcName" $args }}
 {{- end }}
 {{- end }}
 {{- end }}
