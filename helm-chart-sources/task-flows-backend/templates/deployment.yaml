@@ -75,12 +75,12 @@ spec:
 {{- range $volume := .Values.persistence.volumes }}
         - name: {{ $volume.name | quote }}
           persistentVolumeClaim:
-            {{ $args := dict "context" $context "name" $volume.name }}
-{{- if .Values.persistence.volumes.claimName }}
+{{- if $volume.claimName }}
             claimName: {{ $volume.claimName }}
 {{- else }}
-            claimName: {{ default template "pvcName" $args }}
-{{- end }}
+            {{ $args := dict "context" $context "name" $volume.name }}
+            claimName: {{ template "pvcName" $args }}
+{{- end }}          
 {{- end }}
 {{- end }}
 {{- if .Values.extraVolumes }}
