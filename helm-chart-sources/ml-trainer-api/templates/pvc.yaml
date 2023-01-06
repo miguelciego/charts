@@ -5,8 +5,12 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
+{{- if $volume.claimName }}
+  name: {{ $volume.claimName }}
+{{- else }}
   {{ $args := dict "context" $context "name" $volume.name }}
   name: {{ template "pvcName" $args }}
+{{- end }}  
   labels:
     track: "{{ $.Values.application.track }}"
     tier: "{{ $.Values.application.tier }}"
