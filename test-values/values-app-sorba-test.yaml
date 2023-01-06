@@ -191,7 +191,7 @@ tree-api:
     pullPolicy: IfNotPresent
     secrets:
       - name: gitlab-registry 
-    persistence:
+  persistence:
     enabled: true
     volumes:
       - name: sorba-data

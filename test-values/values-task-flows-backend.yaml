@@ -1,14 +1,26 @@
-application:
-  database_url: mysql://root:4mz5IrvhZb@bitnami-mysql.for-test/tree
-  redis: '{"port": 6379, "host": "bitnami-redis-master.for-test","db": 0,"reconnectTime":
-    5000}'
 image:
-  pullPolicy: IfNotPresent
-  repository: registry.desa.sorbapp.com/sorbotics/sorba-task-flows/task-flows-backend/62-test-cloud-task-flow-deployment
-  secrets:
-  - name: gitlab-registry
+  repository: registry.desa.sorbapp.com/sorbotics/sorba-task-flows/task-flows-backend/master
   tag: latest
-resources:
-  requests: {}
-ingress:
-  enabled: false
+  pullPolicy: IfNotPresent
+  secrets:
+    - name: gitlab-registry
+application:
+  env:
+    DB_URI: mysql://root:JgHO98XqnV@jkl-sorba-mysql-sorba/task_flow
+    DEPLOY_TYPE: cloud
+    PORT: 5000
+    REDIS: '{"host":"jkl-sorba-redis-master", "port": 6379}'
+    TREE_URL: http://jkl-sorba-tree-api:5000
+    proxy: '{"tree":{"path":"/tree","remote":"http://jkl-sorba-tree-api:5000/"},"hdfs":{"path":"/","remote":"http://192.168.1.94:3003/"}}'
+persistence:
+  enabled: true
+  volumes:
+    - name: sorba-data
+      mount:
+        path: "/srv"
+        # subPath: "/pvc-mount/config.txt"
+      claimName: jkl-com-sorba-data 
+      claim:
+        accessMode: ReadWriteMany
+        size: 8Gi
+        storageClass: "azurefile"
