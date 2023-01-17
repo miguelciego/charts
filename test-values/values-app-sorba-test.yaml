@@ -136,10 +136,42 @@ grafana:
     user: admin
   plugins: "isaozler-paretochart-panel, ae3e-plotly-panel"
   datasources:
-    secretName: grafana-datasources
+    #secretName: grafana-datasources
+    secretDefinition: 
+    apiVersion: 1
+    deleteDatasources:
+      - name: Prometheus
+      - name: InfluxDB
+    #     orgId: 1
+    datasources:
+      - name: sorba_ml
+        database: sorba_ml
+        type: influxdb
+        url: http://jkl-sorba-influxdb:8086
+        access: proxy
+        jsonData:
+          httpMode: GET
+        isDefault: true
+      - name: sorba_ml_mysql
+        type: mysql
+        url: jkl-sorba-mysql-sorba:3306
+        user: root
+        database: ml_trainer
+        jsonData:
+          maxOpenConns: 0
+          maxIdleConns: 2
+          connMaxLifetime: 14400
+        secureJsonData:
+          password: JgHO98XqnV
   config:
     useGrafanaIniFile: true
-    grafanaIniSecret: grafana-ini
+    #grafanaIniSecret: grafana-ini
+    configmapDefinition: 
+    grafana.ini: |-
+      [security] 
+      allow_embedding= true 
+      [auth.anonymous] 
+      enabled= true 
   ingress:
     annotations:
       cert-manager.io/issuer: jkl-com-issuer
