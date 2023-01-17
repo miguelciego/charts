@@ -186,7 +186,7 @@ spec:
             {{- end }}
               subPath: {{ .fileName }}
             {{- end }}
-            {{- if .Values.datasources.secretName }}
+            {{- if or (.Values.datasources.secretName) (.Values.datasources.secretDefinition) }}
             - name: datasources
               mountPath: /opt/bitnami/grafana/conf/provisioning/datasources
             {{- end }}
@@ -296,10 +296,14 @@ spec:
           configMap:
             name: {{ .configMapName }}
         {{- end }}
-        {{- if .Values.datasources.secretName }}
+       {{- if .Values.datasources.secretName }}
         - name: datasources
           secret:
             secretName: {{ .Values.datasources.secretName }}
+        {{- else if .Values.datasources.secretDefinition }}
+        - name: datasources
+          secret:
+            secretName: {{ include "common.names.fullname" . }}-datasources
         {{- end }}
         {{- if .Values.notifiers.configMapName }}
         - name: notifiers
@@ -314,7 +318,10 @@ spec:
           {{- else if .Values.config.grafanaIniSecret }}
           secret:
             secretName: {{ .Values.config.grafanaIniSecret }}
-          {{- end }}
+          {{- else if .Values.config.configmapDefinition }}
+          configMap:
+            name: {{ include "common.names.fullname" . }}-grafana-ini
+        {{- end }}
         {{- end }}
         {{- range .Values.grafana.extraConfigmaps }}
         - name: {{ .name }}

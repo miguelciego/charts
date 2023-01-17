@@ -153,9 +153,9 @@ grafana: replicaCount
 
 {{/* Validate values of Grafana - A ConfigMap or Secret name must be provided when loading a custom grafana.ini file */}}
 {{- define "grafana.validateValues.configmapsOrSecrets" -}}
-{{- if and .Values.config.useGrafanaIniFile (not .Values.config.grafanaIniSecret) (not .Values.config.grafanaIniConfigMap) -}}
-grafana: config.useGrafanaIniFile config.grafanaIniSecret and config.grafanaIniConfigMap
-        You enabled config.useGrafanaIniFile but did not specify config.grafanaIniSecret nor config.grafanaIniConfigMap
+{{- if and .Values.config.useGrafanaIniFile (not .Values.config.grafanaIniSecret) (not .Values.config.grafanaIniConfigMap) (not .Values.config.configmapDefinition) -}}
+grafana: config.useGrafanaIniFile config.grafanaIniSecret and config.grafanaIniConfigMap and Values.config.configmapDefinition
+        You enabled config.useGrafanaIniFile but did not specify config.grafanaIniSecret nor config.grafanaIniConfigMap nor config.configmapDefinition
 {{- end -}}
 {{- end -}}
 

@@ -1,0 +1,17 @@
+{{- if .Values.config.configmapDefinition }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "common.names.fullname" . }}-grafana-ini
+  namespace: {{ .Release.Namespace | quote }}
+  labels: {{- include "common.labels.standard" . | nindent 4 }}
+    {{- if .Values.commonLabels }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
+    {{- end }}
+    app.kubernetes.io/component: grafana
+data:
+{{- range $key, $val := .Values.config.configmapDefinition }}
+  {{ $key }}: |-
+{{ $val | indent 4}}
+{{- end }}
+{{- end -}}
