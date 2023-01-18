@@ -1,5 +1,5 @@
 vernemq:
-  enabled: false
+  enabled: true
 cert-manager:
   enabled: true
   installCRDs: true
