@@ -401,6 +401,18 @@ oee-ui:
     url: http://oee.jkl-com.sorbapp.com
 rtdb-sync-pub:
   enabled: true
+  livenessProbe:
+    probeType: "exec"
+    command:
+      - ls
+    initialDelaySeconds: 15
+    timeoutSeconds: 15
+  readinessProbe:
+    probeType: "exec"
+    command:
+      - ls
+    initialDelaySeconds: 5
+    timeoutSeconds: 3
   application:
     env:
       SCOPE: "cloud"
@@ -413,6 +425,18 @@ rtdb-sync-pub:
       DEBUG: 1
 rtdb-sync-sub:
   enabled: true
+  livenessProbe:
+    probeType: "exec"
+    command:
+      - ls
+    initialDelaySeconds: 15
+    timeoutSeconds: 15
+  readinessProbe:
+    probeType: "exec"
+    command:
+      - ls
+    initialDelaySeconds: 5
+    timeoutSeconds: 3
   application:
     env:
       SCOPE: "cloud"
