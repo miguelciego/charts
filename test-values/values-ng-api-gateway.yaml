@@ -1,23 +1,23 @@
 application:
-  database_url: mysql://root:4mz5IrvhZb@bitnami-mysql.for-test/tree
-  redis: '{"port": 6379, "host": "bitnami-redis-master.for-test","db": 0,"reconnectTime":
-    5000}'
+  env:
+    database_url: mysql://root:4mz5IrvhZb@bitnami-mysql.for-test/tree
+    redis: '{"port": 6379, "host": "bitnami-redis-master.for-test","db": 0,"reconnectTime":
+      5000}'
 image:
   pullPolicy: IfNotPresent
-  repository: registry.desa.sorbapp.com/sorbotics/platform/ng-api-gateway/new-generation
+  repository: registry.desa.sorbapp.com/sorbotics/platform/ng-api-gateway/master
   secrets:
   - name: gitlab-registry
-  tag: latest
+  tag: e913d749357d51c5075acc0be18649b007f197f2
 resources:
   requests: {}
 ingress:
   enabled: true
   className: "nuevo1-nginx"
-service:
-  url: ng-api-gateway.nuevo1.sorbapp.com
   annotations:
-    cert-manager.io/issuer: nuevo1-issuer  
-#    kubernetes.io/ingress.class: nginx
-#    kubernetes.io/tls-acme: 'true'
-#    meta.helm.sh/release-name: ng-api-gateway
-#    meta.helm.sh/release-namespace: nuevo1
+    cert-manager.io/issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: demo-com-nginx
+  tls:
+    secretName: ng-api-gateway-demo-com-sorba-ai-tls
+service:
+  url: http://ng-api-gateway.demo-com.sorba.ai/

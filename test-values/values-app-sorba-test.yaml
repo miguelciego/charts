@@ -591,7 +591,6 @@ vpn-spa:
       socketUrl: wss://websoc.jkl-com.sorbapp.com/websocket
       apps: '[{"name":"IoT Unified","link":"https://platform.jkl-com.sorbapp.com","disabled":false},{"name":"Dashboard","link":"https://dashboard.jkl-com.sorbapp.com","disabled":false},{"name":"Machine Learning Trainer","link":"https://ml.jkl-com.sorbapp.com","disabled":false},{"name":"Production Performance Analyzer","link":"https://oee.jkl-com.sorbapp.com","disabled":false},{"name":"Task Flow","link":"https://taskflow.jkl-com.sorbapp.com","disabled":false},{"name":"Identity","link":"https://identity.jkl-com.sorbapp.com","disabled":false}]'
   ingress:
-  ingress:
     enabled: true
     annotations:
       cert-manager.io/issuer: jkl-com-issuer
@@ -601,3 +600,30 @@ vpn-spa:
       nginx.ingress.kubernetes.io/proxy-buffering: 'off'   
   service:
     url: http://vpn.jkl-com.sorbapp.com
+ng-api-gateway:
+  enabled: true
+  application:
+    env:
+      sequelize: mysql://root:4mz5IrvhZb@jkl-sorba-mysql-sorba/tree
+      redis: '{"port": 6379, "host": "jkl-sorba-redis-master","db": 0,"reconnectTime":5000}'
+      proxy: '{ "tree": { "path": "/tree", "remote": "http://jkl-sorba-tree-api:5000/" }, "hdfs": { "path": "/hdfs", "remote": "http://192.168.1.94:3003/" }, "task": { "path": "/task", "remote": "http://jkl-sorba-task-flows-backend:5000/" }  }'
+  image:
+    pullPolicy: IfNotPresent
+    repository: registry.desa.sorbapp.com/sorbotics/platform/ng-api-gateway/new-generation
+    secrets:
+    - name: gitlab-registry
+    tag: latest
+  resources:
+    requests: {}
+  ingress:
+    enabled: true
+    #className: "nuevo1-nginx"
+    annotations:
+      cert-manager.io/issuer: jkl-com-issuer
+      kubernetes.io/ingress.class: "jkl-com-nginx"
+      kubernetes.io/tls-acme: "true"
+      nginx.ingress.kubernetes.io/proxy-body-size: '0'
+      nginx.ingress.kubernetes.io/proxy-buffering: 'off' 
+  service:
+    url: http://ng-api-gateway.jkl-com.sorbapp.com/
+ 
