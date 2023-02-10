@@ -136,6 +136,69 @@ spec:
           value: {{$v | quote}}
 {{- end }}
 
+{{- range $w, $s := .Values.application.extra_env }}
+        - name: {{$w }}
+          value: {{$s | quote}}
+{{- end }}
+
+#TEST
+{{- if .Values.application.env.SCOPE }}
+        - name: SCOPE
+          value: {{ .Values.application.env.SCOPE }}
+{{- else }}
+        - name: SCOPE
+          value: "cloud"
+{{- end }}
+
+{{- if .Values.application.env.MQTT_HOST }}
+        - name: MQTT_HOST
+          value: {{ .Values.application.env.MQTT_HOST }}
+{{- else }}
+        - name: MQTT_HOST
+          value: sorba-vernamq
+{{- end }}
+
+{{- if .Values.application.env.MQTT_TOPIC }}
+        - name: MQTT_TOPIC
+          value: {{ .Values.application.env.MQTT_TOPIC }}
+{{- else }}
+        - name: MQTT_TOPIC
+          value: "rtdb/"
+{{- end }}
+
+{{- if .Values.application.env.REDIS_HOST }}
+        - name: REDIS_HOST
+          value: {{ .Release.Name }}-redis-master
+{{- else }}
+        - name: REDIS_HOST
+          value: {{ .Release.Name }}-redis-master
+{{- end }}
+
+{{- if .Values.application.env.SE_REDIS_DB }}
+        - name: SE_REDIS_DB
+          value: {{ .Values.application.env.SE_REDIS_DB }}
+{{- else }}
+        - name: SE_REDIS_DB
+          value: 0
+{{- end }}
+
+{{- if .Values.application.env.REDIS_DB }}
+        - name: REDIS_DB
+          value: {{ .Values.application.env.REDIS_DB }}
+{{- else }}
+        - name: REDIS_DB
+          value: 0
+{{- end }}
+
+{{- if .Values.application.env.DEBUG }}
+        - name: DEBUG
+          value: {{ .Values.application.env.DEBUG }}
+{{- else }}
+        - name: DEBUG
+          value: 1
+{{- end }}
+#ENDTEST
+
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}
         - name: GITLAB_ENVIRONMENT_URL

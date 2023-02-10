@@ -46,6 +46,8 @@ application:
   # You can omit `DATABASE_URL` variable injection into your deployment containers,
   # if you explicitly set `database_url` to `null`.
   # database_url: null
+
+  extra_env: []
 hpa:
   enabled: false
   minReplicas: 1
@@ -66,11 +68,11 @@ hpa:
   #       averageUtilization: 80
 
 gitlab:
-  app:
-  env:
-  envName:
-  envURL:
-  projectID:
+  app: ""
+  env: ""
+  envName: ""
+  envURL: ""
+  projectID: ""
 service:
   enabled: true
   annotations: {}

@@ -46,10 +46,12 @@ application:
   # You can omit `DATABASE_URL` variable injection into your deployment containers,
   # if you explicitly set `database_url` to `null`.
   # database_url: null
-  env:
-    OPENID_CONNECT: '{ "clientID": "eHZa9GWG2le_KH8WLaoeNUb0FOgab", "clientSecret": "JJpVoMPKbl91xxRXb7mpfyZyAOMab", "issuer": "https://sorbais.sor.sorba.ai:443/oauth2/token", "authorizationURL": "https://sorbais.sor.sorba.ai/oauth2/authorize", "tokenURL": "https://sorbais.sor.sorba.ai/oauth2/token", "callbackURL": "https://oee.sor.sorba.ai/callback", "skipUserProfile": true }'
-    proxies: '{"/oee":{"target":"http://sorbapp-oee-engine-auto-deploy-app-gitlab:5000","pathRewrite":{"^/oee":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/dashboard":{"target":"http://bitnami-grafana:3000","pathRewrite":{"^/dashboard":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/tree":{"target":"http://sorbapp-tree-api-auto-deploy-app-gitlab:5000","pathRewrite":{"^/tree":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/influx":{"target":"http://bitnami-influxdb:8086","pathRewrite":{"^/influx":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/sde-identity-service":{"target":"http://localhost:3005","pathRewrite":{"^/sde-identity-service":""},"secure":false,"changeOrigin":true,"logLevel":"debug"}}'
-    redis: '{"host": "bitnami-redis-master", "port": 6379}'  
+  env: {}
+  #  OPENID_CONNECT: '{ "clientID": "eHZa9GWG2le_KH8WLaoeNUb0FOgab", "clientSecret": "JJpVoMPKbl91xxRXb7mpfyZyAOMab", "issuer": "https://sorbais.sor.sorba.ai:443/oauth2/token", "authorizationURL": "https://sorbais.sor.sorba.ai/oauth2/authorize", "tokenURL": "https://sorbais.sor.sorba.ai/oauth2/token", "callbackURL": "https://oee.sor.sorba.ai/callback", "skipUserProfile": true }'
+  #  proxies: '{"/oee":{"target":"http://sorbapp-oee-engine-auto-deploy-app-gitlab:5000","pathRewrite":{"^/oee":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/dashboard":{"target":"http://bitnami-grafana:3000","pathRewrite":{"^/dashboard":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/tree":{"target":"http://sorbapp-tree-api-auto-deploy-app-gitlab:5000","pathRewrite":{"^/tree":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/influx":{"target":"http://bitnami-influxdb:8086","pathRewrite":{"^/influx":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/sde-identity-service":{"target":"http://localhost:3005","pathRewrite":{"^/sde-identity-service":""},"secure":false,"changeOrigin":true,"logLevel":"debug"}}'
+  #  redis: '{"host": "bitnami-redis-master", "port": 6379}'
+
+  extra_env: []   
 hpa:
   enabled: false
   minReplicas: 1

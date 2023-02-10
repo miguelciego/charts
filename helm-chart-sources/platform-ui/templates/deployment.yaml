@@ -136,6 +136,184 @@ spec:
           value: {{$v | quote}}
 {{- end }}
 
+{{- range $w, $s := .Values.application.extra_env }}
+        - name: {{$w }}
+          value: {{$s | quote}}
+{{- end }}
+
+#TEST
+{{- if .Values.application.env.OPENID_CONNECT }}
+        - name: OPENID_CONNECT
+          value: {{ .Values.application.env.OPENID_CONNECT | squote }}
+{{- else }}
+        - name: OPENID_CONNECT
+          value: '{ "clientID": "gq0aTATyGOf4sRXggyQjwJ1V6hka", "clientSecret": "UtQmCLX5Y_cTsfqwW2wgVTw8oOEa", "issuer": "https://sorbais.demo-com.sorba.ai:443/oauth2/token", "authorizationURL": "https://sorbais.demo-com.sorba.ai/oauth2/authorize", "tokenURL": "https://sorbais.demo-com.sorba.ai/oauth2/token", "callbackURL": "https://platform.demo-com.sorba.ai/callback", "skipUserProfile": true }'
+{{- end }}
+
+{{- if .Values.application.env.SESSION_SETTINGS }}
+        - name: SESSION_SETTINGS
+          value: {{ .Values.application.env.SESSION_SETTINGS | squote }}
+{{- else }}
+        - name: SESSION_SETTINGS
+          value: '{ "name": "platform-website", "secret": "jqHmJcoXvhn0kQVumnvQ" }'
+{{- end }}
+
+{{- if .Values.application.env.deployType }}
+        - name: deployType
+          value: {{ .Values.application.env.deployType }}
+{{- else }}
+        - name: deployType
+          value: cloud
+{{- end }}
+
+{{- if .Values.application.env.googleMapsKey }}
+        - name: googleMapsKey
+          value: {{ .Values.application.env.googleMapsKey }}
+{{- else }}
+        - name: googleMapsKey
+          value: IzaSyBNj7leq6sjqp-cjKZscq6AjlHCT4vS_YM
+{{- end }}
+
+{{- if .Values.application.env.googleMapsURL }}
+        - name: googleMapsURL
+          value: {{ .Values.application.env.googleMapsURL }}
+{{- else }}
+        - name: googleMapsURL
+          value: https://maps.googleapis.com/maps/api/js
+{{- end }}
+
+{{- if .Values.application.env.identityServiceAPI }}
+        - name: identityServiceAPI
+          value: {{ .Values.application.env.identityServiceAPI }}
+{{- else }}
+        - name: identityServiceAPI
+          value: https://wso2am-pattern-1-am-service:8243/identity/v1
+{{- end }}
+
+{{- if .Values.application.env.proxies }}
+        - name: proxies
+          value: {{ .Values.application.env.proxies | squote }}
+{{- else }}
+        - name: proxies
+          value: '{
+    "/identity-server": {
+      "target": "https://wso2am-pattern-1-am-service:8243/identity/v1/",
+      "pathRewrite": {
+        "^/identity-server": ""
+      },
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/tree": {
+      "target": "https://wso2am-pattern-1-am-service:8243/tree/v1/",
+      "pathRewrite": {
+        "^/tree": ""
+      },
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/devices": {
+      "target": "http://sorbotics-sorba-collector-api.prod.sorbapp.com",
+      "pathRewrite": {
+        "^/devices": ""
+      },
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/uuid-gen": {
+      "target": "http://sorbapp-uuid-gen-api-auto-deploy-app-gitlab:5000",
+      "pathRewrite": {
+        "^/uuid-gen": ""
+      },
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/asset": {
+      "target": "http://sorbotics-sorba-asset-api.prod.sorbapp.com",
+      "pathRewrite": {
+        "^/asset": ""
+      },
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/ml-trainer": {
+      "target": "http://sorbapp-ml-trainer-api-auto-deploy-app-gitlab:5000",
+      "pathRewrite": {
+        "^/ml-trainer": ""
+      },
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/rtdb": {
+      "target": "http://webdis:7379",
+      "pathRewrite": {
+        "^/rtdb": ""
+      },
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/hdfs-api": {
+      "target": "http://sorbotics-ml-trainer-hdfs-api.prod.sorbapp.com",
+      "pathRewrite": {
+        "^/hdfs-api": ""
+      },
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/api/commands/*": {
+      "target": "https://websoc.demo-com.sorba.ai/api/commands",
+      "pathRewrite": {
+        "^/api/commands": ""
+      },
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true
+    },
+    "/api/influx/*": {
+      "target": "http://influxdb-1-8:8086",
+      "pathRewrite": {
+        "^/api/influx": ""
+      },
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true
+    }
+  }'
+{{- end }}
+
+{{- if .Values.application.env.redis }}
+        - name: redis
+          value: '{"host": "{{ .Release.Name }}-redis-master", "port": 6379}'
+{{- else }}
+        - name: redis
+          value: '{"host": "{{ .Release.Name }}-redis-master", "port": 6379}'
+{{- end }}
+
+{{- if .Values.application.env.sideMenu }}
+        - name: sideMenu
+          value: {{ .Values.application.env.sideMenu | squote }}
+{{- else }}
+        - name: sideMenu
+          value: '[{"group":"","items":[{"label":"Overview","link":"/overview","icon":"ionicons:home-outline","alias":"Overview"},{"label":"Workspace","link":"/workspace","icon":"ionicons:grid-outline","alias":"Workspace"},{"label":"Dashboard","link":"/dashboard","icon":"ionicons:speedometer-outline","alias":"Dashboard","external":true,"disabled":false,"package":"grafana"},{"label":"Workflow","link":"/workflow","icon":"ionicons:shuffle-outline","alias":"Workflow","external":true,"disabled":true,"package":"sdc-workflow"}]},{"group":"Packages","items":[{"label":"ML Trainer","link":"/mlui","icon":"ionicons:hardware-chip-outline","alias":"MLTrainer","external":true,"disabled":true,"package":"ml-standalone-all"}]},{"group":"Settings","items":[{"label":"Identity Server","link":"/identity","icon":"ionicons:finger-print-outline","alias":"IdentityServer","external":true,"disabled":false,"package":"identity-service"},{"label":"Remote Access","link":"https://vpn.demo-com.sorba.ai","alias":"RemoteAccess","icon":"ionicons:key-outline"},{"label":"System Events","link":"/events","alias":"SystemEvents","icon":"ionicons:pulse-outline"}]}]'
+{{- end }}
+
+{{- if .Values.application.env.survey }}
+        - name: survey
+          value: {{ .Values.application.env.survey | squote}}
+{{- else }}
+        - name: survey
+          value: '{"mainQuestion":"Do you like our new user interface?","secondaryQuestion": "How can we improve it?"}'
+{{- end }}
+#ENDTEST
+
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}
         - name: GITLAB_ENVIRONMENT_URL

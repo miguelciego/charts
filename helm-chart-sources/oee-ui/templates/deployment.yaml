@@ -136,6 +136,39 @@ spec:
           value: {{$v | quote}}
 {{- end }}
 
+{{- range $w, $s := .Values.application.extra_env }}
+        - name: {{$w }}
+          value: {{$s | quote}}
+{{- end }}
+
+#TEST
+{{- if .Values.application.env.OPENID_CONNECT }}
+        - name: OPENID_CONNECT
+          value: {{ .Values.application.env.OPENID_CONNECT | squote }}
+{{- else }}
+        - name: OPENID_CONNECT
+          value: '{ "clientID": "eHZa9GWG2le_KH8WLaoeNUb0FOgab", "clientSecret": "JJpVoMPKbl91xxRXb7mpfyZyAOMab", "issuer": "https://sorbais.sor.sorba.ai:443/oauth2/token", "authorizationURL": "https://sorbais.sor.sorba.ai/oauth2/authorize", "tokenURL": "https://sorbais.sor.sorba.ai/oauth2/token", "callbackURL": "https://oee.sor.sorba.ai/callback", "skipUserProfile": true }'
+{{- end }}
+
+{{- if .Values.application.env.proxies }}
+        - name: proxies
+          value: {{ .Values.application.env.proxies | squote}}
+{{- else }}
+        - name: proxies
+          value: '{"/oee":{"target":"http://sorbapp-oee-engine-auto-deploy-app-gitlab:5000","pathRewrite":{"^/oee":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/dashboard":{"target":"http://bitnami-grafana:3000","pathRewrite":{"^/dashboard":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/tree":{"target":"http://sorbapp-tree-api-auto-deploy-app-gitlab:5000","pathRewrite":{"^/tree":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/influx":{"target":"http://bitnami-influxdb:8086","pathRewrite":{"^/influx":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/sde-identity-service":{"target":"http://localhost:3005","pathRewrite":{"^/sde-identity-service":""},"secure":false,"changeOrigin":true,"logLevel":"debug"}}'
+{{- end }}
+
+{{- if .Values.application.env.redis }}
+        - name: redis
+          value: '{"host": "{{ .Release.Name }}-redis-master", "port": 6379}'
+{{- else }}
+        - name: redis
+          value: '{"host": "{{ .Release.Name }}-redis-master", "port": 6379}'
+{{- end }}
+
+#ENDTEST
+
+
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}
         - name: GITLAB_ENVIRONMENT_URL

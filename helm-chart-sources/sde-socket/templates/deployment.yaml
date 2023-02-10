@@ -136,6 +136,62 @@ spec:
           value: {{$v | quote}}
 {{- end }}
 
+{{- range $w, $s := .Values.application.extra_env }}
+        - name: {{$w }}
+          value: {{$s | quote}}
+{{- end }}
+
+#TEST
+{{- if .Values.application.env.JWT_SECRET }}
+        - name: JWT_SECRET
+          value: {{ .Values.application.env.JWT_SECRET }}
+{{- else }}
+        - name: JWT_SECRET
+          value: eShVmYq3t6w9z$C&F)J@McQfTjWnZr4u7x!A%D*G-KaPdRgUkXp2s5v8y/B?E(H+MbQeThVmYq3t6w9z$C&F)J@NcRfUjXnZr4u7x!A%D*G-KaPdSgVkYp3s5v8y/B?E
+{{- end }}
+
+{{- if .Values.application.env.REDIS_HOST }}
+        - name: REDIS_HOST
+          value: {{ .Release.Name }}-redis-master
+{{- else }}
+        - name: REDIS_HOST
+          value: {{ .Release.Name }}-redis-master
+{{- end }}
+
+{{- if .Values.application.env.REDIS_PORT }}
+        - name: REDIS_PORT
+          value: {{ .Values.application.env.REDIS_PORT }}
+{{- else }}
+        - name: REDIS_PORT
+          value: 6378
+{{- end }}
+
+{{- if .Values.application.env.deployType }}
+        - name: deployType
+          value: {{ .Values.application.env.deployType }}
+{{- else }}
+        - name: deployType
+          value: cloud
+{{- end }}
+
+{{- if .Values.application.env.identityServiceAPI }}
+        - name: identityServiceAPI
+          value: {{ .Values.application.env.identityServiceAPI }}
+{{- else }}
+        - name: identityServiceAPI
+          value: https://wso2am-pattern-1-am-service:8243
+{{- end }}
+
+{{- if .Values.application.env.npm_package_name }}
+        - name: npm_package_name
+          value: {{ .Values.application.env.npm_package_name }}
+{{- else }}
+        - name: npm_package_name
+          value: event-middleware
+{{- end }}
+
+#ENDTEST
+
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}
         - name: GITLAB_ENVIRONMENT_URL

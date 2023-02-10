@@ -136,6 +136,61 @@ spec:
           value: {{$v | quote}}
 {{- end }}
 
+{{- range $w, $s := .Values.application.extra_env }}
+        - name: {{$w }}
+          value: {{$s | quote}}
+{{- end }}
+
+#TEST
+{{- if .Values.application.env.APIM_URL }}
+        - name: APIM_URL
+          value: {{ .Values.application.env.APIM_URL }}
+{{- else }}
+        - name: APIM_URL
+          value: https://wso2am-pattern-1-am-service:9443
+{{- end }}
+
+{{- if .Values.application.env.API_GATEWAY }}
+        - name: API_GATEWAY
+          value: {{ .Values.application.env.API_GATEWAY }}
+{{- else }}
+        - name: API_GATEWAY
+          value: http://sorba-identity-api-ng-manuel-auto-deploy-app-gitlab:5000/api
+{{- end }}
+
+{{- if .Values.application.env.API_MANAGER_PASSWORD }}
+        - name: API_MANAGER_PASSWORD
+          value: {{ .Values.application.env.API_MANAGER_PASSWORD }}
+{{- else }}
+        - name: API_MANAGER_PASSWORD
+          value: admin
+{{- end }}
+
+{{- if .Values.application.env.DEPLOY_TYPE }}
+        - name: DEPLOY_TYPE
+          value: {{ .Values.application.env.DEPLOY_TYPE }}
+{{- else }}
+        - name: DEPLOY_TYPE
+          value: cloud
+{{- end }}
+
+{{- if .Values.application.env.MYSQL_HOST }}
+        - name: MYSQL_HOST
+          value: {{ .Values.application.env.MYSQL_HOST }}
+{{- else }}
+        - name: MYSQL_HOST
+          value: bitnami-mysql
+{{- end }}
+
+{{- if .Values.application.env.MYSQL_PASSWORD }}
+        - name: MYSQL_PASSWORD
+          value: {{ .Values.application.env.MYSQL_PASSWORD }}
+{{- else }}
+        - name: MYSQL_PASSWORD
+          value: JgHO98XqnV
+{{- end }}
+#ENDTEST
+
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}
         - name: GITLAB_ENVIRONMENT_URL

@@ -46,9 +46,11 @@ application:
   # You can omit `DATABASE_URL` variable injection into your deployment containers,
   # if you explicitly set `database_url` to `null`.
   # database_url: null
-  env:
-    proxy: '{ "tree": { "path": "/tree", "remote": "http://sorbapp-tree-api-auto-deploy-app-gitlab:5000/" }, "hdfs": { "path": "/", "remote": "http://192.168.1.94:3003/" } }'
-    sequelize: mysql://root:JgHO98XqnV@bitnami-mysql/tree  
+  env: {}
+  #  proxy: '{ "tree": { "path": "/tree", "remote": "http://sorbapp-tree-api-auto-deploy-app-gitlab:5000/" }, "hdfs": { "path": "/", "remote": "http://192.168.1.94:3003/" } }'
+  #  sequelize: mysql://root:JgHO98XqnV@bitnami-mysql/tree
+
+  extra_env: []   
 
 hpa:
   enabled: false

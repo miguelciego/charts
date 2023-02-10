@@ -46,14 +46,16 @@ application:
   # You can omit `DATABASE_URL` variable injection into your deployment containers,
   # if you explicitly set `database_url` to `null`.
   # database_url: null
-  env:
-    SCOPE: "cloud"
-    MQTT_HOST: sorba-vernamq
-    MQTT_TOPIC: "rtdb/"
-    REDIS_HOST: bitnami-redis-master
-    SE_REDIS_DB: 0
-    REDIS_DB: 0
-    DEBUG: 1 
+  env: {}
+  #  SCOPE: "cloud"
+  #  MQTT_HOST: sorba-vernamq
+  #  MQTT_TOPIC: "rtdb/"
+  #  REDIS_HOST: bitnami-redis-master
+  #  SE_REDIS_DB: 0
+  #  REDIS_DB: 0
+  #  DEBUG: 1
+
+  extra_env: [] 
 hpa:
   enabled: false
   minReplicas: 1

@@ -140,6 +140,95 @@ spec:
           value: {{$v | quote}}
 {{- end }}
 
+{{- range $w, $s := .Values.application.extra_env }}
+        - name: {{$w }}
+          value: {{$s | quote}}
+{{- end }}
+
+#TEST
+
+{{- if .Values.application.env.DEPLOY_TYPE }}
+        - name: DEPLOY_TYPE
+          value: {{ .Values.application.env.DEPLOY_TYPE | quote }}
+{{- else }}
+        - name: DEPLOY_TYPE
+          value: "CLOUD"
+{{- end }}
+
+{{- if .Values.application.env.tenant }}
+        - name: tenant
+          value: {{ .Values.application.env.tenant | quote }}
+{{- else }}
+        - name: tenant
+          value: "demo.com"
+{{- end }}
+
+{{- if .Values.application.env.DATABASE_URL }}
+        - name: DATABASE_URL
+          value: {{ .Values.application.env.DATABASE_URL | squote }}
+{{- else }}
+        - name: DATABASE_URL
+          value: '{ "database": "ml_trainer", "username": "root", "password": "JgHO98XqnV", "host": "bitnami-mysql", "dialect": "mysql", "logging": false }'
+{{- end }}
+
+{{- if .Values.application.env.fsEntryPoint }}
+        - name: fsEntryPoint
+          value: {{ .Values.application.env.fsEntryPoint | quote }}
+{{- else }}
+        - name: fsEntryPoint
+          value: "/srv/"
+{{- end }}
+
+{{- if .Values.application.REDIS }}
+        - name: REDIS
+          value: '{"useDefaults": {{ .Values.application.REDIS.useDefaults }},"host":"{{ .Release.Name }}-redis-master","port": {{ .Values.application.REDIS.redisport }},"user":{{ .Values.application.REDIS.userredis }},"passwordredis":{{ .Values.application.REDIS.passwordredis }}}'
+{{- else }}
+        - name: REDIS
+          value: '{ useDefaults: false, "host":"{{ .Release.Name }}-redis-master", port: 6379, user: "", password: "" }'
+{{- end }}
+
+{{- if .Values.application.env.STORAGE }}
+        - name: STORAGE
+          value: {{ .Values.application.env.STORAGE | squote }}
+{{- else }}
+        - name: STORAGE
+          value: '{ useDefaults: false,url: "http://localhost:8086", db: "sorba_ml", batch_size: 1000, user: "", password: "", version: "1.x", bucket: "", token: "", org: "" }'
+{{- end }}
+
+{{- if .Values.application.env.DATASOURCE }}
+        - name: DATASOURCE
+          value: {{ .Values.application.env.DATASOURCE | squote }}
+{{- else }}
+        - name: DATASOURCE
+          value: '{ useDefaults: true, url: "http://localhost:8086", db: "sorba_ml", batch_size: 1000, user: "",
+        password: "", version: "1.x", bucket: "", token: "", org: "" }'
+{{- end }}
+
+{{- if .Values.application.env.TREE }}
+        - name: TREE
+          value: {{ .Values.application.env.TREE | squote }}
+{{- else }}
+        - name: TREE
+          value: '{ useDefaults: false, url: "http://localhost:8089" }'
+{{- end }}
+
+{{- if .Values.application.env.DASHBOARD }}
+        - name: DASHBOARD
+          value: {{ .Values.application.env.DASHBOARD | squote }}
+{{- else }}
+        - name: DASHBOARD
+          value: '{ useDefaults: false, url: "http://localhost:8089" }'
+{{- end }}
+
+{{- if .Values.application.env.RAY }}
+        - name: RAY
+          value: {{ .Values.application.env.RAY | squote }}
+{{- else }}
+        - name: RAY
+          value: '{ useDefaults: false, master_address: "", cluster_http: "", masters: [], workers: []}'
+{{- end }}
+#ENDTEST
+
 
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}

@@ -46,19 +46,30 @@ application:
   # You can omit `DATABASE_URL` variable injection into your deployment containers,
   # if you explicitly set `database_url` to `null`.
   # database_url: null
-  env:
-    DEPLOY_TYPE: "CLOUD"
-    tenant: "demo.com"
-    DATABASE_URL: '{ "database": "ml_trainer", "username": "root", "password": "JgHO98XqnV", "host": "bitnami-mysql", "dialect": "mysql", "logging": false }'
-    fsEntryPoint: "/srv/"
-    REDIS: '{ useDefaults: false, host: "127.0.0.1", port: 6379, user: "", password: "" }'
-    STORAGE: '{ useDefaults: false,url: "http://localhost:8086", db: "sorba_ml", batch_size: 1000, user: "", password: "", version: "1.x", bucket: "", token: "", org: "" }'
+  env: {}
+   # DEPLOY_TYPE: "CLOUD"
+   # tenant: "demo.com"
+   # DATABASE_URL: '{ "database": "ml_trainer", "username": "root", "password": "JgHO98XqnV", "host": "bitnami-mysql", "dialect": "mysql", "logging": false }'
+   # fsEntryPoint: "/srv/"
+   # REDIS: '{ useDefaults: false, host: "127.0.0.1", port: 6379, user: "", password: "" }'
+   # STORAGE: '{ useDefaults: false,url: "http://localhost:8086", db: "sorba_ml", batch_size: 1000, user: "", password: "", version: "1.x", bucket: "", token: "", org: "" }'
     
-    DATASOURCE: '{ useDefaults: true, url: "http://localhost:8086", db: "sorba_ml", batch_size: 1000, user: "",
-        password: "", version: "1.x", bucket: "", token: "", org: "" }'
-    TREE: '{ useDefaults: false, url: "http://localhost:8089" }'
-    DASHBOARD: '{ useDefaults: false, URL: "http://localhost:3000/api", host: "", port: 3000, user: "admin", password: "admin", org: "main" }'
-    RAY: '{ useDefaults: false, master_address: "", cluster_http: "", masters: [], workers: []}'
+   # DATASOURCE: '{ useDefaults: true, url: "http://localhost:8086", db: "sorba_ml", batch_size: 1000, user: "",
+   #     password: "", version: "1.x", bucket: "", token: "", org: "" }'
+   # TREE: '{ useDefaults: false, url: "http://localhost:8089" }'
+   # DASHBOARD: '{ useDefaults: false, URL: "http://localhost:3000/api", host: "", port: 3000, user: "admin", password: "admin", org: "main" }'
+   # RAY: '{ useDefaults: false, master_address: "", cluster_http: "", masters: [], workers: []}'
+
+  extra_env: [] 
+
+  #REDIS:
+  #  redisport: 6379 
+  #  redishost: "127.0.0.1"
+  #  redisdb: 0
+  #  redisreconnectTime: 5000
+  #  userredis: ""
+  #  passwordredis: ""
+  #  useDefaults: false
 
 hpa:
   enabled: false

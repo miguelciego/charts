@@ -136,6 +136,95 @@ spec:
           value: {{$v | quote}}
 {{- end }}
 
+{{- range $w, $s := .Values.application.extra_env }}
+        - name: {{$w }}
+          value: {{$s | quote}}
+{{- end }}
+
+#TEST
+
+{{- if .Values.application.env.GRAFANA_HOST }}
+        - name: GRAFANA_HOST
+          value: {{ .Values.application.env.GRAFANA_HOST }}
+{{- else }}
+        - name: GRAFANA_HOST
+          value: http://bitnami-grafana:3000/api
+{{- end }}
+
+{{- if .Values.application.env.GRAFANA_PASSWORD }}
+        - name: GRAFANA_PASSWORD
+          value: {{ .Values.application.env.GRAFANA_PASSWORD }}
+{{- else }}
+        - name: GRAFANA_PASSWORD
+          value: adminpwd
+{{- end }}
+
+{{- if .Values.application.env.GRAFANA_URL }}
+        - name: GRAFANA_URL
+          value: {{ .Values.application.env.GRAFANA_URL | squote }}
+{{- else }}
+        - name: GRAFANA_URL
+          value: ''
+{{- end }}
+
+{{- if .Values.application.env.GRAFANA_USER }}
+        - name: GRAFANA_USER
+          value: {{ .Values.application.env.GRAFANA_USER }}
+{{- else }}
+        - name: GRAFANA_USER
+          value: admin
+{{- end }}
+
+{{- if .Values.application.env.INFLUX_HOST }}
+        - name: INFLUX_HOST
+          value: {{ .Values.application.env.INFLUX_HOST }}
+{{- else }}
+        - name: INFLUX_HOST
+          value: bitnami-influxdb
+{{- end }}
+
+{{- if .Values.application.env.INFLUX_PORT }}
+        - name: INFLUX_PORT
+          value: {{ .Values.application.env.INFLUX_PORT }}
+{{- else }}
+        - name: INFLUX_PORT
+          value: 8086
+{{- end }}
+
+{{- if .Values.application.env.REDIS_HOST }}
+        - name: REDIS_HOST
+          value: {{ .Release.Name }}-redis-master
+{{- else }}
+        - name: REDIS_HOST
+          value: {{ .Release.Name }}-redis-master
+{{- end }}
+
+{{- if .Values.application.env.REDIS_PORT }}
+        - name: REDIS_PORT
+          value: {{ .Values.application.env.REDIS_PORT }}
+{{- else }}
+        - name: REDIS_PORT
+          value: 6379
+{{- end }}
+
+{{- if .Values.application.env.TREE_API_HOST }}
+        - name: TREE_API_HOST
+          value: {{ .Values.application.env.TREE_API_HOST }}
+{{- else }}
+        - name: TREE_API_HOST
+          value: sorbapp-tree-api-auto-deploy-app-gitlab
+{{- end }}
+
+{{- if .Values.application.env.TREE_API_PORT }}
+        - name: TREE_API_PORT
+          value: {{ .Values.application.env.TREE_API_PORT }}
+{{- else }}
+        - name: TREE_API_PORT
+          value: 5000
+{{- end }}
+
+#ENDTEST
+
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}
         - name: GITLAB_ENVIRONMENT_URL
