@@ -151,14 +151,14 @@ spec:
           value: {{ .Values.application.env.database_url }}
 {{- else }}
         - name: DATABASE_URL
-          value: mysql://root:4mz5IrvhZb@bitnami-mysql.for-test/tree
+          value: mysql://root:4mz5IrvhZb@{{ .Release.Name }}-mysql-sorba/tree
 {{- end }}
 
-{{- if .Values.application.REDIS }}
-        - name: REDIS
-          value: '{"port": {{ .Values.application.REDIS.redisport }},"host":"{{ .Release.Name }}-redis-master","db":{{ .Values.application.REDIS.redisdb }},"reconnectTime":{{ .Values.application.REDIS.redisreconnectTime }}}'
+{{- if .Values.application.env.redis }}
+        - name: redis
+          value: {{ .Values.application.env.redis }}
 {{- else }}
-        - name: REDIS
+        - name: redis
           value: '{"port": 6379,"host":"{{ .Release.Name }}-redis-master","db":0,"reconnectTime":5000}'
 {{- end }}
 
@@ -167,7 +167,7 @@ spec:
           value: {{ .Values.application.env.CLOUD_GRAFANA_API | squote}}
 {{- else }}
         - name: CLOUD_GRAFANA_API
-          value: '{"URL":"http://bitnami-grafana:3000/api","USER":"admin","PASS":"sbrQp10"}'
+          value: '{"URL":"http://{{ .Release.Name }}-grafana:3000/api","USER":"admin","PASS":"sbrQp10"}'
 {{- end }}
 
 {{- if .Values.application.env.HDFS_URL }}
@@ -178,9 +178,9 @@ spec:
           value: http://192.168.1.94:3003
 {{- end }}
 
-{{- if .Values.application.LDECODER }}
+{{- if .Values.application.env.LICENSE_DECODER }}
         - name: LICENSE_DECODER
-          value: '{"port": {{ .Values.application.LDECODER.PORT }},"host": "{{ .Values.application.LDECODER.HOST }}","endpoint": "{{ .Values.application.LDECODER.ENDPOINT }}"}'
+          value:  {{ .Values.application.env.LICENSE_DECODER | squote }}
 {{- else }}
         - name: LICENSE_DECODER
           value: '{"port": 8074,"host": "sorbapp-license-decoder-auto-deploy-app-gitlab","endpoint": "/api/decode"}'

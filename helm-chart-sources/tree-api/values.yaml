@@ -53,23 +53,7 @@ application:
     #SORBA_INTEGRATION_AUTHORIZATION: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlNvcmJhIEludGVncmF0aW9uIiwiaWF0IjozNzM5NTcyMDAwMDB9.4A1X7l84wCJq7asgkGKaoYizlNBHnwGBm9Ex-YZRRzg'
     #SORBA_INTEGRATION_URL: http://sorbapp-sorba-dashboard-comm-auto-deploy-app-gitlab:5000
   
-  #REDIS:
-    #redisport: 6379 
-    #redishost: bitnami-redis-master.for-test
-    #redisdb: 0
-    #redisreconnectTime: 5000
-
   extra_env: []  
-
-  #GRAFANA:
-    #URL: "http://bitnami-grafana:3000/api"
-    #USER: "admin"
-    #PASS: "sbrQp10"
-
-  #LDECODER:
-    #PORT: 8074
-    #HOST: sorbapp-license-decoder-auto-deploy-app-gitlab
-    #ENDPOINT: /api/decode
 
 hpa:
   enabled: false
