@@ -135,11 +135,6 @@ spec:
           value: {{ .Values.application.database_url | quote }}
 {{- end }}
 
-{{- range $k, $v := .Values.application.env }}
-        - name: {{$k }}
-          value: {{$v | quote}}
-{{- end }}
-
 {{- range $w, $s := .Values.application.extra_env }}
         - name: {{$w }}
           value: {{$s | quote}}
