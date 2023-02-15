@@ -131,24 +131,19 @@ spec:
           value: {{ .Values.application.database_url | quote }}
 {{- end }}
 
-{{- range $k, $v := .Values.application.env }}
-        - name: {{$k }}
-          value: {{$v | quote}}
-{{- end }}
 
 {{- range $w, $s := .Values.application.extra_env }}
         - name: {{$w }}
           value: {{$s | quote}}
 {{- end }}
 
-#TEST
 
 {{- if .Values.application.env.GRAFANA_HOST }}
         - name: GRAFANA_HOST
           value: {{ .Values.application.env.GRAFANA_HOST }}
 {{- else }}
         - name: GRAFANA_HOST
-          value: http://bitnami-grafana:3000/api
+          value: http://{{ .Release.Name }}-grafana:3000/api
 {{- end }}
 
 {{- if .Values.application.env.GRAFANA_PASSWORD }}
@@ -193,7 +188,7 @@ spec:
 
 {{- if .Values.application.env.REDIS_HOST }}
         - name: REDIS_HOST
-          value: {{ .Release.Name }}-redis-master
+          value: {{ .Values.application.env.REDIS_HOST}}
 {{- else }}
         - name: REDIS_HOST
           value: {{ .Release.Name }}-redis-master
@@ -223,7 +218,6 @@ spec:
           value: 5000
 {{- end }}
 
-#ENDTEST
 
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}

@@ -131,17 +131,12 @@ spec:
           value: {{ .Values.application.database_url | quote }}
 {{- end }}
 
-{{- range $k, $v := .Values.application.env }}
-        - name: {{$k }}
-          value: {{$v | quote}}
-{{- end }}
-
 {{- range $w, $s := .Values.application.extra_env }}
         - name: {{$w }}
           value: {{$s | quote}}
 {{- end }}
 
-#TEST
+
 {{- if .Values.application.env.proxy }}
         - name: proxy
           value: {{ .Values.application.env.proxy | squote}}
@@ -155,10 +150,10 @@ spec:
           value: {{ .Values.application.env.sequelize }}
 {{- else }}
         - name: sequelize
-          value: mysql://root:JgHO98XqnV@bitnami-mysql/tree
+          value: mysql://root:JgHO98XqnV@{{ .Release.Name }}-mysql-sorba/tree
 {{- end }}
 
-#ENDTEST
+
 
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}

@@ -131,17 +131,12 @@ spec:
           value: {{ .Values.application.database_url | quote }}
 {{- end }}
 
-{{- range $k, $v := .Values.application.env }}
-        - name: {{$k }}
-          value: {{$v | quote}}
-{{- end }}
-
 {{- range $w, $s := .Values.application.extra_env }}
         - name: {{$w }}
           value: {{$s | quote}}
 {{- end }}
 
-#TEST
+
 {{- if .Values.application.env.JWT_SECRET }}
         - name: JWT_SECRET
           value: {{ .Values.application.env.JWT_SECRET }}
@@ -152,7 +147,7 @@ spec:
 
 {{- if .Values.application.env.REDIS_HOST }}
         - name: REDIS_HOST
-          value: {{ .Release.Name }}-redis-master
+          value: {{ .Values.application.env.REDIS_HOST}}
 {{- else }}
         - name: REDIS_HOST
           value: {{ .Release.Name }}-redis-master
@@ -190,7 +185,6 @@ spec:
           value: event-middleware
 {{- end }}
 
-#ENDTEST
 
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}

@@ -58,11 +58,6 @@ application:
 
   extra_env: []  
 
-  #REDIS:
-  # redisport: 6379 
-  # redishost: bitnami-redis-master
-  # redisdb: 0
-  # redisreconnectTime: 5000
 hpa:
   enabled: false
   minReplicas: 1

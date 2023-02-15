@@ -131,17 +131,12 @@ spec:
           value: {{ .Values.application.database_url | quote }}
 {{- end }}
 
-{{- range $k, $v := .Values.application.env }}
-        - name: {{$k }}
-          value: {{$v | quote}}
-{{- end }}
-
 {{- range $w, $s := .Values.application.extra_env }}
         - name: {{$w }}
           value: {{$s | quote}}
 {{- end }}
 
-#TEST
+
 {{- if .Values.application.env.OPENID_CONNECT }}
         - name: OPENID_CONNECT
           value: {{ .Values.application.env.OPENID_CONNECT | squote }}
@@ -160,13 +155,12 @@ spec:
 
 {{- if .Values.application.env.redis }}
         - name: redis
-          value: '{"host": "{{ .Release.Name }}-redis-master", "port": 6379}'
+          value: {{ .Values.application.env.redis}}
 {{- else }}
         - name: redis
           value: '{"host": "{{ .Release.Name }}-redis-master", "port": 6379}'
 {{- end }}
 
-#ENDTEST
 
 
         - name: GITLAB_ENVIRONMENT_NAME

@@ -131,17 +131,10 @@ spec:
           value: {{ .Values.application.database_url | quote }}
 {{- end }}
 
-{{- range $k, $v := .Values.application.env }}
-        - name: {{$k }}
-          value: {{$v | quote}}
-{{- end }}
-
 {{- range $w, $s := .Values.application.extra_env }}
         - name: {{$w }}
           value: {{$s | quote}}
 {{- end }}
-
-#TEST
 
 {{- if .Values.application.track }}
         - name: track
@@ -207,15 +200,14 @@ spec:
           value: '{"/identity": {"target": "https://wso2am-pattern-1-am-service:8243/identity/v1","pathRewrite": {"^/identity": ""},"secure": false,"changeOrigin": true,"logLevel": "debug"}}'
 {{- end }}
 
-{{- if .Values.application.REDIS }}
-        - name: REDIS
-          value: '{"host":"{{ .Release.Name }}-redis-master","port": {{ .Values.application.REDIS.redisport }}}'
+{{- if .Values.application.redis }}
+        - name: redis
+          value: {{ .Values.application.redis | squote}}
 {{- else }}
-        - name: REDIS
+        - name: redis
           value: '{"host":"{{ .Release.Name }}-redis-master", "port": 6379}'
 {{- end }}
 
-#ENDTEST
 
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}

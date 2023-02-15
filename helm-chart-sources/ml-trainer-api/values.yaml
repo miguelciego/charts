@@ -62,14 +62,6 @@ application:
 
   extra_env: [] 
 
-  #REDIS:
-  #  redisport: 6379 
-  #  redishost: "127.0.0.1"
-  #  redisdb: 0
-  #  redisreconnectTime: 5000
-  #  userredis: ""
-  #  passwordredis: ""
-  #  useDefaults: false
 
 hpa:
   enabled: false

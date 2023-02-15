@@ -50,11 +50,6 @@ application:
   #proxies: '{"/identity": {"target": "https://wso2am-pattern-1-am-service:8243/identity/v1","pathRewrite": {"^/identity": ""},"secure": false,"changeOrigin": true,"logLevel": "debug"}}'
   #redis: '{"host": "bitnami-redis-master", "port": 6379}'
 
-  #REDIS:
-   #redisport: 6379 
-   #redishost: bitnami-redis-master
-   #redisdb: 0
-   #redisreconnectTime: 5000
   extra_env: [] 
  
 hpa:

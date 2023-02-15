@@ -54,12 +54,6 @@ application:
   #  TREE_URL: http://sorbapp-tree-api-auto-deploy-app-gitlab:5000
   #  proxy: '{ "tree": { "path": "/tree", "remote": "http://sorbapp-tree-api-auto-deploy-app-gitlab:5000/" }, "hdfs": { "path": "/", "remote": "http://192.168.1.94:3003/" } }'
 
-  #REDIS:
-  #  redisport: 6379 
-  #  redishost: bitnami-redis-master
-  #  redisdb: 0
-  #  redisreconnectTime: 5000
-
   extra_env: []  
 
 hpa:

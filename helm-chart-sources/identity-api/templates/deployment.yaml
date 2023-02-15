@@ -131,17 +131,11 @@ spec:
           value: {{ .Values.application.database_url | quote }}
 {{- end }}
 
-{{- range $k, $v := .Values.application.env }}
-        - name: {{$k }}
-          value: {{$v | quote}}
-{{- end }}
-
 {{- range $w, $s := .Values.application.extra_env }}
         - name: {{$w }}
           value: {{$s | quote}}
 {{- end }}
 
-#TEST
 {{- if .Values.application.env.APIM_URL }}
         - name: APIM_URL
           value: {{ .Values.application.env.APIM_URL }}
@@ -179,7 +173,7 @@ spec:
           value: {{ .Values.application.env.MYSQL_HOST }}
 {{- else }}
         - name: MYSQL_HOST
-          value: bitnami-mysql
+          value: {{ .Release.Name }}-mysql-sorba
 {{- end }}
 
 {{- if .Values.application.env.MYSQL_PASSWORD }}
@@ -189,7 +183,7 @@ spec:
         - name: MYSQL_PASSWORD
           value: JgHO98XqnV
 {{- end }}
-#ENDTEST
+
 
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}

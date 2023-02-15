@@ -135,17 +135,11 @@ spec:
           value: {{ .Values.application.DATABASE_URL | quote }}
 {{- end }}
 
-{{- range $k, $v := .Values.application.env }}
-        - name: {{$k }}
-          value: {{$v | quote}}
-{{- end }}
-
 {{- range $w, $s := .Values.application.extra_env }}
         - name: {{$w }}
           value: {{$s | quote}}
 {{- end }}
 
-#TEST
 
 {{- if .Values.application.env.DEPLOY_TYPE }}
         - name: DEPLOY_TYPE
@@ -168,7 +162,7 @@ spec:
           value: {{ .Values.application.env.DATABASE_URL | squote }}
 {{- else }}
         - name: DATABASE_URL
-          value: '{ "database": "ml_trainer", "username": "root", "password": "JgHO98XqnV", "host": "bitnami-mysql", "dialect": "mysql", "logging": false }'
+          value: '{ "database": "ml_trainer", "username": "root", "password": "JgHO98XqnV", "host": "{{ .Release.Name }}-mysql-sorba", "dialect": "mysql", "logging": false }'
 {{- end }}
 
 {{- if .Values.application.env.fsEntryPoint }}
@@ -179,9 +173,9 @@ spec:
           value: "/srv/"
 {{- end }}
 
-{{- if .Values.application.REDIS }}
+{{- if .Values.application.env.REDIS }}
         - name: REDIS
-          value: '{"useDefaults": {{ .Values.application.REDIS.useDefaults }},"host":"{{ .Release.Name }}-redis-master","port": {{ .Values.application.REDIS.redisport }},"user":{{ .Values.application.REDIS.userredis }},"passwordredis":{{ .Values.application.REDIS.passwordredis }}}'
+          value: {{ .Values.application.env.REDIS | squote}}
 {{- else }}
         - name: REDIS
           value: '{ useDefaults: false, "host":"{{ .Release.Name }}-redis-master", port: 6379, user: "", password: "" }'
@@ -227,7 +221,7 @@ spec:
         - name: RAY
           value: '{ useDefaults: false, master_address: "", cluster_http: "", masters: [], workers: []}'
 {{- end }}
-#ENDTEST
+
 
 
         - name: GITLAB_ENVIRONMENT_NAME

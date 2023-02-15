@@ -135,23 +135,18 @@ spec:
           value: {{ .Values.application.database_url | quote }}
 {{- end }}
 
-{{- range $k, $v := .Values.application.env }}
-        - name: {{$k }}
-          value: {{$v | quote}}
-{{- end }}
-
 {{- range $w, $s := .Values.application.extra_env }}
         - name: {{$w }}
           value: {{$s | quote}}
 {{- end }}
 
-#TEST
+
 {{- if .Values.application.env.DB_URI }}
         - name: DB_URI
           value: {{ .Values.application.env.DB_URI }}
 {{- else }}
         - name: DB_URI
-          value: mysql://root:JgHO98XqnV@bitnami-mysql/task_flow
+          value: mysql://root:JgHO98XqnV@{{ .Release.Name }}-mysql-sorba/task_flow
 {{- end }}
 
 {{- if .Values.application.env.DEPLOY_TYPE }}
@@ -170,9 +165,9 @@ spec:
           value: 5000
 {{- end }}
 
-{{- if .Values.application.REDIS }}
+{{- if .Values.application.env.REDIS }}
         - name: REDIS
-          value: '{"host":"{{ .Release.Name }}-redis-master","port": {{ .Values.application.REDIS.redisport }}}'
+          value: {{ .Values.application.env.REDIS | squote}}
 {{- else }}
         - name: REDIS
           value: '{"host":"{{ .Release.Name }}-redis-master", "port": 6379}'
@@ -193,7 +188,7 @@ spec:
         - name: proxy
           value: '{ "tree": { "path": "/tree", "remote": "http://sorbapp-tree-api-auto-deploy-app-gitlab:5000/" }, "hdfs": { "path": "/", "remote": "http://192.168.1.94:3003/" } }'
 {{- end }}
-#ENDTEST
+
 
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}
