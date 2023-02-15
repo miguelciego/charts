@@ -131,17 +131,11 @@ spec:
           value: {{ .Values.application.database_url | quote }}
 {{- end }}
 
-{{- range $k, $v := .Values.application.env }}
-        - name: {{$k }}
-          value: {{$v | quote}}
-{{- end }}
-
 {{- range $w, $s := .Values.application.extra_env }}
         - name: {{$w }}
           value: {{$s | quote}}
 {{- end }}
 
-#TEST
 {{- if .Values.application.env.PORT }}
         - name: PORT
           value: {{ .Values.application.env.PORT }}
@@ -166,19 +160,19 @@ spec:
           value: https://wso2am-pattern-1-am-service:8243/identity/v1
 {{- end }}
 
-{{- if .Values.application.INFLUXDB }}
-        - name: INFLUXDB
-          value: '{"host":"{{ .Values.application.INFLUXDB.host }}","db":"{{ .Values.application.INFLUXDB.db }}","measurement":"{{ .Values.application.INFLUXDB.measurement }}","port": {{ .Values.application.INFLUXDB.port }}}'
+{{- if .Values.application.env.influxdb }}
+        - name: influxdb
+          value: {{ .Values.application.env.influxdb | squote}}
 {{- else }}
-        - name: INFLUXDB
+        - name: influxdb
           value: '{"host":"influxdb-1-8","db":"sorba_sde","measurement":"__SYSTEM_EVENTS","port": 8086}'
 {{- end }}
 
-{{- if .Values.application.PAGE }}
-        - name: PAGE
-          value: '{"title":"{{ .Values.application.PAGE.title }}","location":"{{ .Values.application.PAGE.location }}","message":"{{ .Values.application.PAGE.message }}" }}}'
+{{- if .Values.application.env.page }}
+        - name: page
+          value: {{ .Values.application.env.page | squote}}
 {{- else }}
-        - name: PAGE
+        - name: page
           value: '{"title":"Sorba Task Flow","location":"","message":"Task Flow"}'
 {{- end }}
 
@@ -227,11 +221,11 @@ spec:
   }'
 {{- end }}
 
-{{- if .Values.application.REDIS }}
-        - name: REDIS
-          value: '{"host":"{{ .Release.Name }}-redis-master","port": {{ .Values.application.REDIS.redisport }}}'
+{{- if .Values.application.env.redis }}
+        - name: redis
+          value: {{ .Values.application.env.redis }}
 {{- else }}
-        - name: REDIS
+        - name: redis
           value: '{"host":"{{ .Release.Name }}-redis-master","port": 6379}'
 {{- end }}
 
@@ -242,7 +236,7 @@ spec:
         - name: socketUrl
           value: wss://websoc.demo-com.sorba.ai/websocket
 {{- end }}
-#ENDTEST
+
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}
         - name: GITLAB_ENVIRONMENT_URL

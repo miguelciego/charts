@@ -126,17 +126,12 @@ spec:
               name: app-postgres
               key: privateIP
 {{- end }}
-{{- range $k, $v := .Values.application.env }}
-        - name: {{$k }}
-          value: {{$v | quote}}
-{{- end }}
 
 {{- range $w, $s := .Values.application.extra_env }}
         - name: {{$w }}
           value: {{$s | quote}}
 {{- end }}
 
-#TEST
 
 {{- if .Values.gitlab.env }}
         - name: env
@@ -170,8 +165,6 @@ spec:
           value: " "
 {{- end }}
 
-
-#ENDTEST
 
 {{- if .Values.application.database_url }}
         - name: DATABASE_URL

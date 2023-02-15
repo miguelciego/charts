@@ -93,23 +93,6 @@ application:
   #  redis: '{"host":"bitnami-redis-master","port": 6379}'
   #  socketUrl: wss://websoc.demo-com.sorba.ai/websocket
   
-  #REDIS:
-  #  redisport: 6379 
-  #  redishost: bitnami-redis-master
-  #  redisdb: 0
-  #  redisreconnectTime: 5000 
-
-  #INFLUXDB:
-  #  host: influxdb-1-8
-  #  db: sorba_sde
-  #  measurement: __SYSTEM_EVENTS
-  #  port: 8086
-
-  #PAGE:
-  #  title: Sorba Task Flow
-  #  location: ""
-  #  message: Task Flow
-
   extra_env: []
 
 hpa:

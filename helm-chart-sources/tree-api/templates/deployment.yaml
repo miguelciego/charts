@@ -140,7 +140,6 @@ spec:
           value: {{$s | quote}}
 {{- end }}
 
-#TEST
 {{- if .Values.application.env.database_url }}
         - name: DATABASE_URL
           value: {{ .Values.application.env.database_url }}
@@ -196,7 +195,7 @@ spec:
         - name: SORBA_INTEGRATION_URL
           value: http://sorbapp-sorba-dashboard-comm-auto-deploy-app-gitlab:5000
 {{- end }}
-# End TEST   
+   
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}
         - name: GITLAB_ENVIRONMENT_URL
