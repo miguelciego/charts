@@ -165,7 +165,7 @@ spec:
           value: {{ .Values.application.env.influxdb | squote}}
 {{- else }}
         - name: influxdb
-          value: '{"host":"influxdb-1-8","db":"sorba_sde","measurement":"__SYSTEM_EVENTS","port": 8086}'
+          value: '{"host":"{{ .Release.Namespace }}-influxdb","db":"sorba_sde","measurement":"__SYSTEM_EVENTS","port": 8086}'
 {{- end }}
 
 {{- if .Values.application.env.page }}
@@ -201,7 +201,7 @@ spec:
       "logLevel": "debug"
     },
     "/influx": {
-      "target": "http://influxdb-1-8:8086",
+      "target": "http://{{ .Release.Namespace }}-influxdb:8086",
       "pathRewrite": {
         "^/influx": ""
       },
@@ -234,7 +234,15 @@ spec:
           value: {{ .Values.application.env.socketUrl }}
 {{- else }}
         - name: socketUrl
-          value: wss://websoc.demo-com.sorba.ai/websocket
+          value: wss://websoc.{{ .Release.Name}}.sorba.ai/websocket
+{{- end }}
+
+{{- if .Values.application.env.identityURL }}
+        - name: identityURL
+          value: {{ .Values.application.env.identityURL }}
+{{- else }}
+        - name: identityURL
+          value: http://{{ .Release.Namespace}}-identity-api:5000/api
 {{- end }}
 
         - name: GITLAB_ENVIRONMENT_NAME

@@ -150,7 +150,7 @@ spec:
           value: {{ .Values.application.env.redis }}
 {{- else }}
         - name: redis
-          value: '{"port": 6379,"host":"{{ .Release.Name }}-redis-master","db":0,"reconnectTime":5000}'
+          value: '{"port": 6379,"host":"{{ .Release.Name}}-redis-master","db":0,"reconnectTime":5000}'
 {{- end }}
 
 {{- if .Values.application.env.identityURL }}
@@ -158,7 +158,7 @@ spec:
           value: {{ .Values.application.env.identityURL }}
 {{- else }}
         - name: identityURL
-          value: https://gateway-am.jkl-com.sorba.ai/tree/v1/
+          value: https://gateway-am.{{ .Release.Namespace}}.sorba.ai/tree/v1/
 {{- end }}
 
 {{- if .Values.application.env.proxies }}
@@ -166,7 +166,7 @@ spec:
           value: {{ .Values.application.env.proxies | squote }}
 {{- else }}
         - name: proxies
-          value: '{"/identity-server":{"target":"https://wso2am-pattern-1-am-service:8243/identity/v1/","pathRewrite":{"^/identity-server":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/api/tree":{"target":"https://wso2am-pattern-1-am-service:8243/tree/v1/","pathRewrite":{"^/api/tree":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/api/vpnservice":{"target":"http://52.191.30.247/","pathRewrite":{"^/api/vpnservice":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/api/commands":{"target":"https://websoc.demo-com.sorba.ai/api/commands","pathRewrite":{"^/api/commands":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/api/influx":{"target":"http://jkl-sorba-influxdb:8086","pathRewrite":{"^/api/influx":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/api/rtdb":{"target":"http://webdis:7379","pathRewrite":{"^/api/rtdb":""},"secure":false,"changeOrigin":true,"logLevel":"debug"}}'
+          value: '{"/identity-server":{"target":"https://wso2am-pattern-1-am-service:8243/identity/v1/","pathRewrite":{"^/identity-server":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/api/tree":{"target":"https://wso2am-pattern-1-am-service:8243/tree/v1/","pathRewrite":{"^/api/tree":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/api/vpnservice":{"target":"http://52.191.30.247/","pathRewrite":{"^/api/vpnservice":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/api/commands":{"target":"https://websoc.{{ .Release.Name}}.sorba.ai/api/commands","pathRewrite":{"^/api/commands":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/api/influx":{"target":"http://{{ .Release.Namespace}}-influxdb:8086","pathRewrite":{"^/api/influx":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/api/rtdb":{"target":"http://webdis:7379","pathRewrite":{"^/api/rtdb":""},"secure":false,"changeOrigin":true,"logLevel":"debug"}}'
 {{- end }}
 
 {{- if .Values.application.env.socketUrl }}
@@ -174,7 +174,7 @@ spec:
           value: {{ .Values.application.env.socketUrl }}
 {{- else }}
         - name: socketUrl
-          value: wss://websoc.jkl-com.sorbapp.com/websocket
+          value: wss://websoc.{{ .Release.Namespace}}.sorbapp.com/websocket
 {{- end }}
 
 

@@ -136,73 +136,25 @@ spec:
           value: {{$s | quote}}
 {{- end }}
 
-{{- if .Values.application.track }}
-        - name: track
-          value: {{ .Values.application.track }}
-{{- else }}
-        - name: track
-          value: stable
-{{- end }}
-
-{{- if .Values.application.tier }}
-        - name: tier
-          value: {{ .Values.application.tier }}
-{{- else }}
-        - name: tier
-          value: web
-{{- end }}
-
-{{- if .Values.application.migrateCommand }}
-        - name: migrateCommand
-          value: {{ .Values.application.migrateCommand }}
-{{- else }}
-        - name: migrateCommand
-          value: "" 
-{{- end }}
-
-{{- if .Values.application.initializeCommand }}
-        - name: initializeCommand
-          value: {{ .Values.application.initializeCommand }}
-{{- else }}
-        - name: initializeCommand
-          value: ""
-{{- end }}
-
-{{- if .Values.application.secretName }}
-        - name: secretName
-          value: {{ .Values.application.secretName }}
-{{- else }}
-        - name: secretName
-          value: ""
-{{- end }}
-
-{{- if .Values.application.secretChecksum }}
-        - name: secretChecksum
-          value: {{ .Values.application.secretChecksum }}
-{{- else }}
-        - name: secretChecksum
-          value: ""
-{{- end }}
-
-{{- if .Values.application.identityServiceAPI }}
+{{- if .Values.application.env.identityServiceAPI }}
         - name: identityServiceAPI
-          value: {{ .Values.application.identityServiceAPI | squote }}
+          value: {{ .Values.application.env.identityServiceAPI | squote }}
 {{- else }}
         - name: identityServiceAPI
           value: 'https://wso2am-pattern-1-am-service:8243/identity/v1'
 {{- end }}
 
-{{- if .Values.application.proxies }}
+{{- if .Values.application.env.proxies }}
         - name: proxies
-          value: {{ .Values.application.proxies | squote }}
+          value: {{ .Values.application.env.proxies | squote }}
 {{- else }}
         - name: proxies
           value: '{"/identity": {"target": "https://wso2am-pattern-1-am-service:8243/identity/v1","pathRewrite": {"^/identity": ""},"secure": false,"changeOrigin": true,"logLevel": "debug"}}'
 {{- end }}
 
-{{- if .Values.application.redis }}
+{{- if .Values.application.env.redis }}
         - name: redis
-          value: {{ .Values.application.redis | squote}}
+          value: {{ .Values.application.env.redis | squote}}
 {{- else }}
         - name: redis
           value: '{"host":"{{ .Release.Name }}-redis-master", "port": 6379}'

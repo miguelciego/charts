@@ -1,7 +1,8 @@
 # Default values for sorbapp.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-
+global: 
+  domain: "sorbapp.com"
 vernemq:
   enabled: false
 cert-manager:

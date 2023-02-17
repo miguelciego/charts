@@ -132,40 +132,6 @@ spec:
           value: {{$s | quote}}
 {{- end }}
 
-
-{{- if .Values.gitlab.env }}
-        - name: env
-          value: {{ .Values.gitlab.env }}
-{{- else }}
-        - name: env
-          value: " "
-{{- end }}
-
-{{- if .Values.gitlab.envName }}
-        - name: envName
-          value: {{ .Values.gitlab.envName }}
-{{- else }}
-        - name: envName
-          value: " "
-{{- end }}
-
-{{- if .Values.gitlab.envURL }}
-        - name: envURL
-          value: {{ .Values.gitlab.envURL }}
-{{- else }}
-        - name: envURL
-          value: " "
-{{- end }}
-
-{{- if .Values.gitlab.projectID }}
-        - name: projectID
-          value: {{ .Values.gitlab.projectID }}
-{{- else }}
-        - name: projectID
-          value: " "
-{{- end }}
-
-
 {{- if .Values.application.database_url }}
         - name: DATABASE_URL
           value: {{ .Values.application.database_url | quote }}
