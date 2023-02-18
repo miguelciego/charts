@@ -68,12 +68,12 @@ hpa:
   #       type: Utilization
   #       averageUtilization: 80
 
-gitlab: {}
-#  app:
-#  env:
-#  envName:
-#  envURL:
-#  projectID:
+gitlab:
+  app:
+  env:
+  envName:
+  envURL:
+  projectID:
 service:
   enabled: true
   annotations: {}

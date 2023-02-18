@@ -141,7 +141,7 @@ spec:
           value: {{ .Values.application.env.OPENID_CONNECT | squote }}
 {{- else }}
         - name: OPENID_CONNECT
-          value: '{ "clientID": "gq0aTATyGOf4sRXggyQjwJ1V6hka", "clientSecret": "UtQmCLX5Y_cTsfqwW2wgVTw8oOEa", "issuer": "https://sorbais.demo-com.sorba.ai:443/oauth2/token", "authorizationURL": "https://sorbais.demo-com.sorba.ai/oauth2/authorize", "tokenURL": "https://sorbais.demo-com.sorba.ai/oauth2/token", "callbackURL": "https://platform.demo-com.sorba.ai/callback", "skipUserProfile": true }'
+          value: '{ "clientID": "gq0aTATyGOf4sRXggyQjwJ1V6hka", "clientSecret": "UtQmCLX5Y_cTsfqwW2wgVTw8oOEa", "issuer": "https://sorbais.{{ .Release.Namespace }}.sorba.com:443/oauth2/token", "authorizationURL": "https://sorbais.{{ .Release.Namespace }}.sorba.com/oauth2/authorize", "tokenURL": "https://sorbais.{{ .Release.Namespace }}.sorba.com/oauth2/token", "callbackURL": "https://platform.{{ .Release.Namespace }}.sorba.com/callback", "skipUserProfile": true }'
 {{- end }}
 
 {{- if .Values.application.env.SESSION_SETTINGS }}
@@ -263,7 +263,7 @@ spec:
       "logLevel": "debug"
     },
     "/api/commands/*": {
-      "target": "https://websoc.demo-com.sorba.ai/api/commands",
+      "target": "https://websoc.{{ .Release.Namespace }}.sorba.com/api/commands",
       "pathRewrite": {
         "^/api/commands": ""
       },
@@ -272,7 +272,7 @@ spec:
       "changeOrigin": true
     },
     "/api/influx/*": {
-      "target": "http://influxdb-1-8:8086",
+      "target": "http://{{ .Release.Name}}.influxdb:8086",
       "pathRewrite": {
         "^/api/influx": ""
       },
@@ -296,7 +296,7 @@ spec:
           value: {{ .Values.application.env.sideMenu | squote }}
 {{- else }}
         - name: sideMenu
-          value: '[{"group":"","items":[{"label":"Overview","link":"/overview","icon":"ionicons:home-outline","alias":"Overview"},{"label":"Workspace","link":"/workspace","icon":"ionicons:grid-outline","alias":"Workspace"},{"label":"Dashboard","link":"/dashboard","icon":"ionicons:speedometer-outline","alias":"Dashboard","external":true,"disabled":false,"package":"grafana"},{"label":"Workflow","link":"/workflow","icon":"ionicons:shuffle-outline","alias":"Workflow","external":true,"disabled":true,"package":"sdc-workflow"}]},{"group":"Packages","items":[{"label":"ML Trainer","link":"/mlui","icon":"ionicons:hardware-chip-outline","alias":"MLTrainer","external":true,"disabled":true,"package":"ml-standalone-all"}]},{"group":"Settings","items":[{"label":"Identity Server","link":"/identity","icon":"ionicons:finger-print-outline","alias":"IdentityServer","external":true,"disabled":false,"package":"identity-service"},{"label":"Remote Access","link":"https://vpn.demo-com.sorba.ai","alias":"RemoteAccess","icon":"ionicons:key-outline"},{"label":"System Events","link":"/events","alias":"SystemEvents","icon":"ionicons:pulse-outline"}]}]'
+          value: '[{"group":"","items":[{"label":"Overview","link":"/overview","icon":"ionicons:home-outline","alias":"Overview"},{"label":"Workspace","link":"/workspace","icon":"ionicons:grid-outline","alias":"Workspace"},{"label":"Dashboard","link":"/dashboard","icon":"ionicons:speedometer-outline","alias":"Dashboard","external":true,"disabled":false,"package":"grafana"},{"label":"Workflow","link":"/workflow","icon":"ionicons:shuffle-outline","alias":"Workflow","external":true,"disabled":true,"package":"sdc-workflow"}]},{"group":"Packages","items":[{"label":"ML Trainer","link":"/mlui","icon":"ionicons:hardware-chip-outline","alias":"MLTrainer","external":true,"disabled":true,"package":"ml-standalone-all"}]},{"group":"Settings","items":[{"label":"Identity Server","link":"/identity","icon":"ionicons:finger-print-outline","alias":"IdentityServer","external":true,"disabled":false,"package":"identity-service"},{"label":"Remote Access","link":"https://vpn.{{ .Release.Name}}.sorba.com","alias":"RemoteAccess","icon":"ionicons:key-outline"},{"label":"System Events","link":"/events","alias":"SystemEvents","icon":"ionicons:pulse-outline"}]}]'
 {{- end }}
 
 {{- if .Values.application.env.survey }}
@@ -307,6 +307,29 @@ spec:
           value: '{"mainQuestion":"Do you like our new user interface?","secondaryQuestion": "How can we improve it?"}'
 {{- end }}
 
+{{- if .Values.application.env.socketUrl }}
+        - name: socketUrl
+          value: {{ .Values.application.env.socketUrl | squote}}
+{{- else }}
+        - name: socketUrl
+          value: wss://websoc.{{ .Release.Namespace}}.sorbapp.com/websocket
+{{- end }}
+
+{{- if .Values.application.env.tenant }}
+        - name: tenant
+          value: {{ .Values.application.env.tenant | squote}}
+{{- else }}
+        - name: tenant
+          value: {{ .Release.Name}}
+{{- end }}
+
+{{- if .Values.application.env.influxdb }}
+        - name: influxdb
+          value: {{ .Values.application.env.influxdb | squote}}
+{{- else }}
+        - name: influxdb
+          value: '{"host":"{{ .Release.Name}}-influxdb","db":"sorba_demo___com","measurement":"__SYSTEM_EVENTS","port": 8086}'
+{{- end }}
 
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}

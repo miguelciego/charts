@@ -154,7 +154,7 @@ spec:
           value: {{ .Values.application.env.tenant | quote }}
 {{- else }}
         - name: tenant
-          value: "demo.com"
+          value: "{{ .Release.Name}}.com"
 {{- end }}
 
 {{- if .Values.application.env.DATABASE_URL }}
@@ -178,7 +178,7 @@ spec:
           value: {{ .Values.application.env.REDIS | squote}}
 {{- else }}
         - name: REDIS
-          value: '{ useDefaults: false, "host":"{{ .Release.Name }}-redis-master", port: 6379, user: "", password: "" }'
+          value: '{ "useDefaults": "false", "host": "{{ .Release.Name}}-redis-master.{{ .Release.Namespace }}", "port": "6379", "db": "0", "user": "", "password": "","reconnectTime": 5000 }'
 {{- end }}
 
 {{- if .Values.application.env.STORAGE }}
@@ -186,7 +186,7 @@ spec:
           value: {{ .Values.application.env.STORAGE | squote }}
 {{- else }}
         - name: STORAGE
-          value: '{ useDefaults: false,url: "http://localhost:8086", db: "sorba_ml", batch_size: 1000, user: "", password: "", version: "1.x", bucket: "", token: "", org: "" }'
+          value: '{ "useDefaults": "false", "url": "http://{{ .Release.Name}}-influxdb.{{ .Release.Namespace}}:8086", "db": "sorba_ml", "batch_size": 1000, "user": "", "password": "", "version": "1.x", "bucket": "", "token": "", "org": "" }'
 {{- end }}
 
 {{- if .Values.application.env.DATASOURCE }}
@@ -194,8 +194,7 @@ spec:
           value: {{ .Values.application.env.DATASOURCE | squote }}
 {{- else }}
         - name: DATASOURCE
-          value: '{ useDefaults: true, url: "http://localhost:8086", db: "sorba_ml", batch_size: 1000, user: "",
-        password: "", version: "1.x", bucket: "", token: "", org: "" }'
+          value: '{ "useDefaults": "true", "url": "http://{{ .Release.Name}}-influxdb.{{ .Release.Namespace}}:8086", "db": "sorba_ml", "batch_size": 1000, "user": "", "password": "", "version": "1.x", "bucket": "", "token": "", "org": "" }'
 {{- end }}
 
 {{- if .Values.application.env.TREE }}
@@ -203,7 +202,7 @@ spec:
           value: {{ .Values.application.env.TREE | squote }}
 {{- else }}
         - name: TREE
-          value: '{ useDefaults: false, url: "http://localhost:8089" }'
+          value: '{ "useDefaults": "false", "url": "http://{{ .Release.Name}}-tree-api:5000/" }'
 {{- end }}
 
 {{- if .Values.application.env.DASHBOARD }}
@@ -211,7 +210,7 @@ spec:
           value: {{ .Values.application.env.DASHBOARD | squote }}
 {{- else }}
         - name: DASHBOARD
-          value: '{ useDefaults: false, url: "http://localhost:8089" }'
+          value: '{ "useDefaults": "false", "URL": "https://dashboard.{{ .Release.Namespace}}.sorbapp.com/api", "host": "", "port": 3000, "user": "admin", "password": "admin", "org": "main" }'
 {{- end }}
 
 {{- if .Values.application.env.RAY }}
@@ -219,7 +218,15 @@ spec:
           value: {{ .Values.application.env.RAY | squote }}
 {{- else }}
         - name: RAY
-          value: '{ useDefaults: false, master_address: "", cluster_http: "", masters: [], workers: []}'
+          value: '{"cluster_mode":true,"master_address":"ray://raycluster-autoscaler-head-svc.default","cluster_http":"http://raycluster-autoscaler-head-svc.default:8265","masters":["http://{{ .Release.Name}}-ml-trainer-api.{{ .Release.Namespace}}:5000"],"workers":[],"useDefaults":false}'
+{{- end }}
+
+{{- if .Values.application.env.MLAPI }}
+        - name: MLAPI
+          value: {{ .Values.application.env.MLAPI | squote }}
+{{- else }}
+        - name: MLAPI
+          value: http://{{ .Release.Name}}-ml-trainer-api.{{ .Release.Namespace}}:5000
 {{- end }}
 
 

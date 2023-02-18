@@ -142,7 +142,7 @@ spec:
           value: {{ .Values.application.env.proxy | squote}}
 {{- else }}
         - name: proxy
-          value: '{ "tree": { "path": "/tree", "remote": "http://sorbapp-tree-api-auto-deploy-app-gitlab:5000/" }, "hdfs": { "path": "/", "remote": "http://192.168.1.94:3003/" } }'
+          value: '{ "tree": { "path": "/tree", "remote": "http://{{ .Release.Name}}-tree-api:5000/" }, "hdfs": { "path": "/", "remote": "http://192.168.1.94:3003/" } }'
 {{- end }}
 
 {{- if .Values.application.env.sequelize }}
@@ -152,8 +152,6 @@ spec:
         - name: sequelize
           value: mysql://root:JgHO98XqnV@{{ .Release.Name }}-mysql-sorba/tree
 {{- end }}
-
-
 
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}
