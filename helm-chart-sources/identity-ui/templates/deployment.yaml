@@ -136,6 +136,22 @@ spec:
           value: {{$s | quote}}
 {{- end }}
 
+{{- if .Values.application.env.deployType }}
+        - name: deployType
+          value: {{ .Values.application.env.deployType | squote }}
+{{- else }}
+        - name: deployType
+          value: cloud
+{{- end }}
+
+{{- if .Values.application.env.identityURL }}
+        - name: identityURL
+          value: {{ .Values.application.env.identityURL | squote }}
+{{- else }}
+        - name: identityURL
+          value: http://{{ .Release.Name}}-identity-api:5000/api
+{{- end }}
+
 {{- if .Values.application.env.identityServiceAPI }}
         - name: identityServiceAPI
           value: {{ .Values.application.env.identityServiceAPI | squote }}
@@ -149,7 +165,7 @@ spec:
           value: {{ .Values.application.env.proxies | squote }}
 {{- else }}
         - name: proxies
-          value: '{"/identity": {"target": "https://wso2am-pattern-1-am-service:8243/identity/v1","pathRewrite": {"^/identity": ""},"secure": false,"changeOrigin": true,"logLevel": "debug"}}'
+          value: '{"/tree":{"target":"http://{{ .Release.Name}}-tree-api:5000/","pathRewrite":{"^/tree":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/influx":{"target":"http://{{ .Release.Name}}-influxdb:8086","pathRewrite":{"^/influx":""},"secure":false,"logLevel":"debug","changeOrigin":true},"/api/commands":{"target":"https://wso2am-pattern-1-am-service:8243/socket/v1/commands","pathRewrite":{"^/api/commands":""},"secure":false,"logLevel":"debug","changeOrigin":true},"/identity":{"target":"https://wso2am-pattern-1-am-service:8243/identity/v1","pathRewrite":{"^/identity":""},"secure":false,"changeOrigin":true,"logLevel":"debug"}}'
 {{- end }}
 
 {{- if .Values.application.env.redis }}
@@ -157,9 +173,40 @@ spec:
           value: {{ .Values.application.env.redis | squote}}
 {{- else }}
         - name: redis
-          value: '{"host":"{{ .Release.Name }}-redis-master", "port": 6379}'
+          value: '{"host":"{{ .Release.Name}}-redis-master", "port": 6379}'
 {{- end }}
 
+{{- if .Values.application.env.page }}
+        - name: page
+          value: {{ .Values.application.env.page | squote}}
+{{- else }}
+        - name: page
+          value: '{ "title":"Sorba Identity UI","location":"","message":"Identity Server"}'
+{{- end }}
+
+{{- if .Values.application.env.PORT }}
+        - name: PORT
+          value: {{ .Values.application.env.PORT }}
+{{- else }}
+        - name: PORT
+          value: 5000
+{{- end }}
+
+{{- if .Values.application.env.PORT }}
+        - name: PORT
+          value: {{ .Values.application.env.PORT }}
+{{- else }}
+        - name: PORT
+          value: 5000
+{{- end }}
+
+{{- if .Values.application.env.socketUrl }}
+        - name: socketUrl
+          value: {{ .Values.application.env.socketUrl }}
+{{- else }}
+        - name: socketUrl
+          value: 'wss://websoc.{{ .Release.Namespace}}.sorbapp.com/websocket'
+{{- end }}
 
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}

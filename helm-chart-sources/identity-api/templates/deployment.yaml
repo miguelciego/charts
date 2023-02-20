@@ -149,7 +149,7 @@ spec:
           value: {{ .Values.application.env.API_GATEWAY }}
 {{- else }}
         - name: API_GATEWAY
-          value: http://sorba-identity-api-ng-manuel-auto-deploy-app-gitlab:5000/api
+          value: http://{{ .Release.Name}}-identity-api:5000/api
 {{- end }}
 
 {{- if .Values.application.env.API_MANAGER_PASSWORD }}
@@ -182,6 +182,14 @@ spec:
 {{- else }}
         - name: MYSQL_PASSWORD
           value: JgHO98XqnV
+{{- end }}
+
+{{- if .Values.application.env.SERVICES_NAME }}
+        - name: SERVICES_NAME
+          value: {{ .Values.application.env.SERVICES_NAME }}
+{{- else }}
+        - name: SERVICES_NAME
+          value: '{"tree-api": "{{ .Release.Name}}-tree-api", "identity-api":"{{ .Release.Name}}-identity-api", "oee-api": "{{ .Release.Name}}-oee-engine", "sde-socket-api": "{{ .Release.Name}}-sde-socket", "ml-api": "{{ .Release.Name}}-ml-trainer-api", "vib-visualizer-api": "localhost", "vpn-api": "localhost", "task-flow": "{{ .Release.Name}}-task-flows-backend"}'
 {{- end }}
 
 

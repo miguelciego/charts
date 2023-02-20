@@ -175,7 +175,7 @@ spec:
           value: {{ .Values.application.env.INFLUX_HOST }}
 {{- else }}
         - name: INFLUX_HOST
-          value: bitnami-influxdb
+          value: {{ .Release.Name }}-influxdb
 {{- end }}
 
 {{- if .Values.application.env.INFLUX_PORT }}
