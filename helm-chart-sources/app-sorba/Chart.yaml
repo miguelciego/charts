@@ -2,7 +2,7 @@ apiVersion: v2
 name: app-sorba
 description: Sorba Helm Chart
 type: application
-version: 0.2.4
+version: 0.2.5
 appVersion: "0.2.0"
 icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
 
@@ -52,82 +52,90 @@ dependencies:
     repository: https://helm.influxdata.com/
     condition: influxdb.enabled
   - name: ml-trainer-api
-    version: 2.39.1
+    version: 2.39.2
     repository: https://miguelciego.github.io/charts/
     condition: ml-trainer-api.enabled
   - name: ml-ui
-    version: 2.39.1
+    version: 2.39.2
     repository: https://miguelciego.github.io/charts/
     condition: ml-ui.enabled
   - name: mqtt-to-influxdb-2y 
-    version: 2.39.1
+    version: 2.39.2
     repository: https://miguelciego.github.io/charts/
     condition:  mqtt-to-influxdb-2y.enabled
   - name: ng-api-gateway
-    version: 2.39.2
+    version: 2.39.3
     repository: https://miguelciego.github.io/charts/
     condition: ng-api-gateway.enabled
   - name: platform-ui
-    version: 2.39.2
+    version: 2.39.3
     repository: https://miguelciego.github.io/charts/
     condition: platform-ui.enabled
   - name: preferences-api
-    version: 2.39.1
+    version: 2.39.2
     repository: https://miguelciego.github.io/charts/
     condition: preferences-api.enabled
   - name: rtdb-sync-pub
-    version: 2.39.2
+    version: 2.39.3
     repository: https://miguelciego.github.io/charts/
     condition: rtdb-sync-pub.enabled
   - name: rtdb-sync-sub
-    version: 2.39.2
+    version: 2.39.3
     repository: https://miguelciego.github.io/charts/
     condition: rtdb-sync-sub.enabled
   - name: events-middleware
-    version: 2.39.3
+    version: 2.39.4
     repository: https://miguelciego.github.io/charts/
     condition: events-middleware.enabled
   - name: identity-ui
-    version: 2.39.2
+    version: 2.39.3
     repository: https://miguelciego.github.io/charts/
     condition: identity-ui.enabled
   - name: identity-api
-    version: 2.39.3
+    version: 2.39.4
     repository: https://miguelciego.github.io/charts/
     condition: identity-api.enabled
   - name: messages-mediator
-    version: 2.39.3
+    version: 2.39.4
     repository: https://miguelciego.github.io/charts/
     condition: messages-mediator.enabled
   - name: oee-engine
-    version: 2.39.2
+    version: 2.39.3
     repository: https://miguelciego.github.io/charts/
     condition: oee-engine.enabled
   - name: oee-ui
-    version: 2.39.2
+    version: 2.39.3
     repository: https://miguelciego.github.io/charts/
     condition: oee-ui.enabled
   - name: sde-socket
-    version: 2.39.2
+    version: 2.39.3
     repository: https://miguelciego.github.io/charts/
     condition: sde-socket.enabled
   - name: task-flows-backend
-    version: 2.39.2
+    version: 2.39.3
     repository: https://miguelciego.github.io/charts/
     condition: task-flows-backend.enabled
   - name: task-flows-frontend
-    version: 2.39.2
+    version: 2.39.3
     repository: https://miguelciego.github.io/charts/
     condition: task-flows-frontend.enabled
   - name: uuid-gen-api
-    version: 2.39.6
+    version: 2.39.7
     repository: https://miguelciego.github.io/charts/
     condition: uuid-gen-api.enabled
   - name: tree-api
-    version: 2.39.3
+    version: 2.39.5
     repository: https://miguelciego.github.io/charts/
     condition: tree-api.enabled
   - name: vpn-spa
-    version: 2.39.1
+    version: 2.39.2
     repository: https://miguelciego.github.io/charts/
     condition: tree-api.enabled
+  - name: tenant-management-api
+    version: 2.39.2
+    repository: https://miguelciego.github.io/charts/
+    condition: tenant-management-api.enabled
+  - name: tenant-management-ui
+    version: 2.39.2
+    repository: https://miguelciego.github.io/charts/
+    condition: tenant-management-ui.enabled    
