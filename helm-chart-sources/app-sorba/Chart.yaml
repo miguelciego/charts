@@ -124,7 +124,7 @@ dependencies:
     repository: https://miguelciego.github.io/charts/
     condition: uuid-gen-api.enabled
   - name: tree-api
-    version: 2.39.4
+    version: 2.39.3
     repository: https://miguelciego.github.io/charts/
     condition: tree-api.enabled
   - name: vpn-spa

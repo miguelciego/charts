@@ -245,7 +245,7 @@ tree-api:
 uuid-gen-api:
   enabled: true
   image:
-    repository: sorbaregistry.azurecr.io/sorbotics/uuid-gen-api
+    repository: sorbaregistry.azurecr.io/sorbotics/uuid-gen-api/master
     tag: latest
     pullPolicy: IfNotPresent
     secrets:
@@ -626,4 +626,7 @@ ng-api-gateway:
       nginx.ingress.kubernetes.io/proxy-buffering: 'off' 
   service:
     url: http://ng-api-gateway.jkl-com.sorbapp.com/
- 
+tenant-management-api:
+  enabled: false
+tenant-management-ui:
+  enabled: false

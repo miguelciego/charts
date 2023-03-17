@@ -88,7 +88,7 @@ dependencies:
   version: 2.39.6
 - name: tree-api
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.4
+  version: 2.39.3
 - name: vpn-spa
   repository: https://miguelciego.github.io/charts/
   version: 2.39.1
@@ -98,5 +98,5 @@ dependencies:
 - name: tenant-management-ui
   repository: https://miguelciego.github.io/charts/
   version: 2.39.1
-digest: sha256:ea902c7dc3414f99a5aae5d9ad5561f5c41b7f73e06597143eea53afe9e684e9
-generated: "2023-03-17T08:33:42.403504245-04:00"
+digest: sha256:b9c3057283c2dec90082ae7053e01f2d41c77f2040cd758dd83df97803c93d0d
+generated: "2023-03-17T15:22:13.789963398-04:00"
