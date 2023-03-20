@@ -1,0 +1,181 @@
+# Default values for sorbapp.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+global: 
+  domain: "sorbapp.com"
+vernemq:
+  enabled: false
+cert-manager:
+  enabled: false
+  installCRDs: true
+ingress-nginx:
+  enabled: true
+  controller:
+    config:
+      brotli-level: "6"
+      brotli-types: text/xml image/svg+xml application/x-font-ttf image/vnd.microsoft.icon
+        application/x-font-opentype application/json font/eot application/vnd.ms-fontobject
+        application/javascript font/otf application/xml application/xhtml+xml text/javascript
+        application/x-javascript text/plain application/x-font-truetype application/xml+rss
+        image/x-icon font/opentype text/css image/x-win-bitmap
+      enable-brotli: "true"
+    ingressClass: nginx
+    ingressClassResource:
+      name: nginx
+kubernetes-dashboard:
+  enabled: true
+  ingress:
+    enabled: true
+    className: "nginx"
+    annotations:
+      kubernetes.io/tls-acme: 'true'
+      cert-manager.io/issuer: example-issuer
+      nginx.ingress.kubernetes.io/secure-backends: "true"
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    hosts:
+      - kubernetes-dashboard.example.com
+    tls:
+      - secretName: kubernetes-dashboard-tls
+        hosts:
+          - kubernetes-dashboard.example.com
+  metricsScraper:
+    enabled: true
+  metrics-server:
+    enabled: false
+is-pattern-1:
+  enabled: false
+  wso2:
+    deployment:
+      wso2is:
+        dockerRegistry: sorbaregistry.azurecr.io
+        imageName: sorbotics/devops/wso2-alpine-is/master
+        imageTag: latest
+        #imagePullSecrets: azure-registry
+        replicas: 1
+        ingress:
+          identity:
+            hostname: "sorbais.example.com"
+            annotations:
+              kubernetes.io/ingress.class: "nginx"
+              kubernetes.io/tls-acme: "true"
+              nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+              nginx.ingress.kubernetes.io/affinity: "cookie"
+              nginx.ingress.kubernetes.io/session-cookie-name: "route"
+              nginx.ingress.kubernetes.io/session-cookie-hash: "sha1"
+    #subscription:
+    #  password: password
+    #  username: user
+    #  email: admin@example.com
+am-pattern-1:
+  enabled: false
+grafana:
+  enabled: false
+  ingress:
+    enabled: true
+    hostname: grafana.fexample.com
+    annotations:
+      cert-manager.io/issuer: example-issuer
+    tls: true  
+    ingressClassName: "nginx"
+mysql-sorba:
+  enabled: false
+  auth:
+    createDatabase: false
+    rootPassword: "rootPassword"
+    password: "Password"
+  primary:
+    configuration: |-
+      [mysqld]
+      default_authentication_plugin=mysql_native_password
+      skip-log-bin
+      skip-name-resolve
+      explicit_defaults_for_timestamp
+      basedir=/opt/bitnami/mysql
+      plugin_dir=/opt/bitnami/mysql/lib/plugin
+      port=3306
+      socket=/opt/bitnami/mysql/tmp/mysql.sock
+      datadir=/bitnami/mysql/data
+      tmpdir=/opt/bitnami/mysql/tmp
+      max_allowed_packet=16M
+      bind-address=*
+      pid-file=/opt/bitnami/mysql/tmp/mysqld.pid
+      log-error=/opt/bitnami/mysql/logs/mysqld.log
+      character-set-server=UTF8
+      collation-server=utf8_general_ci
+      slow_query_log=0
+      slow_query_log_file=/opt/bitnami/mysql/logs/mysqld.log
+      long_query_time=10.0
+      [client]
+      port=3306
+      socket=/opt/bitnami/mysql/tmp/mysql.sock
+      default-character-set=UTF8
+      plugin_dir=/opt/bitnami/mysql/lib/plugin
+      [manager]
+      port=3306
+      socket=/opt/bitnami/mysql/tmp/mysql.sock
+      pid-file=/opt/bitnami/mysql/tmp/mysqld.pid
+phpmyadmin:
+  enabled: false
+  ingress:
+    enabled: true
+    hostname: phpmyadmin.example.com
+    tls: true
+    ingressClassName: "nginx"
+    annotations:
+      cert-manager.io/issuer: issuer
+redis:
+  enabled: false
+  architecture: standalone
+influxdb:
+  enabled: false
+  setDefaultUser:
+    enabled: true
+    user:
+      username: admin
+tree-api:
+  enabled: false
+uuid-gen-api:
+  enabled: false
+ml-trainer-api:
+  enabled: false
+ml-ui: 
+  enabled: false 
+mqtt-to-influxdb-2y:
+  enabled: false 
+ng-api-gateway:
+  enabled: false
+platform-ui:
+  enabled: false
+preferences-api:
+  enabled: false
+rtdb-sync-pub:
+  enabled: false
+rtdb-sync-sub:
+  enabled: false
+events-middleware:
+  enabled: false
+identity-api:
+  enabled: false
+identity-ui:
+  enabled: false
+messages-mediator:
+  enabled: false
+oee-engine:
+  enabled: false
+oee-ui:
+  enabled: false
+rtdb-sync-pub:
+  enabled: false
+rtdb-sync-sub:
+  enabled: false
+sde-socket:
+  enabled: false
+task-flows-backend:
+  enabled: false
+task-flows-frontend:
+  enabled: false
+
+
+#### Solo es para el archivo NOTES.txt
+ingress:
+  enabled: false

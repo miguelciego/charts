@@ -132,8 +132,7 @@ spec:
 {{- end }}
 
 {{- range $w, $s := .Values.application.extra_env }}
-        - name: {{$w }}
-          value: {{$s | quote}}
+        {{$w }}: {{$s | quote}}
 {{- end }}
 
 {{- if .Values.application.env.database_url }}
