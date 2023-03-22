@@ -738,7 +738,7 @@ ng-api-gateway:
       kubernetes.io/ingress.class: "test-admin-nginx"
       kubernetes.io/tls-acme: "true"
 vpn-spa:
-  enabled: false
+  enabled: true
   replicaCount: 1
   type: "sorba-app"
   application:
