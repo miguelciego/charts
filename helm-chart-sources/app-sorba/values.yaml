@@ -709,7 +709,7 @@ task-flows-frontend:
       - name: "gitlab-registry"
   name: "task-flows-frontend"
 ng-api-gateway:
-  enabled: false
+  enabled: true
   replicaCount: 1
   type: "sorba-app"
   application:

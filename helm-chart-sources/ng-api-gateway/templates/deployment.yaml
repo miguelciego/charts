@@ -131,28 +131,19 @@ spec:
           value: {{ .Values.application.database_url | quote }}
 {{- end }}
 
+#Function to set the default values if the env is not included in the Main Chart or in the subchart
+{{- $defaultEnv := fromYaml (include "default_env" .) | default (dict) }}
+{{- $mergedEnv := merge $defaultEnv .Values.application.env }}
+
+{{- range $x, $y := $mergedEnv }}
+        - name: {{$x }}
+          value: {{$y | quote}}
+{{- end }}
+
 {{- range $w, $s := .Values.application.extra_env }}
         - name: {{$w }}
           value: {{$s | quote}}
 {{- end }}
-
-
-{{- if .Values.application.env.proxy }}
-        - name: proxy
-          value: {{ .Values.application.env.proxy | squote}}
-{{- else }}
-        - name: proxy
-          value: '{ "tree": { "path": "/tree", "remote": "http://{{ .Release.Name}}-tree-api:5000/" }, "hdfs": { "path": "/", "remote": "http://192.168.1.94:3003/" } }'
-{{- end }}
-
-{{- if .Values.application.env.sequelize }}
-        - name: sequelize
-          value: {{ .Values.application.env.sequelize }}
-{{- else }}
-        - name: sequelize
-          value: mysql://root:JgHO98XqnV@{{ .Release.Name }}-mysql-sorba/tree
-{{- end }}
-
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}
         - name: GITLAB_ENVIRONMENT_URL

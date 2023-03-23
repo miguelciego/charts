@@ -91,3 +91,10 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- $merged := deepCopy $custom | mergeOverwrite $defaults -}}
 {{- $merged | toYaml -}}
 {{- end -}}
+
+# Default values if not passed by the user in values.yaml
+{{- define "default_env" -}}
+proxy: '{"tree": "{ "path": "/tree", "remote": "http://{{ .Release.Name}}-tree-api:5000/" }", "hdfs": "{ "path": "/", "remote": "http://192.168.1.94:3003/" }"}'
+sequelize: '{{ printf "mysql://root:JgHO98XqnV@%s-mysql-sorba/tree" .Release.Name }}'
+{{- end -}}
+

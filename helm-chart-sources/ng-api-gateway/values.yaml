@@ -50,7 +50,7 @@ application:
   #  proxy: '{ "tree": { "path": "/tree", "remote": "http://sorbapp-tree-api-auto-deploy-app-gitlab:5000/" }, "hdfs": { "path": "/", "remote": "http://192.168.1.94:3003/" } }'
   #  sequelize: mysql://root:JgHO98XqnV@bitnami-mysql/tree
 
-  extra_env: []   
+  extra_env: {}   
 
 hpa:
   enabled: false
