@@ -131,7 +131,11 @@ spec:
           value: {{ .Values.application.database_url | quote }}
 {{- end }}
 
-{{- range $x, $y := .Values.application.env }}
+#Function to set the default values if the env is not included in the Main Chart or in the subchart
+{{- $defaultEnv := fromYaml (include "default_env" .) | default (dict) }}
+{{- $mergedEnv := merge $defaultEnv .Values.application.env }}
+
+{{- range $x, $y := $mergedEnv }}
         - name: {{$x }}
           value: {{$y | quote}}
 {{- end }}
@@ -139,46 +143,6 @@ spec:
 {{- range $w, $s := .Values.application.extra_env }}
         - name: {{$w }}
           value: {{$s | quote}}
-{{- end }}
-
-{{- if .Values.application.env.DATABASE_URL }}
-        - name: DATABASE_URL
-          value: {{ .Values.application.env.DATABASE_URL | quote }}
-{{- else }}
-        - name: DATABASE_URL
-          value: '{{ printf "mysql://root:4mz5IrvhZb@%s-mysql-sorba/tree" .Release.Name }}'
-{{- end }}
-
-{{- if .Values.application.env.REDIS }}
-        - name: REDIS
-          value: "{{ .Values.application.env.REDIS | toJson }}"
-{{- else }}
-        - name: REDIS
-          value: '{{ printf "{\"port\": 6379,\"host\":\"%s-redis-master\",\"db\":0,\"reconnectTime\":5000}" .Release.Name }}'
-{{- end }}
-
-{{- if .Values.application.env.identityURL }}
-        - name: identityURL
-          value: {{ .Values.application.env.identityURL | quote }}
-{{- else }}
-        - name: identityURL
-          value: '{{ printf "https://gateway-am.%s.sorba.ai/tree/v1/" .Release.Namespace }}'
-{{- end }}
- 
-{{- if .Values.application.env.proxies }}
-        - name: proxies
-          value: "{{ .Values.application.env.proxies | toJson }}"
-{{- else }}
-        - name: proxies
-          value: '{{ "{\"/identity-server\":{\"target\":\"https://wso2am-pattern-1-am-service:8243/identity/v1/\",\"pathRewrite\":{\"^/identity-server\":\"\"},\"secure\":false,\"changeOrigin\":true,\"logLevel\":\"debug\"},\"/api/tree\":{\"target\":\"https://wso2am-pattern-1-am-service:8243/tree/v1/\",\"pathRewrite\":{\"^/api/tree\":\"\"},\"secure\":false,\"changeOrigin\":true,\"logLevel\":\"debug\"},\"/api/vpnservice\":{\"target\":\"http://52.191.30.247/\",\"pathRewrite\":{\"^/api/vpnservice\":\"\"},\"secure\":false,\"changeOrigin\":true,\"logLevel\":\"debug\"},\"/api/commands\":{\"target\":\"https://websoc.{{ .Release.Name}}.sorba.ai/api/commands\",\"pathRewrite\":{\"^/api/commands\":\"\"},\"secure\":false,\"changeOrigin\":true,\"logLevel\":\"debug\"},\"/api/influx\":{\"target\":\"http://{{ .Release.Namespace}}-influxdb:8086\",\"pathRewrite\":{\"^/api/influx\":\"\"},\"secure\":false,\"changeOrigin\":true,\"logLevel\":\"debug\"},\"/api/rtdb\":{\"target\":\"http://webdis:7379\",\"pathRewrite\":{\"^/api/rtdb\":\"\"},\"secure\":false,\"changeOrigin\":true,\"logLevel\":\"debug\"}}" }}'
-{{- end }}
-
-{{- if .Values.application.env.socketUrl }}
-        - name: socketUrl
-          value: {{ .Values.application.env.socketUrl | quote }}
-{{- else }}
-        - name: socketUrl
-          value: '{{ printf "wss://websoc.%s.sorbapp.com/websocket" .Release.Namespace }}'
 {{- end }}
 
 
