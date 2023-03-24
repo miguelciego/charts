@@ -100,6 +100,6 @@ dependencies:
   version: 2.39.1
 - name: sorba-identity-api
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.0
-digest: sha256:0c9444741af76ba1a9f1c2a192057ba17a60c4691384f83220902b966a627f92
-generated: "2023-03-24T08:46:07.9563677-04:00"
+  version: 2.39.1
+digest: sha256:c8e559daa802123b0dfebea82aea671a2cda02926f0b696de089a36480700d04
+generated: "2023-03-24T12:29:26.1255067-04:00"
