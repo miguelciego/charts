@@ -91,8 +91,8 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- $merged := deepCopy $custom | mergeOverwrite $defaults -}}
 {{- $merged | toYaml -}}
 {{- end -}}
-{{/*
- Default values if not passed by the user in values.yaml
+
+#Default values if not passed by the user in values.yaml
 {{- define "default_env" -}}
 DATABASE_URL: '{{ printf "mysql://root:4mz5IrvhZb@%s-mysql-sorba/tree" .Release.Name }}'
 CLOUD_GRAFANA_API: '{{ printf "{\"URL\":\"http://%s-grafana:3000/api\",\"USER\":\"admin\",\"PASS\":\"sbrQp10\"}" .Release.Name }}'
@@ -103,4 +103,3 @@ SORBA_INTEGRATION_AUTHORIZATION: '{{ "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ
 SORBA_INTEGRATION_URL: '{{ "http://sorbapp-sorba-dashboard-comm-auto-deploy-app-gitlab:5000" }}'
 DEFAULT_TENANT_SETTINGS: '{{ "{\"platformAPI\":\"https://ng-api-gateway.test-admin.fullstackcoder.net/tree\",\"mqttBrokerHost\":\"broker.sorba.ai\",\"grafanaURL\":\"https://dashboard.test-admin.fullstackcoder.net\",\"grafanaAPI\":\"https://dashboard.test-admin.fullstackcoder.net/api\",\"taskFlowAPI\":\"https://ng-api-gateway.test-admin.fullstackcoder.net/taskflow\",\"taskFlowAPIGlobal\":\"\"}" }}'
 {{- end -}}
-*/}}
