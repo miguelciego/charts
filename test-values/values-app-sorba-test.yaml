@@ -1,18 +1,18 @@
 vernemq:
   enabled: false
 cert-manager:
-  enabled: true
+  enabled: false
   installCRDs: true
 ingress-nginx:
-  enabled: true
+  enabled: false
   controller:
     ingressClass: jkl-com-nginx
     ingressClassResource:
       name: jkl-com-nginx
 kubernetes-dashboard:
-  enabled: true
+  enabled: false
   ingress:
-    enabled: true
+    enabled: false
     className: "jkl-com-nginx"
     annotations:
       kubernetes.io/tls-acme: 'true'
@@ -59,7 +59,7 @@ is-pattern-1:
     #  email: admin@example.com
 am-pattern-1:
 ##########   true  ###########
-  enabled: true  
+  enabled: false
   wso2:
     deployment:
       dependencies:
@@ -123,7 +123,7 @@ am-pattern-1:
       persistence:
         storageClass: default
 grafana:
-  enabled: true
+  enabled: false
   image:
     registry: registry.desa.sorbapp.com
     repository: sorbotics/dashboard/dashboard-ui/master
@@ -187,7 +187,7 @@ mysql-sorba:
     createDatabase: false
     password: "JgHO98XqnV"
 phpmyadmin:
-  enabled: true
+  enabled: false
   ingress:
     enabled: true
     tls: true
@@ -198,14 +198,14 @@ phpmyadmin:
       cert-manager.io/issuer: jkl-com-issuer
       kubernetes.io/ingress.class: jkl-com-nginx
 redis:
-  enabled: true
+  enabled: false
   auth:
     enabled: false
   architecture: replication
   replica:
     replicaCount: 2
 influxdb:
-  enabled: true
+  enabled: false
 tree-api:
   enabled: true
   application:
@@ -218,11 +218,11 @@ tree-api:
       SORBA_INTEGRATION_AUTHORIZATION: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlNvcmJhIEludGVncmF0aW9uIiwiaWF0IjozNzM5NTcyMDAwMDB9.4A1X7l84wCJq7asgkGKaoYizlNBHnwGBm9Ex-YZRRzg'
       SORBA_INTEGRATION_URL: http://sorbapp-sorba-dashboard-comm-auto-deploy-app-gitlab:5000
   image:
-    repository: registry.desa.sorbapp.com/sorbotics/platform/tree-api/new-generation
+    repository: sorbaregistry.azurecr.io/sorbotics/platform/tree-api/new-generation
     tag: latest
     pullPolicy: IfNotPresent
     secrets:
-      - name: gitlab-registry 
+      - name: azure-registry 
   persistence:
     enabled: true
     volumes:
@@ -244,17 +244,17 @@ tree-api:
   #    memory: 128Mi
 uuid-gen-api:
   enabled: true
-#  image:
-#    repository: sorbaregistry.azurecr.io/sorbotics/uuid-gen-api
-#    tag: latest
-#    pullPolicy: IfNotPresent
-#    secrets:
-#      - name: azure-registry 
+  image:
+    repository: sorbaregistry.azurecr.io/sorbotics/uuid-gen-api/master
+    tag: latest
+    pullPolicy: IfNotPresent
+    secrets:
+      - name: azure-registry 
 events-middleware:
-  enabled: true
+  enabled: false
 identity-api:
 ##########   true  ###########
-  enabled: true
+  enabled: false
   image:
     repository: registry.desa.sorbapp.com/sorbotics/sorba-identity/sorba-identity-api-ng/main
     tag: 369bd0049d11919172917b5fbfba65c577de3feb
@@ -280,7 +280,7 @@ identity-api:
 								  "task-flow": "jkl-sorba-task-flows-backend"}'
 identity-ui:
 ##########   true  ###########
-  enabled: true
+  enabled: false
   image:
     repository: registry.desa.sorbapp.com/sorbotics/sorba-identity/sorba-identity-ui-ng/main
     tag: latest
@@ -310,10 +310,10 @@ identity-ui:
   service:
     url: http://identity.jkl-com.sorbapp.com
 messages-mediator:
-  enabled: true
+  enabled: false
 ml-trainer-api:
 ##########   true  ###########
-  enabled: true
+  enabled: false
   image:
     repository: registry.desa.sorbapp.com/sorbotics/ml-trainer/ml-trainer-api/development
     tag: latest
@@ -347,7 +347,7 @@ ml-trainer-api:
           storageClass: "azurefile"
 ml-ui:
 ##########   true  ###########
-  enabled: true
+  enabled: false
   image:
     repository: registry.desa.sorbapp.com/sorbotics/ml-trainer/ml-ui/master
     tag: latest
@@ -386,9 +386,9 @@ ml-ui:
   service:
     url: http://ml.jkl-com.sorbapp.com
 oee-engine:
-  enabled: true
+  enabled: false
 oee-ui:
-  enabled: true
+  enabled: false
   ingress:
     enabled: true
     annotations:
@@ -400,7 +400,7 @@ oee-ui:
   service:
     url: http://oee.jkl-com.sorbapp.com
 rtdb-sync-pub:
-  enabled: true
+  enabled: false
   livenessProbe:
     probeType: "exec"
     command:
@@ -424,7 +424,7 @@ rtdb-sync-pub:
       REDIS_DB: 0
       DEBUG: 1
 rtdb-sync-sub:
-  enabled: true
+  enabled: false
   livenessProbe:
     probeType: "exec"
     command:
@@ -449,7 +449,7 @@ rtdb-sync-sub:
       DEBUG: 1
 sde-socket:
 ##########   true  ###########
-  enabled: true
+  enabled: false
   image:
     repository: sorbaregistry.azurecr.io/sorbotics/sde-socket/master
     tag: latest
@@ -476,7 +476,7 @@ sde-socket:
     url: http://websoc.jkl-com.sorbapp.com
 task-flows-backend:
 ##########   true  ###########
-  enabled: true
+  enabled: false
   image:
     repository: registry.desa.sorbapp.com/sorbotics/sorba-task-flows/task-flows-backend/master
     tag: latest
@@ -505,7 +505,7 @@ task-flows-backend:
           storageClass: "azurefile"
 task-flows-frontend:
 ##########   true  ###########
-  enabled: true
+  enabled: false
   image:
     repository: registry.desa.sorbapp.com/sorbotics/sorba-task-flows/task-flows-frontend/main
     tag: latest
@@ -536,7 +536,7 @@ task-flows-frontend:
     url: http://taskflow.jkl-com.sorbapp.com
 platform-ui:
 ##########   true  ###########
-  enabled: true
+  enabled: false
   image:
     repository: registry.desa.sorbapp.com/sorbotics/platform-ui-test-20-08/pre-release
     tag: latest
@@ -574,7 +574,7 @@ platform-ui:
   service:
     url: http://platform.jkl-com.sorbapp.com
 vpn-spa:
-  enabled: true
+  enabled: false
   image:
     pullPolicy: IfNotPresent
     repository: registry.desa.sorbapp.com/sorbotics/vpn/vpn-spa/development
@@ -601,7 +601,7 @@ vpn-spa:
   service:
     url: http://vpn.jkl-com.sorbapp.com
 ng-api-gateway:
-  enabled: true
+  enabled: false
   application:
     env:
       sequelize: mysql://root:4mz5IrvhZb@jkl-sorba-mysql-sorba/tree
@@ -626,4 +626,7 @@ ng-api-gateway:
       nginx.ingress.kubernetes.io/proxy-buffering: 'off' 
   service:
     url: http://ng-api-gateway.jkl-com.sorbapp.com/
- 
+tenant-management-api:
+  enabled: false
+tenant-management-ui:
+  enabled: false
