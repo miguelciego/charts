@@ -155,7 +155,7 @@ spec:
 
 {{- if .Values.application.env.REDIS }}
         - name: REDIS
-          value: "{{ .Values.application.env.REDIS | toJson }}"
+          value: {{ .Values.application.env.REDIS | quote }}
 {{- else }}
         - name: REDIS
           value: '{{ printf "{\"port\": 6379,\"host\":\"%s-redis-master\",\"db\":0,\"reconnectTime\":5000}" .Release.Name }}'
@@ -163,7 +163,7 @@ spec:
 
 {{- if .Values.application.env.CLOUD_GRAFANA_API }}
         - name: CLOUD_GRAFANA_API
-          value: "{{ .Values.application.env.CLOUD_GRAFANA_API | toJson }}"
+          value: {{ .Values.application.env.CLOUD_GRAFANA_API | quote }}
 {{- else }}
         - name: CLOUD_GRAFANA_API
           value: '{{ printf "{\"URL\":\"http://%s-grafana:3000/api\",\"USER\":\"admin\",\"PASS\":\"sbrQp10\"}" .Release.Name }}'
@@ -174,12 +174,12 @@ spec:
           value: {{ .Values.application.env.HDFS_URL | quote }}
 {{- else }}
         - name: HDFS_URL
-          value: {{ "http://192.168.1.94:3003" }}
+          value: '{{ "http://192.168.1.94:3003" }}'
 {{- end }}
 
 {{- if .Values.application.env.LICENSE_DECODER }}
         - name: LICENSE_DECODER
-          value: "{{ .Values.application.env.LICENSE_DECODER | toJson }}"
+          value:  {{ .Values.application.env.LICENSE_DECODER | quote }}
 {{- else }}
         - name: LICENSE_DECODER
           value: '{{ "{\"port\": 8074,\"host\": \"sorbapp-license-decoder-auto-deploy-app-gitlab\",\"endpoint\": \"/api/decode\"}" }}'
@@ -190,7 +190,7 @@ spec:
           value: {{ .Values.application.env.SORBA_INTEGRATION_AUTHORIZATION | quote }}
 {{- else }}
         - name: SORBA_INTEGRATION_AUTHORIZATION
-          value: {{ "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlNvcmJhIEludGVncmF0aW9uIiwiaWF0IjozNzM5NTcyMDAwMDB9.4A1X7l84wCJq7asgkGKaoYizlNBHnwGBm9Ex-YZRRzg" }}
+          value: '{{ "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlNvcmJhIEludGVncmF0aW9uIiwiaWF0IjozNzM5NTcyMDAwMDB9.4A1X7l84wCJq7asgkGKaoYizlNBHnwGBm9Ex-YZRRzg" }}'
 {{- end }}
 
 {{- if .Values.application.env.SORBA_INTEGRATION_URL }}
@@ -198,21 +198,21 @@ spec:
           value: {{ .Values.application.env.SORBA_INTEGRATION_URL | quote }}
 {{- else }}
         - name: SORBA_INTEGRATION_URL
-          value: {{ "http://sorbapp-sorba-dashboard-comm-auto-deploy-app-gitlab:5000" }}
+          value: '{{ "http://sorbapp-sorba-dashboard-comm-auto-deploy-app-gitlab:5000" }}'
 {{- end }}
 
 {{- if .Values.application.env.DEFAULT_TENANT_SETTINGS }}
         - name: DEFAULT_TENANT_SETTINGS
-          value: "{{ .Values.application.env.DEFAULT_TENANT_SETTINGS | toJson }}"
+          value: {{ .Values.application.env.DEFAULT_TENANT_SETTINGS | quote }}
 {{- else }}
         - name: DEFAULT_TENANT_SETTINGS
           value: '{{ "{\"platformAPI\":\"https://ng-api-gateway.test-admin.fullstackcoder.net/tree\",\"mqttBrokerHost\":\"broker.sorba.ai\",\"grafanaURL\":\"https://dashboard.test-admin.fullstackcoder.net\",\"grafanaAPI\":\"https://dashboard.test-admin.fullstackcoder.net/api\",\"taskFlowAPI\":\"https://ng-api-gateway.test-admin.fullstackcoder.net/taskflow\",\"taskFlowAPIGlobal\":\"\"}" }}'
 {{- end }}
    
         - name: GITLAB_ENVIRONMENT_NAME
-          value: {{ .Values.gitlab.envName }}
+          value: {{ .Values.gitlab.envName | quote }}
         - name: GITLAB_ENVIRONMENT_URL
-          value: {{ .Values.gitlab.envURL }}
+          value: {{ .Values.gitlab.envURL | quote }}
 {{- if .Values.lifecycle }}
         lifecycle:
 {{ toYaml .Values.lifecycle | indent 10 }}

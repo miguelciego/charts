@@ -154,7 +154,7 @@ influxdb:
   name: "influxdb"
 tree-api:
   type: "sorba-app"
-  enabled: false
+  enabled: true
   replicaCount: 1
   application:
     env:
@@ -238,7 +238,7 @@ platform-ui:
   name: "platform-ui"
 uuid-gen-api:
   type: "sorba-app"
-  enabled: false
+  enabled: true
   replicaCount: 1
   resources:
     limits:

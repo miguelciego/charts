@@ -47,7 +47,7 @@ application:
   # if you explicitly set `database_url` to `null`.
   # database_url: null
 
-  extra_env: []
+  extra_env: {}
 hpa:
   enabled: false
   minReplicas: 1
