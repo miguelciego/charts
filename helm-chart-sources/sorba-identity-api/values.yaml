@@ -6,7 +6,7 @@ strategyType:
 # `serviceAccountName` is deprecated in favor of `serviceAccount.name`
 serviceAccountName:
 image:
-  repository: sorbaregistry.azurecr.io/sorbotics/sorba-identity-api/main
+  repository: sorbaregistry.azurecr.io/sorbotics/sorba-identity/sorba-identity-api/development
   tag: latest
   pullPolicy: IfNotPresent
   secrets:

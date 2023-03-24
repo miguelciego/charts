@@ -98,5 +98,8 @@ dependencies:
 - name: tenant-management-ui
   repository: https://miguelciego.github.io/charts/
   version: 2.39.1
-digest: sha256:b9c3057283c2dec90082ae7053e01f2d41c77f2040cd758dd83df97803c93d0d
-generated: "2023-03-17T15:22:13.789963398-04:00"
+- name: sorba-identity-api
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.0
+digest: sha256:0c9444741af76ba1a9f1c2a192057ba17a60c4691384f83220902b966a627f92
+generated: "2023-03-24T08:46:07.9563677-04:00"
