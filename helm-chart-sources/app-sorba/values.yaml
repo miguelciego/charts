@@ -154,7 +154,7 @@ influxdb:
   name: "influxdb"
 tree-api:
   type: "sorba-app"
-  enabled: true
+  enabled: false
   replicaCount: 1
   application:
     env:
