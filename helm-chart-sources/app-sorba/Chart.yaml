@@ -139,3 +139,7 @@ dependencies:
     version: 2.39.1
     repository: https://miguelciego.github.io/charts/
     condition: tenant-management-ui.enabled    
+  - name: sorba-identity-api
+    version: 2.39.0
+    repository: https://miguelciego.github.io/charts/
+    condition: sorba-identity-api.enabled  
