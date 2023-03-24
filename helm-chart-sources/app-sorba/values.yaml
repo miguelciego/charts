@@ -672,7 +672,7 @@ task-flows-backend:
       kubernetes.io/tls-acme: "true"
 task-flows-frontend:
   type: "sorba-app"
-  enabled: false
+  enabled: true
   replicaCount: 1
   application:
     env:

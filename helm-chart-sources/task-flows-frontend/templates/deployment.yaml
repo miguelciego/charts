@@ -131,27 +131,23 @@ spec:
           value: {{ .Values.application.database_url | quote }}
 {{- end }}
 
+#Function to set the default values if the env is not included in the Main Chart or in the subchart
+{{- $defaultEnv := fromYaml (include "default_env" .) | default (dict) }}
+{{- $mergedEnv := merge $defaultEnv .Values.application.env }}
+
+{{- range $x, $y := $mergedEnv }}
+        - name: {{$x }}
+          value: {{ toString $y | quote}}
+{{- end }}
+
 {{- range $w, $s := .Values.application.extra_env }}
         - name: {{$w }}
-          value: {{$s | quote}}
+          value: {{ toString $s | quote}}
 {{- end }}
 
-{{- if .Values.application.env.PORT }}
-        - name: PORT
-          value: {{ .Values.application.env.PORT }}
-{{- else }}
-        - name: PORT
-          value: 5000
-{{- end }}
 
-{{- if .Values.application.env.deployType }}
-        - name: deployType
-          value: {{ .Values.application.env.deployType }}
-{{- else }}
-        - name: deployType
-          value: cloud
-{{- end }}
 
+{{/*
 {{- if .Values.application.env.identityServiceAPI }}
         - name: identityServiceAPI
           value: {{ .Values.application.env.identityServiceAPI }}
@@ -244,7 +240,7 @@ spec:
         - name: identityURL
           value: http://{{ .Release.Namespace}}-identity-api:5000/api
 {{- end }}
-
+*/}}
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}
         - name: GITLAB_ENVIRONMENT_URL

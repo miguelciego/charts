@@ -91,3 +91,31 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- $merged := deepCopy $custom | mergeOverwrite $defaults -}}
 {{- $merged | toYaml -}}
 {{- end -}}
+
+# Default values if not passed by the user in values.yaml
+{{- define "default_env" -}}
+##PORT: 5000
+##deployType: "cloud"
+##identityServiceAPI: "https://wso2am-pattern-1-am-service:8243/identity/v1"
+##identityURL: "http://{{ .Release.Name}}-identity-api:5000/api"
+##influxdb: "{\"host\":\"influxdb-1-8\",\"db\":\"sorba_sde\",\"measurement\":\"__SYSTEM_EVENTS\",\"port\": 8086}"
+##page: "{\"title\":\"Sorba Task Flow\",\"location\":\"\",\"message\":\"Task Flow\"}"
+##proxies: "{\"/tree\":{\"target\":\"http://{{ .Release.Name}}-tree-api:5000\",\"pathRewrite\":{\"^/tree\":\"\"},\"secure\":false,\"changeOrigin\":true,\"logLevel\":\"debug\"},\"/taskflow\":{\"target\":\"https://gateway.{{ .Release.Name}}.fullstackcoder.net/taskflow/v1\",\"pathRewrite\":{\"^/taskflow\":\"\"},\"secure\":false,\"changeOrigin\":true,\"logLevel\":\"debug\"},\"/influx\":{\"target\":\"http://{{ .Release.Name}}-influxdb:8086\",\"pathRewrite\":{\"^/influx\":\"\"},\"secure\":false,\"logLevel\":\"debug\",\"changeOrigin\":true},\"/identity\":{\"target\":\"https://gateway.{{ .Release.Name}}.fullstackcoder.net/identity/v1\",\"pathRewrite\":{\"^/identity\":\"\"},\"secure\":false,\"changeOrigin\":true,\"logLevel\":\"debug\"}}"
+##redis: "{\"host\":\"{{ .Release.Name}}-redis-master\",\"port\": 6379}"
+##socketUrl: "wss://websoc.{{ .Release.Name}}.fullstackcoder.net"
+##tenant: "{{ .Release.Name}}"
+###redis: '{{ printf "{\"port\": 6379,\"host\":\"%s-redis-master\",\"db\":0,\"reconnectTime\":5000}" .Release.Name }}'
+###identityURL: '{{ printf "http://%s-identity-api:5000/api" .Release.Name }}'
+###proxies: '{{ "{\"/identity-server\":{\"target\":\"https://wso2am-pattern-1-am-service:8243/identity/v1/\",\"pathRewrite\":{\"^/identity-server\":\"\"},\"secure\":false,\"changeOrigin\":true,\"logLevel\":\"debug\"},\"/api/tree\":{\"target\":\"https://wso2am-pattern-1-am-service:8243/tree/v1/\",\"pathRewrite\":{\"^/api/tree\":\"\"},\"secure\":false,\"changeOrigin\":true,\"logLevel\":\"debug\"},\"/api/vpnservice\":{\"target\":\"http://52.191.30.247/\",\"pathRewrite\":{\"^/api/vpnservice\":\"\"},\"secure\":false,\"changeOrigin\":true,\"logLevel\":\"debug\"},\"/api/commands\":{\"target\":\"https://websoc.{{ .Release.Name}}.sorba.ai/api/commands\",\"pathRewrite\":{\"^/api/commands\":\"\"},\"secure\":false,\"changeOrigin\":true,\"logLevel\":\"debug\"},\"/api/influx\":{\"target\":\"http://{{ .Release.Namespace}}-influxdb:8086\",\"pathRewrite\":{\"^/api/influx\":\"\"},\"secure\":false,\"changeOrigin\":true,\"logLevel\":\"debug\"},\"/api/rtdb\":{\"target\":\"http://webdis:7379\",\"pathRewrite\":{\"^/api/rtdb\":\"\"},\"secure\":false,\"changeOrigin\":true,\"logLevel\":\"debug\"}}" }}'
+###socketUrl: '{{ printf "wss://websoc.%s.sorbapp.com/websocket" .Release.Name }}'
+PORT: 5000
+deployType: "cloud"
+identityServiceAPI: "https://gateway.test-admin.fullstackcoder.net/identity/v1"
+identityURL: "http://test-admin-identity-api:5000/api"
+influxdb: "{\"host\":\"influxdb-1-8\",\"db\":\"sorba_sde\",\"measurement\":\"__SYSTEM_EVENTS\",\"port\": 8086}"
+page: "{\"title\":\"Sorba Task Flow\",\"location\":\"\",\"message\":\"Task Flow\"}"
+proxies: "{\"/tree\":{\"target\":\"http://test-admin-tree-api:5000\",\"pathRewrite\":{\"^/tree\":\"\"},\"secure\":false,\"changeOrigin\":true,\"logLevel\":\"debug\"},\"/taskflow\":{\"target\":\"https://gateway.test-admin.fullstackcoder.net/taskflow/v1\",\"pathRewrite\":{\"^/taskflow\":\"\"},\"secure\":false,\"changeOrigin\":true,\"logLevel\":\"debug\"},\"/influx\":{\"target\":\"http://test-admin-influxdb:8086\",\"pathRewrite\":{\"^/influx\":\"\"},\"secure\":false,\"logLevel\":\"debug\",\"changeOrigin\":true},\"/identity\":{\"target\":\"https://gateway.test-admin.fullstackcoder.net/identity/v1\",\"pathRewrite\":{\"^/identity\":\"\"},\"secure\":false,\"changeOrigin\":true,\"logLevel\":\"debug\"}}"
+redis: "{\"host\":\"test-admin-redis-master\",\"port\": 6379}"
+socketUrl: "wss://websoc.test-admin.fullstackcoder.net"
+tenant: "test-admin"
+{{- end -}}

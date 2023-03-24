@@ -93,7 +93,7 @@ application:
   #  redis: '{"host":"bitnami-redis-master","port": 6379}'
   #  socketUrl: wss://websoc.demo-com.sorba.ai/websocket
   
-  extra_env: []
+  extra_env: {}
 
 hpa:
   enabled: false
