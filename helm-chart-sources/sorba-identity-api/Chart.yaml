@@ -2,4 +2,4 @@ apiVersion: v1
 description: sorba-identity-api deploy Helm Chart
 icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
 name: sorba-identity-api
-version: 2.39.0
+version: 2.39.1
