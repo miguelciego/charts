@@ -8,7 +8,7 @@ cert-manager:
   type: "service"
   name: "cert-manager"
 ingress-nginx:
-  enabled: true
+  enabled: false
   type: "service"
   controller:
     ingressClass: "test-admin-nginx"
@@ -16,7 +16,7 @@ ingress-nginx:
       name: "test-admin-nginx"
   name: "ingress-nginx"
 kubernetes-dashboard:
-  enabled: true
+  enabled: false
   type: "service"
   ingress:
     enabled: true
@@ -70,7 +70,7 @@ am-pattern-1:
   name: "am-pattern-1"
 grafana:
   type: "service"
-  enabled: true
+  enabled: false
   image:
     registry: "registry.desa.sorbapp.com"
     repository: "sorbotics/dashboard/dashboard-ui/master"
@@ -122,7 +122,7 @@ grafana:
   name: "grafana"
 mysql-sorba:
   type: "service"
-  enabled: true
+  enabled: false
   auth:
     rootPassword: "JgHO98XqnV"
     password: "JgHO98XqnV"
@@ -159,13 +159,13 @@ tree-api:
   application:
     env:
       DATABASE_URL: "mysql://root:JgHO98XqnV@test-admin-mysql-sorba/tree"
-      CLOUD_GRAFANA_API: '{\"URL\":\"http://test-admin-grafana:3000/api\",\"USER\":\"admin\",\"PASS\":\"sbrQp10\"}'
+      CLOUD_GRAFANA_API: "{\"URL\":\"http://test-admin-grafana:3000/api\",\"USER\":\"admin\",\"PASS\":\"sbrQp10\"}"
       HDFS_URL: "http://192.168.1.94:3003"
-      LICENSE_DECODER: '{\"port\": 8074,\"host\": \"sorbapp-license-decoder-auto-deploy-app-gitlab\",\"endpoint\": \"/api/decode\"}'
-      REDIS: '{\"port\": 6379, \"host\": \"test-admin-redis-master\",\"db\": 0,\"reconnectTime\": 5000}'
+      LICENSE_DECODER: "{\"port\": 8074,\"host\": \"sorbapp-license-decoder-auto-deploy-app-gitlab\",\"endpoint\": \"/api/decode\"}"
+      REDIS: "{\"port\": 6379, \"host\": \"test-admin-redis-master\",\"db\": 0,\"reconnectTime\": 5000}"
       SORBA_INTEGRATION_AUTHORIZATION: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlNvcmJhIEludGVncmF0aW9uIiwiaWF0IjozNzM5NTcyMDAwMDB9.4A1X7l84wCJq7asgkGKaoYizlNBHnwGBm9Ex-YZRRzg"
       SORBA_INTEGRATION_URL: "http://sorbapp-sorba-dashboard-comm-auto-deploy-app-gitlab:5000"
-      DEFAULT_TENANT_SETTINGS: '{\"platformAPI\":\"https://ng-api-gateway.test-admin.fullstackcoder.net/tree\",\"mqttBrokerHost\":\"broker.sorba.ai\",\"grafanaURL\":\"https://dashboard.test-admin.fullstackcoder.net\",\"grafanaAPI\":\"https://dashboard.test-admin.fullstackcoder.net/api\",\"taskFlowAPI\":\"https://ng-api-gateway.test-admin.fullstackcoder.net/taskflow\",\"taskFlowAPIGlobal\":\"\"}'
+      DEFAULT_TENANT_SETTINGS: "{\"platformAPI\":\"https://ng-api-gateway.test-admin.fullstackcoder.net/tree\",\"mqttBrokerHost\":\"broker.sorba.ai\",\"grafanaURL\":\"https://dashboard.test-admin.fullstackcoder.net\",\"grafanaAPI\":\"https://dashboard.test-admin.fullstackcoder.net/api\",\"taskFlowAPI\":\"https://ng-api-gateway.test-admin.fullstackcoder.net/taskflow\",\"taskFlowAPIGlobal\":\"\"}"
   image:
     repository: "registry.desa.sorbapp.com/sorbotics/platform/tree-api/testing"
     tag: "latest"
@@ -238,7 +238,7 @@ platform-ui:
   name: "platform-ui"
 uuid-gen-api:
   type: "sorba-app"
-  enabled: true
+  enabled: false
   replicaCount: 1
   resources:
     limits:
@@ -672,7 +672,7 @@ task-flows-backend:
       kubernetes.io/tls-acme: "true"
 task-flows-frontend:
   type: "sorba-app"
-  enabled: true
+  enabled: false
   replicaCount: 1
   application:
     env:

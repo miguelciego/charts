@@ -141,12 +141,12 @@ spec:
 
 {{- range $x, $y := $mergedEnv }}
         - name: {{$x }}
-          value: {{$y | quote}}
+          value: {{toJson $y | quote}}
 {{- end }}
 
 {{- range $w, $s := .Values.application.extra_env }}
         - name: {{$w }}
-          value: {{$s | quote}}
+          value: {{toJson $s | quote}}
 {{- end }}
    
         - name: GITLAB_ENVIRONMENT_NAME
