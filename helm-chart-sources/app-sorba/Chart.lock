@@ -1,6 +1,6 @@
 dependencies:
 - name: vernemq
-  repository: https://vernemq.github.io/docker-vernemq
+  repository: https://miguelciego.github.io/charts/
   version: 1.6.12
 - name: cert-manager
   repository: https://charts.jetstack.io
@@ -101,5 +101,5 @@ dependencies:
 - name: sorba-identity-api
   repository: https://miguelciego.github.io/charts/
   version: 2.39.1
-digest: sha256:c8e559daa802123b0dfebea82aea671a2cda02926f0b696de089a36480700d04
-generated: "2023-03-24T12:29:26.1255067-04:00"
+digest: sha256:15e97bc6e39cb8d1687baa8479811a76773d9f12abe15c7f976499d11d8fca01
+generated: "2023-04-07T11:02:10.175023873-04:00"
