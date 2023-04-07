@@ -56,7 +56,7 @@ spec:
       {{- end }}
     {{- end }}
     {{- if .Values.service.mqtts.enabled }}
-    - port: {{ .Values.service.mqtts.portLB }}
+    - port: {{ .Values.service.mqtts.port }}
       targetPort: mqtts
       name: mqtts
       {{- if eq .Values.service.type "NodePort" }}
