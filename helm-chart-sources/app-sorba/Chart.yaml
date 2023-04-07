@@ -9,7 +9,7 @@ icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.p
 dependencies:
   - name: vernemq
     version: 1.6.12
-    repository: https://vernemq.github.io/docker-vernemq 
+    repository: https://miguelciego.github.io/charts/ 
     condition: vernemq.enabled
   - name: cert-manager
     version: 1.10.0
