@@ -97,9 +97,11 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 DATABASE_URL: '{{ printf "mysql://root:4mz5IrvhZb@%s-mysql-sorba/tree" .Release.Name }}'
 CLOUD_GRAFANA_API: '{{ printf "{\"URL\":\"http://%s-grafana:3000/api\",\"USER\":\"admin\",\"PASS\":\"sbrQp10\"}" .Release.Name }}'
 HDFS_URL: '{{ "http://192.168.1.94:3003" }}'
-LICENSE_DECODER: '{{ "{\"port\": 8074,\"host\": \"sorbapp-license-decoder-auto-deploy-app-gitlab\",\"endpoint\": \"/api/decode\"}" }}'
+#LICENSE_DECODER: '{{ "{\"port\": 8074,\"host\": \"sorbapp-license-decoder-auto-deploy-app-gitlab\",\"endpoint\": \"/api/decode\"}" }}'
+LICENSE_DECODER: '{{ printf "{\"port\": %d,\"host\": \"sorbapp-license-decoder-auto-deploy-app-gitlab\",\"endpoint\": \"/api/decode\"}" 8074 }}'
 REDIS: '{{ printf "{\"port\": 6379,\"host\":\"%s-redis-master\",\"db\":0,\"reconnectTime\":5000}" .Release.Name }}'
 SORBA_INTEGRATION_AUTHORIZATION: '{{ "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlNvcmJhIEludGVncmF0aW9uIiwiaWF0IjozNzM5NTcyMDAwMDB9.4A1X7l84wCJq7asgkGKaoYizlNBHnwGBm9Ex-YZRRzg" }}'
 SORBA_INTEGRATION_URL: '{{ "http://sorbapp-sorba-dashboard-comm-auto-deploy-app-gitlab:5000" }}'
-DEFAULT_TENANT_SETTINGS: '{{ "{\"platformAPI\":\"https://ng-api-gateway.test-admin.fullstackcoder.net/tree\",\"mqttBrokerHost\":\"broker.sorba.ai\",\"grafanaURL\":\"https://dashboard.test-admin.fullstackcoder.net\",\"grafanaAPI\":\"https://dashboard.test-admin.fullstackcoder.net/api\",\"taskFlowAPI\":\"https://ng-api-gateway.test-admin.fullstackcoder.net/taskflow\",\"taskFlowAPIGlobal\":\"\"}" }}'
+#DEFAULT_TENANT_SETTINGS: '{{ "{\"platformAPI\":\"https://ng-api-gateway.test-admin.fullstackcoder.net/tree\",\"mqttBrokerHost\":\"broker.sorba.ai\",\"grafanaURL\":\"https://dashboard.test-admin.fullstackcoder.net\",\"grafanaAPI\":\"https://dashboard.test-admin.fullstackcoder.net/api\",\"taskFlowAPI\":\"https://ng-api-gateway.test-admin.fullstackcoder.net/taskflow\",\"taskFlowAPIGlobal\":\"\"}" }}'
+DEFAULT_TENANT_SETTINGS: '{{ printf "{\"platformAPI\":\"https://ng-api-gateway.%s.fullstackcoder.net/tree\",\"mqttBrokerHost\":\"broker.sorba.ai\",\"grafanaURL\":\"https://dashboard.%s.fullstackcoder.net\",\"grafanaAPI\":\"https://dashboard.%s.fullstackcoder.net/api\",\"taskFlowAPI\":\"https://ng-api-gateway.%s.fullstackcoder.net/taskflow\",\"taskFlowAPIGlobal\":\"\"}" test-admin }}'
 {{- end -}}
