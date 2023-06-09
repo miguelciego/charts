@@ -114,19 +114,17 @@ ingress:
 prometheus:
   metrics: false
 livenessProbe:
-  path: "/"
+  command:
+    - check pub
   initialDelaySeconds: 15
   timeoutSeconds: 15
-  scheme: "HTTP"
-  probeType: "httpGet"
-  httpHeaders: []
+  probeType: "exec"
 readinessProbe:
-  path: "/"
+  command:
+    - check pub
   initialDelaySeconds: 5
   timeoutSeconds: 3
-  scheme: "HTTP"
-  probeType: "httpGet"
-  httpHeaders: []
+  probeType: "exec"
 startupProbe:
   enabled: false
   path: "/"

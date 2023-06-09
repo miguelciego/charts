@@ -171,4 +171,7 @@ dependencies:
     version: 2.39.1
     repository: https://miguelciego.github.io/charts/
     condition: ml-predictor.enabled
-
+  - name: cloud-data-ingestion
+    version: 2.39.1
+    repository: https://miguelciego.github.io/charts/
+    condition: cloud-data-ingestion.enabled

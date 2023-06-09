@@ -6,7 +6,7 @@ strategyType:
 # `serviceAccountName` is deprecated in favor of `serviceAccount.name`
 serviceAccountName:
 image:
-  repository: sorbaregistry.azurecr.io/sorbotics/rtdb/rtdb-sync-pub/development
+  repository: sorbaregistry.azurecr.io/sorbotics/oee/oee-ui/main
   tag: latest
   pullPolicy: IfNotPresent
   secrets:
@@ -47,15 +47,11 @@ application:
   # if you explicitly set `database_url` to `null`.
   # database_url: null
   env: {}
-  #  SCOPE: "cloud"
-  #  MQTT_HOST: sorba-vernamq
-  #  MQTT_TOPIC: "rtdb/"
-  #  REDIS_HOST: bitnami-redis-master
-  #  SE_REDIS_DB: 0
-  #  REDIS_DB: 0
-  #  DEBUG: 1
+    #OPENID_CONNECT: '{ "clientID": "eHZa9GWG2le_KH8WLaoeNUb0FOgab", "clientSecret": "JJpVoMPKbl91xxRXb7mpfyZyAOMab", "issuer": "https://sorbais.sor.sorba.ai:443/oauth2/token", "authorizationURL": "https://sorbais.sor.sorba.ai/oauth2/authorize", "tokenURL": "https://sorbais.sor.sorba.ai/oauth2/token", "callbackURL": "https://oee.sor.sorba.ai/callback", "skipUserProfile": true }'
+    #proxies: '{"/oee":{"target":"http://sorbapp-oee-engine-auto-deploy-app-gitlab:5000","pathRewrite":{"^/oee":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/dashboard":{"target":"http://bitnami-grafana:3000","pathRewrite":{"^/dashboard":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/tree":{"target":"http://sorbapp-tree-api-auto-deploy-app-gitlab:5000","pathRewrite":{"^/tree":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/influx":{"target":"http://bitnami-influxdb:8086","pathRewrite":{"^/influx":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/sde-identity-service":{"target":"http://localhost:3005","pathRewrite":{"^/sde-identity-service":""},"secure":false,"changeOrigin":true,"logLevel":"debug"}}'
+    #redis: '{"host": "bitnami-redis-master", "port": 6379}'
 
-  extra_env: [] 
+  extra_env: []    
 hpa:
   enabled: false
   minReplicas: 1
@@ -114,20 +110,22 @@ ingress:
 prometheus:
   metrics: false
 livenessProbe:
-  command:
-    - check_pub
+  path: "/ping"
   initialDelaySeconds: 15
   timeoutSeconds: 15
-  probeType: "exec"
+  scheme: "HTTP"
+  probeType: "httpGet"
+  httpHeaders: []
 readinessProbe:
-  command:
-    - check_pub
+  path: "/ping"
   initialDelaySeconds: 5
   timeoutSeconds: 3
-  probeType: "exec"
+  scheme: "HTTP"
+  probeType: "httpGet"
+  httpHeaders: []
 startupProbe:
   enabled: false
-  path: "/"
+  path: "/ping"
   initialDelaySeconds: 5
   timeoutSeconds: 3
   failureThreshold: 30

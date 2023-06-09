@@ -228,7 +228,8 @@ additionalEnv:
     value: "/etc/ssl/vernemq/tls.crt"
   - name: DOCKER_VERNEMQ_LISTENER__SSL__KEYFILE
     value: "/etc/ssl/vernemq/tls.key"
-
+  - name: DOCKER_VERNEMQ_USER_sd1
+    value: sbrQp10
 envFrom: {}
 # add additional environment variables e.g. from a configmap or secret
 # can be usefull if you wanna use authentication via files
