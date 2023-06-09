@@ -115,13 +115,13 @@ prometheus:
   metrics: false
 livenessProbe:
   command:
-    - check_pub
+    - check-pub
   initialDelaySeconds: 15
   timeoutSeconds: 15
   probeType: "exec"
 readinessProbe:
   command:
-    - check_pub
+    - check-pub
   initialDelaySeconds: 5
   timeoutSeconds: 3
   probeType: "exec"
