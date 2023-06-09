@@ -122,5 +122,8 @@ dependencies:
 - name: ml-predictor
   repository: https://miguelciego.github.io/charts/
   version: 2.39.1
-digest: sha256:92e539443412eab78106a1bb26fd1bfb44187758afec3f83cb8d74e9b21ba6a4
-generated: "2023-06-09T10:08:01.720959594-04:00"
+- name: cloud-data-ingestion
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.1
+digest: sha256:6300886478970c024626ade543c63285117626786b1d1a706ee26e55430e0c84
+generated: "2023-06-09T14:08:50.985630944-04:00"
