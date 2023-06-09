@@ -101,5 +101,26 @@ dependencies:
 - name: sorba-identity-api
   repository: https://miguelciego.github.io/charts/
   version: 2.39.1
-digest: sha256:15e97bc6e39cb8d1687baa8479811a76773d9f12abe15c7f976499d11d8fca01
-generated: "2023-04-07T11:02:10.175023873-04:00"
+- name: alerting-engine
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.1
+- name: notification-engine
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.1
+- name: dashboard-reporter
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.1
+- name: alerting-middleware
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.1
+- name: iot-connectors
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.1
+- name: ml-auto-learning
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.1
+- name: ml-predictor
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.1
+digest: sha256:92e539443412eab78106a1bb26fd1bfb44187758afec3f83cb8d74e9b21ba6a4
+generated: "2023-06-09T10:08:01.720959594-04:00"

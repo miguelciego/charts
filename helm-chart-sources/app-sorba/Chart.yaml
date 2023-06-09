@@ -2,14 +2,14 @@ apiVersion: v2
 name: app-sorba
 description: Sorba Helm Chart
 type: application
-version: 0.2.6
+version: 0.2.7
 appVersion: "0.2.0"
 icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
 
 dependencies:
   - name: vernemq
     version: 1.6.12
-    repository: https://miguelciego.github.io/charts/ 
+    repository: https://miguelciego.github.io/charts/
     condition: vernemq.enabled
   - name: cert-manager
     version: 1.10.0
@@ -17,11 +17,11 @@ dependencies:
     condition: cert-manager.enabled
   - name: ingress-nginx
     version: 4.3.0
-    repository: https://kubernetes.github.io/ingress-nginx 
+    repository: https://kubernetes.github.io/ingress-nginx
     condition: ingress-nginx.enabled
   - name: kubernetes-dashboard
     version: 5.11.0
-    repository: https://kubernetes.github.io/dashboard/ 
+    repository: https://kubernetes.github.io/dashboard/
     condition: kubernetes-dashboard.enabled
   - name: is-pattern-1
     version: 5.11.05
@@ -33,7 +33,7 @@ dependencies:
     condition: am-pattern-1.enabled
   - name: grafana
     version:  7.6.19
-    repository: https://miguelciego.github.io/charts/ 
+    repository: https://miguelciego.github.io/charts/
     condition: grafana.enabled
   - name: mysql-sorba
     version: 9.4.1
@@ -41,11 +41,11 @@ dependencies:
     condition: mysql-sorba.enabled
   - name: phpmyadmin
     version: 10.3.5
-    repository: https://charts.bitnami.com/bitnami 
+    repository: https://charts.bitnami.com/bitnami
     condition: phpmyadmin.enabled
   - name: redis
     version: 17.3.7
-    repository: https://charts.bitnami.com/bitnami 
+    repository: https://charts.bitnami.com/bitnami
     condition: redis.enabled
   - name: influxdb
     version: 4.12.0
@@ -59,7 +59,7 @@ dependencies:
     version: 2.39.1
     repository: https://miguelciego.github.io/charts/
     condition: ml-ui.enabled
-  - name: mqtt-to-influxdb-2y 
+  - name: mqtt-to-influxdb-2y
     version: 2.39.1
     repository: https://miguelciego.github.io/charts/
     condition:  mqtt-to-influxdb-2y.enabled
@@ -138,8 +138,37 @@ dependencies:
   - name: tenant-management-ui
     version: 2.39.1
     repository: https://miguelciego.github.io/charts/
-    condition: tenant-management-ui.enabled    
+    condition: tenant-management-ui.enabled
   - name: sorba-identity-api
     version: 2.39.1
     repository: https://miguelciego.github.io/charts/
-    condition: sorba-identity-api.enabled  
+    condition: sorba-identity-api.enabled
+  - name: alerting-engine
+    version: 2.39.1
+    repository: https://miguelciego.github.io/charts/
+    condition: alerting-engine.enabled
+  - name: notification-engine
+    version: 2.39.1
+    repository: https://miguelciego.github.io/charts/
+    condition: notification-engine.enabled
+  - name: dashboard-reporter
+    version: 2.39.1
+    repository: https://miguelciego.github.io/charts/
+    condition: dashboard-reporter.enabled
+  - name: alerting-middleware
+    version: 2.39.1
+    repository: https://miguelciego.github.io/charts/
+    condition: alerting-middleware.enabled
+  - name: iot-connectors
+    version: 2.39.1
+    repository: https://miguelciego.github.io/charts/
+    condition: iot-connectors.enabled
+  - name: ml-auto-learning
+    version: 2.39.1
+    repository: https://miguelciego.github.io/charts/
+    condition: ml-auto-learning.enabled
+  - name: ml-predictor
+    version: 2.39.1
+    repository: https://miguelciego.github.io/charts/
+    condition: ml-predictor.enabled
+
