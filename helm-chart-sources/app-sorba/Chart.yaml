@@ -175,3 +175,7 @@ dependencies:
     version: 2.39.2
     repository: https://miguelciego.github.io/charts/
     condition: cloud-data-ingestion.enabled
+  - name: housekeeper
+    version: 2.39.1
+    repository: https://miguelciego.github.io/charts/
+    condition: housekeeper.enabled
