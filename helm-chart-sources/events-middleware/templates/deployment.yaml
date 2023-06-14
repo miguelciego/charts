@@ -131,73 +131,9 @@ spec:
           value: {{ .Values.application.database_url | quote }}
 {{- end }}
 
-{{- range $w, $s := .Values.application.extra_env }}
-        - name: {{$w }}
-          value: {{$s | quote}}
-{{- end }}
-
-{{- if .Values.application.env.INFLUXDB }}
-        - name: INFLUXDB
-          value: {{ .Values.application.env.INFLUXDB }}
-{{- else }}
-        - name: INFLUXDB
-          value: sorba_demo___com
-{{- end }}
-
-{{- if .Values.application.env.INFLUX_HOST }}
-        - name: INFLUX_HOST
-          value: {{ .Values.application.env.INFLUX_HOST }}
-{{- else }}
-        - name: INFLUX_HOST
-          value: {{ .Release.Name}}-influxdb-1-8
-{{- end }}
-
-{{- if .Values.application.env.INFLUX_PORT }}
-        - name: INFLUX_PORT
-          value: {{ .Values.application.env.INFLUX_PORT }}
-{{- else }}
-        - name: INFLUX_PORT
-          value: 8086
-{{- end }}
-
-{{- if .Values.application.env.OPENID_CONNECT }}
-        - name: OPENID_CONNECT
-          value: {{ .Values.application.env.OPENID_CONNECT | squote }}
-{{- else }}
-        - name: OPENID_CONNECT
-          value: '{ "clientID": "eHZa9GWG2le_KH8WLaoeNUb0FOgab", "clientSecret": "JJpVoMPKbl91xxRXb7mpfyZyAOMab", "issuer": "https://sorbais.sor.sorba.ai:443/oauth2/token", "authorizationURL": "https://sorbais.sor.sorba.ai/oauth2/authorize", "tokenURL": "https://sorbais.sor.sorba.ai/oauth2/token", "callbackURL": "https://oee.sor.sorba.ai/callback", "skipUserProfile": true }'
-{{- end }}
-
-{{- if .Values.application.env.REDIS_HOST }}
-        - name: REDIS_HOST
-          value: {{ .Values.application.env.REDIS_HOST}}
-{{- else }}
-        - name: REDIS_HOST
-          value: {{ .Release.Name }}-redis-master
-{{- end }}
-
-{{- if .Values.application.env.REDIS_PORT }}
-        - name: REDIS_PORT
-          value: {{ .Values.application.env.REDIS_PORT }}
-{{- else }}
-        - name: REDIS_PORT
-          value: 6379
-{{- end }}
-
-{{- if .Values.application.env.proxies }}
-        - name: proxies
-          value: {{ .Values.application.env.proxies | squote }}
-{{- else }}
-        - name: proxies
-          value: '{"/oee":{"target":"http://sorbapp-oee-engine-auto-deploy-app-gitlab:5000","pathRewrite":{"^/oee":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/dashboard":{"target":"http://{{ .Release.Name}}-grafana:3000","pathRewrite":{"^/dashboard":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/tree":{"target":"http://sorbapp-tree-api-auto-deploy-app-gitlab:5000","pathRewrite":{"^/tree":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/influx":{"target":"http://{{ .Release.Name}}-influxdb:8086","pathRewrite":{"^/influx":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/sde-identity-service":{"target":"http://localhost:3005","pathRewrite":{"^/sde-identity-service":""},"secure":false,"changeOrigin":true,"logLevel":"debug"}}'
-{{- end }}
-
-{{- if .Values.application.env.redis }}
-        - name: redis
-          value: {{ .Values.application.env.redis | squote}}
-{{- else }}
-        - name: redis
-          value: '{"host":"{{ .Release.Name }}-redis-master", "port": 6379}'
+{{- range $k, $v := .Values.application.env }}
+        - name: {{$k }}
+          value: {{$v | quote}}
 {{- end }}
 
         - name: GITLAB_ENVIRONMENT_NAME

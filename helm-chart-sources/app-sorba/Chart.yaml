@@ -144,34 +144,34 @@ dependencies:
     repository: https://miguelciego.github.io/charts/
     condition: sorba-identity-api.enabled
   - name: alerting-engine
-    version: 2.39.1
+    version: 2.39.2
     repository: https://miguelciego.github.io/charts/
     condition: alerting-engine.enabled
   - name: notification-engine
-    version: 2.39.1
+    version: 2.39.2
     repository: https://miguelciego.github.io/charts/
     condition: notification-engine.enabled
   - name: dashboard-reporter
-    version: 2.39.1
+    version: 2.39.2
     repository: https://miguelciego.github.io/charts/
     condition: dashboard-reporter.enabled
   - name: alerting-middleware
-    version: 2.39.1
+    version: 2.39.2
     repository: https://miguelciego.github.io/charts/
     condition: alerting-middleware.enabled
   - name: iot-connectors
-    version: 2.39.1
+    version: 2.39.2
     repository: https://miguelciego.github.io/charts/
     condition: iot-connectors.enabled
   - name: ml-auto-learning
-    version: 2.39.1
+    version: 2.39.2
     repository: https://miguelciego.github.io/charts/
     condition: ml-auto-learning.enabled
   - name: ml-predictor
-    version: 2.39.1
+    version: 2.39.2
     repository: https://miguelciego.github.io/charts/
     condition: ml-predictor.enabled
   - name: cloud-data-ingestion
-    version: 2.39.1
+    version: 2.39.2
     repository: https://miguelciego.github.io/charts/
     condition: cloud-data-ingestion.enabled
