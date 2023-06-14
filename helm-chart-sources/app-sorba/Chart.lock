@@ -103,27 +103,27 @@ dependencies:
   version: 2.39.1
 - name: alerting-engine
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.1
+  version: 2.39.2
 - name: notification-engine
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.1
+  version: 2.39.2
 - name: dashboard-reporter
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.1
+  version: 2.39.2
 - name: alerting-middleware
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.1
+  version: 2.39.2
 - name: iot-connectors
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.1
+  version: 2.39.2
 - name: ml-auto-learning
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.1
+  version: 2.39.2
 - name: ml-predictor
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.1
+  version: 2.39.2
 - name: cloud-data-ingestion
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.1
-digest: sha256:6300886478970c024626ade543c63285117626786b1d1a706ee26e55430e0c84
-generated: "2023-06-09T14:08:50.985630944-04:00"
+  version: 2.39.2
+digest: sha256:349f940cae25e6d2f22ddb00c5208f4c4b52031895b79cc47f70d5e48eb7723d
+generated: "2023-06-14T11:50:02.413189778-04:00"
