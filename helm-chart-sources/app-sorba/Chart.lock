@@ -125,5 +125,8 @@ dependencies:
 - name: cloud-data-ingestion
   repository: https://miguelciego.github.io/charts/
   version: 2.39.2
-digest: sha256:349f940cae25e6d2f22ddb00c5208f4c4b52031895b79cc47f70d5e48eb7723d
-generated: "2023-06-14T11:50:02.413189778-04:00"
+- name: housekeeper
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.1
+digest: sha256:7848f6e1c45d269603138717ea06aa7110778832bfafda7f445446afd3d37ecb
+generated: "2023-06-14T18:27:57.947448-04:00"
