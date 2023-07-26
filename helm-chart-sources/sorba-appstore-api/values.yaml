@@ -6,7 +6,7 @@ strategyType:
 # `serviceAccountName` is deprecated in favor of `serviceAccount.name`
 serviceAccountName:
 image:
-  repository: sorbaregistry.azurecr.io/sorbotics/sorba-appstore/sorba-appstore-api/prod
+  repository: sorbaregistry.azurecr.io/sorbotics/sorba-appstore/sorba-appstore-api/main
   tag: latest
   secrets:
     - name: gitlab-registry
