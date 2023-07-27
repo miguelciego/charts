@@ -1,15 +1,15 @@
 # Default values for chart.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-replicaCount: 1
+replicaCount: 4
 strategyType:
 # `serviceAccountName` is deprecated in favor of `serviceAccount.name`
 serviceAccountName:
 image:
-  repository: sorbaregistry.azurecr.io/sorbotics/sorba-appstore/sorba-appstore-frontend/main
+  repository: sorbaregistry.azurecr.io/sorbotics/license-manager/license-encoder/main
   tag: latest
   secrets:
-    - name: azure-registry
+    - name: gitlab-registry
 extraLabels: {}
 lifecycle: {}
 # preStop:
@@ -40,18 +40,18 @@ application:
   tier: web
   migrateCommand:
   initializeCommand:
-  secretName:
+  secretName: 
   secretChecksum:
-  # You can omit `DATABASE_URL` variable injection into your deployment containers,
-  # if you explicitly set `database_url` to `null`.
-  # database_url: null
-  env: {}
-  #  database_url: mysql://root:4mz5IrvhZb@bitnami-mysql.for-test/tree
-  #  redis: '{"port": 6379, "host": "bitnami-redis-master.for-test","db": 0,"reconnectTime":5000}'
-  #  identityURL: https://gateway-am.jkl-com.sorba.ai/tree/v1/
-  #  proxies: '{"/identity-server":{"target":"https://wso2am-pattern-1-am-service:8243/identity/v1/","pathRewrite":{"^/identity-server":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/api/tree":{"target":"https://wso2am-pattern-1-am-service:8243/tree/v1/","pathRewrite":{"^/api/tree":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/api/vpnservice":{"target":"http://52.191.30.247/","pathRewrite":{"^/api/vpnservice":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/api/commands":{"target":"https://websoc.demo-com.sorba.ai/api/commands","pathRewrite":{"^/api/commands":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/api/influx":{"target":"http://jkl-sorba-influxdb:8086","pathRewrite":{"^/api/influx":""},"secure":false,"changeOrigin":true,"logLevel":"debug"},"/api/rtdb":{"target":"http://webdis:7379","pathRewrite":{"^/api/rtdb":""},"secure":false,"changeOrigin":true,"logLevel":"debug"}}'
-  #  socketUrl: wss://websoc.jkl-com.sorbapp.com/websocket
 
+  env: {}
+    #database_url: mysql://root:4mz5IrvhZb@bitnami-mysql.for-test/tree
+    #redis: '{"port": 6379, "host": "bitnami-redis-master.for-test","db": 0,"reconnectTime": 5000}'
+    #CLOUD_GRAFANA_API: '{"URL":"http://bitnami-grafana:3000/api","USER":"admin","PASS":"sbrQp10"}'
+    #HDFS_URL: http://192.168.1.94:3003
+    #LICENSE_DECODER: '{"port": 8074,"host": "sorbapp-license-decoder-auto-deploy-app-gitlab","endpoint": "/api/decode"}'
+    #SORBA_INTEGRATION_AUTHORIZATION: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlNvcmJhIEludGVncmF0aW9uIiwiaWF0IjozNzM5NTcyMDAwMDB9.4A1X7l84wCJq7asgkGKaoYizlNBHnwGBm9Ex-YZRRzg'
+    #SORBA_INTEGRATION_URL: http://sorbapp-sorba-dashboard-comm-auto-deploy-app-gitlab:5000
+  
   extra_env: []
 hpa:
   enabled: false
@@ -87,7 +87,7 @@ service:
   additionalHosts:
   commonName:
   externalPort: 5000
-  internalPort: 3009
+  internalPort: 8072
   # nodePort: 30001
   extraPorts: []
 ingress:
@@ -111,7 +111,7 @@ ingress:
 prometheus:
   metrics: false
 livenessProbe:
-  path: "/"
+  path: "/ping"
   initialDelaySeconds: 15
   timeoutSeconds: 15
   scheme: "HTTP"
@@ -148,12 +148,12 @@ postgresql:
     #     stack: gitlab (This is an example. The labels should match the labels on the CloudSQLInstanceClass)
 
 resources:
-#  limits:
-#    cpu: 100m
-#    memory: 128Mi
-  requests: {}
-#    cpu: 100m
-#    memory: 128Mi
+  requests:
+    memory: "250Mi"
+    cpu: "250m"
+  limits:
+    memory: "500Mi"
+    cpu: "1150m"
 
 ## Configure PodDisruptionBudget
 ## ref: https://kubernetes.io/docs/concepts/workloads/pods/disruptions/
