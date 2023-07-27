@@ -101,6 +101,12 @@ dependencies:
 - name: sorba-identity-api
   repository: https://miguelciego.github.io/charts/
   version: 2.39.1
+- name: sorba-appstore-api
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.1
+- name: sorba-appstore-ui
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.1
 - name: alerting-engine
   repository: https://miguelciego.github.io/charts/
   version: 2.39.2
@@ -128,5 +134,8 @@ dependencies:
 - name: housekeeper
   repository: https://miguelciego.github.io/charts/
   version: 2.39.1
-digest: sha256:7848f6e1c45d269603138717ea06aa7110778832bfafda7f445446afd3d37ecb
-generated: "2023-06-14T18:27:57.947448-04:00"
+- name: rabbitmq
+  repository: https://miguelciego.github.io/charts/
+  version: 12.0.7
+digest: sha256:0fb41519d7fa94d54dbbf2ab3660e2c3e0a807cd979be5d0a2d0c1eb2d3d3c29
+generated: "2023-07-27T11:18:38.0796018-04:00"
