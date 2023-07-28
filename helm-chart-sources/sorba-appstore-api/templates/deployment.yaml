@@ -135,67 +135,11 @@ spec:
           value: {{ .Values.application.database_url | quote }}
 {{- end }}
 
-{{- range $w, $s := .Values.application.extra_env }}
+{{- range $w, $s := .Values.application.env }}
         - name: {{$w }}
           value: {{$s | quote}}
 {{- end }}
 
-{{- if .Values.application.env.database_url }}
-        - name: DATABASE_URL
-          value: {{ .Values.application.env.database_url }}
-{{- else }}
-        - name: DATABASE_URL
-          value: mysql://root:4mz5IrvhZb@{{ .Release.Name }}-mysql-sorba/tree
-{{- end }}
-
-{{- if .Values.application.env.redis }}
-        - name: redis
-          value: {{ .Values.application.env.redis }}
-{{- else }}
-        - name: redis
-          value: '{"port": 6379,"host":"{{ .Release.Name }}-redis-master","db":0,"reconnectTime":5000}'
-{{- end }}
-
-{{- if .Values.application.env.CLOUD_GRAFANA_API }}
-        - name: CLOUD_GRAFANA_API
-          value: {{ .Values.application.env.CLOUD_GRAFANA_API | squote}}
-{{- else }}
-        - name: CLOUD_GRAFANA_API
-          value: '{"URL":"http://{{ .Release.Name }}-grafana:3000/api","USER":"admin","PASS":"sbrQp10"}'
-{{- end }}
-
-{{- if .Values.application.env.HDFS_URL }}
-        - name: HDFS_URL
-          value: {{ .Values.application.env.HDFS_UR | squote }}
-{{- else }}
-        - name: HDFS_URL
-          value: http://192.168.1.94:3003
-{{- end }}
-
-{{- if .Values.application.env.LICENSE_DECODER }}
-        - name: LICENSE_DECODER
-          value:  {{ .Values.application.env.LICENSE_DECODER | squote }}
-{{- else }}
-        - name: LICENSE_DECODER
-          value: '{"port": 8074,"host": "sorbapp-license-decoder-auto-deploy-app-gitlab","endpoint": "/api/decode"}'
-{{- end }}
-
-{{- if .Values.application.env.SORBA_INTEGRATION_AUTHORIZATION }}
-        - name: SORBA_INTEGRATION_AUTHORIZATION
-          value: {{ .Values.application.env.SORBA_INTEGRATION_AUTHORIZATION }}
-{{- else }}
-        - name: SORBA_INTEGRATION_AUTHORIZATION
-          value: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlNvcmJhIEludGVncmF0aW9uIiwiaWF0IjozNzM5NTcyMDAwMDB9.4A1X7l84wCJq7asgkGKaoYizlNBHnwGBm9Ex-YZRRzg'
-{{- end }}
-
-{{- if .Values.application.env.SORBA_INTEGRATION_URL }}
-        - name: SORBA_INTEGRATION_URL
-          value: {{ .Values.application.env.SORBA_INTEGRATION_URL }}
-{{- else }}
-        - name: SORBA_INTEGRATION_URL
-          value: http://sorbapp-sorba-dashboard-comm-auto-deploy-app-gitlab:5000
-{{- end }}
-   
         - name: GITLAB_ENVIRONMENT_NAME
           value: {{ .Values.gitlab.envName | quote }}
         - name: GITLAB_ENVIRONMENT_URL
