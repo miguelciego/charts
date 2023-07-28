@@ -107,6 +107,12 @@ dependencies:
 - name: sorba-appstore-ui
   repository: https://miguelciego.github.io/charts/
   version: 2.39.1
+- name: license-encoder
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.1
+- name: license-decoder
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.1
 - name: alerting-engine
   repository: https://miguelciego.github.io/charts/
   version: 2.39.2
@@ -137,5 +143,5 @@ dependencies:
 - name: rabbitmq
   repository: https://miguelciego.github.io/charts/
   version: 12.0.7
-digest: sha256:0fb41519d7fa94d54dbbf2ab3660e2c3e0a807cd979be5d0a2d0c1eb2d3d3c29
-generated: "2023-07-27T11:18:38.0796018-04:00"
+digest: sha256:490b41e6abda91a402e215de9a1e5ae34599200245f49e2e4ed17be92d3c8173
+generated: "2023-07-28T14:39:32.965709992Z"

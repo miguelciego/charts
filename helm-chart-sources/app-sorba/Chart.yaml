@@ -144,11 +144,11 @@ dependencies:
     repository: https://miguelciego.github.io/charts/
     condition: sorba-identity-api.enabled
   - name: sorba-appstore-api
-    version: 2.39.1
+    version: 2.39.2
     repository: https://miguelciego.github.io/charts/
     condition: sorba-appstore-api.enabled
   - name: sorba-appstore-ui
-    version: 2.39.1
+    version: 2.39.2
     repository: https://miguelciego.github.io/charts/
     condition: sorba-appstore-ui.enabled
   - name: license-encoder
