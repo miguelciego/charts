@@ -103,10 +103,10 @@ dependencies:
   version: 2.39.1
 - name: sorba-appstore-api
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.1
+  version: 2.39.2
 - name: sorba-appstore-ui
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.1
+  version: 2.39.2
 - name: license-encoder
   repository: https://miguelciego.github.io/charts/
   version: 2.39.1
@@ -143,5 +143,5 @@ dependencies:
 - name: rabbitmq
   repository: https://miguelciego.github.io/charts/
   version: 12.0.7
-digest: sha256:490b41e6abda91a402e215de9a1e5ae34599200245f49e2e4ed17be92d3c8173
-generated: "2023-07-28T14:39:32.965709992Z"
+digest: sha256:94695589719aacdf33456dcdb8c7f083776781bd2a1bdc997bc937f2c794e135
+generated: "2023-07-28T15:42:22.043357214Z"

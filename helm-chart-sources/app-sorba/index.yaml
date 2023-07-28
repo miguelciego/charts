@@ -1,0 +1,691 @@
+apiVersion: v1
+entries:
+  alerting-engine:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.253315466Z"
+    description: Alerting Engine deploy Helm Chart
+    digest: b7c490125882fcd474b9244c5c14bdb15513689e0381dbd5fbfd5ae9d9f98654
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: alerting-engine
+    urls:
+    - https://miguelciego.github.io/charts/charts/alerting-engine-2.39.2.tgz
+    version: 2.39.2
+  alerting-middleware:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.258685627Z"
+    description: alerting middleware deploy Helm Chart
+    digest: 65bbd0a99a6ee0de5913f2fd561643ea03e6fd06e99f1fb2a55a78008671c570
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: alerting-middleware
+    urls:
+    - https://miguelciego.github.io/charts/charts/alerting-middleware-2.39.2.tgz
+    version: 2.39.2
+  am-pattern-1:
+  - apiVersion: v1
+    appVersion: 4.1.0
+    created: "2023-07-28T15:44:30.272936695Z"
+    dependencies:
+    - condition: wso2.deployment.dependencies.mysql
+      name: mysql-am
+      repository: https://miguelciego.github.io/charts
+      version: 4.1.01
+    - condition: wso2.deployment.dependencies.nfsServerProvisioner
+      name: nfs-server-provisioner
+      repository: https://miguelciego.github.io/charts
+      version: 1.1.0
+    description: A Helm chart for the deployment of WSO2 API Manager Pattern 1 (HA
+      All-In-One Deployment)
+    digest: 95ffd0c2217f6125274ce5834c958af43734295c0132d044add77ef2331154a9
+    icon: https://wso2.cachefly.net/wso2/sites/all/images/wso2logo.svg
+    name: am-pattern-1
+    urls:
+    - https://miguelciego.github.io/charts/charts/am-pattern-1-4.1.01.tgz
+    version: 4.1.01
+  cert-manager:
+  - annotations:
+      artifacthub.io/prerelease: "false"
+      artifacthub.io/signKey: |
+        fingerprint: 1020CF3C033D4F35BAE1C19E1226061C665DF13E
+        url: https://cert-manager.io/public-keys/cert-manager-keyring-2021-09-20-1020CF3C033D4F35BAE1C19E1226061C665DF13E.gpg
+    apiVersion: v1
+    appVersion: v1.10.0
+    created: "2023-07-28T15:44:30.28006097Z"
+    description: A Helm chart for cert-manager
+    digest: a8a634b1d18ec73ea12fb1a2544f2f04edcb1e52bd6bd502a96b215b895f685e
+    home: https://github.com/cert-manager/cert-manager
+    icon: https://raw.githubusercontent.com/cert-manager/cert-manager/d53c0b9270f8cd90d908460d69502694e1838f5f/logo/logo-small.png
+    keywords:
+    - cert-manager
+    - kube-lego
+    - letsencrypt
+    - tls
+    kubeVersion: '>= 1.20.0-0'
+    maintainers:
+    - email: cert-manager-maintainers@googlegroups.com
+      name: cert-manager-maintainers
+      url: https://cert-manager.io
+    name: cert-manager
+    sources:
+    - https://github.com/cert-manager/cert-manager
+    urls:
+    - https://miguelciego.github.io/charts/charts/cert-manager-v1.10.0.tgz
+    version: v1.10.0
+  cloud-data-ingestion:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.287540172Z"
+    description: Cloud Data Ingestion deploy Helm Chart
+    digest: 0811967f46649782b15208ba02cbd7aefa7be20e1d28f2719e7ff516df0c3b3a
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: cloud-data-ingestion
+    urls:
+    - https://miguelciego.github.io/charts/charts/cloud-data-ingestion-2.39.2.tgz
+    version: 2.39.2
+  dashboard-reporter:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.293025065Z"
+    description: Dashboard Reporter deploy Helm Chart
+    digest: f155d3984a4c50529460a562252420a520c8dd3ca2d90581e433ac99b7c5d465
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: dashboard-reporter
+    urls:
+    - https://miguelciego.github.io/charts/charts/dashboard-reporter-2.39.2.tgz
+    version: 2.39.2
+  events-middleware:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.299374431Z"
+    description: events middleware deploy Helm Chart
+    digest: 8b70f8c6217f6b49c9b5120f2343048429aeaf16e8b694657f21a7e96351c72a
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: events-middleware
+    urls:
+    - https://miguelciego.github.io/charts/charts/events-middleware-2.39.3.tgz
+    version: 2.39.3
+  grafana:
+  - annotations:
+      category: Analytics
+    apiVersion: v2
+    appVersion: 8.4.3
+    created: "2023-07-28T15:44:30.307581348Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 1.x.x
+    description: Grafana is an open source metric analytics and visualization suite
+      for visualizing time series data that supports various types of data sources.
+    digest: 4ab825b238fa98e2667f17eeb968cd0356acfc32d2f5ae7d2d8106655e377d35
+    home: https://github.com/bitnami/charts/tree/master/bitnami/grafana
+    icon: https://bitnami.com/assets/stacks/grafana/img/grafana-stack-220x234.png
+    keywords:
+    - analytics
+    - monitoring
+    - metrics
+    - logs
+    maintainers:
+    - email: containers@bitnami.com
+      name: Bitnami
+    name: grafana
+    sources:
+    - https://github.com/bitnami/bitnami-docker-grafana
+    - https://grafana.com/
+    urls:
+    - https://miguelciego.github.io/charts/charts/grafana-7.6.19.tgz
+    version: 7.6.19
+  housekeeper:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.312787322Z"
+    description: HouseKeeper deploy Helm Chart
+    digest: 5f1cd759eefbdde2179fb4e8caf146becdcf7721ff57e99c3b80ec081593b746
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: housekeeper
+    urls:
+    - https://miguelciego.github.io/charts/charts/housekeeper-2.39.1.tgz
+    version: 2.39.1
+  identity-api:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.318636076Z"
+    description: identity api deploy Helm Chart
+    digest: 65d7a844a41f22ad0ddd7f53fe34ea382beec545556990445b1315686f35b8f7
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: identity-api
+    urls:
+    - https://miguelciego.github.io/charts/charts/identity-api-2.39.3.tgz
+    version: 2.39.3
+  identity-ui:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.326100035Z"
+    description: identity ui deploy Helm Chart
+    digest: 19ccda8d1b250e55a4f232e5b8cae25c0e78d0c131e674a32e4679ecdf93e7d5
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: identity-ui
+    urls:
+    - https://miguelciego.github.io/charts/charts/identity-ui-2.39.2.tgz
+    version: 2.39.2
+  influxdb:
+  - apiVersion: v1
+    appVersion: 1.8.10
+    created: "2023-07-28T15:44:30.328484802Z"
+    description: Scalable datastore for metrics, events, and real-time analytics.
+    digest: 874afb2e71fb8eec4bfc1ba7ead3645d02001c04d73a2096cd2df5990509cb21
+    home: https://www.influxdata.com/time-series-platform/influxdb/
+    keywords:
+    - influxdb
+    - database
+    - timeseries
+    - influxdata
+    maintainers:
+    - email: rawkode@influxdata.com
+      name: rawkode
+    - email: giacomo@influxdata.com
+      name: gitirabassi
+    - email: urakiny@gmail.com
+      name: aisuko
+    - email: naseem@transit.app
+      name: naseemkullah
+    name: influxdb
+    sources:
+    - https://github.com/influxdata/influxdb
+    urls:
+    - https://miguelciego.github.io/charts/charts/influxdb-4.12.0.tgz
+    version: 4.12.0
+  ingress-nginx:
+  - annotations:
+      artifacthub.io/changes: |
+        - "[8890](https://github.com/kubernetes/ingress-nginx/pull/8890) migrate to endpointslices"
+        - "[9059](https://github.com/kubernetes/ingress-nginx/pull/9059) kubewebhookcertgen sha change after go1191"
+        - "[9046](https://github.com/kubernetes/ingress-nginx/pull/9046) Parameterize metrics port name"
+        - "[9104](https://github.com/kubernetes/ingress-nginx/pull/9104) Fix yaml formatting error with multiple annotations"
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
+    appVersion: 1.4.0
+    created: "2023-07-28T15:44:30.335168377Z"
+    description: Ingress controller for Kubernetes using NGINX as a reverse proxy
+      and load balancer
+    digest: d78eb2bf1080a7c2191ca9180cb1a1dbe52ff2851ba61bb152b27eee3851d497
+    home: https://github.com/kubernetes/ingress-nginx
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nginx_logo.svg/500px-Nginx_logo.svg.png
+    keywords:
+    - ingress
+    - nginx
+    kubeVersion: '>=1.20.0-0'
+    maintainers:
+    - name: rikatz
+    - name: strongjz
+    - name: tao12345666333
+    name: ingress-nginx
+    sources:
+    - https://github.com/kubernetes/ingress-nginx
+    urls:
+    - https://miguelciego.github.io/charts/charts/ingress-nginx-4.3.0.tgz
+    version: 4.3.0
+  iot-connectors:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.340440531Z"
+    description: IoT Connectors deploy Helm Chart
+    digest: 8254f25b2de082daa32ce6101dbe6b145980384fdd5378535ab841938e523947
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: iot-connectors
+    urls:
+    - https://miguelciego.github.io/charts/charts/iot-connectors-2.39.2.tgz
+    version: 2.39.2
+  is-pattern-1:
+  - apiVersion: v1
+    appVersion: 5.11.0
+    created: "2023-07-28T15:44:30.353850272Z"
+    dependencies:
+    - condition: wso2.deployment.dependencies.mysql.enabled
+      name: mysql-is
+      repository: https://miguelciego.github.io/charts
+      version: 5.11.05
+    description: A Helm chart for the deployment of WSO2 Identity And Access Management
+      pattern 1
+    digest: 52e2188b633cb8daf11418e2b52afcc4992df9b608f79b9fb88f5373da1640ab
+    icon: https://wso2.cachefly.net/wso2/sites/all/images/wso2logo.svg
+    name: is-pattern-1
+    urls:
+    - https://miguelciego.github.io/charts/charts/is-pattern-1-5.11.05.tgz
+    version: 5.11.05
+  kubernetes-dashboard:
+  - apiVersion: v2
+    appVersion: 2.7.0
+    created: "2023-07-28T15:44:30.357212474Z"
+    dependencies:
+    - condition: metrics-server.enabled
+      name: metrics-server
+      repository: https://kubernetes-sigs.github.io/metrics-server/
+      version: 3.5.0
+    description: General-purpose web UI for Kubernetes clusters
+    digest: f89489c71fcc489313990c1972457c781ef144351a48b844c7bd28fb79fab6f5
+    home: https://github.com/kubernetes/dashboard
+    icon: https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.svg
+    keywords:
+    - kubernetes
+    - dashboard
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - email: cdesaintmartin@wiremind.fr
+      name: desaintmartin
+    name: kubernetes-dashboard
+    sources:
+    - https://github.com/kubernetes/dashboard
+    urls:
+    - https://miguelciego.github.io/charts/charts/kubernetes-dashboard-5.11.0.tgz
+    version: 5.11.0
+  license-decoder:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.363140324Z"
+    description: license-decoder deploy Helm Chart
+    digest: 99f30be220dd346a61948344b37959626fddbe96bed24e17f7865dd2196022ba
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: license-decoder
+    urls:
+    - https://miguelciego.github.io/charts/charts/license-decoder-2.39.1.tgz
+    version: 2.39.1
+  license-encoder:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.368449177Z"
+    description: license-encoder deploy Helm Chart
+    digest: e2dfa50995cc1ed3595959c05df248825802787a85405487a93c1a63b6a14d50
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: license-encoder
+    urls:
+    - https://miguelciego.github.io/charts/charts/license-encoder-2.39.1.tgz
+    version: 2.39.1
+  messages-mediator:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.37491638Z"
+    description: messages mediator deploy Helm Chart
+    digest: 06d8b4849fb206aee1d1c16ba8ac81a7fe372a1fde3ec953a53cbd8940b0d937
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: messages-mediator
+    urls:
+    - https://miguelciego.github.io/charts/charts/messages-mediator-2.39.3.tgz
+    version: 2.39.3
+  ml-auto-learning:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.38025235Z"
+    description: Machine Learning Auto Learning deploy Helm Chart
+    digest: 8c5f2479d08957a436c4e6ffb27187d3446fda0203cac8b1a224e6cc0cc4f6e5
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: ml-auto-learning
+    urls:
+    - https://miguelciego.github.io/charts/charts/ml-auto-learning-2.39.2.tgz
+    version: 2.39.2
+  ml-predictor:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.385325697Z"
+    description: Machine Learning Predictor deploy Helm Chart
+    digest: 111841691d9b0a64b54cf78dab3ee59c6421edd4bb73424a5da874e3b682467f
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: ml-predictor
+    urls:
+    - https://miguelciego.github.io/charts/charts/ml-predictor-2.39.2.tgz
+    version: 2.39.2
+  ml-trainer-api:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.390733253Z"
+    description: ml-trainer-api deploy Helm Chart
+    digest: b45c41791984d60d77c60d059890b0eedf7c7feb8477c3a4fb1dce0d6442e99a
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: ml-trainer-api
+    urls:
+    - https://miguelciego.github.io/charts/charts/ml-trainer-api-2.39.1.tgz
+    version: 2.39.1
+  ml-ui:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.396499174Z"
+    description: ml-ui deploy Helm Chart
+    digest: b3149385fe651d44ceb72b5db67a28d787cbdb2b49064418dd5b6a656d133b2e
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: ml-ui
+    urls:
+    - https://miguelciego.github.io/charts/charts/ml-ui-2.39.1.tgz
+    version: 2.39.1
+  mqtt-to-influxdb-2y:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.401559269Z"
+    description: mqtt-to-influxdb-2y deploy Helm Chart
+    digest: 668a2e420a1ae6dfe7869f0f9245d32d5680aa8cd4df7f3dd2132e29c201d7cc
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: mqtt-to-influxdb-2y
+    urls:
+    - https://miguelciego.github.io/charts/charts/mqtt-to-influxdb-2y-2.39.1.tgz
+    version: 2.39.1
+  mysql-sorba:
+  - annotations:
+      category: Database
+    apiVersion: v2
+    appVersion: 8.0.31
+    created: "2023-07-28T15:44:30.408066132Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: MySQL is a fast, reliable, scalable, and easy to use open source
+      relational database system. Designed to handle mission-critical, heavy-load
+      production applications.
+    digest: f1dea754372e6c1eacc7728c909fb282bfd5d248771e6df8e0a18d4cfd706cc2
+    home: https://github.com/bitnami/charts/tree/master/bitnami/mysql
+    icon: https://bitnami.com/assets/stacks/mysql/img/mysql-stack-220x234.png
+    keywords:
+    - mysql
+    - database
+    - sql
+    - cluster
+    - high availability
+    maintainers:
+    - name: Bitnami
+      url: https://github.com/bitnami/charts
+    name: mysql-sorba
+    sources:
+    - https://github.com/bitnami/containers/tree/main/bitnami/mysql
+    - https://mysql.com
+    urls:
+    - https://miguelciego.github.io/charts/charts/mysql-sorba-9.4.1.tgz
+    version: 9.4.1
+  ng-api-gateway:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.415599973Z"
+    description: ng-api-gateway deploy Helm Chart
+    digest: ff562bb008dd3589ab5d3fb32f0d8cc190ec094635b762c015478958ca29f7e1
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: ng-api-gateway
+    urls:
+    - https://miguelciego.github.io/charts/charts/ng-api-gateway-2.39.2.tgz
+    version: 2.39.2
+  notification-engine:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.430151441Z"
+    description: Notification Engine deploy Helm Chart
+    digest: a1f12828f0c2b9c58fffcd6dd76eadd62e6586cb7c4bced4f1ec23d23d7761c7
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: notification-engine
+    urls:
+    - https://miguelciego.github.io/charts/charts/notification-engine-2.39.2.tgz
+    version: 2.39.2
+  oee-engine:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.435393829Z"
+    description: oee engine deploy Helm Chart
+    digest: eceae7f0a962fc32de14c7b15772b2b36a68aa3d5e3350b86c01fa555a0e8d92
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: oee-engine
+    urls:
+    - https://miguelciego.github.io/charts/charts/oee-engine-2.39.2.tgz
+    version: 2.39.2
+  oee-ui:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.441358124Z"
+    description: oee ui deploy Helm Chart
+    digest: 2e40bb60710904bfc7e29e4b3e27dd40526b0fd6edfd9de43e94e6a9e142e8a7
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: oee-ui
+    urls:
+    - https://miguelciego.github.io/charts/charts/oee-ui-2.39.2.tgz
+    version: 2.39.2
+  phpmyadmin:
+  - annotations:
+      category: Infrastructure
+    apiVersion: v2
+    appVersion: 5.2.0
+    created: "2023-07-28T15:44:30.45393239Z"
+    dependencies:
+    - condition: db.bundleTestDB
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - phpmyadmin-database
+      version: 11.x.x
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: phpMyAdmin is a free software tool written in PHP, intended to handle
+      the administration of MySQL over the Web. phpMyAdmin supports a wide range of
+      operations on MySQL and MariaDB.
+    digest: 635262e5019ecb0153d1931f8864f6cdaaa2aa9af64c24ffedbd42712250f67a
+    home: https://github.com/bitnami/charts/tree/master/bitnami/phpmyadmin
+    icon: https://bitnami.com/assets/stacks/phpmyadmin/img/phpmyadmin-stack-220x234.png
+    keywords:
+    - mariadb
+    - mysql
+    - phpmyadmin
+    maintainers:
+    - name: Bitnami
+      url: https://github.com/bitnami/charts
+    name: phpmyadmin
+    sources:
+    - https://github.com/bitnami/containers/tree/main/bitnami/phpmyadmin
+    - https://www.phpmyadmin.net/
+    urls:
+    - https://miguelciego.github.io/charts/charts/phpmyadmin-10.3.5.tgz
+    version: 10.3.5
+  platform-ui:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.459489642Z"
+    description: platform-ui deploy Helm Chart
+    digest: 7e170988765ac39b4d3f230f895982d2b2d3c5efeae43b5ab765ba63b735ffa7
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: platform-ui
+    urls:
+    - https://miguelciego.github.io/charts/charts/platform-ui-2.39.2.tgz
+    version: 2.39.2
+  preferences-api:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.464595197Z"
+    description: preferences-api deploy Helm Chart
+    digest: 175926664ea10da750bf4c6e5aa02f67fb125b3d58975e54f137040fa9658364
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: preferences-api
+    urls:
+    - https://miguelciego.github.io/charts/charts/preferences-api-2.39.1.tgz
+    version: 2.39.1
+  rabbitmq:
+  - annotations:
+      category: Infrastructure
+      licenses: Apache-2.0
+    apiVersion: v2
+    appVersion: 3.12.2
+    created: "2023-07-28T15:44:30.473225293Z"
+    dependencies:
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: RabbitMQ is an open source general-purpose message broker that is
+      designed for consistent, highly-available messaging scenarios (both synchronous
+      and asynchronous).
+    digest: 9cd2b0653378ac98bb27fe427a3f9d2302a218ea2a44a40d14b4a9e5b2bafd41
+    home: https://bitnami.com
+    icon: https://bitnami.com/assets/stacks/rabbitmq/img/rabbitmq-stack-220x234.png
+    keywords:
+    - rabbitmq
+    - message queue
+    - AMQP
+    maintainers:
+    - name: VMware, Inc.
+      url: https://github.com/bitnami/charts
+    name: rabbitmq
+    sources:
+    - https://github.com/bitnami/charts/tree/main/bitnami/rabbitmq
+    urls:
+    - https://miguelciego.github.io/charts/charts/rabbitmq-12.0.7.tgz
+    version: 12.0.7
+  redis:
+  - annotations:
+      category: Database
+    apiVersion: v2
+    appVersion: 7.0.5
+    created: "2023-07-28T15:44:30.48533212Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: Redis(R) is an open source, advanced key-value store. It is often
+      referred to as a data structure server since keys can contain strings, hashes,
+      lists, sets and sorted sets.
+    digest: 3e522ca0f8dc7d23df0de67b3e991ffc243d2459ea514eca705a56ba21aabd1a
+    home: https://github.com/bitnami/charts/tree/main/bitnami/redis
+    icon: https://bitnami.com/assets/stacks/redis/img/redis-stack-220x234.png
+    keywords:
+    - redis
+    - keyvalue
+    - database
+    maintainers:
+    - name: Bitnami
+      url: https://github.com/bitnami/charts
+    name: redis
+    sources:
+    - https://github.com/bitnami/containers/tree/main/bitnami/redis
+    urls:
+    - https://miguelciego.github.io/charts/charts/redis-17.3.7.tgz
+    version: 17.3.7
+  rtdb-sync-pub:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.498524553Z"
+    description: rtdb-sync-pub deploy Helm Chart
+    digest: 8085a4b6bb1fbd21e6a8a9f2a176ffc1decf5d7be3a5a89eb4e01bbc126a40c9
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: rtdb-sync-pub
+    urls:
+    - https://miguelciego.github.io/charts/charts/rtdb-sync-pub-2.39.2.tgz
+    version: 2.39.2
+  rtdb-sync-sub:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.504367407Z"
+    description: rtdb-sync-sub deploy Helm Chart
+    digest: fb87ef83b2baefe78bfe744d7f3a8353d982d423810460be605ea6f07cfcd5fd
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: rtdb-sync-sub
+    urls:
+    - https://miguelciego.github.io/charts/charts/rtdb-sync-sub-2.39.2.tgz
+    version: 2.39.2
+  sde-socket:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.510155376Z"
+    description: sde socket deploy Helm Chart
+    digest: 9a9c90e2fd0a42a58a275e62322778bac73ece6c51739a4ac6b21d36994298eb
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: sde-socket
+    urls:
+    - https://miguelciego.github.io/charts/charts/sde-socket-2.39.2.tgz
+    version: 2.39.2
+  sorba-appstore-api:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.516231288Z"
+    description: sorba-appstore-api deploy Helm Chart
+    digest: a27b73f8e4cb461e4d3093e97061bb1c17c0f1e5badfd556c3843e0446277300
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: sorba-appstore-api
+    urls:
+    - https://miguelciego.github.io/charts/charts/sorba-appstore-api-2.39.2.tgz
+    version: 2.39.2
+  sorba-appstore-ui:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.537247755Z"
+    description: Sorba AppStore UI deploy Helm Chart
+    digest: 12a13f0349c42c0c39953d562bf7d62cda7fdbc09c531e7215ed43aec28740bf
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: sorba-appstore-ui
+    urls:
+    - https://miguelciego.github.io/charts/charts/sorba-appstore-ui-2.39.2.tgz
+    version: 2.39.2
+  sorba-identity-api:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.543580775Z"
+    description: sorba-identity-api deploy Helm Chart
+    digest: 20e85d5997946743d5cf51f21ec5e7777d40b9edaf9194af6b419b5c47eea1e0
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: sorba-identity-api
+    urls:
+    - https://miguelciego.github.io/charts/charts/sorba-identity-api-2.39.1.tgz
+    version: 2.39.1
+  task-flows-backend:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.553352358Z"
+    description: task flows backend deploy Helm Chart
+    digest: a6b34c3b5b7cf8dfbef057fff2d542caf7b3d8875b2f3df50f4c8d351eefd772
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: task-flows-backend
+    urls:
+    - https://miguelciego.github.io/charts/charts/task-flows-backend-2.39.2.tgz
+    version: 2.39.2
+  task-flows-frontend:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.558720771Z"
+    description: task flows frontend deploy Helm Chart
+    digest: 1edd60e298d9715d10e820c0ba2879515b9a4d02bbef10434bfa0f4801767384
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: task-flows-frontend
+    urls:
+    - https://miguelciego.github.io/charts/charts/task-flows-frontend-2.39.2.tgz
+    version: 2.39.2
+  tenant-management-api:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.576443861Z"
+    description: Cloud tenant management API deploy Helm Chart
+    digest: 5576c4da6669c29b0fd3dfa657bada135774b9be456dbadf40ad34e772ab00e8
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: tenant-management-api
+    urls:
+    - https://miguelciego.github.io/charts/charts/tenant-management-api-2.39.1.tgz
+    version: 2.39.1
+  tenant-management-ui:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.582756882Z"
+    description: Cloud tenant management API deploy Helm Chart
+    digest: 3ecdf9bc11b13796903bd0963b8197a85b124ef877e026f2fd4259592e8a24b9
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: tenant-management-ui
+    urls:
+    - https://miguelciego.github.io/charts/charts/tenant-management-ui-2.39.1.tgz
+    version: 2.39.1
+  tree-api:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.588729298Z"
+    description: tree-api deploy Helm Chart
+    digest: 31c92ab8d56b085415db13a174e3b529750adeb5c87531305c4b91c9fd799b31
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: tree-api
+    urls:
+    - https://miguelciego.github.io/charts/charts/tree-api-2.39.3.tgz
+    version: 2.39.3
+  uuid-gen-api:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.593945833Z"
+    description: uuid-gen-api deploy Helm Chart
+    digest: d6faae7d7da476b05fb99be5c7b7600335920a2f1d26a5d8a0971b8d621f3928
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: uuid-gen-api
+    urls:
+    - https://miguelciego.github.io/charts/charts/uuid-gen-api-2.39.6.tgz
+    version: 2.39.6
+  vernemq:
+  - apiVersion: v1
+    appVersion: 1.12.3
+    created: "2023-07-28T15:44:30.595919902Z"
+    description: VerneMQ is a high-performance, distributed MQTT message broker
+    digest: a2fa87a753cca072873bdd62a01de233cfd439593abb2b76102cbb1b987c17c0
+    icon: http://www.stickpng.com/assets/thumbs/58482b21cef1014c0b5e4a24.png
+    name: vernemq
+    urls:
+    - https://miguelciego.github.io/charts/charts/vernemq-1.6.12.tgz
+    version: 1.6.12
+  vpn-spa:
+  - apiVersion: v1
+    created: "2023-07-28T15:44:30.606521721Z"
+    description: VPN Sorba SPA deploy Helm Chart
+    digest: 9fbfe4323eccee294a373017c532a0854d59c77e6226a6cc1debe34d96dbd007
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    name: vpn-spa
+    urls:
+    - https://miguelciego.github.io/charts/charts/vpn-spa-2.39.1.tgz
+    version: 2.39.1
+generated: "2023-07-28T15:44:30.247151249Z"
