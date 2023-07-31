@@ -151,6 +151,14 @@ dependencies:
     version: 2.39.2
     repository: https://miguelciego.github.io/charts/
     condition: sorba-appstore-ui.enabled
+  - name: license-encoder
+    version: 2.39.1
+    repository: https://miguelciego.github.io/charts/
+    condition: license-encoder.enabled
+  - name: license-decoder
+    version: 2.39.1
+    repository: https://miguelciego.github.io/charts/
+    condition: license-decoder.enabled
   - name: alerting-engine
     version: 2.39.2
     repository: https://miguelciego.github.io/charts/
