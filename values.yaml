@@ -100,5 +100,9 @@ task-flows-backend:
   enabled: false
 task-flows-frontend:
   enabled: false
-
-
+sorba-nvr-frontend:
+  enabled: false
+sorba-nvr-backend:
+  enabled: false
+fregate:
+  enabled: false

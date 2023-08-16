@@ -176,6 +176,12 @@ task-flows-frontend:
   enabled: false
 sorba-identity-api:
   enabled: false
+sorba-nvr-frontend:
+  enabled: false
+sorba-nvr-backend:
+  enabled: false
+frigate:
+  enabled: false
 
 
 #### Solo es para el archivo NOTES.txt
