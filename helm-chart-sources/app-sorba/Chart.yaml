@@ -199,3 +199,11 @@ dependencies:
     version: 12.0.7
     repository: https://miguelciego.github.io/charts/
     condition: rabbitmq.enabled
+  - name: sorba-nvr-frontend
+    version: 2.39.1
+    repository: https://miguelciego.github.io/charts/
+    condition: sorba-nvr-frontend.enabled
+  - name: sorba-nvr-backend
+    version: 2.39.1
+    repository: https://miguelciego.github.io/charts/
+    condition: sorba-nvr-backend.enabled
