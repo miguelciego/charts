@@ -2,7 +2,7 @@ apiVersion: v2
 name: app-sorba
 description: Sorba Helm Chart
 type: application
-version: 0.2.10
+version: 0.2.11
 appVersion: "0.2.0"
 icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
 
@@ -48,8 +48,8 @@ dependencies:
     repository: https://charts.bitnami.com/bitnami
     condition: redis.enabled
   - name: influxdb
-    version: 4.12.0
-    repository: https://helm.influxdata.com/
+    version: 4.6.0
+    repository: https://miguelciego.github.io/charts/
     condition: influxdb.enabled
   - name: ml-trainer-api
     version: 2.39.1

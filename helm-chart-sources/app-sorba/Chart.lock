@@ -149,5 +149,8 @@ dependencies:
 - name: sorba-nvr-backend
   repository: https://miguelciego.github.io/charts/
   version: 2.39.1
-digest: sha256:08f0ec0d04ecaf87919608f226b797f2f410864f87bc69c99d56c9882f78fe46
-generated: "2023-08-16T07:29:14.424134567Z"
+- name: frigate
+  repository: https://miguelciego.github.io/charts/
+  version: 7.0.1
+digest: sha256:31d98ee3baa8b82f7bc8dfa4167acb2bab544f833b30fa77421b20f2175a0a5c
+generated: "2023-08-16T13:45:40.717407945Z"
