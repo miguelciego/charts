@@ -30,8 +30,8 @@ dependencies:
   repository: https://charts.bitnami.com/bitnami
   version: 17.3.7
 - name: influxdb
-  repository: https://helm.influxdata.com/
-  version: 4.12.0
+  repository: https://miguelciego.github.io/charts/
+  version: 4.6.0
 - name: ml-trainer-api
   repository: https://miguelciego.github.io/charts/
   version: 2.39.1
@@ -152,5 +152,5 @@ dependencies:
 - name: frigate
   repository: https://miguelciego.github.io/charts/
   version: 7.0.1
-digest: sha256:31d98ee3baa8b82f7bc8dfa4167acb2bab544f833b30fa77421b20f2175a0a5c
-generated: "2023-08-16T13:45:40.717407945Z"
+digest: sha256:2122d2f7ad6053094e6c68fc2c7d4d4af1fdd2a9497a7a3729d34bfa9147edba
+generated: "2023-08-16T14:32:42.704603741Z"
