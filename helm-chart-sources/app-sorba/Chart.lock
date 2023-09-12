@@ -152,5 +152,8 @@ dependencies:
 - name: frigate
   repository: https://miguelciego.github.io/charts/
   version: 7.0.1
-digest: sha256:2122d2f7ad6053094e6c68fc2c7d4d4af1fdd2a9497a7a3729d34bfa9147edba
-generated: "2023-08-16T14:32:42.704603741Z"
+- name: script-engine
+  repository: https://miguelciego.github.io/charts/
+  version: 2.39.1
+digest: sha256:aa07d41c2a7cbcc250a9a9289140adfc6f3e27fb03137a812b950dce53e89e80
+generated: "2023-09-12T05:48:28.355031338Z"

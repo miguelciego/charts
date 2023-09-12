@@ -211,3 +211,7 @@ dependencies:
     version: 7.0.1
     repository: https://miguelciego.github.io/charts/
     condition: frigate.enabled
+  - name: script-engine
+    version: 2.39.1
+    repository: https://miguelciego.github.io/charts/
+    condition: script-engine.enabled
