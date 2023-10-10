@@ -154,6 +154,6 @@ dependencies:
   version: 7.0.1
 - name: script-engine
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.1
-digest: sha256:aa07d41c2a7cbcc250a9a9289140adfc6f3e27fb03137a812b950dce53e89e80
-generated: "2023-09-12T05:48:28.355031338Z"
+  version: 2.39.2
+digest: sha256:324710ef8b1a023c8ae20c3d48e15fcd91a3388430584ff0bcc7f8573f4777c1
+generated: "2023-10-10T19:02:07.16262966Z"
