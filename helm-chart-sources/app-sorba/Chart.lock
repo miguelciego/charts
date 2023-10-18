@@ -8,6 +8,9 @@ dependencies:
 - name: ingress-nginx
   repository: https://kubernetes.github.io/ingress-nginx
   version: 4.3.0
+- name: nfs-server-provisioner
+  repository: https://kubernetes-sigs.github.io/nfs-ganesha-server-and-external-provisioner/
+  version: 1.8.0
 - name: kubernetes-dashboard
   repository: https://kubernetes.github.io/dashboard/
   version: 5.11.0
@@ -133,7 +136,7 @@ dependencies:
   version: 2.39.2
 - name: ml-predictor
   repository: https://miguelciego.github.io/charts/
-  version: 2.39.2
+  version: 2.39.3
 - name: cloud-data-ingestion
   repository: https://miguelciego.github.io/charts/
   version: 2.39.2
@@ -155,5 +158,5 @@ dependencies:
 - name: script-engine
   repository: https://miguelciego.github.io/charts/
   version: 2.39.2
-digest: sha256:324710ef8b1a023c8ae20c3d48e15fcd91a3388430584ff0bcc7f8573f4777c1
-generated: "2023-10-10T19:02:07.16262966Z"
+digest: sha256:c387d79e3ec7877a2b37a67e0b963c828c6dc28cd03aa62654e2ce8266f68b82
+generated: "2023-10-18T18:35:03.6480956-04:00"
