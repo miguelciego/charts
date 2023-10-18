@@ -22,7 +22,7 @@ ingress-nginx:
     ingressClass: nginx
     ingressClassResource:
       name: nginx
-nfs-server:
+nfs-server-provisioner:
   enabled: false
   persistence:
     enabled: true
