@@ -22,6 +22,15 @@ ingress-nginx:
     ingressClass: nginx
     ingressClassResource:
       name: nginx
+nfs-server:
+  enabled: false
+  persistence:
+    enabled: true
+    size: 8Gi
+  storageClass:
+    create: true
+    defaultClass: false
+    name: nfs
 kubernetes-dashboard:
   enabled: true
   ingress:
