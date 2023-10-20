@@ -188,7 +188,7 @@ dependencies:
     repository: https://miguelciego.github.io/charts/
     condition: ml-auto-learning.enabled
   - name: ml-predictor
-    version: 2.39.3
+    version: 2.39.4
     repository: https://miguelciego.github.io/charts/
     condition: ml-predictor.enabled
   - name: cloud-data-ingestion

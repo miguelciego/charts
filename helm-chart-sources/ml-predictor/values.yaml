@@ -6,7 +6,7 @@ strategyType:
 # `serviceAccountName` is deprecated in favor of `serviceAccount.name`
 serviceAccountName:
 image:
-  repository: sorbaregistry.azurecr.io/sorbotics/oee/oee-engine/new-generation
+  repository: sorbaregistry.azurecr.io/sorbotics/ml-predictor/new-generation
   tag: latest
   pullPolicy: IfNotPresent
   secrets:
