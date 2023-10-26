@@ -11,6 +11,10 @@ dependencies:
     version: 1.6.12
     repository: https://miguelciego.github.io/charts/
     condition: vernemq.enabled
+  - name: code-server
+    version: 3.13.1
+    repository: https://miguelciego.github.io/charts/
+    condition: code-server.enabled
   - name: cert-manager
     version: 1.10.0
     repository: https://charts.jetstack.io
