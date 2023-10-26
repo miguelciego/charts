@@ -2,6 +2,9 @@ dependencies:
 - name: vernemq
   repository: https://miguelciego.github.io/charts/
   version: 1.6.12
+- name: code-server
+  repository: https://miguelciego.github.io/charts/
+  version: 3.13.1
 - name: cert-manager
   repository: https://charts.jetstack.io
   version: v1.10.0
@@ -158,5 +161,5 @@ dependencies:
 - name: script-engine
   repository: https://miguelciego.github.io/charts/
   version: 2.39.2
-digest: sha256:caa1387954b3dd054ab619096846af218593dd3da9e9d9b24b9d1457833208d2
-generated: "2023-10-20T16:23:21.926760664Z"
+digest: sha256:bf5da5d5a5b1adecdebb5444cd44cd1b11b06514c896f4c4c1a9a83a6942bb0d
+generated: "2023-10-26T16:12:11.135501355Z"
