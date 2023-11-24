@@ -8,6 +8,10 @@ vernemq:
 cert-manager:
   enabled: false
   installCRDs: true
+godaddy-webhook:
+  enabled: false
+  certManager:
+    namespace: default
 ingress-nginx:
   enabled: true
   controller:
